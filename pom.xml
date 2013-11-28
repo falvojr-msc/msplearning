@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.msplearning</groupId>
+	<artifactId>msplearning</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>M-SPLearning Parent</name>
+	<description>Default parent project of the M-SPLearning to build all modules</description>
+
+	<modules>
+		<module>entity</module>
+		<module>repository</module>
+		<module>service</module>
+		<module>restful-app</module>
+		<module>android-app</module>
+	</modules>
+</project>

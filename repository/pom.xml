@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.msplearning</groupId>
+		<artifactId>msplearning-web</artifactId>
+		<version>1.0</version>
+		<relativePath>../parent/web/pom.xml</relativePath>
+	</parent>
+	<artifactId>repository</artifactId>
+	<name>M-SPLearning Repository</name>
+	<description>Module that provides the data access objects for data persistence</description>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<!-- M-SPLearning model dependency (all related dependencies will be included) -->
+		<dependency>
+			<groupId>com.msplearning</groupId>
+			<artifactId>entity</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+		</dependency>
+		<!-- Spring dependencies (all related dependencies will be included) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- Apache Commons Logging dependency (update version used by Spring) -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${apache.commons.logging.version}</version>
+		</dependency>
+	</dependencies>
+</project>

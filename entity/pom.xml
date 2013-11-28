@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.msplearning</groupId>
+		<artifactId>msplearning-web</artifactId>
+		<version>1.0</version>
+		<relativePath>../parent/web/pom.xml</relativePath>
+	</parent>
+	<artifactId>entity</artifactId>
+	<name>M-SPLearning Entity</name>
+	<description>Module that provides the entities maped by JPA/Hibernate</description>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<!-- Hibernate/JPA annotations dependencies -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<!-- Apache Commons Codec dependency -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${apache.commons.codec.version}</version>
+		</dependency>
+	</dependencies>
+</project>

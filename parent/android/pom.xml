@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.msplearning</groupId>
+	<artifactId>msplearning-android</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>M-SPLearning Parent (Android)</name>
+	<description>Parent project of the M-SPLearning used by modules designed for android architecture</description>
+
+	<properties>
+		<!-- Dependencies versions -->
+		<actionbarsherlock.version>4.4.0</actionbarsherlock.version>
+		<androidannotations.version>2.7.1</androidannotations.version>
+		<android.api.version>16</android.api.version>
+		<android.plugin.version>3.6.0</android.plugin.version>
+		<android.support.version>r7</android.support.version>
+		<android.version>4.0.1.2</android.version>
+		<spring-android-rest-template.version>1.0.1.RELEASE</spring-android-rest-template.version>
+		<!-- Encoding options -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+			<version>${android.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.actionbarsherlock</groupId>
+			<artifactId>actionbarsherlock</artifactId>
+			<version>${actionbarsherlock.version}</version>
+			<type>apklib</type>
+		</dependency>
+	</dependencies>
+
+</project>
