@@ -33,6 +33,9 @@ local.properties
 proguard.cfg
 proguard-project.txt
 
+# Android #
+project.properties
+
 # Other #
 .DS_Store
 tmp
