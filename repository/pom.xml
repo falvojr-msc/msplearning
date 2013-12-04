@@ -13,7 +13,7 @@
 	<packaging>jar</packaging>
 
 	<dependencies>
-		<!-- M-SPLearning model dependency (all related dependencies will be included) -->
+		<!-- M-SPLearning entity dependency (all related dependencies will be included) -->
 		<dependency>
 			<groupId>com.msplearning</groupId>
 			<artifactId>entity</artifactId>

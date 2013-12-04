@@ -26,14 +26,13 @@ public class StudentRESTful {
 
     @POST 
     @Path("/insert")
-    public Response insert(Student student) {
-    	Response response;
+    public Student insert(Student student) {
+    	Student studentResponse = null;
     	try {
     		this.studentServiceJpa.insert(student);
-    		response = Response.status(Status.OK).entity(student.getId()).build();
-		} catch (Exception exception) {
-			response = Response.status(Status.INTERNAL_SERVER_ERROR).build();
-		}
-    	return response;
+    		studentResponse = student;
+		} catch (Exception exception) { }
+    	
+    	return studentResponse;
     }
 }
