@@ -3,11 +3,14 @@ package com.msplearning.android;
 import java.util.Date;
 
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
+import com.googlecode.androidannotations.annotations.Background;
 import com.googlecode.androidannotations.annotations.Click;
 import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.UiThread;
 import com.googlecode.androidannotations.annotations.ViewById;
 import com.googlecode.androidannotations.annotations.rest.RestService;
 import com.msplearning.android.compatibility.interoperability.StudentRESTfulClient;
@@ -44,6 +47,18 @@ public class HelloAndroidActivity extends SherlockActivity {
 		student.setPassword("android");
 		student.setUsername("veniltonjr");
 
-		restClient.insert(student);
+		doSomethingInBackground(student);
 	}
+	
+    @Background
+    void doSomethingInBackground(Student student) {
+        this.restClient.insert(student);
+        doSomethingElseOnUiThread();
+    }
+	
+    @UiThread
+    void doSomethingElseOnUiThread() {
+        Toast.makeText(this.getApplicationContext(), "Serviço consumo com sucesso!", Toast.LENGTH_LONG);
+    }
+
 }

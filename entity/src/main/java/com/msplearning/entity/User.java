@@ -19,11 +19,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.Type;
 
 import com.msplearning.entity.crypto.Base64Type;
+import com.msplearning.entity.json.adapter.DateAdapter;
 
 /**
  * The User class.
@@ -69,6 +71,7 @@ public class User implements Serializable {
 
 	@Column(name = "date_registration", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
+	@XmlJavaTypeAdapter(DateAdapter.class)
 	private Date dateRegistration;
 
 	@Column(name = "date_last_login", nullable = false)

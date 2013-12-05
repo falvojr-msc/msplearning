@@ -38,6 +38,11 @@
 			<artifactId>jersey-servlet</artifactId>
 			<version>${jersey.version}</version>
 		</dependency>
+		<dependency>
+		    <groupId>com.sun.jersey</groupId>
+		    <artifactId>jersey-json</artifactId>
+		    <version>${jersey.version}</version>
+		</dependency>
 		<!-- Spring dependencies (all related dependencies will be included) -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -87,6 +92,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>msplearning-restful</finalName>
+		<finalName>restful-app</finalName>
 	</build>
 </project>

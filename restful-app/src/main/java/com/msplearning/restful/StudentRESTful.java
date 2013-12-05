@@ -1,10 +1,9 @@
 
 package com.msplearning.restful;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,5 +33,12 @@ public class StudentRESTful {
 		} catch (Exception exception) { }
     	
     	return studentResponse;
+    }
+    
+    @GET
+    @Path("/get")
+    public String get() {
+
+    	return "Foi!";
     }
 }

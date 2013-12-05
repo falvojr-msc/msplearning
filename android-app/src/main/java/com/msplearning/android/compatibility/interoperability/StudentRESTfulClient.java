@@ -7,9 +7,9 @@ import com.googlecode.androidannotations.annotations.rest.Post;
 import com.googlecode.androidannotations.annotations.rest.Rest;
 import com.msplearning.entity.Student;
 
-@Rest(rootUrl = "http://10.0.2.2:8080/restful-app", converters = { FormHttpMessageConverter.class, GsonHttpMessageConverter.class })
+@Rest(rootUrl = "http://192.168.0.103:8080/restful-app", converters = { FormHttpMessageConverter.class, GsonHttpMessageConverter.class })
 public interface StudentRESTfulClient {
 
-	@Post("/insert/student/")
+	@Post("/student/insert")
 	Student insert(Student student);
 }

@@ -10,7 +10,7 @@
 .classpath
 .settings
 .checkstyle
-/.apt_generated
+.apt_generated
 
 # IntelliJ IDEA #
 .idea
