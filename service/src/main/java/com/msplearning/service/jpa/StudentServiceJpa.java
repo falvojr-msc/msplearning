@@ -28,4 +28,13 @@ public class StudentServiceJpa implements StudentService {
 		this.studentRepositoryJpa.update(entity);
 	}
 
+	@Override
+	public void delete(Long id) {
+		this.studentRepositoryJpa.delete(id);
+	}
+	
+	@Override
+	public Student findById(Long id) {
+		return this.studentRepositoryJpa.findById(id);
+	}
 }

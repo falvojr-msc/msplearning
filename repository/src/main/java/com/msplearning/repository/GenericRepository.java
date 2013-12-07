@@ -17,7 +17,7 @@ public interface GenericRepository<T extends Serializable> {
 
 	void update(T entity);
 
-	void remove(Serializable id);
+	void delete(Serializable id);
 
 	T findById(Serializable id);
 

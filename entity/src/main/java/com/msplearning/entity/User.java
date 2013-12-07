@@ -12,20 +12,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.Type;
 
 import com.msplearning.entity.crypto.Base64Type;
-import com.msplearning.entity.json.adapter.DateAdapter;
 
 /**
  * The User class.
@@ -71,26 +67,28 @@ public class User implements Serializable {
 
 	@Column(name = "date_registration", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	@XmlJavaTypeAdapter(DateAdapter.class)
 	private Date dateRegistration;
 
 	@Column(name = "date_last_login", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateLastLogin;
 
-	@OneToMany
-	@JoinColumn(name = "id_user", nullable = false)
-	@ForeignKey(name="fk_tb_address_2_tb_user")
+//	@OneToMany
+//	@JoinColumn(name = "id_user", nullable = false)
+//	@ForeignKey(name="fk_tb_address_2_tb_user")
+	@Transient
 	protected List<Address> addresses;
 	
-	@OneToMany
-	@JoinColumn(name = "id_user", nullable = false)
-	@ForeignKey(name="fk_tb_email_2_tb_user")
+//	@OneToMany
+//	@JoinColumn(name = "id_user", nullable = false)
+//	@ForeignKey(name="fk_tb_email_2_tb_user")
+	@Transient
 	protected List<Email> emails;
 	
-	@OneToMany
-	@JoinColumn(name = "id_user", nullable = false)
-	@ForeignKey(name="fk_tb_phone_2_tb_user")
+//	@OneToMany
+//	@JoinColumn(name = "id_user", nullable = false)
+//	@ForeignKey(name="fk_tb_phone_2_tb_user")
+	@Transient
 	protected List<Phone> phones;
 
 	public Long getId() {

@@ -15,7 +15,7 @@ import org.apache.commons.codec.binary.Base64;
  */
 public class Base64Util {
 
-	private static final byte[] encryptionKey = new byte[] { 'U', 'm', 'a', 'C', 'h', 'a', 'v', 'e', 'Q', 'u', 'a', 'l', 'q', 'u', 'e', 'r' };
+	private static final byte[] encryptionKey = new byte[] { 'W', 'g', 's', 'c', 'x', 'c', 'g', 'r', 'F', 'q', 'Q', 'f', 'w', 'v', 'P', 'J' };
 
 	public static String encode(String string) {
 		Key key;

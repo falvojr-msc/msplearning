@@ -18,6 +18,7 @@
 			<artifactId>entity</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
+			<!-- Excludes unnecessary dependencies -->
 			<exclusions>
 				<exclusion>
 					<artifactId>javassist</artifactId>
@@ -41,6 +42,21 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- Apache Commons Codec dependency -->
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+			<version>${android.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- ActionBar Sherlock library dependency (all related dependencies will be included) -->
+		<dependency>
+			<groupId>com.actionbarsherlock</groupId>
+			<artifactId>actionbarsherlock</artifactId>
+			<version>${actionbarsherlock.version}</version>
+			<type>apklib</type>
+		</dependency>
+		<!-- Android Annotations dependencies -->
 		<dependency>
 			<groupId>com.googlecode.androidannotations</groupId>
 			<artifactId>androidannotations</artifactId>
@@ -52,39 +68,11 @@
 			<artifactId>androidannotations-api</artifactId>
 			<version>${androidannotations.version}</version>
 		</dependency>
+		<!-- Spring Android dependency (all related dependencies will be included) -->
 		<dependency>
 			<groupId>org.springframework.android</groupId>
 			<artifactId>spring-android-rest-template</artifactId>
 			<version>${spring-android-rest-template.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>${gson.version}</version>
-		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-				<artifactId>android-maven-plugin</artifactId>
-				<version>${android.maven.plugin.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-					<sdk>
-						<platform>${android.api.version}</platform>
-					</sdk>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.compiler.plugin.version}</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

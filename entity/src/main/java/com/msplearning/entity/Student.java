@@ -3,7 +3,6 @@ package com.msplearning.entity;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.ForeignKey;
 
@@ -16,7 +15,6 @@ import org.hibernate.annotations.ForeignKey;
 @Table(name = "tb_student")
 @PrimaryKeyJoinColumn(name = "id_user", referencedColumnName = "id")
 @ForeignKey(name = "fk_tb_student_2_tb_user")
-@XmlRootElement
 public class Student extends User {
 
 	private static final long serialVersionUID = 1L;

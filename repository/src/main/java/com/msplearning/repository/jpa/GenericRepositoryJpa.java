@@ -81,7 +81,7 @@ public class GenericRepositoryJpa<T extends Serializable> implements GenericRepo
 
 	@Override
 	@Transactional
-	public void remove(Serializable id) {
+	public void delete(Serializable id) {
 		this.getEntityManager().remove(this.getEntityManager().getReference(getPersistentClass(), id));
 	}
 

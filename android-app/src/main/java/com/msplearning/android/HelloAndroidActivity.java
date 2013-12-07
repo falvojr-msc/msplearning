@@ -2,7 +2,7 @@ package com.msplearning.android;
 
 import java.util.Date;
 
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -17,15 +17,23 @@ import com.msplearning.android.compatibility.interoperability.StudentRESTfulClie
 import com.msplearning.entity.Gender;
 import com.msplearning.entity.Student;
 
-@EActivity(R.layout.activity_login)
+/**
+ * The HelloAndroidActivity class.
+ * 
+ * @author Venilton Falvo Junior (veniltonjr)
+ */
+@EActivity(R.layout.activity_tests)
 public class HelloAndroidActivity extends SherlockActivity {
 
-	@ViewById(R.id.editTextEmail)
-	EditText editTextEmail;
-
-	@ViewById(R.id.editTextPassword)
-	EditText editTextPassword;
-
+	private Long idStudent;
+	
+	@ViewById(R.id.buttonInsert)
+	Button btnInsert;
+	@ViewById(R.id.buttonUpdate)
+	Button btnUdate;	
+	@ViewById(R.id.buttonDelete)
+	Button btnDelete;
+	
 	@RestService
 	StudentRESTfulClient restClient;
 
@@ -35,30 +43,55 @@ public class HelloAndroidActivity extends SherlockActivity {
         return true;
     }
 
-	@Click(R.id.buttonLogin)
-	void onLoginClick() {
+	@Click(R.id.buttonInsert)
+	void onInsertClick() {
 		Student student = new Student();
-		student.setDateBirth(new Date());
-		student.setDateLastLogin(new Date());
-		student.setDateRegistration(new Date());
-		student.setFirstName("Venilton");
-		student.setGender(Gender.M);
-		student.setLastName("Falvo Jr.");
-		student.setPassword("android");
-		student.setUsername("veniltonjr");
-
-		doSomethingInBackground(student);
+        student.setDateBirth(new Date());
+        student.setDateLastLogin(new Date());
+        student.setDateRegistration(new Date());
+        student.setFirstName("Venilton");
+        student.setGender(Gender.M);
+        student.setLastName("Falvo Jr.");
+        student.setPassword("android");
+        student.setUsername("veniltonjr");
+		
+		asyncInsert(student);
+	}
+	
+	@Click(R.id.buttonUpdate)
+	void onUpdateClick() {	
+		asyncUpdate();
+	}
+	
+    @Click(R.id.buttonDelete)
+	void onDeleteClick() {	
+		asyncDelete();
 	}
 	
     @Background
-    void doSomethingInBackground(Student student) {
-        this.restClient.insert(student);
-        doSomethingElseOnUiThread();
+    void asyncInsert(Student student) {
+    	this.idStudent = this.restClient.insert(student);
+        showUiMessage("Student created!");
     }
-	
+
+    @Background
+    void asyncUpdate() {
+		Student student = this.restClient.findById(this.idStudent);
+		student.setFirstName("Alter...");
+		
+    	this.restClient.update(student); 	
+        showUiMessage("Student updated!");
+    }
+    
+    @Background
+    void asyncDelete() {
+		this.restClient.delete(this.idStudent);
+        showUiMessage("Student deleted!");
+    }
+    
     @UiThread
-    void doSomethingElseOnUiThread() {
-        Toast.makeText(this.getApplicationContext(), "Serviço consumo com sucesso!", Toast.LENGTH_LONG);
+    void showUiMessage(String message) {
+        Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
 }
