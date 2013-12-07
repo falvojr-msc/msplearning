@@ -27,6 +27,8 @@ public class CustomGsonHttpMessageConverter extends GsonHttpMessageConverter {
 		if (gson == null) {
 			gson = new GsonBuilder()
 				.registerTypeAdapter(Date.class, new DateGsonSerializer())
+				.registerTypeAdapter(java.sql.Date.class, new DateGsonSerializer())
+				.registerTypeAdapter(java.sql.Timestamp.class, new DateGsonSerializer())
 				.create();
 		}
 		return gson;

@@ -88,7 +88,11 @@ public class GsonProvider implements MessageBodyReader<Object>, MessageBodyWrite
 
 	private Gson getGson() {
 		if (gson == null) {
-			gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateGsonSerializer()).create();
+			gson = new GsonBuilder()
+				.registerTypeAdapter(Date.class, new DateGsonSerializer())
+				.registerTypeAdapter(java.sql.Date.class, new DateGsonSerializer())
+				.registerTypeAdapter(java.sql.Timestamp.class, new DateGsonSerializer())
+				.create();
 		}
 		return gson;
 	}
