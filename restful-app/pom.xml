@@ -38,11 +38,6 @@
 			<artifactId>jersey-servlet</artifactId>
 			<version>${jersey.version}</version>
 		</dependency>
-		<dependency>
-		    <groupId>com.sun.jersey</groupId>
-		    <artifactId>jersey-json</artifactId>
-		    <version>${jersey.version}</version>
-		</dependency>
 		<!-- Spring dependencies (all related dependencies will be included) -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -86,7 +81,7 @@
 		<!-- Simple Logging Facade dependency (update version used by Hibernate) -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
+			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
 	</dependencies>

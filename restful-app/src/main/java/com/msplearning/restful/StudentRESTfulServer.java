@@ -6,6 +6,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,15 +15,17 @@ import com.msplearning.entity.Student;
 import com.msplearning.service.StudentService;
 
 /**
- * The StudentRESTful class provides the RESTful services of entity
+ * The StudentRESTfulServer class provides the RESTful services of entity
  * {@link Student}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Component
 @Path("/student")
-public class StudentRESTful {
+public class StudentRESTfulServer {
 
+	private final Logger logger = LoggerFactory.getLogger(StudentRESTfulServer.class);
+	
 	@Autowired
 	private StudentService studentServiceJpa;
 
@@ -31,9 +35,10 @@ public class StudentRESTful {
 		Long id = null;
 		try {
 			this.studentServiceJpa.insert(student);
+			logger.info("Foi");
 			id = student.getId();
 		} catch (Exception exception) {
-			// TODO: Student insert log.
+			logger.error("An error occurred while trying to insert a Student", exception);
 		}
 		return id;
 	}
@@ -44,7 +49,7 @@ public class StudentRESTful {
 		try {
 			this.studentServiceJpa.update(student);
 		} catch (Exception exception) {
-			// TODO: Student update log.
+			logger.error("An error occurred while trying to update a Student", exception);
 		}
 	}
 
@@ -54,7 +59,7 @@ public class StudentRESTful {
 		try {
 			this.studentServiceJpa.delete(idStudent);
 		} catch (Exception exception) {
-			// TODO: Student delete log.
+			logger.error("An error occurred while trying to delete a Student", exception);
 		}
 	}
 	
@@ -65,7 +70,7 @@ public class StudentRESTful {
 		try {
 			student = this.studentServiceJpa.findById(idStudent);
 		} catch (Exception exception) {
-			// TODO: Student find log.
+			logger.error("An error occurred while trying to find a Student", exception);
 		}
 		return student;
 	}
