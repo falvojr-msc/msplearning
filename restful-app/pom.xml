@@ -13,7 +13,8 @@
 	<packaging>war</packaging>
 
 	<dependencies>
-		<!-- M-SPLearning service dependency (all related dependencies will be included) -->
+		<!-- M-SPLearning service dependency (all related dependencies will be 
+			included) -->
 		<dependency>
 			<groupId>com.msplearning</groupId>
 			<artifactId>service</artifactId>
@@ -25,6 +26,13 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
+			<!-- Exclude JBoss Logging dependency (updated in project M-SPLearning Entity) -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.jboss.logging</groupId>
+					<artifactId>jboss-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- PostgreSQL driver dependency -->
 		<dependency>
@@ -32,34 +40,31 @@
 			<artifactId>postgresql</artifactId>
 			<version>${postgresql.version}</version>
 		</dependency>
-		<!-- Jersey dependency (all related dependencies will be included) -->
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-servlet</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
 		<!-- Spring dependencies (all related dependencies will be included) -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
+			<!-- Exclude Commons Logging dependency (updated in project M-SPLearning Repository) -->
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<!-- Jersey integrated with Spring dependency -->
+		<!-- Jersey dependency (all related dependencies will be included) -->
 		<dependency>
-			<groupId>com.sun.jersey.contribs</groupId>
-			<artifactId>jersey-spring</artifactId>
+			<groupId>org.glassfish.jersey.ext</groupId>
+			<artifactId>jersey-spring3</artifactId>
 			<version>${jersey.version}</version>
 			<!-- Exclude all Spring dependencies (already registered) -->
 			<exclusions>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-core</artifactId>
-				</exclusion>
 				<exclusion>
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-beans</artifactId>
@@ -70,11 +75,11 @@
 				</exclusion>
 				<exclusion>
 					<groupId>org.springframework</groupId>
-					<artifactId>spring-web</artifactId>
+					<artifactId>spring-core</artifactId>
 				</exclusion>
 				<exclusion>
 					<groupId>org.springframework</groupId>
-					<artifactId>spring-aop</artifactId>
+					<artifactId>spring-web</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>

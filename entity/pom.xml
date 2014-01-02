@@ -13,11 +13,24 @@
 	<packaging>jar</packaging>
 
 	<dependencies>
-		<!-- Hibernate/JPA annotations dependencies -->
+		<!-- Hibernate/JPA dependency (all related dependencies will be included) -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
+			<!-- Exclude JBoss Logging dependency (updated below) -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.jboss.logging</groupId>
+					<artifactId>jboss-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- JBoss Logging dependency -->
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>${jboss.logging.version}</version>
 		</dependency>
 		<!-- Apache Commons Codec dependency -->
 		<dependency>

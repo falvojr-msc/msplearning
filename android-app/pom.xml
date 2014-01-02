@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>msplearning-android</artifactId>
 		<groupId>com.msplearning</groupId>
 		<version>1.0</version>
 		<relativePath>../parent/android/pom.xml</relativePath>
 	</parent>
-	<modelVersion>4.0.0</modelVersion>
 	<artifactId>android-app</artifactId>
+	<name>M-SPLearning Android</name>
+	<description>Module that provides the Android application</description>
 	<packaging>apk</packaging>
 
 	<dependencies>
