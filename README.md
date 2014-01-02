@@ -41,6 +41,22 @@ git clone https://github.com/veniltonjr/msplearning.git
 ActionBarSherlock
 ├── actionbarsherlock <--
 │   └── pom.xml
+├── actionbarsherlock-fest
+│   └── pom.xml
+├── actionbarsherlock-i18n
+│   └── pom.xml
+├── actionbarsherlock-samples
+│   ├── demos
+│   │   └── pom.xml
+│   ├── fragments
+│   │   └── pom.xml
+│   ├── known-bugs
+│   │   └── pom.xml
+│   ├── roboguice
+│   │   └── pom.xml
+│   ├── styled
+│   │   └── pom.xml
+│   └── pom.xml
 └── pom.xml
 ```
 ```
