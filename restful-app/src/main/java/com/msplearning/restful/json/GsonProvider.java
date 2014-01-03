@@ -8,7 +8,6 @@ import java.io.OutputStreamWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
-import java.util.Date;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
@@ -20,8 +19,7 @@ import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.msplearning.entity.json.DateGsonSerializer;
+import com.msplearning.entity.json.GsonFactory;
 
 /**
  * The GsonProvider class implements {@link MessageBodyReader} and
@@ -34,8 +32,6 @@ import com.msplearning.entity.json.DateGsonSerializer;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class GsonProvider implements MessageBodyReader<Object>, MessageBodyWriter<Object> {
-
-	private Gson gson;
 
 	@Override
 	public long getSize(Object object, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
@@ -58,7 +54,7 @@ public class GsonProvider implements MessageBodyReader<Object>, MessageBodyWrite
 			} else {
 				jsonType = genericType;
 			}
-			this.getGson().toJson(object, jsonType, writer);
+			GsonFactory.createGson().toJson(object, jsonType, writer);
 		} finally {
 			writer.close();
 		}
@@ -80,20 +76,9 @@ public class GsonProvider implements MessageBodyReader<Object>, MessageBodyWrite
 			} else {
 				jsonType = genericType;
 			}
-			return this.getGson().fromJson(streamReader, jsonType);
+			return GsonFactory.createGson().fromJson(streamReader, jsonType);
 		} finally {
 			streamReader.close();
 		}
-	}
-
-	private Gson getGson() {
-		if (gson == null) {
-			gson = new GsonBuilder()
-				.registerTypeAdapter(Date.class, new DateGsonSerializer())
-				.registerTypeAdapter(java.sql.Date.class, new DateGsonSerializer())
-				.registerTypeAdapter(java.sql.Timestamp.class, new DateGsonSerializer())
-				.create();
-		}
-		return gson;
 	}
 }

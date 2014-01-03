@@ -1,12 +1,9 @@
 package com.msplearning.android.json;
 
-import java.util.Date;
-
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.msplearning.entity.json.DateGsonSerializer;
+import com.msplearning.entity.json.GsonFactory;
 
 /**
  * The CustomGsonHttpMessageConverter class extends
@@ -17,20 +14,8 @@ import com.msplearning.entity.json.DateGsonSerializer;
  */
 public class CustomGsonHttpMessageConverter extends GsonHttpMessageConverter {
 
-	private static Gson gson;
-
 	public CustomGsonHttpMessageConverter() {
-		super(CustomGsonHttpMessageConverter.getGson());
+		super(GsonFactory.createGson());
 	}
 
-	private static Gson getGson() {
-		if (gson == null) {
-			gson = new GsonBuilder()
-				.registerTypeAdapter(Date.class, new DateGsonSerializer())
-				.registerTypeAdapter(java.sql.Date.class, new DateGsonSerializer())
-				.registerTypeAdapter(java.sql.Timestamp.class, new DateGsonSerializer())
-				.create();
-		}
-		return gson;
-	}
 }
