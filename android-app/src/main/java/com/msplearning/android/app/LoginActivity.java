@@ -29,12 +29,6 @@ import com.msplearning.entity.User;
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends SherlockActivity {
 
-	/**
-	 * A dummy authentication store containing known user names and passwords.
-	 * TODO: remove after connecting to a real authentication system.
-	 */
-	private static final String[] DUMMY_CREDENTIALS = new String[] { "foo@example.com:hello", "bar@example.com:world" };
-
 	// Values for email and password at the time of the login attempt.
 	private String mUsername;
 	private String mPassword;
