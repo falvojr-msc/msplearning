@@ -1,24 +1,17 @@
 package com.msplearning.android.compatibility.interoperability;
 
-import com.googlecode.androidannotations.annotations.rest.Delete;
 import com.googlecode.androidannotations.annotations.rest.Get;
 import com.googlecode.androidannotations.annotations.rest.Post;
 import com.googlecode.androidannotations.annotations.rest.Rest;
 import com.msplearning.android.json.CustomGsonHttpMessageConverter;
-import com.msplearning.entity.Student;
+import com.msplearning.entity.User;
 
 @Rest(rootUrl = RESTfulServerUtil.ROOT_URL, converters = { CustomGsonHttpMessageConverter.class })
-public interface StudentRESTfulClient {
+public interface UserRESTfulClient {
 
-	@Post("/student/insert")
-	Long insert(Student student);
-
-	@Post("/student/update")
-	void update(Student student);
-
-	@Delete("/student/delete/{id}")
-	void delete(Long id);
+	@Post("/user/auth")
+	Boolean authenticate(User user);
 	
-	@Get("/student/find/{id}")
-	Student findById(Long id);
+	@Get("/user/find/{username}")
+	User findByUsername(String username);
 }

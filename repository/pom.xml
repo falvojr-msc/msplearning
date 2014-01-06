@@ -31,11 +31,5 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<!-- Apache Commons Logging dependency (update version used by Spring) -->
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>${apache.commons.logging.version}</version>
-		</dependency>
 	</dependencies>
 </project>

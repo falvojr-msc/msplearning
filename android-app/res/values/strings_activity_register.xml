@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="title_activity_register">Register</string>
+
+    <!-- Strings related to register -->
+    <string name="prompt_first_name">First name</string>
+    <string name="prompt_last_name">Last name</string>
+    <string name="prompt_repeat_password">Repeat password</string>
+    <string name="prompt_male">Male</string>
+    <string name="prompt_female">Female</string>
+    <string name="prompt_teacher">Teacher</string>
+    <string name="prompt_student">Student</string>
+    <string name="action_register">Register</string>
+
+</resources>

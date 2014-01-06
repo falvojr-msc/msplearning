@@ -6,7 +6,7 @@ import com.msplearning.entity.Teacher;
 import com.msplearning.repository.TeacherRepository;
 
 /**
- * The TeacherDaoImpl class provides the persistence operations of entity {@link Teacher}.
+ * The TeacherRepositoryJpa class provides the persistence operations of entity {@link Teacher}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */

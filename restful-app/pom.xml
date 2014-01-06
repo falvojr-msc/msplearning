@@ -26,13 +26,6 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
-			<!-- Exclude JBoss Logging dependency (updated in project M-SPLearning Entity) -->
-			<exclusions>
-				<exclusion>
-					<groupId>org.jboss.logging</groupId>
-					<artifactId>jboss-logging</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<!-- PostgreSQL driver dependency -->
 		<dependency>
@@ -45,13 +38,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
-			<!-- Exclude Commons Logging dependency (updated in project M-SPLearning Repository) -->
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -83,7 +69,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- Simple Logging Facade dependency (update version used by Hibernate) -->
+		<!-- Simple Logging Facade dependency -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>

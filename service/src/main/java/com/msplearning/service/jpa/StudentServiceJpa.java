@@ -8,7 +8,7 @@ import com.msplearning.repository.StudentRepository;
 import com.msplearning.service.StudentService;
 
 /**
- * The StudentServiceImpl class provides the business operations of entity {@link Student}.
+ * The StudentServiceJpa class provides the business operations of entity {@link Student}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */

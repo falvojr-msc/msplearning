@@ -51,7 +51,7 @@ public class User implements Serializable {
 	@Column(name = "gender", length = 1, nullable = false)
 	private Gender gender;
 
-	@Column(name = "date_birth", nullable = false)
+	@Column(name = "date_birth")
 	@Temporal(TemporalType.DATE)
 	private Date dateBirth;
 
