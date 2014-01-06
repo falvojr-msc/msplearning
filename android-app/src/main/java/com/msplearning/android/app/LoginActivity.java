@@ -128,21 +128,33 @@ public class LoginActivity extends SherlockActivity {
 		userAuth.setUsername(this.mUsername);
 		userAuth.setPassword(this.mPassword);
 		
-		success = this.mUserRESTfulClient.authenticate(userAuth);
-		
-		if (success) {
-			this.mProgressBarCustom.showProgress(false, this.mLoginFormView);
-		} else {
-			User user = this.mUserRESTfulClient.findByUsername(userAuth.getUsername());
-			this.mProgressBarCustom.showProgress(false, this.mLoginFormView);
-			if (user == null) {
-				showDialogConfirmRegister();
-			} else {
-				showIncorrectPasswordError();
+		try {
+			success = this.mUserRESTfulClient.authenticate(userAuth);
+			if (!success) {
+				User user = this.mUserRESTfulClient.findByUsername(userAuth.getUsername());
+				if (user == null) {
+					showDialogConfirmRegister();
+				} else {
+					showIncorrectPasswordError();
+				}
 			}
+		} catch (Exception exception) {
+			showDialogAlertError(exception);
+		} finally {
+			this.mProgressBarCustom.showProgress(false, this.mLoginFormView);
 		}
 	}
 
+	@UiThread
+	protected void showDialogAlertError(Exception exception) {
+		new AlertDialog.Builder(this)
+		.setTitle(this.getString(R.string.title_dialog_error))
+		.setMessage(exception.getMessage())
+		.setIcon(android.R.drawable.ic_dialog_alert)
+		.setNeutralButton(android.R.string.ok, null)
+		.show();
+	}
+	
 	@UiThread
 	protected void showDialogConfirmRegister() {
 		new AlertDialog.Builder(this)

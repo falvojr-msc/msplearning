@@ -8,5 +8,5 @@
     <!-- Common strings -->
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
-
+	<string name="title_dialog_error">Error</string>
 </resources>
