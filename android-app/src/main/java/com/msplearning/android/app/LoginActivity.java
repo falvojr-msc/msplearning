@@ -1,5 +1,8 @@
 package com.msplearning.android.app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -29,6 +32,9 @@ import com.msplearning.entity.User;
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends SherlockActivity {
 
+	public static final String KEY_PASSWORD = "password";
+	public static final String KEY_USERNAME = "username";
+	
 	// Values for email and password at the time of the login attempt.
 	private String mUsername;
 	private String mPassword;
@@ -103,10 +109,6 @@ public class LoginActivity extends SherlockActivity {
 			mUsernameView.setError(getString(R.string.error_field_required));
 			focusView = mUsernameView;
 			cancel = true;
-		} else if (mUsername.length() < 4) {
-			mUsernameView.setError(getString(R.string.error_invalid_username));
-			focusView = mUsernameView;
-			cancel = true;
 		}
 
 		if (cancel) {
@@ -122,7 +124,7 @@ public class LoginActivity extends SherlockActivity {
 	protected void authenticate() {
 		boolean success = false;
 
-		User userAuth = new User();
+		final User userAuth = new User();
 		userAuth.setUsername(this.mUsername);
 		userAuth.setPassword(this.mPassword);
 		
@@ -134,7 +136,7 @@ public class LoginActivity extends SherlockActivity {
 			User user = this.mUserRESTfulClient.findByUsername(userAuth.getUsername());
 			this.mProgressBarCustom.showProgress(false, this.mLoginFormView);
 			if (user == null) {
-				// TODO: Ask if the user wants to register.
+				showDialogConfirmRegister();
 			} else {
 				showIncorrectPasswordError();
 			}
@@ -142,9 +144,34 @@ public class LoginActivity extends SherlockActivity {
 	}
 
 	@UiThread
-	protected void showIncorrectPasswordError() {
-		mPasswordView.setError(getString(R.string.error_incorrect_password));
-		mPasswordView.requestFocus();
+	protected void showDialogConfirmRegister() {
+		new AlertDialog.Builder(this)
+		.setTitle(this.getString(R.string.title_dialog_register))
+		.setMessage(this.getString(R.string.message_dialog_register))
+		.setIcon(android.R.drawable.ic_dialog_info)
+		.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				Intent intent = RegisterActivity_.intent(getApplicationContext()).get();
+				intent.putExtra(KEY_USERNAME, mUsername);
+				intent.putExtra(KEY_PASSWORD, mPassword);
+				startActivity(intent);
+			}})
+		.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				showNotFoundUserError();
+			}})
+		.show();
 	}
 
+	@UiThread
+	protected void showIncorrectPasswordError() {
+		this.mPasswordView.setError(this.getString(R.string.error_incorrect_password));
+		this.mPasswordView.requestFocus();
+	}
+
+	@UiThread
+	protected void showNotFoundUserError() {
+		this.mUsernameView.setError(this.getString(R.string.error_not_found_username));
+		this.mUsernameView.requestFocus();
+	}
 }

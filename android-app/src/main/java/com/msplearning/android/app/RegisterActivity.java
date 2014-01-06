@@ -4,13 +4,16 @@ import java.util.Date;
 
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.google.gson.Gson;
+import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.Background;
 import com.googlecode.androidannotations.annotations.Click;
 import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.UiThread;
 import com.googlecode.androidannotations.annotations.ViewById;
 import com.googlecode.androidannotations.annotations.rest.RestService;
 import com.msplearning.android.compatibility.interoperability.StudentRESTfulClient;
@@ -50,8 +53,22 @@ public class RegisterActivity extends SherlockActivity {
         return true;
     }
 	
+	@AfterViews
+	public void init() {
+		String username = this.getIntent().getStringExtra(LoginActivity.KEY_USERNAME);
+		if (username !=  null) {
+			this.mUsernameView.setText(username);
+			this.getIntent().removeExtra(LoginActivity.KEY_USERNAME);
+		}
+		
+		String password = this.getIntent().getStringExtra(LoginActivity.KEY_PASSWORD);
+		if (password !=  null) {
+			this.mPasswordView.setText(password);
+			this.getIntent().removeExtra(LoginActivity.KEY_PASSWORD);
+		}
+	}
+	
 	@Click(R.id.register_button)
-	@Background
 	public void register() {
 		User user = new User();
         user.setFirstName(this.mFirstNameView.getText().toString());
@@ -62,13 +79,23 @@ public class RegisterActivity extends SherlockActivity {
         user.setDateRegistration(new Date());
         user.setDateLastLogin(new Date());
         
+        insertUser(user);
+	}
+	
+	@Background
+	public void insertUser(User user) {
         Gson gson = GsonFactory.createGson();
-        String jsonUser = gson.toJson(user);
         
-        if (this.mTypeView.indexOfChild(findViewById(this.mTypeView.getCheckedRadioButtonId())) == 0) {
-        	mStudentRESTfulClient.insert(gson.fromJson(jsonUser, Student.class));
-		} else {
-			mTeacherRESTfulClient.insert(gson.fromJson(jsonUser, Teacher.class));
-		}
+        if (this.mTypeView.indexOfChild(findViewById(this.mTypeView.getCheckedRadioButtonId())) == 0)
+        	mStudentRESTfulClient.insert(gson.fromJson(gson.toJson(user), Student.class));
+		else
+			mTeacherRESTfulClient.insert(gson.fromJson(gson.toJson(user), Teacher.class));
+        
+        showUiMessage("User created!");
+	}
+	
+	@UiThread
+	void showUiMessage(String message) {
+		Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_LONG).show();
 	}
 }

@@ -11,12 +11,11 @@
 	<properties>
 		<!-- Dependencies versions -->
 		<apache.commons.codec.version>1.8</apache.commons.codec.version>
-		<apache.commons.logging.version>1.1.3</apache.commons.logging.version>
 		<gson.version>2.2.4</gson.version>
 		<hibernate.version>4.2.8.Final</hibernate.version>
-		<jboss.logging.version>3.1.3.GA</jboss.logging.version>
 		<jersey.version>2.5</jersey.version>
 		<maven.compiler.version>3.1</maven.compiler.version>
+		<mysql.version>5.1.28</mysql.version>
 		<postgresql.version>9.1-901.jdbc4</postgresql.version>
 		<slf4j.version>1.7.5</slf4j.version>
 		<spring.version>4.0.0.RELEASE</spring.version>
