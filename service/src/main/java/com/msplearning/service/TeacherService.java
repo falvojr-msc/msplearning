@@ -1,20 +1,27 @@
 package com.msplearning.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.msplearning.entity.Teacher;
-import com.msplearning.service.jpa.TeacherServiceJpa;
+import com.msplearning.repository.TeacherRepository;
+import com.msplearning.repository.generic.GenericRepository;
+import com.msplearning.service.generic.GenericCrudService;
 
 /**
- * Interface of {@link TeacherServiceJpa}.
+ * The TeacherServiceJpa class provides the business operations of entity {@link Teacher}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
-public interface TeacherService {
+@Service("teacherService")
+public class TeacherService extends GenericCrudService<Teacher, Long> {
 
-	void insert(Teacher entity);
+	@Autowired
+	private TeacherRepository teacherRepository;
 
-	void update(Teacher entity);
+	@Override
+	protected GenericRepository<Teacher, Long> getRepository() {
+		return this.teacherRepository;
+	}
 
-	void delete(Long id);
-	
-	Teacher findById(Long id);
 }

@@ -1,5 +1,10 @@
 package com.msplearning.android.widget;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EViewGroup;
+import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.ViewById;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -11,10 +16,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.EViewGroup;
-import com.googlecode.androidannotations.annotations.UiThread;
-import com.googlecode.androidannotations.annotations.ViewById;
 import com.msplearning.android.app.R;
 
 /**

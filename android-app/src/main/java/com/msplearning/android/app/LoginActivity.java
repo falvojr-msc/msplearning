@@ -1,5 +1,13 @@
 package com.msplearning.android.app;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.rest.RestService;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,15 +18,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.Background;
-import com.googlecode.androidannotations.annotations.Click;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.UiThread;
-import com.googlecode.androidannotations.annotations.ViewById;
-import com.googlecode.androidannotations.annotations.rest.RestService;
+import com.msplearning.android.app.base.BaseActivityWithRestSupport;
 import com.msplearning.android.compatibility.interoperability.UserRESTfulClient;
 import com.msplearning.android.widget.ProgressBarCustom;
 import com.msplearning.entity.User;
@@ -30,7 +31,7 @@ import com.msplearning.entity.User;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_login)
-public class LoginActivity extends SherlockActivity {
+public class LoginActivity extends BaseActivityWithRestSupport {
 
 	public static final String KEY_PASSWORD = "password";
 	public static final String KEY_USERNAME = "username";
@@ -41,13 +42,13 @@ public class LoginActivity extends SherlockActivity {
 
 	// UI references.
 	@ViewById(R.id.username)
-	EditText mUsernameView;
+	protected EditText mUsernameView;
 	@ViewById(R.id.password)
-	EditText mPasswordView;
+	protected EditText mPasswordView;
 	@ViewById(R.id.login_form)
-	View mLoginFormView;
+	protected View mLoginFormView;
 	@ViewById(R.id.login_progress_bar)
-	ProgressBarCustom mProgressBarCustom;
+	protected ProgressBarCustom mProgressBarCustom;
 	
 	// RESTful client.
 	@RestService

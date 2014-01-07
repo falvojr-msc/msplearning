@@ -1,4 +1,4 @@
-package com.msplearning.restful.json;
+package com.msplearning.restful.app.json;
 
 import java.io.IOException;
 import java.io.InputStream;

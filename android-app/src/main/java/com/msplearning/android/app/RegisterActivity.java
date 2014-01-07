@@ -2,20 +2,21 @@ package com.msplearning.android.app;
 
 import java.util.Date;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.rest.RestService;
+
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.google.gson.Gson;
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.Background;
-import com.googlecode.androidannotations.annotations.Click;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.UiThread;
-import com.googlecode.androidannotations.annotations.ViewById;
-import com.googlecode.androidannotations.annotations.rest.RestService;
+import com.msplearning.android.app.base.BaseActivityWithRestSupport;
 import com.msplearning.android.compatibility.interoperability.StudentRESTfulClient;
 import com.msplearning.android.compatibility.interoperability.TeacherRESTfulClient;
 import com.msplearning.entity.Gender;
@@ -25,7 +26,7 @@ import com.msplearning.entity.User;
 import com.msplearning.entity.json.GsonFactory;
 
 @EActivity(R.layout.activity_register)
-public class RegisterActivity extends SherlockActivity {
+public class RegisterActivity extends BaseActivityWithRestSupport {
 
 	@ViewById(R.id.firstName)
 	protected EditText mFirstNameView;
@@ -76,8 +77,6 @@ public class RegisterActivity extends SherlockActivity {
         user.setGender(this.mGenderView.indexOfChild(findViewById(this.mGenderView.getCheckedRadioButtonId())) == 0 ? Gender.M : Gender.F);
         user.setUsername(this.mUsernameView.getText().toString());
         user.setPassword(this.mPasswordView.getText().toString());
-        user.setDateRegistration(new Date());
-        user.setDateLastLogin(new Date());
         
         insertUser(user);
 	}
@@ -87,9 +86,9 @@ public class RegisterActivity extends SherlockActivity {
         Gson gson = GsonFactory.createGson();
         
         if (this.mTypeView.indexOfChild(findViewById(this.mTypeView.getCheckedRadioButtonId())) == 0)
-        	mStudentRESTfulClient.insert(gson.fromJson(gson.toJson(user), Student.class));
+        	this.mStudentRESTfulClient.insert(gson.fromJson(gson.toJson(user), Student.class));
 		else
-			mTeacherRESTfulClient.insert(gson.fromJson(gson.toJson(user), Teacher.class));
+			this.mTeacherRESTfulClient.insert(gson.fromJson(gson.toJson(user), Teacher.class));
         
         showUiMessage("User created!");
 	}

@@ -13,8 +13,7 @@
 	<packaging>war</packaging>
 
 	<dependencies>
-		<!-- M-SPLearning service dependency (all related dependencies will be 
-			included) -->
+		<!-- M-SPLearning service dependency (all related dependencies will be included) -->
 		<dependency>
 			<groupId>com.msplearning</groupId>
 			<artifactId>service</artifactId>
@@ -27,7 +26,7 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		<!-- PostgreSQL driver dependency -->
+		<!--Database driver dependency -->
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>

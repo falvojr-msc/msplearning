@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.msplearning.entity.Student;
 import com.msplearning.entity.User;
 import com.msplearning.repository.UserRepository;
+import com.msplearning.repository.jpa.generic.GenericRepositoryJpa;
 
 /**
  * The UserRepositoryJpa class provides the persistence operations of entity {@link User}.
@@ -14,7 +14,7 @@ import com.msplearning.repository.UserRepository;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Repository("userDaoJpa")
-public class UserRepositoryJpa extends GenericRepositoryJpa<Student> implements UserRepository {
+public class UserRepositoryJpa extends GenericRepositoryJpa<User, Long> implements UserRepository {
 
 	@SuppressWarnings("unchecked")
 	@Override

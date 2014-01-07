@@ -6,5 +6,5 @@ public final class RESTfulServerUtil {
 		super();
 	}
 
-	public static final String ROOT_URL = "http://10.11.21.235:8080/restful-app/resources";
+	public static final String ROOT_URL = "http://10.11.21.235:8080/restful-app/rest";
 }

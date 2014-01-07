@@ -1,17 +1,19 @@
 package com.msplearning.android.compatibility.interoperability;
 
-import com.googlecode.androidannotations.annotations.rest.Get;
-import com.googlecode.androidannotations.annotations.rest.Post;
-import com.googlecode.androidannotations.annotations.rest.Rest;
+import org.androidannotations.annotations.rest.Get;
+import org.androidannotations.annotations.rest.Post;
+import org.androidannotations.annotations.rest.Rest;
+import org.androidannotations.api.rest.RestClientSupport;
+
 import com.msplearning.android.json.CustomGsonHttpMessageConverter;
 import com.msplearning.entity.User;
 
 @Rest(rootUrl = RESTfulServerUtil.ROOT_URL, converters = { CustomGsonHttpMessageConverter.class })
-public interface UserRESTfulClient {
+public interface UserRESTfulClient extends RestClientSupport {
 
 	@Post("/user/auth")
 	Boolean authenticate(User user);
-	
-	@Get("/user/find/{username}")
+
+	@Get("/user/{username}")
 	User findByUsername(String username);
 }

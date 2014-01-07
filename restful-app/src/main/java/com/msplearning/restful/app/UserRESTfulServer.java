@@ -1,4 +1,4 @@
-package com.msplearning.restful;
+package com.msplearning.restful.app;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -26,26 +26,26 @@ public class UserRESTfulServer {
 	private final Logger logger = LoggerFactory.getLogger(UserRESTfulServer.class);
 
 	@Autowired
-	private UserService userServiceJpa;
+	private UserService userService;
 
+	@Path("auth")
 	@POST
-	@Path("/auth")
-	public Boolean authenticate(User user) {
-		Boolean isAuth = false;
+	public boolean authenticate(User user) {
+		boolean isAuth = false;
 		try {
-			isAuth = this.userServiceJpa.authenticate(user.getUsername(), user.getPassword());
+			isAuth = this.userService.authenticate(user.getUsername(), user.getPassword());
 		} catch (Exception exception) {
 			logger.error("An error occurred while trying to authenticate a User", exception);
 		}
 		return isAuth;
 	}
 
+	@Path("{username}")
 	@GET
-	@Path("/find/{username}")
 	public User findByUsername(@PathParam("username") String username) {
 		User user = null;
 		try {
-			user = this.userServiceJpa.findByUsername(username);
+			user = this.userService.findByUsername(username);
 		} catch (Exception exception) {
 			logger.error("An error occurred while trying to find a User by username", exception);
 		}

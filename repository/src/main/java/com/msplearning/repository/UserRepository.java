@@ -1,6 +1,7 @@
 package com.msplearning.repository;
 
 import com.msplearning.entity.User;
+import com.msplearning.repository.generic.GenericRepository;
 import com.msplearning.repository.jpa.UserRepositoryJpa;
 
 /**
@@ -8,7 +9,7 @@ import com.msplearning.repository.jpa.UserRepositoryJpa;
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
-public interface UserRepository {
+public interface UserRepository extends GenericRepository<User, Long> {
 	
 	boolean authenticate(String username, String password);
 

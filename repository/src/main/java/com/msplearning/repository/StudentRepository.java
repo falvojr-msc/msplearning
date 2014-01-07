@@ -1,8 +1,7 @@
 package com.msplearning.repository;
 
-import java.io.Serializable;
-
 import com.msplearning.entity.Student;
+import com.msplearning.repository.generic.GenericRepository;
 import com.msplearning.repository.jpa.StudentRepositoryJpa;
 
 /**
@@ -10,13 +9,6 @@ import com.msplearning.repository.jpa.StudentRepositoryJpa;
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
-public interface StudentRepository {
-	
-	void insert(Student entity);
+public interface StudentRepository extends GenericRepository<Student, Long> {
 
-	void update(Student entity);
-	
-	void delete(Serializable id);
-	
-	Student findById(Serializable id);
 }
