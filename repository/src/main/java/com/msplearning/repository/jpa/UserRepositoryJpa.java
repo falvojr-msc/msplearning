@@ -1,6 +1,8 @@
 package com.msplearning.repository.jpa;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -20,16 +22,21 @@ public class UserRepositoryJpa extends GenericRepositoryJpa<User, Long> implemen
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean authenticate(String username, String password) {
-		String jpql = "FROM User WHERE username = ? AND password = ?";
-		List<User> users = (List<User>) this.findByJPQL(jpql, username, password);
+		String jpql = "FROM User WHERE username = :username AND password = :password";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", username);
+		params.put("password", password);
+		List<User> users = (List<User>) this.findByJPQL(jpql, params);
 		return !users.isEmpty();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public User findByUsername(String username) {
-		String jpql = "FROM User WHERE username = ?";
-		List<User> users = (List<User>) this.findByJPQL(jpql, username);
+		String jpql = "FROM User WHERE username = :username";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", username);
+		List<User> users = (List<User>) this.findByJPQL(jpql, params);
 		return users.isEmpty() ? null : users.get(0);
 	}
 }
