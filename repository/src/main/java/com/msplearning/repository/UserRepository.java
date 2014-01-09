@@ -10,7 +10,7 @@ import com.msplearning.repository.jpa.UserRepositoryJpa;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 public interface UserRepository extends GenericRepository<User, Long> {
-	
+
 	boolean authenticate(String username, String password);
 
 	User findByUsername(String username);

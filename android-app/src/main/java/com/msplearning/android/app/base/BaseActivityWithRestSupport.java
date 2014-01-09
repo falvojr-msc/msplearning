@@ -7,23 +7,27 @@ import org.androidannotations.annotations.EBean;
 import org.androidannotations.api.rest.RestClientSupport;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 
-import com.actionbarsherlock.app.SherlockActivity;
-
+/**
+ * The BaseActivityWithRestSupport class extends {@link BaseActivity}. Technical
+ * adaptation of the bug already known by Spring (java.io.EOFException)
+ * 
+ * @author Venilton Falvo Junior (veniltonjr)
+ */
 @EBean
-public class BaseActivityWithRestSupport extends SherlockActivity {
+public class BaseActivityWithRestSupport extends BaseActivity {
 
 	@AfterInject
 	protected void changeRequestFactoryRestTemplate() {
 		Field[] props = this.getClass().getSuperclass().getDeclaredFields();
-		for (int i = 0; i < props.length; i++) {
+		for (Field prop2 : props) {
 			Object prop;
 			try {
-				props[i].setAccessible(true);
-				prop = props[i].get(this);
+				prop2.setAccessible(true);
+				prop = prop2.get(this);
 				if (prop instanceof RestClientSupport) {
 					((RestClientSupport) prop).getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 				}
-			} catch (Exception exception) { 
+			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
 		}

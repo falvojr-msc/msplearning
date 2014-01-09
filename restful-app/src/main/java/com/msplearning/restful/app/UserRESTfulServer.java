@@ -35,7 +35,7 @@ public class UserRESTfulServer {
 		try {
 			isAuth = this.userService.authenticate(user.getUsername(), user.getPassword());
 		} catch (Exception exception) {
-			logger.error("An error occurred while trying to authenticate a User", exception);
+			this.logger.error("An error occurred while trying to authenticate a User", exception);
 		}
 		return isAuth;
 	}
@@ -47,7 +47,7 @@ public class UserRESTfulServer {
 		try {
 			user = this.userService.findByUsername(username);
 		} catch (Exception exception) {
-			logger.error("An error occurred while trying to find a User by username", exception);
+			this.logger.error("An error occurred while trying to find a User by username", exception);
 		}
 		return user;
 	}

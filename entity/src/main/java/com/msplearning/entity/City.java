@@ -38,11 +38,11 @@ public class City implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "id_state", nullable = false)
-	@ForeignKey(name="fk_tb_city_2_tb_state")
+	@ForeignKey(name = "fk_tb_city_2_tb_state")
 	private State state;
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -50,7 +50,7 @@ public class City implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -58,10 +58,57 @@ public class City implements Serializable {
 	}
 
 	public State getState() {
-		return state;
+		return this.state;
 	}
 
 	public void setState(State state) {
 		this.state = state;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
+		result = (prime * result) + ((this.name == null) ? 0 : this.name.hashCode());
+		result = (prime * result) + ((this.state == null) ? 0 : this.state.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		City other = (City) obj;
+		if (this.id == null) {
+			if (other.id != null) {
+				return false;
+			}
+		} else if (!this.id.equals(other.id)) {
+			return false;
+		}
+		if (this.name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!this.name.equals(other.name)) {
+			return false;
+		}
+		if (this.state == null) {
+			if (other.state != null) {
+				return false;
+			}
+		} else if (!this.state.equals(other.state)) {
+			return false;
+		}
+		return true;
+	}
+
 }

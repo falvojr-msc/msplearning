@@ -13,9 +13,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * TODO: In Development...
+ * 
+ * @author Venilton Falvo Junior (veniltonjr)
+ */
 @Entity
 @Table(name = "tb_app_user", catalog = "msplearning")
-@AssociationOverrides({ 
+@AssociationOverrides({
 	@AssociationOverride(name = "id.app", joinColumns = @JoinColumn(name = "id_app")),
 	@AssociationOverride(name = "id.user", joinColumns = @JoinColumn(name = "id_user")) })
 public class UserApp implements Serializable {
@@ -33,7 +38,7 @@ public class UserApp implements Serializable {
 	private boolean active;
 
 	public UserAppId getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(UserAppId id) {
@@ -41,7 +46,7 @@ public class UserApp implements Serializable {
 	}
 
 	public Date getDateRequest() {
-		return dateRequest;
+		return this.dateRequest;
 	}
 
 	public void setDateRequest(Date dateRequest) {
@@ -49,7 +54,7 @@ public class UserApp implements Serializable {
 	}
 
 	public boolean isActive() {
-		return active;
+		return this.active;
 	}
 
 	public void setActive(boolean active) {
@@ -58,18 +63,21 @@ public class UserApp implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return id == null ? 0 : id.hashCode();
+		return this.id == null ? 0 : this.id.hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null || getClass() != obj.getClass())
+		}
+		if ((obj == null) || (this.getClass() != obj.getClass())) {
 			return false;
+		}
 		UserApp other = (UserApp) obj;
-		if (id == null ? other.id != null : !id.equals(other.id))
+		if (this.id == null ? other.id != null : !this.id.equals(other.id)) {
 			return false;
+		}
 		return true;
 	}
 }

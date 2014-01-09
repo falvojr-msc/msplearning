@@ -9,26 +9,26 @@ public enum Gender {
 	/**
 	 * Male sex.
 	 */
-	M("M", "Male"), 
+	M("M", "Male"),
 	/**
 	 * Female Sex.
 	 */
 	F("F", "Female");
-	
+
 	private String code;
 	private String value;
-	
+
 	private Gender(String code, String value) {
 		this.code = code;
 		this.value = value;
 	}
-	
+
 	public String getCode() {
-		return code;
+		return this.code;
 	}
+
 	public String getValue() {
-		return value;
+		return this.value;
 	}
-	
-	
+
 }

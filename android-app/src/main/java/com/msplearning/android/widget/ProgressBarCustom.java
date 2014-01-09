@@ -31,6 +31,15 @@ public class ProgressBarCustom extends LinearLayout {
 	@ViewById(R.id.status_message)
 	protected TextView mStatusMessageView;
 
+	/**
+	 * Constructor that sets the statusMessage attribute for lazy (
+	 * {@link AfterViews}) attribution.
+	 * 
+	 * @param context
+	 *            {@link Context} object
+	 * @param attrs
+	 *            {@link AttributeSet} object
+	 */
 	public ProgressBarCustom(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
@@ -42,34 +51,36 @@ public class ProgressBarCustom extends LinearLayout {
 				this.statusMessage = statusMessage;
 			}
 		} finally {
-			if (customAttrs != null)
+			if (customAttrs != null) {
 				customAttrs.recycle();
+			}
 		}
 	}
 
 	@AfterViews
 	public void init() {
-		if (this.statusMessage != null)
+		if (this.statusMessage != null) {
 			this.mStatusMessageView.setText(this.statusMessage);
+		}
 	}
 
 	/**
-	 * Shows the progress UI and hides the login form.
+	 * Shows the progress UI and hides the form. On Honeycomb MR2 we have the
+	 * ViewPropertyAnimator APIs, which allow for very easy animations. If
+	 * available, use these APIs to fade-in the progress spinner else simply
+	 * show and hide the relevant UI components.
 	 */
 	@UiThread
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
 	public void showProgress(final boolean show, final View formView) {
-		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-		// for very easy animations. If available, use these APIs to fade-in the
-		// progress spinner.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-			int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+			int shortAnimTime = this.getResources().getInteger(android.R.integer.config_shortAnimTime);
 
 			this.setVisibility(View.VISIBLE);
 			this.animate().setDuration(shortAnimTime).alpha(show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
 				@Override
 				public void onAnimationEnd(Animator animation) {
-					setVisibility(show ? View.VISIBLE : View.GONE);
+					ProgressBarCustom.this.setVisibility(show ? View.VISIBLE : View.GONE);
 				}
 			});
 
@@ -81,8 +92,6 @@ public class ProgressBarCustom extends LinearLayout {
 				}
 			});
 		} else {
-			// The ViewPropertyAnimator APIs are not available, so simply show
-			// and hide the relevant UI components.
 			this.setVisibility(show ? View.VISIBLE : View.GONE);
 			formView.setVisibility(show ? View.GONE : View.VISIBLE);
 		}

@@ -32,7 +32,7 @@ public class Address implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "id_city", nullable = false)
-	@ForeignKey(name="fk_tb_address_2_tb_city")
+	@ForeignKey(name = "fk_tb_address_2_tb_city")
 	private City city;
 
 	@Column(name = "address", length = 50, nullable = false)
@@ -43,4 +43,107 @@ public class Address implements Serializable {
 
 	@Column(name = "zip_code", length = 20, nullable = false)
 	private String zipCode;
+
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public City getCity() {
+		return this.city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getAddressAlternative() {
+		return this.addressAlternative;
+	}
+
+	public void setAddressAlternative(String addressAlternative) {
+		this.addressAlternative = addressAlternative;
+	}
+
+	public String getZipCode() {
+		return this.zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (prime * result) + ((this.address == null) ? 0 : this.address.hashCode());
+		result = (prime * result) + ((this.addressAlternative == null) ? 0 : this.addressAlternative.hashCode());
+		result = (prime * result) + ((this.city == null) ? 0 : this.city.hashCode());
+		result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
+		result = (prime * result) + ((this.zipCode == null) ? 0 : this.zipCode.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		Address other = (Address) obj;
+		if (this.address == null) {
+			if (other.address != null) {
+				return false;
+			}
+		} else if (!this.address.equals(other.address)) {
+			return false;
+		}
+		if (this.addressAlternative == null) {
+			if (other.addressAlternative != null) {
+				return false;
+			}
+		} else if (!this.addressAlternative.equals(other.addressAlternative)) {
+			return false;
+		}
+		if (this.city == null) {
+			if (other.city != null) {
+				return false;
+			}
+		} else if (!this.city.equals(other.city)) {
+			return false;
+		}
+		if (this.id == null) {
+			if (other.id != null) {
+				return false;
+			}
+		} else if (!this.id.equals(other.id)) {
+			return false;
+		}
+		if (this.zipCode == null) {
+			if (other.zipCode != null) {
+				return false;
+			}
+		} else if (!this.zipCode.equals(other.zipCode)) {
+			return false;
+		}
+		return true;
+	}
+
 }

@@ -18,23 +18,27 @@ import com.msplearning.service.generic.GenericCrudService;
 /**
  * BaseCrudController.
  * 
- * @param <T> tipo entidade
- * @param <K> tipo de chave
- * @author renan
+ * @param <T>
+ *            tipo entidade
+ * @param <K>
+ *            tipo de chave
+ * 
+ * @author Renan Johannsen de Paula (renanjp)
  */
 public abstract class GenericCrudRESTfulServer<T extends Serializable, K extends Serializable> {
 
 	private final Logger logger = LoggerFactory.getLogger(GenericCrudRESTfulServer.class);
-	
+
 	@POST
 	public T insert(T entity) {
 		try {
 			this.getService().insert(entity);
 		} catch (Exception exception) {
-			if (entity == null)
-				logger.error("The entity is null.", exception);
-			else
-				logger.error(String.format("An error occurred while trying to insert a %s class instance.", entity.getClass().getSimpleName(), exception));
+			if (entity == null) {
+				this.logger.error("The entity is null.", exception);
+			} else {
+				this.logger.error(String.format("An error occurred while trying to insert a %s class instance.", entity.getClass().getSimpleName(), exception));
+			}
 			return null;
 		}
 		return entity;
@@ -45,10 +49,11 @@ public abstract class GenericCrudRESTfulServer<T extends Serializable, K extends
 		try {
 			this.getService().update(entity);
 		} catch (Exception exception) {
-			if (entity == null)
-				logger.error("The entity is null.", exception);
-			else
-				logger.error(String.format("An error occurred while trying to update a %s class instance.", entity.getClass().getSimpleName(), exception));
+			if (entity == null) {
+				this.logger.error("The entity is null.", exception);
+			} else {
+				this.logger.error(String.format("An error occurred while trying to update a %s class instance.", entity.getClass().getSimpleName(), exception));
+			}
 			return null;
 		}
 		return entity;
@@ -56,10 +61,10 @@ public abstract class GenericCrudRESTfulServer<T extends Serializable, K extends
 
 	@GET
 	public List<T> getAll() {
-		try{
+		try {
 			return this.getService().getAll();
 		} catch (Exception exception) {
-			logger.error(String.format("An error occurred while trying find all elements.", exception));
+			this.logger.error(String.format("An error occurred while trying find all elements.", exception));
 			return null;
 		}
 	}
@@ -70,10 +75,11 @@ public abstract class GenericCrudRESTfulServer<T extends Serializable, K extends
 		try {
 			return this.getService().getById(id);
 		} catch (Exception exception) {
-			if (id == null)
-				logger.error("The id is null.", exception);
-			else
-				logger.error(String.format("An error occurred while trying find by id %d.", id, exception));
+			if (id == null) {
+				this.logger.error("The id is null.", exception);
+			} else {
+				this.logger.error(String.format("An error occurred while trying find by id %d.", id, exception));
+			}
 			return null;
 		}
 	}
@@ -84,14 +90,14 @@ public abstract class GenericCrudRESTfulServer<T extends Serializable, K extends
 		try {
 			this.getService().delete(id);
 		} catch (Exception exception) {
-			if (id == null)
-				logger.error("The id is null.", exception);
-			else
-				logger.error(String.format("An error occurred while trying delete the id %d.", id, exception));
+			if (id == null) {
+				this.logger.error("The id is null.", exception);
+			} else {
+				this.logger.error(String.format("An error occurred while trying delete the id %d.", id, exception));
+			}
 		}
 	}
 
 	protected abstract GenericCrudService<T, K> getService();
 
 }
-

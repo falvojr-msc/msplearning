@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import com.msplearning.repository.jpa.generic.GenericRepositoryJpa;
+
 /**
  * Interface of {@link GenericRepositoryJpa}.
  * 
- * @param <T> entity class
- * @param <K>tipo de chave
+ * @param <T>
+ *            entity class
+ * @param <K>
+ *            tipo de chave
  * 
  * @author Renan Johannsen de Paula (renanjp)
  */

@@ -45,7 +45,7 @@ public class State implements Serializable {
 	private Country country;
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -53,7 +53,7 @@ public class State implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -61,7 +61,7 @@ public class State implements Serializable {
 	}
 
 	public String getAcronym() {
-		return acronym;
+		return this.acronym;
 	}
 
 	public void setAcronym(String acronym) {
@@ -69,10 +69,65 @@ public class State implements Serializable {
 	}
 
 	public Country getCountry() {
-		return country;
+		return this.country;
 	}
 
 	public void setCountry(Country country) {
 		this.country = country;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (prime * result) + ((this.acronym == null) ? 0 : this.acronym.hashCode());
+		result = (prime * result) + ((this.country == null) ? 0 : this.country.hashCode());
+		result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
+		result = (prime * result) + ((this.name == null) ? 0 : this.name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		State other = (State) obj;
+		if (this.acronym == null) {
+			if (other.acronym != null) {
+				return false;
+			}
+		} else if (!this.acronym.equals(other.acronym)) {
+			return false;
+		}
+		if (this.country == null) {
+			if (other.country != null) {
+				return false;
+			}
+		} else if (!this.country.equals(other.country)) {
+			return false;
+		}
+		if (this.id == null) {
+			if (other.id != null) {
+				return false;
+			}
+		} else if (!this.id.equals(other.id)) {
+			return false;
+		}
+		if (this.name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!this.name.equals(other.name)) {
+			return false;
+		}
+		return true;
+	}
+
 }

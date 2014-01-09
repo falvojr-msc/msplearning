@@ -33,7 +33,7 @@ public class Email implements Serializable {
 	private boolean main;
 
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
@@ -41,7 +41,7 @@ public class Email implements Serializable {
 	}
 
 	public String getAddress() {
-		return address;
+		return this.address;
 	}
 
 	public void setAddress(String address) {
@@ -49,10 +49,53 @@ public class Email implements Serializable {
 	}
 
 	public boolean isMain() {
-		return main;
+		return this.main;
 	}
 
 	public void setMain(boolean main) {
 		this.main = main;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (prime * result) + ((this.address == null) ? 0 : this.address.hashCode());
+		result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
+		result = (prime * result) + (this.main ? 1231 : 1237);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		Email other = (Email) obj;
+		if (this.address == null) {
+			if (other.address != null) {
+				return false;
+			}
+		} else if (!this.address.equals(other.address)) {
+			return false;
+		}
+		if (this.id == null) {
+			if (other.id != null) {
+				return false;
+			}
+		} else if (!this.id.equals(other.id)) {
+			return false;
+		}
+		if (this.main != other.main) {
+			return false;
+		}
+		return true;
+	}
+
 }

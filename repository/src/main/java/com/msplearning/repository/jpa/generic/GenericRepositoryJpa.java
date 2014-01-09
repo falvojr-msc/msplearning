@@ -20,7 +20,8 @@ import com.msplearning.repository.generic.GenericRepository;
  * 
  * @author Renan Johannsen de Paula (renanjp)
  * 
- * @param <T> entity class
+ * @param <T>
+ *            entity class
  */
 public class GenericRepositoryJpa<T extends Serializable, K extends Serializable> implements GenericRepository<T, K> {
 
@@ -110,7 +111,7 @@ public class GenericRepositoryJpa<T extends Serializable, K extends Serializable
 	protected void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
-	
+
 	@Override
 	public int count() {
 		String jpql = "SELECT COUNT(*) FROM " + this.getPersistentClass().getSimpleName();

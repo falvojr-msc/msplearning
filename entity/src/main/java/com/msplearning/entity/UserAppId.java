@@ -5,6 +5,11 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
+/**
+ * TODO: In Development...
+ * 
+ * @author Venilton Falvo Junior (veniltonjr)
+ */
 @Embeddable
 public class UserAppId implements Serializable {
 
@@ -12,12 +17,12 @@ public class UserAppId implements Serializable {
 
 	@ManyToOne
 	private App app;
-	
+
 	@ManyToOne
 	private User user;
 
 	public App getApp() {
-		return app;
+		return this.app;
 	}
 
 	public void setApp(App app) {
@@ -25,7 +30,7 @@ public class UserAppId implements Serializable {
 	}
 
 	public User getUser() {
-		return user;
+		return this.user;
 	}
 
 	public void setUser(User user) {
@@ -36,31 +41,38 @@ public class UserAppId implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((app == null) ? 0 : app.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = (prime * result) + ((this.app == null) ? 0 : this.app.hashCode());
+		result = (prime * result) + ((this.user == null) ? 0 : this.user.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (this.getClass() != obj.getClass()) {
 			return false;
+		}
 		UserAppId other = (UserAppId) obj;
-		if (app == null) {
-			if (other.app != null)
+		if (this.app == null) {
+			if (other.app != null) {
 				return false;
-		} else if (!app.equals(other.app))
+			}
+		} else if (!this.app.equals(other.app)) {
 			return false;
-		if (user == null) {
-			if (other.user != null)
+		}
+		if (this.user == null) {
+			if (other.user != null) {
 				return false;
-		} else if (!user.equals(other.user))
+			}
+		} else if (!this.user.equals(other.user)) {
 			return false;
+		}
 		return true;
 	}
-	
+
 }

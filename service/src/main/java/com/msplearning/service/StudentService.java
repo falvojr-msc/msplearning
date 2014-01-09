@@ -11,12 +11,13 @@ import com.msplearning.repository.generic.GenericRepository;
 import com.msplearning.service.generic.GenericCrudService;
 
 /**
- * The StudentServiceJpa class provides the business operations of entity {@link Student}.
+ * The StudentServiceJpa class provides the business operations of entity
+ * {@link Student}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Service("studentService")
-public class StudentService extends GenericCrudService<Student, Long>{
+public class StudentService extends GenericCrudService<Student, Long> {
 
 	@Autowired
 	private StudentRepository studentRepository;
@@ -30,7 +31,7 @@ public class StudentService extends GenericCrudService<Student, Long>{
 	public void insert(Student entity) {
 		entity.setDateRegistration(new Date());
 		entity.setDateLastLogin(new Date());
-		
+
 		super.insert(entity);
 	}
 }

@@ -35,7 +35,7 @@ public class LoginActivity extends BaseActivityWithRestSupport {
 
 	public static final String KEY_PASSWORD = "password";
 	public static final String KEY_USERNAME = "username";
-	
+
 	// Values for email and password at the time of the login attempt.
 	private String mUsername;
 	private String mPassword;
@@ -49,25 +49,25 @@ public class LoginActivity extends BaseActivityWithRestSupport {
 	protected View mLoginFormView;
 	@ViewById(R.id.login_progress_bar)
 	protected ProgressBarCustom mProgressBarCustom;
-	
+
 	// RESTful client.
 	@RestService
 	protected UserRESTfulClient mUserRESTfulClient;
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getSupportMenuInflater().inflate(R.menu.login, menu);
+		this.getSupportMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
 
 	@AfterViews
 	protected void init() {
 		// Set up the login form.
-		mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+		this.mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-				if (id == R.id.login || id == EditorInfo.IME_NULL) {
-					signIn();
+				if ((id == R.id.login) || (id == EditorInfo.IME_NULL)) {
+					LoginActivity.this.signIn();
 					return true;
 				}
 				return false;
@@ -84,40 +84,41 @@ public class LoginActivity extends BaseActivityWithRestSupport {
 	protected void signIn() {
 
 		// Reset errors.
-		mUsernameView.setError(null);
-		mPasswordView.setError(null);
+		this.mUsernameView.setError(null);
+		this.mPasswordView.setError(null);
 
 		// Store values at the time of the login attempt.
-		mUsername = mUsernameView.getText().toString();
-		mPassword = mPasswordView.getText().toString();
+		this.mUsername = this.mUsernameView.getText().toString();
+		this.mPassword = this.mPasswordView.getText().toString();
 
 		boolean cancel = false;
 		View focusView = null;
 
 		// Check for a valid password.
-		if (TextUtils.isEmpty(mPassword)) {
-			mPasswordView.setError(getString(R.string.error_field_required));
-			focusView = mPasswordView;
+		if (TextUtils.isEmpty(this.mPassword)) {
+			this.mPasswordView.setError(this.getString(R.string.error_field_required));
+			focusView = this.mPasswordView;
 			cancel = true;
-		} else if (mPassword.length() < 4) {
-			mPasswordView.setError(getString(R.string.error_invalid_password));
-			focusView = mPasswordView;
+		} else if (this.mPassword.length() < 4) {
+			this.mPasswordView.setError(this.getString(R.string.error_invalid_password));
+			focusView = this.mPasswordView;
 			cancel = true;
 		}
 
 		// Check for a valid username.
-		if (TextUtils.isEmpty(mUsername)) {
-			mUsernameView.setError(getString(R.string.error_field_required));
-			focusView = mUsernameView;
+		if (TextUtils.isEmpty(this.mUsername)) {
+			this.mUsernameView.setError(this.getString(R.string.error_field_required));
+			focusView = this.mUsernameView;
 			cancel = true;
 		}
 
 		if (cancel) {
-			// There was an error; don't attempt login and focus the first form field with an error.
+			// There was an error; don't attempt login and focus the first form
+			// field with an error.
 			focusView.requestFocus();
 		} else {
 			this.mProgressBarCustom.showProgress(true, this.mLoginFormView);
-			authenticate();
+			this.authenticate();
 		}
 	}
 
@@ -128,19 +129,19 @@ public class LoginActivity extends BaseActivityWithRestSupport {
 		final User userAuth = new User();
 		userAuth.setUsername(this.mUsername);
 		userAuth.setPassword(this.mPassword);
-		
+
 		try {
 			success = this.mUserRESTfulClient.authenticate(userAuth);
 			if (!success) {
 				User user = this.mUserRESTfulClient.findByUsername(userAuth.getUsername());
 				if (user == null) {
-					showDialogConfirmRegister();
+					this.showDialogConfirmRegister();
 				} else {
-					showIncorrectPasswordError();
+					this.showIncorrectPasswordError();
 				}
 			}
 		} catch (Exception exception) {
-			showDialogAlertError(exception);
+			this.showDialogAlertError(exception);
 		} finally {
 			this.mProgressBarCustom.showProgress(false, this.mLoginFormView);
 		}
@@ -148,32 +149,27 @@ public class LoginActivity extends BaseActivityWithRestSupport {
 
 	@UiThread
 	protected void showDialogAlertError(Exception exception) {
-		new AlertDialog.Builder(this)
-		.setTitle(this.getString(R.string.title_dialog_error))
-		.setMessage(exception.getMessage())
-		.setIcon(android.R.drawable.ic_dialog_alert)
-		.setNeutralButton(android.R.string.ok, null)
-		.show();
+		new AlertDialog.Builder(this).setTitle(this.getString(R.string.title_dialog_error)).setMessage(exception.getMessage())
+		.setIcon(android.R.drawable.ic_dialog_alert).setNeutralButton(android.R.string.ok, null).show();
 	}
-	
+
 	@UiThread
 	protected void showDialogConfirmRegister() {
-		new AlertDialog.Builder(this)
-		.setTitle(this.getString(R.string.title_dialog_register))
-		.setMessage(this.getString(R.string.message_dialog_register))
-		.setIcon(android.R.drawable.ic_dialog_info)
-		.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+		new AlertDialog.Builder(this).setTitle(this.getString(R.string.title_dialog_register)).setMessage(this.getString(R.string.message_dialog_register))
+		.setIcon(android.R.drawable.ic_dialog_info).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
-				Intent intent = RegisterActivity_.intent(getApplicationContext()).get();
-				intent.putExtra(KEY_USERNAME, mUsername);
-				intent.putExtra(KEY_PASSWORD, mPassword);
-				startActivity(intent);
-			}})
-		.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+				Intent intent = RegisterActivity_.intent(LoginActivity.this.getApplicationContext()).get();
+				intent.putExtra(KEY_USERNAME, LoginActivity.this.mUsername);
+				intent.putExtra(KEY_PASSWORD, LoginActivity.this.mPassword);
+				LoginActivity.this.startActivity(intent);
+			}
+		}).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
-				showNotFoundUserError();
-			}})
-		.show();
+				LoginActivity.this.showNotFoundUserError();
+			}
+		}).show();
 	}
 
 	@UiThread

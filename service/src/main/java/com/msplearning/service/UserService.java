@@ -7,7 +7,8 @@ import com.msplearning.entity.User;
 import com.msplearning.repository.UserRepository;
 
 /**
- * The UserServiceJpa class provides the business operations of entity {@link User}.
+ * The UserServiceJpa class provides the business operations of entity
+ * {@link User}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */

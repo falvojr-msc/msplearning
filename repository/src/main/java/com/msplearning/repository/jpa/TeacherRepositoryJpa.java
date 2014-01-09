@@ -7,7 +7,8 @@ import com.msplearning.repository.TeacherRepository;
 import com.msplearning.repository.jpa.generic.GenericRepositoryJpa;
 
 /**
- * The TeacherRepositoryJpa class provides the persistence operations of entity {@link Teacher}.
+ * The TeacherRepositoryJpa class provides the persistence operations of entity
+ * {@link Teacher}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */

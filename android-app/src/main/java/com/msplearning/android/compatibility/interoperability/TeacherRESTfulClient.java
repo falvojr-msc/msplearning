@@ -10,6 +10,12 @@ import org.androidannotations.api.rest.RestClientSupport;
 import com.msplearning.android.json.CustomGsonHttpMessageConverter;
 import com.msplearning.entity.Teacher;
 
+/**
+ * The TeacherRESTfulClient interface provides the RESTful services of
+ * {@link Teacher} entity.
+ * 
+ * @author Venilton Falvo Junior (veniltonjr)
+ */
 @Rest(rootUrl = RESTfulServerUtil.ROOT_URL, converters = { CustomGsonHttpMessageConverter.class })
 public interface TeacherRESTfulClient extends RestClientSupport {
 
@@ -21,10 +27,10 @@ public interface TeacherRESTfulClient extends RestClientSupport {
 
 	@Get("/teacher/{id}")
 	Teacher findById(Long id);
-	
+
 	@Get("/teacher")
 	void findAll();
-	
+
 	@Delete("/teacher/{id}")
 	void delete(Long id);
 }

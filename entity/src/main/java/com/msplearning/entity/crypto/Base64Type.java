@@ -55,8 +55,9 @@ public class Base64Type implements UserType {
 
 	@Override
 	public boolean equals(Object x, Object y) throws HibernateException {
-		if (x == null)
+		if (x == null) {
 			return false;
+		}
 		return x.equals(y);
 	}
 

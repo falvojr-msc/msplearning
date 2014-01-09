@@ -8,6 +8,12 @@ import org.androidannotations.api.rest.RestClientSupport;
 import com.msplearning.android.json.CustomGsonHttpMessageConverter;
 import com.msplearning.entity.User;
 
+/**
+ * The UserRESTfulClient interface provides the RESTful services of {@link User}
+ * entity.
+ * 
+ * @author Venilton Falvo Junior (veniltonjr)
+ */
 @Rest(rootUrl = RESTfulServerUtil.ROOT_URL, converters = { CustomGsonHttpMessageConverter.class })
 public interface UserRESTfulClient extends RestClientSupport {
 

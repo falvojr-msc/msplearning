@@ -6,11 +6,13 @@ import java.util.List;
 import com.msplearning.repository.generic.GenericRepository;
 
 /**
- * BaseCrucService.
+ * The BaseCrucService class.
  * 
- * @param <T> generic type
- * @param <K> key type
- *            
+ * @param <T>
+ *            generic type
+ * @param <K>
+ *            key type
+ * 
  * @author Renan Johannsen de Paula (renanjp)
  */
 public abstract class GenericCrudService<T extends Serializable, K extends Serializable> {
@@ -37,4 +39,3 @@ public abstract class GenericCrudService<T extends Serializable, K extends Seria
 
 	protected abstract GenericRepository<T, K> getRepository();
 }
-
