@@ -7,7 +7,10 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
+import org.springframework.web.client.RestClientException;
 
+import android.app.AlertDialog;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -17,6 +20,7 @@ import com.google.gson.Gson;
 import com.msplearning.android.app.base.BaseActivityWithRestSupport;
 import com.msplearning.android.compatibility.interoperability.StudentRESTfulClient;
 import com.msplearning.android.compatibility.interoperability.TeacherRESTfulClient;
+import com.msplearning.android.widget.ProgressBarCustom;
 import com.msplearning.entity.Gender;
 import com.msplearning.entity.Student;
 import com.msplearning.entity.Teacher;
@@ -45,6 +49,11 @@ public class RegisterActivity extends BaseActivityWithRestSupport {
 	protected EditText mRepeatPasswordView;
 	@ViewById(R.id.type)
 	protected RadioGroup mTypeView;
+	
+	@ViewById(R.id.register_form)
+	protected View mRegisterFormView;
+	@ViewById(R.id.register_progress_bar)
+	protected ProgressBarCustom mProgressBarCustom;
 
 	@RestService
 	protected StudentRESTfulClient mStudentRESTfulClient;
@@ -74,6 +83,8 @@ public class RegisterActivity extends BaseActivityWithRestSupport {
 
 	@Click(R.id.register_button)
 	public void register() {
+		this.mProgressBarCustom.showProgress(true, this.mRegisterFormView);
+		
 		User user = new User();
 		user.setFirstName(this.mFirstNameView.getText().toString());
 		user.setLastName(this.mLastNameView.getText().toString());
@@ -81,7 +92,13 @@ public class RegisterActivity extends BaseActivityWithRestSupport {
 		user.setUsername(this.mUsernameView.getText().toString());
 		user.setPassword(this.mPasswordView.getText().toString());
 
-		this.insertUser(user);
+		try {
+			this.insertUser(user);
+		} catch (RestClientException exception) {
+			this.showDialogAlertError(exception);
+		} finally {
+			this.mProgressBarCustom.showProgress(false, this.mRegisterFormView);
+		}
 	}
 
 	@Background
@@ -100,5 +117,11 @@ public class RegisterActivity extends BaseActivityWithRestSupport {
 	@UiThread
 	void showUiMessage(String message) {
 		Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+	}
+	
+	@UiThread
+	protected void showDialogAlertError(Exception exception) {
+		new AlertDialog.Builder(this).setTitle(this.getString(R.string.title_dialog_error)).setMessage(exception.getMessage())
+				.setIcon(android.R.drawable.ic_dialog_alert).setNeutralButton(android.R.string.ok, null).show();
 	}
 }

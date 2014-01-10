@@ -11,5 +11,6 @@
     <string name="prompt_teacher">Teacher</string>
     <string name="prompt_student">Student</string>
     <string name="action_register">Register</string>
+    <string name="register_progress_signing_in">Registering in&#8230;</string>
 
 </resources>

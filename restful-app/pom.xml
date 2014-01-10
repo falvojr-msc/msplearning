@@ -22,6 +22,13 @@
 			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
+		<!-- Servlet -->
+        <dependency>
+	        <groupId>javax.servlet</groupId>
+	        <artifactId>javax.servlet-api</artifactId>
+	        <version>${servlet.version}</version>
+	        <scope>provided</scope>
+        </dependency>
 		<!-- Hibernate dependency (all related dependencies will be included) -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
