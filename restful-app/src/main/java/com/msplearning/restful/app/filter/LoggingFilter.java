@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.msplearning.service.exception.BusinessException;
+
 @WebFilter(filterName = "LoggingFilter", urlPatterns = "/*")
 public class LoggingFilter implements Filter {
 
@@ -27,8 +29,10 @@ public class LoggingFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		try {
 			chain.doFilter(request, response);
+		} catch (BusinessException exception) {
+			this.logger.error("Business exception", exception);
 		} catch (Exception exception) {
-			this.logger.error("Server error.", exception);
+			this.logger.error("Unexpected exception", exception);
 		}
 	}
 

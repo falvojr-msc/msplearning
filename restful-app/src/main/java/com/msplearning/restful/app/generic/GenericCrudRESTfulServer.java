@@ -25,51 +25,32 @@ import com.msplearning.service.generic.GenericCrudService;
 public abstract class GenericCrudRESTfulServer<T extends Serializable, K extends Serializable> {
 
 	@POST
-	public T insert(T entity) {
-		try {
-			this.getService().insert(entity);
-			return entity;
-		} catch (Exception e) {
-			return null;
-		}
+	public T insert(T entity) throws Exception {
+		this.getService().insert(entity);
+		return entity;
 	}
 
 	@PUT
 	public T update(T entity) {
-		try {
-			this.getService().update(entity);
-			return entity;
-		} catch (Exception e) {
-			return null;
-		}
+		this.getService().update(entity);
+		return entity;
 	}
 
 	@GET
 	public List<T> getAll() {
-		try {
-			return this.getService().getAll();
-		} catch (Exception e) {
-			return null;
-		}
+		return this.getService().getAll();
 	}
 
 	@Path("{id}")
 	@GET
 	public T getById(@PathParam("id") K id) {
-		try{
-			return this.getService().getById(id);
-		} catch (Exception e) {
-			return null;
-		}
+		return this.getService().getById(id);
 	}
 
 	@Path("{id}")
 	@DELETE
 	public void delete(@PathParam("id") K id) {
-		try {
-			this.getService().delete(id);
-		} catch (Exception e) {
-		}
+		this.getService().delete(id);
 	}
 
 	protected abstract GenericCrudService<T, K> getService();

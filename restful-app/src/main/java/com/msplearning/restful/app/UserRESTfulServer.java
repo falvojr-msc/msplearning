@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.msplearning.entity.User;
 import com.msplearning.service.UserService;
-import com.msplearning.service.exception.ServiceException;
+import com.msplearning.service.exception.BusinessException;
 
 /**
  * The UserRESTfulServer class provides the RESTful services of the generic
@@ -27,21 +27,13 @@ public class UserRESTfulServer {
 
 	@Path("auth")
 	@POST
-	public boolean authenticate(User user) throws ServiceException {
-		try {
-			return this.userService.authenticate(user.getUsername(), user.getPassword());
-		} catch (Exception e) {
-			return false;
-		}
+	public boolean authenticate(User user) throws BusinessException {
+		return this.userService.authenticate(user.getUsername(), user.getPassword());
 	}
 
 	@Path("{username}")
 	@GET
-	public User findByUsername(@PathParam("username") String username) throws ServiceException {
-		try {
-			return this.userService.findByUsername(username);
-		} catch (Exception e) {
-			return null;
-		}
+	public User findByUsername(@PathParam("username") String username) throws BusinessException {
+		return this.userService.findByUsername(username);
 	}
 }

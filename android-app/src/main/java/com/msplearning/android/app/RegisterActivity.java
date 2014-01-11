@@ -94,7 +94,7 @@ public class RegisterActivity extends BaseActivityWithRestSupport {
 
 		try {
 			this.insertUser(user);
-		} catch (RestClientException exception) {
+		} catch (Exception exception) {
 			this.showDialogAlertError(exception);
 		} finally {
 			this.mProgressBarCustom.showProgress(false, this.mRegisterFormView);
