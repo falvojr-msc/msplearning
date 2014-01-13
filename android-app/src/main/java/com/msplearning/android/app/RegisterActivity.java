@@ -7,7 +7,6 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
-import org.springframework.web.client.RestClientException;
 
 import android.app.AlertDialog;
 import android.view.View;
@@ -92,25 +91,23 @@ public class RegisterActivity extends BaseActivityWithRestSupport {
 		user.setUsername(this.mUsernameView.getText().toString());
 		user.setPassword(this.mPasswordView.getText().toString());
 
-		try {
-			this.insertUser(user);
-		} catch (Exception exception) {
-			this.showDialogAlertError(exception);
-		} finally {
-			this.mProgressBarCustom.showProgress(false, this.mRegisterFormView);
-		}
+		this.insertUser(user);
 	}
 
 	@Background
 	public void insertUser(User user) {
 		Gson gson = GsonFactory.createGson();
-
-		if (this.mTypeView.indexOfChild(this.findViewById(this.mTypeView.getCheckedRadioButtonId())) == 0) {
-			this.mStudentRESTfulClient.insert(gson.fromJson(gson.toJson(user), Student.class));
-		} else {
-			this.mTeacherRESTfulClient.insert(gson.fromJson(gson.toJson(user), Teacher.class));
+		try {
+			if (this.mTypeView.indexOfChild(this.findViewById(this.mTypeView.getCheckedRadioButtonId())) == 0) {
+				this.mStudentRESTfulClient.insert(gson.fromJson(gson.toJson(user), Student.class));
+			} else {
+				this.mTeacherRESTfulClient.insert(gson.fromJson(gson.toJson(user), Teacher.class));
+			}
+		} catch (Exception exception) {
+			this.showDialogAlertError(exception);
+		} finally {
+			this.mProgressBarCustom.showProgress(false, this.mRegisterFormView);
 		}
-
 		this.showUiMessage("User created!");
 	}
 
