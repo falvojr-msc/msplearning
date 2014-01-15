@@ -12,8 +12,9 @@
 
 	<context:annotation-config />
 
-	<context:component-scan base-package="com.msplearning">
-	</context:component-scan>
+	<context:component-scan base-package="com.msplearning" />
+	
+	<context:property-placeholder location="classpath:msplearning.properties"/>
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />

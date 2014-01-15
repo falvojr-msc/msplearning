@@ -15,7 +15,6 @@
 		<androidannotations.version>3.0</androidannotations.version>
 		<android.api.version>16</android.api.version>
 		<android.maven.plugin.version>3.6.0</android.maven.plugin.version>
-		<android.support.version>r7</android.support.version>
 		<android.version>4.0.1.2</android.version>
 		<maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
 		<spring-android-rest-template.version>1.0.1.RELEASE</spring-android-rest-template.version>
