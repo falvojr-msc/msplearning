@@ -147,26 +147,26 @@ public class LoginActivity extends BaseActivityWithRestSupport {
 	@UiThread
 	protected void showDialogAlertError(Exception exception) {
 		new AlertDialog.Builder(this).setTitle(this.getString(R.string.title_dialog_error)).setMessage(exception.getMessage())
-				.setIcon(android.R.drawable.ic_dialog_alert).setNeutralButton(android.R.string.ok, null).show();
+		.setIcon(android.R.drawable.ic_dialog_alert).setNeutralButton(android.R.string.ok, null).show();
 	}
 
 	@UiThread
 	protected void showDialogConfirmRegister() {
 		new AlertDialog.Builder(this).setTitle(this.getString(R.string.title_dialog_register)).setMessage(this.getString(R.string.message_dialog_register))
-				.setIcon(android.R.drawable.ic_dialog_info).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int whichButton) {
-						Intent intent = RegisterActivity_.intent(LoginActivity.this.getApplicationContext()).get();
-						intent.putExtra(KEY_USERNAME, LoginActivity.this.mUsername);
-						intent.putExtra(KEY_PASSWORD, LoginActivity.this.mPassword);
-						LoginActivity.this.startActivity(intent);
-					}
-				}).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int whichButton) {
-						LoginActivity.this.showNotFoundUserError();
-					}
-				}).show();
+		.setIcon(android.R.drawable.ic_dialog_info).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int whichButton) {
+				Intent intent = RegisterActivity_.intent(LoginActivity.this.getApplicationContext()).get();
+				intent.putExtra(KEY_USERNAME, LoginActivity.this.mUsername);
+				intent.putExtra(KEY_PASSWORD, LoginActivity.this.mPassword);
+				LoginActivity.this.startActivity(intent);
+			}
+		}).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int whichButton) {
+				LoginActivity.this.showNotFoundUserError();
+			}
+		}).show();
 	}
 
 	@UiThread

@@ -23,6 +23,14 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>android-rome-feed-reader-repository</id>
+			<name>Android ROME Feed Reader Repository</name>
+			<url>https://android-rome-feed-reader.googlecode.com/svn/maven2/releases</url>
+		</repository>
+	</repositories>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -34,6 +42,12 @@
 					<sdk>
 						<platform>${android.api.version}</platform>
 					</sdk>
+					<dex>
+						<jvmArguments>
+							<jvmArgument>-Xms256m</jvmArgument>
+							<jvmArgument>-Xmx512m</jvmArgument>
+						</jvmArguments>
+					</dex>
 				</configuration>
 			</plugin>
 			<plugin>

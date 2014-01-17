@@ -23,12 +23,12 @@
 			<type>jar</type>
 		</dependency>
 		<!-- Servlet -->
-        <dependency>
-	        <groupId>javax.servlet</groupId>
-	        <artifactId>javax.servlet-api</artifactId>
-	        <version>${servlet.version}</version>
-	        <scope>provided</scope>
-        </dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- Hibernate dependency (all related dependencies will be included) -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -76,6 +76,12 @@
 					<artifactId>spring-web</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<!-- Maven Invoker dependency -->
+		<dependency>
+			<groupId>org.apache.maven.shared</groupId>
+			<artifactId>maven-invoker</artifactId>
+			<version>${maven.invoker.version}</version>
 		</dependency>
 		<!-- Simple Logging Facade dependency -->
 		<dependency>

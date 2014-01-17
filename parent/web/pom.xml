@@ -16,6 +16,8 @@
 		<hibernate.version>4.2.8.Final</hibernate.version>
 		<jersey.version>2.5</jersey.version>
 		<maven.compiler.version>3.1</maven.compiler.version>
+		<maven.invoker.version>2.1.1</maven.invoker.version>
+		<maven.war.version>2.4</maven.war.version>
 		<postgresql.version>9.1-901.jdbc4</postgresql.version>
 		<servlet.version>3.0.1</servlet.version>
 		<slf4j.version>1.7.5</slf4j.version>
@@ -28,7 +30,6 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.version}</version>
 				<configuration>
@@ -37,6 +38,10 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			<plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.war.version}</version>
+            </plugin>
 		</plugins>
 	</build>
 </project>
