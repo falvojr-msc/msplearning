@@ -42,12 +42,6 @@
 					<sdk>
 						<platform>${android.api.version}</platform>
 					</sdk>
-					<dex>
-						<jvmArguments>
-							<jvmArgument>-Xms256m</jvmArgument>
-							<jvmArgument>-Xmx512m</jvmArgument>
-						</jvmArguments>
-					</dex>
 				</configuration>
 			</plugin>
 			<plugin>
