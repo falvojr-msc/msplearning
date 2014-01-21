@@ -153,7 +153,8 @@ public class LoginActivity extends BaseActivityWithRestSupport {
 	@UiThread
 	protected void showDialogConfirmRegister() {
 		new AlertDialog.Builder(this).setTitle(this.getString(R.string.title_dialog_register)).setMessage(this.getString(R.string.message_dialog_register))
-		.setIcon(android.R.drawable.ic_dialog_info).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+		.setIcon(android.R.drawable.ic_dialog_info)
+		.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				Intent intent = RegisterActivity_.intent(LoginActivity.this.getApplicationContext()).get();
