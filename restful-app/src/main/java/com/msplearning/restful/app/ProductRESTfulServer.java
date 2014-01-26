@@ -3,11 +3,11 @@ package com.msplearning.restful.app;
 import java.io.File;
 import java.util.Arrays;
 
-import javax.annotation.PostConstruct;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -33,26 +33,11 @@ import com.msplearning.service.exception.BusinessException;
 public class ProductRESTfulServer {
 
 	/**
-	 * Cached {@link Invoker} that execute Maven Build commands in RESTful
-	 * services.
-	 */
-	private final Invoker invoker = new DefaultInvoker();
-
-	/**
 	 * This field is set by Spring on context:property-placeholder configured in
 	 * applicationContext.xml
 	 */
-	@Value("${msplearning.local.repository.directory}")
-	private String repositoryDirectory;
-
-	/**
-	 * Method that set the local repository directory, based on
-	 * <code>repositoryDirectory</code> property.
-	 */
-	@PostConstruct
-	public void afterSpringInjections() {
-		this.invoker.setLocalRepositoryDirectory(new File(this.repositoryDirectory));
-	}
+	@Value("${msplearning.basedirectory}")
+	private String baseDirectory;
 
 	@Path("apk/{id}")
 	@GET
@@ -60,18 +45,24 @@ public class ProductRESTfulServer {
 	public Response getAndroidApk(@PathParam("id") Long idApp) throws BusinessException {
 		try {
 			InvocationRequest request = new DefaultInvocationRequest();
-			request.setGoals(Arrays.asList("clean", "install"));
+			request.setPomFile(new File(this.baseDirectory + "\\pom.xml"));
+			request.setGoals(Arrays.asList("-DskipTests=true", "verify"));
 
-			InvocationResult result = this.invoker.execute(request);
+			Invoker invoker = new DefaultInvoker();
+			invoker.setMavenHome(new File(System.getenv("M3_HOME")));
+			InvocationResult result = invoker.execute(request);
 
-			if (result.getExitCode() != 0) {
+			if (result.getExitCode() == 0) {
+				File fileApk = new File(this.baseDirectory + "\\android-app\\target\\customProduct.apk");
+				return Response.ok(fileApk).header("Content-Disposition", "attachment;filename=MSPlearning.apk").build();
+			} else {
 				if (result.getExecutionException() == null) {
+					throw new WebApplicationException(String.format("Failed to publish site. Exit code: %s.", result.getExitCode()),
+							Status.INTERNAL_SERVER_ERROR);
 				} else {
+					throw new WebApplicationException("Failed to publish site.", result.getExecutionException(), Status.INTERNAL_SERVER_ERROR);
 				}
 			}
-
-			File fileApk = new File(this.repositoryDirectory);
-			return Response.ok(fileApk).header("Content-Disposition", "attachment;filename=MSPlearning.apk").build();
 		} catch (Exception e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
