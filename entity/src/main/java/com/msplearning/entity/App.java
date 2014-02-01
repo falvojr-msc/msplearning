@@ -8,7 +8,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * TODO: In Development...
+ * The App class.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class App {
 
 	@Id
-	@GeneratedValue(generator = "sequencePhone")
+	@GeneratedValue(generator = "sequenceApp")
 	@Column(name = "id")
 	private Long id;
 
@@ -34,7 +34,7 @@ public class App {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
+		result = prime * result + (this.id == null ? 0 : this.id.hashCode());
 		return result;
 	}
 

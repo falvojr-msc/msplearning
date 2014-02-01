@@ -11,6 +11,7 @@
 
 		<!-- Maped entities (necessary for creating tables by property "hibernate.hbm2ddl.auto") -->
 		<class>com.msplearning.entity.Address</class>
+		<class>com.msplearning.entity.App</class>
 		<class>com.msplearning.entity.City</class>
 		<class>com.msplearning.entity.Country</class>
 		<class>com.msplearning.entity.Email</class>
@@ -19,6 +20,8 @@
 		<class>com.msplearning.entity.Student</class>
 		<class>com.msplearning.entity.Teacher</class>
 		<class>com.msplearning.entity.User</class>
+		<class>com.msplearning.entity.UserApp</class>
+		<class>com.msplearning.entity.UserAppId</class>
 
 		<!-- Connection configurations -->
 		<properties>

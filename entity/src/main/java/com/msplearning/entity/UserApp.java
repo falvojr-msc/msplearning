@@ -3,26 +3,20 @@ package com.msplearning.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.AssociationOverride;
-import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * TODO: In Development...
+ * The UserApp class.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Entity
-@Table(name = "tb_app_user", catalog = "msplearning")
-@AssociationOverrides({
-	@AssociationOverride(name = "id.app", joinColumns = @JoinColumn(name = "id_app")),
-	@AssociationOverride(name = "id.user", joinColumns = @JoinColumn(name = "id_user")) })
+@Table(name = "tb_app_user")
 public class UserApp implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -63,7 +57,12 @@ public class UserApp implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return this.id == null ? 0 : this.id.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (this.active ? 1231 : 1237);
+		result = prime * result + (this.dateRequest == null ? 0 : this.dateRequest.hashCode());
+		result = prime * result + (this.id == null ? 0 : this.id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -71,13 +70,30 @@ public class UserApp implements Serializable {
 		if (this == obj) {
 			return true;
 		}
-		if ((obj == null) || (this.getClass() != obj.getClass())) {
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
 		UserApp other = (UserApp) obj;
-		if (this.id == null ? other.id != null : !this.id.equals(other.id)) {
+		if (this.active != other.active) {
+			return false;
+		}
+		if (this.dateRequest == null) {
+			if (other.dateRequest != null) {
+				return false;
+			}
+		} else if (!this.dateRequest.equals(other.dateRequest)) {
+			return false;
+		}
+		if (this.id == null) {
+			if (other.id != null) {
+				return false;
+			}
+		} else if (!this.id.equals(other.id)) {
 			return false;
 		}
 		return true;
-	}
+	}
 }

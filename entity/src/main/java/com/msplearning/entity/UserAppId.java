@@ -3,10 +3,13 @@ package com.msplearning.entity;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.ForeignKey;
+
 /**
- * TODO: In Development...
+ * The UserAppId class.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
@@ -16,9 +19,13 @@ public class UserAppId implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
+	@JoinColumn(name="id_app", nullable=false)
+	@ForeignKey(name="fk_tb_user_app_2_tb_app")
 	private App app;
 
 	@ManyToOne
+	@JoinColumn(name="id_user", nullable=false)
+	@ForeignKey(name="fk_tb_user_app_2_tb_user")
 	private User user;
 
 	public App getApp() {
@@ -41,8 +48,8 @@ public class UserAppId implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = (prime * result) + ((this.app == null) ? 0 : this.app.hashCode());
-		result = (prime * result) + ((this.user == null) ? 0 : this.user.hashCode());
+		result = prime * result + (this.app == null ? 0 : this.app.hashCode());
+		result = prime * result + (this.user == null ? 0 : this.user.hashCode());
 		return result;
 	}
 
