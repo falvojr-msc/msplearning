@@ -14,18 +14,18 @@ import org.hibernate.annotations.ForeignKey;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Embeddable
-public class UserAppId implements Serializable {
+public class AppUserId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
 	@JoinColumn(name="id_app", nullable=false)
-	@ForeignKey(name="fk_tb_user_app_2_tb_app")
+	@ForeignKey(name="fk_tb_app_user_2_tb_app")
 	private App app;
 
 	@ManyToOne
 	@JoinColumn(name="id_user", nullable=false)
-	@ForeignKey(name="fk_tb_user_app_2_tb_user")
+	@ForeignKey(name="fk_tb_app_user_2_tb_user")
 	private User user;
 
 	public App getApp() {
@@ -64,7 +64,7 @@ public class UserAppId implements Serializable {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		UserAppId other = (UserAppId) obj;
+		AppUserId other = (AppUserId) obj;
 		if (this.app == null) {
 			if (other.app != null) {
 				return false;

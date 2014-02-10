@@ -17,25 +17,25 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "tb_app_user")
-public class UserApp implements Serializable {
+public class AppUser implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private UserAppId id;
+	private AppUserId id;
 
 	@Column(name = "date_request", nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date dateRequest;
 
 	@Column(name = "active", nullable = false)
-	private boolean active;
+	private boolean isActive;
 
-	public UserAppId getId() {
+	public AppUserId getId() {
 		return this.id;
 	}
 
-	public void setId(UserAppId id) {
+	public void setId(AppUserId id) {
 		this.id = id;
 	}
 
@@ -48,20 +48,20 @@ public class UserApp implements Serializable {
 	}
 
 	public boolean isActive() {
-		return this.active;
+		return this.isActive;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (this.active ? 1231 : 1237);
 		result = prime * result + (this.dateRequest == null ? 0 : this.dateRequest.hashCode());
 		result = prime * result + (this.id == null ? 0 : this.id.hashCode());
+		result = prime * result + (this.isActive ? 1231 : 1237);
 		return result;
 	}
 
@@ -76,10 +76,7 @@ public class UserApp implements Serializable {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		UserApp other = (UserApp) obj;
-		if (this.active != other.active) {
-			return false;
-		}
+		AppUser other = (AppUser) obj;
 		if (this.dateRequest == null) {
 			if (other.dateRequest != null) {
 				return false;
@@ -94,6 +91,9 @@ public class UserApp implements Serializable {
 		} else if (!this.id.equals(other.id)) {
 			return false;
 		}
+		if (this.isActive != other.isActive) {
+			return false;
+		}
 		return true;
-	}
+	}
 }

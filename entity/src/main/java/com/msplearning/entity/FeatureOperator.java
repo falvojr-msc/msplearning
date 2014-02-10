@@ -1,26 +1,29 @@
 package com.msplearning.entity;
 
 /**
- * The Gender enum.
+ * The FeatureOperator enum.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
-public enum Gender {
+public enum FeatureOperator {
 
 	/**
-	 * Male sex.
+	 * And operator.
 	 */
-	M("M", "Male"),
-
+	AND("A", "And"),
 	/**
-	 * Female Sex.
+	 * Or operator.
 	 */
-	F("F", "Female");
+	OR("O", "Or"),
+	/**
+	 * Alternative operator, same logic of an XOR gate.
+	 */
+	ALTERNATIVE("X", "Alternative");
 
 	private String code;
 	private String value;
 
-	private Gender(String code, String value) {
+	private FeatureOperator(String code, String value) {
 		this.code = code;
 		this.value = value;
 	}

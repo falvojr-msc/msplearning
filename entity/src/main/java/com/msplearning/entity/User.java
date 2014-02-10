@@ -78,17 +78,17 @@ public class User implements Serializable {
 	@OneToMany
 	@JoinColumn(name = "id_user", nullable = false)
 	@ForeignKey(name="fk_tb_address_2_tb_user")
-	protected List<Address> addresses;
+	private List<Address> addresses;
 
 	@OneToMany
 	@JoinColumn(name = "id_user", nullable = false)
 	@ForeignKey(name="fk_tb_email_2_tb_user")
-	protected List<Email> emails;
+	private List<Email> emails;
 
 	@OneToMany
 	@JoinColumn(name = "id_user", nullable = false)
 	@ForeignKey(name="fk_tb_phone_2_tb_user")
-	protected List<Phone> phones;
+	private List<Phone> phones;
 
 	public Long getId() {
 		return this.id;
@@ -190,18 +190,18 @@ public class User implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = (prime * result) + ((this.addresses == null) ? 0 : this.addresses.hashCode());
-		result = (prime * result) + ((this.dateBirth == null) ? 0 : this.dateBirth.hashCode());
-		result = (prime * result) + ((this.dateLastLogin == null) ? 0 : this.dateLastLogin.hashCode());
-		result = (prime * result) + ((this.dateRegistration == null) ? 0 : this.dateRegistration.hashCode());
-		result = (prime * result) + ((this.emails == null) ? 0 : this.emails.hashCode());
-		result = (prime * result) + ((this.firstName == null) ? 0 : this.firstName.hashCode());
-		result = (prime * result) + ((this.gender == null) ? 0 : this.gender.hashCode());
-		result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
-		result = (prime * result) + ((this.lastName == null) ? 0 : this.lastName.hashCode());
-		result = (prime * result) + ((this.password == null) ? 0 : this.password.hashCode());
-		result = (prime * result) + ((this.phones == null) ? 0 : this.phones.hashCode());
-		result = (prime * result) + ((this.username == null) ? 0 : this.username.hashCode());
+		result = prime * result + (this.addresses == null ? 0 : this.addresses.hashCode());
+		result = prime * result + (this.dateBirth == null ? 0 : this.dateBirth.hashCode());
+		result = prime * result + (this.dateLastLogin == null ? 0 : this.dateLastLogin.hashCode());
+		result = prime * result + (this.dateRegistration == null ? 0 : this.dateRegistration.hashCode());
+		result = prime * result + (this.emails == null ? 0 : this.emails.hashCode());
+		result = prime * result + (this.firstName == null ? 0 : this.firstName.hashCode());
+		result = prime * result + (this.gender == null ? 0 : this.gender.hashCode());
+		result = prime * result + (this.id == null ? 0 : this.id.hashCode());
+		result = prime * result + (this.lastName == null ? 0 : this.lastName.hashCode());
+		result = prime * result + (this.password == null ? 0 : this.password.hashCode());
+		result = prime * result + (this.phones == null ? 0 : this.phones.hashCode());
+		result = prime * result + (this.username == null ? 0 : this.username.hashCode());
 		return result;
 	}
 
