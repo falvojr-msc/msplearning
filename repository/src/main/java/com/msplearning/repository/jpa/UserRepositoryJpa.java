@@ -16,7 +16,7 @@ import com.msplearning.repository.jpa.generic.GenericRepositoryJpa;
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
-@Repository("userDaoJpa")
+@Repository("userRepository")
 public class UserRepositoryJpa extends GenericRepositoryJpa<User, Long> implements UserRepository {
 
 	@SuppressWarnings("unchecked")

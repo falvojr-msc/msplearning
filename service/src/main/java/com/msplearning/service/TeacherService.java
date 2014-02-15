@@ -5,7 +5,6 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.msplearning.entity.Student;
 import com.msplearning.entity.Teacher;
 import com.msplearning.repository.TeacherRepository;
 import com.msplearning.repository.generic.GenericRepository;

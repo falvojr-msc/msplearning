@@ -12,7 +12,7 @@ import com.msplearning.repository.jpa.generic.GenericRepositoryJpa;
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
-@Repository("teacherDaoJpa")
+@Repository("teacherRepository")
 public class TeacherRepositoryJpa extends GenericRepositoryJpa<Teacher, Long> implements TeacherRepository {
 
 }

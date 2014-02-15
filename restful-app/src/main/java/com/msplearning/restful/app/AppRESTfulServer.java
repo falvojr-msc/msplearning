@@ -16,21 +16,26 @@ import org.apache.maven.shared.invoker.DefaultInvoker;
 import org.apache.maven.shared.invoker.InvocationRequest;
 import org.apache.maven.shared.invoker.InvocationResult;
 import org.apache.maven.shared.invoker.Invoker;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.msplearning.entity.App;
 import com.msplearning.restful.app.generic.CustomMediaType;
+import com.msplearning.restful.app.generic.GenericCrudRESTfulServer;
+import com.msplearning.service.AppService;
 import com.msplearning.service.exception.BusinessException;
+import com.msplearning.service.generic.GenericCrudService;
 
 /**
- * The DownloadRESTfulServer class provides the RESTful services of the
- * resources download.
+ * The StudentRESTfulServer class provides the RESTful services of entity
+ * {@link App}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Component
-@Path("/product")
-public class ProductRESTfulServer {
+@Path("/app")
+public class AppRESTfulServer extends GenericCrudRESTfulServer<App, Long> {
 
 	/**
 	 * This field is set by Spring on context:property-placeholder configured in
@@ -38,6 +43,14 @@ public class ProductRESTfulServer {
 	 */
 	@Value("${msplearning.basedirectory}")
 	private String baseDirectory;
+
+	@Autowired
+	private AppService appService;
+
+	@Override
+	protected GenericCrudService<App, Long> getService() {
+		return this.appService;
+	}
 
 	@Path("apk/{id}")
 	@GET

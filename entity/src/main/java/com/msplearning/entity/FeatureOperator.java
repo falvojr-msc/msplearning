@@ -10,15 +10,15 @@ public enum FeatureOperator {
 	/**
 	 * And operator.
 	 */
-	AND("A", "And"),
+	A("A", "And"),
 	/**
 	 * Or operator.
 	 */
-	OR("O", "Or"),
+	O("O", "Or"),
 	/**
 	 * Alternative operator, same logic of an XOR gate.
 	 */
-	ALTERNATIVE("X", "Alternative");
+	X("X", "Alternative");
 
 	private String code;
 	private String value;

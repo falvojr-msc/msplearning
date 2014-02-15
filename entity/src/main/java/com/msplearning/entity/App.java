@@ -1,5 +1,6 @@
 package com.msplearning.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "tb_app")
 @SequenceGenerator(name = "sequenceApp", sequenceName = "sq_tb_app")
-public class App {
+public class App implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(generator = "sequenceApp")

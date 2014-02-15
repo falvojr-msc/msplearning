@@ -16,8 +16,8 @@ public class AppFeature implements Serializable {
 	@EmbeddedId
 	private AppFeatureId id;
 
-	@Column(name = "active", nullable = false)
-	private boolean isActive = true;
+	@Column(name = "selected", nullable = false)
+	private boolean isSelected;
 
 	public AppFeatureId getId() {
 		return this.id;
@@ -27,12 +27,12 @@ public class AppFeature implements Serializable {
 		this.id = id;
 	}
 
-	public boolean isActive() {
-		return this.isActive;
+	public boolean isSelected() {
+		return this.isSelected;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setSelected(boolean isSelected) {
+		this.isSelected = isSelected;
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class AppFeature implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (this.id == null ? 0 : this.id.hashCode());
-		result = prime * result + (this.isActive ? 1231 : 1237);
+		result = prime * result + (this.isSelected ? 1231 : 1237);
 		return result;
 	}
 
@@ -63,7 +63,7 @@ public class AppFeature implements Serializable {
 		} else if (!this.id.equals(other.id)) {
 			return false;
 		}
-		if (this.isActive != other.isActive) {
+		if (this.isSelected != other.isSelected) {
 			return false;
 		}
 		return true;
