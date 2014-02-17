@@ -1,5 +1,6 @@
 package com.msplearning.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.InitializingBean;
@@ -38,33 +39,38 @@ public class FeatureService implements InitializingBean {
 	private void createFeaturesIfThereAreNo() {
 		if (this.featureRepository.findAll().size() == 0) {
 
-			Feature pedagogical;
-			this.featureRepository.insert(pedagogical = new Feature(1L, "Pedagogical", FeatureOperator.A, true, false, false));
-			this.featureRepository.insert(new Feature(2L, "Content Management", null, true, false, false, pedagogical));
-			this.featureRepository.insert(new Feature(3L, "Educational Activities", null, true, false, false, pedagogical));
-			this.featureRepository.insert(new Feature(4L, "Interactivity", null, true, false, false, pedagogical));
-			this.featureRepository.insert(new Feature(5L, "Multimedia Resources", null, true, false, false, pedagogical));
+			Feature pedagogical = new Feature("Pedagogical", FeatureOperator.A, true, false, false);
+			pedagogical.setChildren(new ArrayList<Feature>());
+			pedagogical.getChildren().add(new Feature("Content Management", null, true, false, false));
+			pedagogical.getChildren().add(new Feature("Educational Activities", null, true, false, false));
+			pedagogical.getChildren().add(new Feature("Interactivity", null, true, false, false));
+			pedagogical.getChildren().add(new Feature("Multimedia Resources", null, true, false, false));
 
-			Feature usability;
-			this.featureRepository.insert(usability = new Feature(6L, "Usability", FeatureOperator.A, true, false, false));
-			this.featureRepository.insert(new Feature(7L, "Accessibility", null, true, false, false, usability));
-			this.featureRepository.insert(new Feature(8L, "Attractiveness", null, true, false, false, usability));
-			this.featureRepository.insert(new Feature(9L, "Intelligibility", null, true, false, false, usability));
-			this.featureRepository.insert(new Feature(10L, "Learnability", null, true, false, false, usability));
-			this.featureRepository.insert(new Feature(11L, "Operability", null, true, false, false, usability));
+			Feature usability = new Feature("Usability", FeatureOperator.A, true, false, false);
+			usability.setChildren(new ArrayList<Feature>());
+			usability.getChildren().add(new Feature("Accessibility", null, true, false, false));
+			usability.getChildren().add(new Feature("Attractiveness", null, true, false, false));
+			usability.getChildren().add(new Feature("Intelligibility", null, true, false, false));
+			usability.getChildren().add(new Feature("Learnability", null, true, false, false));
+			usability.getChildren().add(new Feature("Operability", null, true, false, false));
 
-			Feature compatibility;
-			this.featureRepository.insert(compatibility = new Feature(12L, "Compatibility", FeatureOperator.A, true, false, false));
-			this.featureRepository.insert(new Feature(13L, "Coexistence", null, true, false, false, compatibility));
-			this.featureRepository.insert(new Feature(14L, "Interoperability", null, true, false, false, compatibility));
+			Feature compatibility = new Feature("Compatibility", FeatureOperator.A, true, false, false);
+			compatibility.setChildren(new ArrayList<Feature>());
+			compatibility.getChildren().add(new Feature("Coexistence", null, true, false, false));
+			compatibility.getChildren().add(new Feature("Interoperability", null, true, false, false));
 
-			Feature security;
-			this.featureRepository.insert(security = new Feature(15L, "Security", FeatureOperator.A, true, false, false));
-			this.featureRepository.insert(new Feature(16L, "Accountablility", null, false, false, false, security));
-			this.featureRepository.insert(new Feature(17L, "Authenticity", null, false, false, false, security));
-			this.featureRepository.insert(new Feature(18L, "Confidentiality", null, false, false, false, security));
-			this.featureRepository.insert(new Feature(19L, "Integrity", null, true, false, false, security));
-			this.featureRepository.insert(new Feature(20L, "Reliability", null, true, false, false, security));
+			Feature security = new Feature("Security", FeatureOperator.A, true, false, false);
+			security.setChildren(new ArrayList<Feature>());
+			security.getChildren().add(new Feature("Accountablility", null, false, false, false));
+			security.getChildren().add(new Feature("Authenticity", null, false, false, false));
+			security.getChildren().add(new Feature("Confidentiality", null, false, false, false));
+			security.getChildren().add(new Feature("Integrity", null, true, false, false));
+			security.getChildren().add(new Feature("Reliability", null, true, false, false));
+
+			this.featureRepository.insert(pedagogical);
+			this.featureRepository.insert(usability);
+			this.featureRepository.insert(compatibility);
+			this.featureRepository.insert(security);
 		}
 	}
 
