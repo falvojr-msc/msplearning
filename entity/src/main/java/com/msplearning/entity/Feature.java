@@ -1,30 +1,25 @@
 package com.msplearning.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name = "tb_feature")
-@SequenceGenerator(name = "sequenceFeature", sequenceName = "sq_tb_feature")
 public class Feature implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator = "sequenceFeature")
 	@Column(name = "id")
 	private Long id;
 
@@ -44,10 +39,29 @@ public class Feature implements Serializable {
 	@Column(name = "hidden", nullable = false)
 	private boolean isHidden;
 
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "id_parent")
 	@ForeignKey(name = "fk_tb_feature_2_tb_feature")
-	private List<Feature> children;
+	private Feature parent;
+
+	public Feature() {
+		super();
+	}
+
+	public Feature(Long id, String name, FeatureOperator operator, boolean isMandatory, boolean isAbstract, boolean isHidden) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.operator = operator;
+		this.isMandatory = isMandatory;
+		this.isAbstract = isAbstract;
+		this.isHidden = isHidden;
+	}
+
+	public Feature(Long id, String name, FeatureOperator operator, boolean isMandatory, boolean isAbstract, boolean isHidden, Feature parent) {
+		this(id, name, operator, isMandatory, isAbstract, isHidden);
+		this.parent = parent;
+	}
 
 	public Long getId() {
 		return this.id;
@@ -97,25 +111,25 @@ public class Feature implements Serializable {
 		this.isHidden = isHidden;
 	}
 
-	public List<Feature> getChildren() {
-		return this.children;
+	public Feature getParent() {
+		return this.parent;
 	}
 
-	public void setChildren(List<Feature> children) {
-		this.children = children;
+	public void setParent(Feature parent) {
+		this.parent = parent;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (this.children == null ? 0 : this.children.hashCode());
-		result = prime * result + (this.id == null ? 0 : this.id.hashCode());
-		result = prime * result + (this.isAbstract ? 1231 : 1237);
-		result = prime * result + (this.isHidden ? 1231 : 1237);
-		result = prime * result + (this.isMandatory ? 1231 : 1237);
-		result = prime * result + (this.name == null ? 0 : this.name.hashCode());
-		result = prime * result + (this.operator == null ? 0 : this.operator.hashCode());
+		result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
+		result = (prime * result) + (this.isAbstract ? 1231 : 1237);
+		result = (prime * result) + (this.isHidden ? 1231 : 1237);
+		result = (prime * result) + (this.isMandatory ? 1231 : 1237);
+		result = (prime * result) + ((this.name == null) ? 0 : this.name.hashCode());
+		result = (prime * result) + ((this.operator == null) ? 0 : this.operator.hashCode());
+		result = (prime * result) + ((this.parent == null) ? 0 : this.parent.hashCode());
 		return result;
 	}
 
@@ -131,13 +145,6 @@ public class Feature implements Serializable {
 			return false;
 		}
 		Feature other = (Feature) obj;
-		if (this.children == null) {
-			if (other.children != null) {
-				return false;
-			}
-		} else if (!this.children.equals(other.children)) {
-			return false;
-		}
 		if (this.id == null) {
 			if (other.id != null) {
 				return false;
@@ -162,6 +169,13 @@ public class Feature implements Serializable {
 			return false;
 		}
 		if (this.operator != other.operator) {
+			return false;
+		}
+		if (this.parent == null) {
+			if (other.parent != null) {
+				return false;
+			}
+		} else if (!this.parent.equals(other.parent)) {
 			return false;
 		}
 		return true;
