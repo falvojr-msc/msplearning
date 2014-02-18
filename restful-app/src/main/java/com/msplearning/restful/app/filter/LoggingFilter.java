@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.msplearning.service.exception.BusinessException;
+import com.msplearning.entity.util.BusinessException;
 
 @WebFilter(filterName = "LoggingFilter", urlPatterns = "/*")
 public class LoggingFilter implements Filter {

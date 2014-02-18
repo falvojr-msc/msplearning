@@ -15,7 +15,7 @@ import com.msplearning.repository.generic.GenericRepository;
  * 
  * @author Renan Johannsen de Paula (renanjp)
  */
-public abstract class GenericCrudService<T extends Serializable, K extends Serializable> {
+public abstract class GenericCrudService<T extends Serializable, K extends Serializable> extends BaseService {
 
 	public void insert(T entity) {
 		this.getRepository().insert(entity);

@@ -12,5 +12,5 @@ public final class RESTfulServerUtil {
 		super();
 	}
 
-	public static final String ROOT_URL = "http://XXX.XXX.X.XXX:8080/restful-app/rest";
+	public static final String ROOT_URL = "http://192.168.0.102:8080/restful-app/rest";
 }

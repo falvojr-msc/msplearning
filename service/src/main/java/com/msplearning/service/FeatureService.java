@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.msplearning.entity.Feature;
 import com.msplearning.entity.FeatureOperator;
 import com.msplearning.repository.FeatureRepository;
+import com.msplearning.service.generic.BaseService;
 
 /**
  * The FeatureServiceJpa class provides the business operations of entity
@@ -18,18 +19,18 @@ import com.msplearning.repository.FeatureRepository;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Service("featureService")
-public class FeatureService implements InitializingBean {
+public class FeatureService extends BaseService implements InitializingBean {
 
 	@Autowired
 	private FeatureRepository featureRepository;
 
 	public List<Feature> getAll() {
+		String s = super.getMessage("project.messages.mi0001");
 		return this.featureRepository.findAll();
 	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-
 		this.createFeaturesIfThereAreNo();
 	}
 

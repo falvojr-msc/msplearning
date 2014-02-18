@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.msplearning.entity.User;
+import com.msplearning.entity.util.BusinessException;
 import com.msplearning.service.UserService;
-import com.msplearning.service.exception.BusinessException;
 
 /**
  * The UserRESTfulServer class provides the RESTful services of the generic

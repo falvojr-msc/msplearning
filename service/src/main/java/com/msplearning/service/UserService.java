@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.msplearning.entity.User;
 import com.msplearning.repository.UserRepository;
+import com.msplearning.service.generic.BaseService;
 
 /**
  * The UserServiceJpa class provides the business operations of entity
@@ -13,7 +14,7 @@ import com.msplearning.repository.UserRepository;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Service("userService")
-public class UserService {
+public class UserService extends BaseService {
 
 	@Autowired
 	private UserRepository userRepository;

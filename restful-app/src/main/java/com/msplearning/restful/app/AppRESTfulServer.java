@@ -21,10 +21,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.msplearning.entity.App;
+import com.msplearning.entity.util.BusinessException;
 import com.msplearning.restful.app.generic.CustomMediaType;
 import com.msplearning.restful.app.generic.GenericCrudRESTfulServer;
 import com.msplearning.service.AppService;
-import com.msplearning.service.exception.BusinessException;
 import com.msplearning.service.generic.GenericCrudService;
 
 /**
@@ -41,7 +41,7 @@ public class AppRESTfulServer extends GenericCrudRESTfulServer<App, Long> {
 	 * This field is set by Spring on context:property-placeholder configured in
 	 * applicationContext.xml
 	 */
-	@Value("${msplearning.basedirectory}")
+	@Value("${project.basedirectory}")
 	private String baseDirectory;
 
 	@Autowired
