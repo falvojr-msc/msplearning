@@ -3,19 +3,17 @@ package com.msplearning.restful.app;
 import java.io.File;
 import java.util.Arrays;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import org.apache.maven.shared.invoker.DefaultInvocationRequest;
 import org.apache.maven.shared.invoker.DefaultInvoker;
 import org.apache.maven.shared.invoker.InvocationRequest;
 import org.apache.maven.shared.invoker.InvocationResult;
 import org.apache.maven.shared.invoker.Invoker;
+import org.apache.maven.shared.invoker.MavenInvocationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -52,11 +50,13 @@ public class AppRESTfulServer extends GenericCrudRESTfulServer<App, Long> {
 		return this.appService;
 	}
 
-	@Path("apk/{id}")
-	@GET
+	@POST
 	@Produces(CustomMediaType.APPLICATION_ANDROID_PACKAGE_ARCHIVE)
-	public Response getAndroidApk(@PathParam("id") Long idApp) throws BusinessException {
+	@Override
+	public Response insert(App entity) {
 		try {
+			this.getService().insert(entity);
+
 			InvocationRequest request = new DefaultInvocationRequest();
 			request.setPomFile(new File(this.baseDirectory + "\\pom.xml"));
 			request.setGoals(Arrays.asList("-DskipTests=true", "verify"));
@@ -66,18 +66,19 @@ public class AppRESTfulServer extends GenericCrudRESTfulServer<App, Long> {
 			InvocationResult result = invoker.execute(request);
 
 			if (result.getExitCode() == 0) {
-				File fileApk = new File(this.baseDirectory + "\\android-app\\target\\customProduct.apk");
-				return Response.ok(fileApk).header("Content-Disposition", "attachment;filename=MSPlearning.apk").build();
-			} else {
-				if (result.getExecutionException() == null) {
-					throw new WebApplicationException(String.format("Failed to publish site. Exit code: %s.", result.getExitCode()),
-							Status.INTERNAL_SERVER_ERROR);
-				} else {
-					throw new WebApplicationException("Failed to publish site.", result.getExecutionException(), Status.INTERNAL_SERVER_ERROR);
+				String path = this.baseDirectory + "\\android-app\\target\\android-app.apk";
+				String apkName = entity.getName().replaceAll("\\W", "");
+				if (apkName == "") {
+					apkName = "MSPLearning";
 				}
+				return Response.ok(new File(path)).header("Content-Disposition", String.format("attachment;filename=%s.apk", apkName)).build();
+			} else {
+				return Response.serverError().build();
 			}
-		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+		} catch (BusinessException businessException) {
+			return Response.serverError().entity(businessException.getMessage()).build();
+		} catch (MavenInvocationException mavenException) {
+			return Response.serverError().build();
 		}
 	}
 }

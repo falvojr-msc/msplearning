@@ -46,6 +46,9 @@ public class Feature implements Serializable {
 	@Column(name = "hidden", nullable = false)
 	private boolean isHidden;
 
+	@Column(name = "id_parent", insertable = false, updatable = false)
+	private Long idParent;
+
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_parent")
 	@ForeignKey(name = "fk_tb_feature_2_tb_feature")
@@ -112,6 +115,14 @@ public class Feature implements Serializable {
 		this.isHidden = isHidden;
 	}
 
+	public Long getIdParent() {
+		return this.idParent;
+	}
+
+	public void setIdParent(Long idParent) {
+		this.idParent = idParent;
+	}
+
 	public List<Feature> getChildren() {
 		return this.children;
 	}
@@ -124,13 +135,17 @@ public class Feature implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = (prime * result) + ((this.children == null) ? 0 : this.children.hashCode());
+		result = (prime * result)
+				+ ((this.children == null) ? 0 : this.children.hashCode());
 		result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
+		result = (prime * result)
+				+ ((this.idParent == null) ? 0 : this.idParent.hashCode());
 		result = (prime * result) + (this.isAbstract ? 1231 : 1237);
 		result = (prime * result) + (this.isHidden ? 1231 : 1237);
 		result = (prime * result) + (this.isMandatory ? 1231 : 1237);
 		result = (prime * result) + ((this.name == null) ? 0 : this.name.hashCode());
-		result = (prime * result) + ((this.operator == null) ? 0 : this.operator.hashCode());
+		result = (prime * result)
+				+ ((this.operator == null) ? 0 : this.operator.hashCode());
 		return result;
 	}
 
@@ -158,6 +173,13 @@ public class Feature implements Serializable {
 				return false;
 			}
 		} else if (!this.id.equals(other.id)) {
+			return false;
+		}
+		if (this.idParent == null) {
+			if (other.idParent != null) {
+				return false;
+			}
+		} else if (!this.idParent.equals(other.idParent)) {
 			return false;
 		}
 		if (this.isAbstract != other.isAbstract) {

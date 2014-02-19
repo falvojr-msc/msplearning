@@ -25,7 +25,6 @@ public class FeatureService extends BaseService implements InitializingBean {
 	private FeatureRepository featureRepository;
 
 	public List<Feature> getAll() {
-		String s = super.getMessage("project.messages.mi0001");
 		return this.featureRepository.findAll();
 	}
 

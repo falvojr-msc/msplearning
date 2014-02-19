@@ -1,5 +1,7 @@
 package com.msplearning.repository.jpa;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.msplearning.entity.Feature;
@@ -14,5 +16,11 @@ import com.msplearning.repository.jpa.generic.GenericRepositoryJpa;
  */
 @Repository("featureRepository")
 public class FeatureRepositoryJpa extends GenericRepositoryJpa<Feature, Long> implements FeatureRepository {
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Feature> findAll() {
+		return (List<Feature>) super.findByJPQL("FROM Feature WHERE idParent IS NULL");
+	}
 
 }

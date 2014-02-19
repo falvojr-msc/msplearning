@@ -32,7 +32,7 @@
 	</repositories>
 
 	<build>
-	    <finalName>customProduct</finalName>
+	    <finalName>android-app</finalName>
 		<plugins>
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>

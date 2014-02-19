@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.msplearning.entity.User;
+import com.msplearning.entity.util.BusinessException;
 import com.msplearning.repository.UserRepository;
 import com.msplearning.service.generic.BaseService;
 
@@ -19,12 +20,16 @@ public class UserService extends BaseService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public boolean authenticate(String username, String password) {
-		return this.userRepository.authenticate(username, password);
+	public void authenticate(String username, String password) {
+		if (!this.userRepository.authenticate(username, password)) {
+			throw new BusinessException(super.getMessage("project.messages.mi0001"));
+		}
 	}
 
-	public User findByUsername(String username) {
-		return this.userRepository.findByUsername(username);
+	public void findByUsername(String username) {
+		if(this.userRepository.findByUsername(username) == null) {
+			throw new BusinessException(super.getMessage("project.messages.mi0002"));
+		}
 	}
 
 }
