@@ -10,20 +10,34 @@
 	<description>Parent project of the M-SPLearning used by modules designed for android architecture</description>
 
 	<properties>
-		<!-- Dependencies versions -->
-		<actionbarsherlock.version>4.4.0</actionbarsherlock.version>
-		<androidannotations.version>3.0</androidannotations.version>
-		<android.api.version>16</android.api.version>
-		<android.maven.plugin.version>3.6.0</android.maven.plugin.version>
-		<android.version>4.0.1.2</android.version>
-		<maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
-		<spring-android-rest-template.version>1.0.1.RELEASE</spring-android-rest-template.version>
-		<!-- Encoding options -->
+	    <!-- Encoding options -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- Plugins versions -->
+		<android-maven-plugin-version>3.7.0</android-maven-plugin-version>
+		<maven-compiler-plugin-version>3.1</maven-compiler-plugin-version>
+		<maven-eclipse-plugin-version>2.9</maven-eclipse-plugin-version>
+		<!-- Plataforms versions -->
+		<android-platform>16</android-platform>
+		<java-version>1.6</java-version>
+		<!-- Dependencies versions -->
+		<com.actionbarsherlock-version>4.4.0</com.actionbarsherlock-version>
+		<com.google.android-version>4.1.1.4</com.google.android-version>
+		<org.androidannotations-version>3.0.1</org.androidannotations-version>
+		<org.codehaus.jackson-version>1.9.13</org.codehaus.jackson-version>
+		<org.springframework.android-version>1.0.1.RELEASE</org.springframework.android-version>
+		<org.springframework.social-version>1.0.3.RELEASE</org.springframework.social-version>
+		<org.springframework.social-twitter-version>1.0.5.RELEASE</org.springframework.social-twitter-version>
+		<org.springframework.social-facebook-version>1.0.3.RELEASE</org.springframework.social-facebook-version>
+		<org.springframework.security-version>3.2.0.RELEASE</org.springframework.security-version>	
 	</properties>
 
 	<repositories>
+	    <repository>
+			<id>spring-repo</id>
+			<name>Spring Repository</name>
+			<url>http://repo.spring.io/libs-release</url>
+		</repository>
 		<repository>
 			<id>android-rome-feed-reader-repository</id>
 			<name>Android ROME Feed Reader Repository</name>
@@ -31,29 +45,4 @@
 		</repository>
 	</repositories>
 
-	<build>
-	    <finalName>android-app</finalName>
-		<plugins>
-			<plugin>
-				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-				<artifactId>android-maven-plugin</artifactId>
-				<version>${android.maven.plugin.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-					<sdk>
-						<platform>${android.api.version}</platform>
-					</sdk>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.compiler.plugin.version}</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

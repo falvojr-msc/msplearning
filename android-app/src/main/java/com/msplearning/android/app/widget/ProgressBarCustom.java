@@ -1,4 +1,4 @@
-package com.msplearning.android.widget;
+package com.msplearning.android.app.widget;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EViewGroup;

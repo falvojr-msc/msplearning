@@ -20,8 +20,8 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.view.Menu;
 import com.msplearning.android.app.base.BaseActivityWithRestSupport;
-import com.msplearning.android.compatibility.interoperability.UserRESTfulClient;
-import com.msplearning.android.widget.ProgressBarCustom;
+import com.msplearning.android.app.interoperability.UserRESTfulClient;
+import com.msplearning.android.app.widget.ProgressBarCustom;
 import com.msplearning.entity.User;
 
 /**

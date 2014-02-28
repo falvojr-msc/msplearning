@@ -10,38 +10,48 @@
 	<description>Parent project of the M-SPLearning used by modules designed for web architecture</description>
 
 	<properties>
-		<!-- Dependencies versions -->
-		<apache.commons.codec.version>1.8</apache.commons.codec.version>
-		<gson.version>2.2.4</gson.version>
-		<hibernate.version>4.2.8.Final</hibernate.version>
-		<jersey.version>2.5</jersey.version>
-		<maven.compiler.version>3.1</maven.compiler.version>
-		<maven.invoker.version>2.1.1</maven.invoker.version>
-		<maven.war.version>2.4</maven.war.version>
-		<postgresql.version>9.1-901.jdbc4</postgresql.version>
-		<servlet.version>3.0.1</servlet.version>
-		<slf4j.version>1.7.5</slf4j.version>
-		<spring.version>4.0.0.RELEASE</spring.version>
 		<!-- Encoding options -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- Plugins versions -->
+		<maven-compiler-plugin-version>3.1</maven-compiler-plugin-version>
+		<maven-eclipse-plugin-version>2.9</maven-eclipse-plugin-version>
+		<maven-war-plugin-version>2.4</maven-war-plugin-version>
+		<!-- Plataforms versions -->
+		<java-version>1.7</java-version>
+		<!-- Dependencies versions -->
+		<commons-codec-version>1.8</commons-codec-version>
+		<com.google.code.gson-version>2.2.4</com.google.code.gson-version>
+		<javax.servlet-version>3.0.1</javax.servlet-version>
+		<org.apache.maven.shared-version>2.1.1</org.apache.maven.shared-version>
+		<org.glassfish.jersey.ext-version>2.5</org.glassfish.jersey.ext-version>
+		<org.hibernate-version>4.2.8.Final</org.hibernate-version>
+		<org.slf4j-version>1.7.5</org.slf4j-version>
+		<org.springframework-version>4.0.0.RELEASE</org.springframework-version>
+		<postgresql.version>9.1-901.jdbc4</postgresql.version>
 	</properties>
 
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.compiler.version}</version>
+				<version>${maven-compiler-plugin-version}</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<encoding>UTF-8</encoding>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
 				</configuration>
 			</plugin>
 			<plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>${maven.war.version}</version>
-            </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${maven-eclipse-plugin-version}</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>

@@ -19,11 +19,11 @@ public class BaseActivityWithRestSupport extends BaseActivity {
 	@AfterInject
 	protected void changeRequestFactoryRestTemplate() {
 		Field[] props = this.getClass().getSuperclass().getDeclaredFields();
-		for (Field prop2 : props) {
+		for (Field propIt : props) {
 			Object prop;
 			try {
-				prop2.setAccessible(true);
-				prop = prop2.get(this);
+				propIt.setAccessible(true);
+				prop = propIt.get(this);
 				if (prop instanceof RestClientSupport) {
 					((RestClientSupport) prop).getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 				}

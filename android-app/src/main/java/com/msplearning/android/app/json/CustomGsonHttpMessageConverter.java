@@ -1,4 +1,4 @@
-package com.msplearning.android.json;
+package com.msplearning.android.app.json;
 
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 

@@ -15,48 +15,47 @@
 	<packaging>war</packaging>
 
 	<dependencies>
-		<!-- M-SPLearning service dependency (all related dependencies will be included) -->
 		<dependency>
 			<groupId>com.msplearning</groupId>
 			<artifactId>service</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
-		<!-- Servlet -->
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>${servlet.version}</version>
+			<version>${javax.servlet-version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- Hibernate dependency (all related dependencies will be included) -->
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>${hibernate.version}</version>
+			<version>${org.hibernate-version}</version>
 		</dependency>
-		<!--Database driver dependency -->
+
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>${postgresql.version}</version>
 		</dependency>
-		<!-- Spring dependencies (all related dependencies will be included) -->
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>${spring.version}</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>${spring.version}</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
-		<!-- Jersey dependency (all related dependencies will be included) -->
+
 		<dependency>
 			<groupId>org.glassfish.jersey.ext</groupId>
 			<artifactId>jersey-spring3</artifactId>
-			<version>${jersey.version}</version>
+			<version>${org.glassfish.jersey.ext-version}</version>
 			<!-- Exclude all Spring dependencies (already registered) -->
 			<exclusions>
 				<exclusion>
@@ -77,18 +76,30 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- Maven Invoker dependency -->
+
 		<dependency>
 			<groupId>org.apache.maven.shared</groupId>
 			<artifactId>maven-invoker</artifactId>
-			<version>${maven.invoker.version}</version>
+			<version>${org.apache.maven.shared-version}</version>
 		</dependency>
-		<!-- Simple Logging Facade dependency -->
+		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
+			<version>${org.slf4j-version}</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven-war-plugin-version}</version>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

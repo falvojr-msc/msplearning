@@ -14,67 +14,156 @@
 	<packaging>apk</packaging>
 
 	<dependencies>
-		<!-- M-SPLearning entity dependency (all related dependencies will be included) -->
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+			<version>${com.google.android-version}</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>com.msplearning</groupId>
 			<artifactId>entity</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
-			<!-- Excludes unnecessary dependencies -->
+			<!-- Exclude secondary dependencies -->
 			<exclusions>
 				<exclusion>
-					<artifactId>javassist</artifactId>
-					<groupId>org.javassist</groupId>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-core</artifactId>
 				</exclusion>
 				<exclusion>
-					<artifactId>antlr</artifactId>
-					<groupId>antlr</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>dom4j</artifactId>
-					<groupId>dom4j</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jboss-transaction-api_1.1_spec</artifactId>
-					<groupId>org.jboss.spec.javax.transaction</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jboss-logging</artifactId>
-					<groupId>org.jboss.logging</groupId>
+					<groupId>commons-codec</groupId>
+					<artifactId>commons-codec</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- Apache Commons Codec dependency -->
-		<dependency>
-			<groupId>com.google.android</groupId>
-			<artifactId>android</artifactId>
-			<version>${android.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- ActionBar Sherlock library dependency (all related dependencies will be included) -->
+
 		<dependency>
 			<groupId>com.actionbarsherlock</groupId>
 			<artifactId>actionbarsherlock</artifactId>
-			<version>${actionbarsherlock.version}</version>
+			<version>${com.actionbarsherlock-version}</version>
 			<type>apklib</type>
 		</dependency>
-		<!-- Android Annotations dependencies -->
+
 		<dependency>
 			<groupId>org.androidannotations</groupId>
 			<artifactId>androidannotations</artifactId>
-			<version>${androidannotations.version}</version>
+			<version>${org.androidannotations-version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.androidannotations</groupId>
 			<artifactId>androidannotations-api</artifactId>
-			<version>${androidannotations.version}</version>
+			<version>${org.androidannotations-version}</version>
 		</dependency>
-		<!-- Spring Android dependency (all related dependencies will be included) -->
+
 		<dependency>
 			<groupId>org.springframework.android</groupId>
 			<artifactId>spring-android-rest-template</artifactId>
-			<version>${spring-android-rest-template.version}</version>
+			<version>${org.springframework.android-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.android</groupId>
+			<artifactId>spring-android-auth</artifactId>
+			<version>${org.springframework.android-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-crypto</artifactId>
+			<version>${org.springframework.security-version}</version>
+			<exclusions>
+				<!-- Exclude in favor of Spring Android Core -->
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-core</artifactId>
+			<version>${org.springframework.social-version}</version>
+			<exclusions>
+				<!-- Exclude in favor of Spring Android RestTemplate -->
+				<exclusion>
+					<artifactId>spring-web</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<!-- Provided by Android -->
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-facebook</artifactId>
+			<version>${org.springframework.social-facebook-version}</version>
+			<exclusions>
+				<!-- Provided by Android -->
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-twitter</artifactId>
+			<version>${org.springframework.social-twitter-version}</version>
+			<exclusions>
+				<!-- Provided by Android -->
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${org.codehaus.jackson-version}</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>android-maven-plugin</artifactId>
+				<version>${android-maven-plugin-version}</version>
+				<configuration>
+					<sdk>
+						<platform>${android-platform}</platform>
+					</sdk>
+					<deleteConflictingFiles>true</deleteConflictingFiles>
+					<undeployBeforeDeploy>true</undeployBeforeDeploy>
+				</configuration>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin-version}</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${maven-eclipse-plugin-version}</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
