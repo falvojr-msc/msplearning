@@ -1,4 +1,4 @@
-package com.msplearning.entity.util;
+package com.msplearning.entity.common;
 
 /**
  * The ServiceException class, a generic {@link RuntimeException} for business

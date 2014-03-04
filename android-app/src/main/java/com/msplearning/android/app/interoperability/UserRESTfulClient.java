@@ -8,6 +8,7 @@ import org.androidannotations.api.rest.RestClientSupport;
 import com.msplearning.android.app.interoperability.util.RESTfulServer;
 import com.msplearning.android.app.json.CustomGsonHttpMessageConverter;
 import com.msplearning.entity.User;
+import com.msplearning.entity.common.Response;
 
 /**
  * The UserRESTfulClient interface provides the RESTful services of {@link User}
@@ -19,8 +20,8 @@ import com.msplearning.entity.User;
 public interface UserRESTfulClient extends RestClientSupport {
 
 	@Post("/user/auth")
-	Boolean authenticate(User user);
+	Response authenticate(User user);
 
 	@Get("/user/{username}")
-	User findByUsername(String username);
+	Response findByUsername(String username);
 }

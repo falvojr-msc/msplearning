@@ -15,10 +15,10 @@ public final class RESTfulServer {
 	/**
 	 * URL from local server.
 	 */
-	public static final String DEBUG = "192.168.0.102:8080/restful-app/rest";
+	public static final String DEBUG = "http://192.168.0.101:8080/restful-app/rest";
 
 	/**
 	 * URL from dedicated server.
 	 */
-	public static final String RELEASE = "msplearning.com/restful-app/rest";
+	public static final String RELEASE = "http://msplearning.com/restful-app/rest";
 }

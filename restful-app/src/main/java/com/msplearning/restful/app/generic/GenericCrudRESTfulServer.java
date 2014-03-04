@@ -8,9 +8,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.core.Response;
 
-import com.msplearning.entity.util.BusinessException;
+import com.msplearning.entity.common.BusinessException;
+import com.msplearning.entity.common.Response;
+import com.msplearning.entity.common.Status;
 import com.msplearning.service.generic.GenericCrudService;
 
 /**
@@ -29,9 +30,9 @@ public abstract class GenericCrudRESTfulServer<T extends Serializable, K extends
 	public Response insert(T entity) {
 		try {
 			this.getService().insert(entity);
-			return Response.ok(entity).build();
+			return new Response(Status.OK, entity);
 		} catch (BusinessException businessException) {
-			return Response.serverError().entity(businessException.getMessage()).build();
+			return new Response(Status.OK, businessException);
 		}
 	}
 
@@ -39,18 +40,18 @@ public abstract class GenericCrudRESTfulServer<T extends Serializable, K extends
 	public Response update(T entity) {
 		try {
 			this.getService().update(entity);
-			return Response.ok(entity).build();
+			return new Response(Status.OK, entity);
 		} catch (BusinessException businessException) {
-			return Response.serverError().entity(businessException.getMessage()).build();
+			return new Response(Status.OK, businessException);
 		}
 	}
 
 	@GET
 	public Response getAll() {
 		try {
-			return Response.ok(this.getService().getAll()).build();
+			return new Response(Status.OK, this.getService().getAll());
 		} catch (BusinessException businessException) {
-			return Response.serverError().entity(businessException.getMessage()).build();
+			return new Response(Status.OK, businessException);
 		}
 	}
 
@@ -58,9 +59,9 @@ public abstract class GenericCrudRESTfulServer<T extends Serializable, K extends
 	@GET
 	public Response getById(@PathParam("id") K id) {
 		try {
-			return Response.ok(this.getService().getById(id)).build();
+			return new Response(Status.OK, this.getService().getById(id));
 		} catch (BusinessException businessException) {
-			return Response.serverError().entity(businessException.getMessage()).build();
+			return new Response(Status.OK, businessException);
 		}
 	}
 
@@ -69,9 +70,9 @@ public abstract class GenericCrudRESTfulServer<T extends Serializable, K extends
 	public Response delete(@PathParam("id") K id) {
 		try {
 			this.getService().delete(id);
-			return Response.ok().build();
+			return new Response(Status.OK);
 		} catch (BusinessException businessException) {
-			return Response.serverError().entity(businessException.getMessage()).build();
+			return new Response(Status.OK, businessException);
 		}
 	}
 

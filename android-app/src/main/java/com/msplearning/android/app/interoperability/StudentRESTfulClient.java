@@ -10,6 +10,7 @@ import org.androidannotations.api.rest.RestClientSupport;
 import com.msplearning.android.app.interoperability.util.RESTfulServer;
 import com.msplearning.android.app.json.CustomGsonHttpMessageConverter;
 import com.msplearning.entity.Student;
+import com.msplearning.entity.common.Response;
 
 /**
  * The StudentRESTfulClient interface provides the RESTful services of
@@ -21,17 +22,17 @@ import com.msplearning.entity.Student;
 public interface StudentRESTfulClient extends RestClientSupport {
 
 	@Post("/student")
-	Student insert(Student student);
+	Response insert(Student student);
 
 	@Put("/student")
-	Student update(Student student);
+	Response update(Student student);
 
 	@Get("/student/{id}")
-	Student findById(Long id);
+	Response findById(Long id);
 
 	@Get("/student")
-	void findAll();
+	Response findAll();
 
 	@Delete("/student/{id}")
-	void delete(Long id);
+	Response delete(Long id);
 }

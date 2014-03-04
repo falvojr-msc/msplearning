@@ -51,7 +51,7 @@ public class LoggingFilter implements Filter {
 			Locale.setDefault(Locale.US);
 		} else {
 			Locale localeLang = Locale.forLanguageTag(langParam);
-			if ((localeLang == null) || (localeLang.toLanguageTag() == "")) {
+			if (localeLang == null || localeLang.toLanguageTag() == "") {
 				Locale.setDefault(Locale.US);
 			} else {
 				Locale.setDefault(localeLang);

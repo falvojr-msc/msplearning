@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- Application strings -->
     <string name="app_name">M-SPLearning</string>
     <string name="action_settings">Settings</string>
     
     <!-- Common strings -->
-    <string name="prompt_username">Username</string>
-    <string name="prompt_password">Password</string>
-	<string name="title_dialog_error">Error</string>
+    <string name="title_dialog_error">Error</string>
 </resources>

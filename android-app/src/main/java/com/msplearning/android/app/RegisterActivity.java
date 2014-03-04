@@ -14,12 +14,10 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.actionbarsherlock.view.Menu;
 import com.google.gson.Gson;
-import com.msplearning.android.app.base.BaseActivityWithRestSupport;
+import com.msplearning.android.app.base.BaseActivityRestSupport;
 import com.msplearning.android.app.interoperability.StudentRESTfulClient;
 import com.msplearning.android.app.interoperability.TeacherRESTfulClient;
-import com.msplearning.android.app.widget.ProgressBarCustom;
 import com.msplearning.entity.Gender;
 import com.msplearning.entity.Student;
 import com.msplearning.entity.Teacher;
@@ -32,7 +30,7 @@ import com.msplearning.entity.json.GsonFactory;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_register)
-public class RegisterActivity extends BaseActivityWithRestSupport {
+public class RegisterActivity extends BaseActivityRestSupport {
 
 	@ViewById(R.id.firstName)
 	protected EditText mFirstNameView;
@@ -48,22 +46,14 @@ public class RegisterActivity extends BaseActivityWithRestSupport {
 	protected EditText mRepeatPasswordView;
 	@ViewById(R.id.type)
 	protected RadioGroup mTypeView;
-	
+
 	@ViewById(R.id.register_form)
 	protected View mRegisterFormView;
-	@ViewById(R.id.register_progress_bar)
-	protected ProgressBarCustom mProgressBarCustom;
 
 	@RestService
 	protected StudentRESTfulClient mStudentRESTfulClient;
 	@RestService
 	protected TeacherRESTfulClient mTeacherRESTfulClient;
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		this.getSupportMenuInflater();
-		return true;
-	}
 
 	@AfterViews
 	public void init() {
@@ -82,8 +72,8 @@ public class RegisterActivity extends BaseActivityWithRestSupport {
 
 	@Click(R.id.register_button)
 	public void register() {
-		this.mProgressBarCustom.showProgress(true, this.mRegisterFormView);
-		
+		super.showLoadingProgressDialog();
+
 		User user = new User();
 		user.setFirstName(this.mFirstNameView.getText().toString());
 		user.setLastName(this.mLastNameView.getText().toString());
@@ -106,7 +96,7 @@ public class RegisterActivity extends BaseActivityWithRestSupport {
 		} catch (Exception exception) {
 			this.showDialogAlertError(exception);
 		} finally {
-			this.mProgressBarCustom.showProgress(false, this.mRegisterFormView);
+			super.dismissProgressDialog();
 		}
 		this.showUiMessage("User created!");
 	}
@@ -115,10 +105,10 @@ public class RegisterActivity extends BaseActivityWithRestSupport {
 	void showUiMessage(String message) {
 		Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_LONG).show();
 	}
-	
+
 	@UiThread
 	protected void showDialogAlertError(Exception exception) {
 		new AlertDialog.Builder(this).setTitle(this.getString(R.string.title_dialog_error)).setMessage(exception.getMessage())
-				.setIcon(android.R.drawable.ic_dialog_alert).setNeutralButton(android.R.string.ok, null).show();
+		.setIcon(android.R.drawable.ic_dialog_alert).setNeutralButton(android.R.string.ok, null).show();
 	}
 }

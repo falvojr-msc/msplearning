@@ -18,19 +18,19 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.actionbarsherlock.view.Menu;
-import com.msplearning.android.app.base.BaseActivityWithRestSupport;
+import com.msplearning.android.app.base.BaseActivityRestSupport;
 import com.msplearning.android.app.interoperability.UserRESTfulClient;
-import com.msplearning.android.app.widget.ProgressBarCustom;
 import com.msplearning.entity.User;
+import com.msplearning.entity.common.Response;
 
 /**
- * The LoginActivity class. Activity which displays a login screen to the user, offering registration as well.
+ * The LoginActivity class. Activity which displays a login screen to the user,
+ * offering registration as well.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_login)
-public class LoginActivity extends BaseActivityWithRestSupport {
+public class LoginActivity extends BaseActivityRestSupport {
 
 	public static final String KEY_PASSWORD = "password";
 	public static final String KEY_USERNAME = "username";
@@ -46,18 +46,10 @@ public class LoginActivity extends BaseActivityWithRestSupport {
 	protected EditText mPasswordView;
 	@ViewById(R.id.login_form)
 	protected View mLoginFormView;
-	@ViewById(R.id.login_progress_bar)
-	protected ProgressBarCustom mProgressBarCustom;
 
 	// RESTful client.
 	@RestService
 	protected UserRESTfulClient mUserRESTfulClient;
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		this.getSupportMenuInflater().inflate(R.menu.login, menu);
-		return true;
-	}
 
 	@AfterViews
 	protected void init() {
@@ -75,8 +67,9 @@ public class LoginActivity extends BaseActivityWithRestSupport {
 	}
 
 	/**
-	 * Attempts to sign in or register the account specified by the login form. If there are form errors (invalid email, missing fields, etc.), the errors are
-	 * presented and no actual login attempt is made.
+	 * Attempts to sign in or register the account specified by the login form.
+	 * If there are form errors (invalid email, missing fields, etc.), the
+	 * errors are presented and no actual login attempt is made.
 	 */
 	@Click(R.id.sign_in_button)
 	protected void signIn() {
@@ -111,50 +104,49 @@ public class LoginActivity extends BaseActivityWithRestSupport {
 		}
 
 		if (cancel) {
-			// There was an error; don't attempt login and focus the first form field with an error.
+			// There was an error; don't attempt login and focus the first form
+			// field with an error.
 			focusView.requestFocus();
 		} else {
-			this.mProgressBarCustom.showProgress(true, this.mLoginFormView);
+			super.showLoadingProgressDialog();
 			this.authenticate();
 		}
 	}
 
 	@Background
 	protected void authenticate() {
-		boolean success = false;
 
 		final User userAuth = new User();
 		userAuth.setUsername(this.mUsername);
 		userAuth.setPassword(this.mPassword);
 
 		try {
-			success = this.mUserRESTfulClient.authenticate(userAuth);
-			if (!success) {
-				User user = this.mUserRESTfulClient.findByUsername(userAuth.getUsername());
-				if (user == null) {
-					this.showDialogConfirmRegister();
+			Response responseAuth = this.mUserRESTfulClient.authenticate(userAuth);
+			if (responseAuth.hasBusinessMessage()) {
+				Response responseUsername = this.mUserRESTfulClient.findByUsername(userAuth.getUsername());
+				if (responseUsername.hasBusinessMessage()) {
+					this.showDialogConfirmRegister(responseUsername.getBusinessMessage());
 				} else {
-					this.showIncorrectPasswordError();
+					this.showIncorrectPasswordError(responseAuth.getBusinessMessage());
 				}
 			}
 		} catch (Exception exception) {
-			this.showDialogAlertError(exception);
+			this.showDialogAlertError(exception.getMessage());
 		} finally {
-			this.mProgressBarCustom.showProgress(false, this.mLoginFormView);
+			super.dismissProgressDialog();
 		}
 	}
 
 	@UiThread
-	protected void showDialogAlertError(Exception exception) {
-		new AlertDialog.Builder(this).setTitle(this.getString(R.string.title_dialog_error)).setMessage(exception.getMessage())
+	protected void showDialogAlertError(String message) {
+		new AlertDialog.Builder(this).setTitle(this.getString(R.string.title_dialog_error)).setMessage(message)
 		.setIcon(android.R.drawable.ic_dialog_alert).setNeutralButton(android.R.string.ok, null).show();
 	}
 
 	@UiThread
-	protected void showDialogConfirmRegister() {
+	protected void showDialogConfirmRegister(final String message) {
 		new AlertDialog.Builder(this).setTitle(this.getString(R.string.title_dialog_register)).setMessage(this.getString(R.string.message_dialog_register))
-		.setIcon(android.R.drawable.ic_dialog_info)
-		.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+		.setIcon(android.R.drawable.ic_dialog_info).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				Intent intent = RegisterActivity_.intent(LoginActivity.this.getApplicationContext()).get();
@@ -165,20 +157,20 @@ public class LoginActivity extends BaseActivityWithRestSupport {
 		}).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
-				LoginActivity.this.showNotFoundUserError();
+				LoginActivity.this.showNotFoundUserError(message);
 			}
 		}).show();
 	}
 
 	@UiThread
-	protected void showIncorrectPasswordError() {
-		this.mPasswordView.setError(this.getString(R.string.error_incorrect_password));
+	protected void showIncorrectPasswordError(String message) {
+		this.mPasswordView.setError(message);
 		this.mPasswordView.requestFocus();
 	}
 
 	@UiThread
-	protected void showNotFoundUserError() {
-		this.mUsernameView.setError(this.getString(R.string.error_not_found_username));
+	protected void showNotFoundUserError(String message) {
+		this.mUsernameView.setError(message);
 		this.mUsernameView.requestFocus();
 	}
 }

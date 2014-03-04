@@ -3,18 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".LoginActivity" >
 
-    <!-- Login progress -->
-
-    <com.msplearning.android.widget.ProgressBarCustom_ 
-        android:id="@+id/login_progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:visibility="gone"
-        custom:status_message="@string/login_progress_signing_in" />
-
     <!-- Login form -->
 
     <ScrollView
@@ -22,8 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <LinearLayout
-            style="@style/FormContainer"
+        <LinearLayout 
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="16dp"
             android:orientation="vertical" >
 
             <EditText

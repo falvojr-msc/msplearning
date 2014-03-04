@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.msplearning.entity.Feature;
-import com.msplearning.entity.util.BusinessException;
+import com.msplearning.entity.common.BusinessException;
 import com.msplearning.service.FeatureService;
 
 /**

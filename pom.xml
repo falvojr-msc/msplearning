@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.msplearning</groupId>
 	<artifactId>msplearning</artifactId>
@@ -10,9 +11,26 @@
 
 	<modules>
 		<module>entity</module>
-		<module>repository</module>
-		<module>service</module>
-		<module>restful-app</module>
-		<module>android-app</module>
 	</modules>
+
+	<profiles>
+		<profile>
+			<id>profile-android</id>
+			<activation>
+			    <activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>android-app</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>profile-restful</id>
+			<modules>
+				<module>repository</module>
+				<module>service</module>
+				<module>restful-app</module>
+			</modules>
+		</profile>
+	</profiles>
+
 </project>

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.msplearning.entity.User;
-import com.msplearning.entity.util.BusinessException;
+import com.msplearning.entity.common.BusinessException;
 import com.msplearning.repository.UserRepository;
 import com.msplearning.service.generic.BaseService;
 

@@ -5,8 +5,6 @@ import java.util.Arrays;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
 
 import org.apache.maven.shared.invoker.DefaultInvocationRequest;
 import org.apache.maven.shared.invoker.DefaultInvoker;
@@ -19,8 +17,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.msplearning.entity.App;
-import com.msplearning.entity.util.BusinessException;
-import com.msplearning.restful.app.generic.CustomMediaType;
+import com.msplearning.entity.common.BusinessException;
+import com.msplearning.entity.common.Response;
+import com.msplearning.entity.common.Status;
 import com.msplearning.restful.app.generic.GenericCrudRESTfulServer;
 import com.msplearning.service.AppService;
 import com.msplearning.service.generic.GenericCrudService;
@@ -51,7 +50,6 @@ public class AppRESTfulServer extends GenericCrudRESTfulServer<App, Long> {
 	}
 
 	@POST
-	@Produces(CustomMediaType.APPLICATION_ANDROID_PACKAGE_ARCHIVE)
 	@Override
 	public Response insert(App entity) {
 		try {
@@ -66,19 +64,15 @@ public class AppRESTfulServer extends GenericCrudRESTfulServer<App, Long> {
 			InvocationResult result = invoker.execute(request);
 
 			if (result.getExitCode() == 0) {
-				String path = this.baseDirectory + "\\android-app\\target\\android-app.apk";
-				String apkName = entity.getName().replaceAll("\\W", "");
-				if (apkName == "") {
-					apkName = "MSPLearning";
-				}
-				return Response.ok(new File(path)).header("Content-Disposition", String.format("attachment;filename=%s.apk", apkName)).build();
+				String path = this.baseDirectory + "\\android-app\\target\\android-app-1.0-SNAPSHOT.apk";
+				return new Response(Status.OK, new File(path));
 			} else {
-				return Response.serverError().build();
+				return new Response(Status.SERVER_ERROR);
 			}
 		} catch (BusinessException businessException) {
-			return Response.serverError().entity(businessException.getMessage()).build();
+			return new Response(Status.OK, businessException);
 		} catch (MavenInvocationException mavenException) {
-			return Response.serverError().build();
+			return new Response(Status.SERVER_ERROR);
 		}
 	}
 }
