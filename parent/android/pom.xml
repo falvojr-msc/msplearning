@@ -14,7 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<!-- Plugins versions -->
-		<android-maven-plugin-version>3.8.2</android-maven-plugin-version>
+		<android-maven-plugin-version>3.6.0</android-maven-plugin-version>
 		<lifecycle-mapping-version>1.0.0</lifecycle-mapping-version>
 		<maven-compiler-plugin-version>3.1</maven-compiler-plugin-version>
 		<maven-eclipse-plugin-version>2.9</maven-eclipse-plugin-version>
@@ -54,6 +54,7 @@
 						<lifecycleMappingMetadata>
 							<pluginExecutions>
 								<pluginExecution>
+								    <!-- Registers a filter to omit support for AAR files, available since version 3.7.0 -->
 									<pluginExecutionFilter>
 										<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 										<artifactId>android-maven-plugin</artifactId>
@@ -99,12 +100,6 @@
 					<sdk>
 						<platform>${android-platform}</platform>
 					</sdk>
-					<dex>
-						<jvmArguments>
-							<jvmArgument>-Xms256m</jvmArgument>
-							<jvmArgument>-Xmx512m</jvmArgument>
-						</jvmArguments>
-					</dex>
 					<deleteConflictingFiles>true</deleteConflictingFiles>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
 				</configuration>

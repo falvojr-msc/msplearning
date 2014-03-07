@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="header_activity_choose_login">Choose one of the options to log in</string>
+
+    <!-- Strings related to activity -->
+	<string name="action_msplearning">Log in using M-SPLearning</string>
+	<string name="action_facebook">Log in using Facebook</string>
+	<string name="action_twitter">Log in using Twitter</string>
+
+</resources>

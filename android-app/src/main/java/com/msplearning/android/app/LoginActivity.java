@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.msplearning.android.app.base.BaseActivityRestSupport;
-import com.msplearning.android.app.interoperability.UserRESTfulClient;
+import com.msplearning.android.app.interoperability.UserRestClient;
 import com.msplearning.entity.User;
 import com.msplearning.entity.common.Response;
 
@@ -40,16 +40,14 @@ public class LoginActivity extends BaseActivityRestSupport {
 	private String mPassword;
 
 	// UI references.
-	@ViewById(R.id.username)
+	@ViewById(R.id.txtUsername)
 	protected EditText mUsernameView;
-	@ViewById(R.id.password)
+	@ViewById(R.id.txtPassword)
 	protected EditText mPasswordView;
-	@ViewById(R.id.login_form)
-	protected View mLoginFormView;
 
 	// RESTful client.
 	@RestService
-	protected UserRESTfulClient mUserRESTfulClient;
+	protected UserRestClient mUserRESTfulClient;
 
 	@AfterViews
 	protected void init() {
@@ -71,7 +69,7 @@ public class LoginActivity extends BaseActivityRestSupport {
 	 * If there are form errors (invalid email, missing fields, etc.), the
 	 * errors are presented and no actual login attempt is made.
 	 */
-	@Click(R.id.sign_in_button)
+	@Click(R.id.btnSignIn)
 	protected void signIn() {
 
 		// Reset errors.
@@ -153,6 +151,7 @@ public class LoginActivity extends BaseActivityRestSupport {
 				intent.putExtra(KEY_USERNAME, LoginActivity.this.mUsername);
 				intent.putExtra(KEY_PASSWORD, LoginActivity.this.mPassword);
 				LoginActivity.this.startActivity(intent);
+				LoginActivity.this.finish();
 			}
 		}).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
 			@Override

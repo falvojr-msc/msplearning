@@ -1,4 +1,4 @@
-package com.msplearning.restful.app;
+package com.msplearning.rest.app;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -19,7 +19,7 @@ import com.msplearning.service.FeatureService;
  */
 @Component
 @Path("/feature")
-public class FeatureRESTfulServer {
+public class FeatureRestServer {
 
 	@Autowired
 	private FeatureService featureService;

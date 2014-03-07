@@ -1,10 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register_form"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".RegisterActivity" >
+    android:layout_height="match_parent" >
 
     <LinearLayout
         android:layout_width="400dp"
@@ -14,27 +10,27 @@
         android:padding="16dp" >
 
         <RadioGroup
-            android:id="@+id/type"
+            android:id="@+id/rdoGrpType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
             <RadioButton
-                android:id="@+id/radioStudent"
+                android:id="@+id/rdoStudent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="@string/prompt_student" />
 
             <RadioButton
-                android:id="@+id/radioTeacher"
+                android:id="@+id/rdoTeacher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/prompt_teacher" />
         </RadioGroup>
 
         <EditText
-            android:id="@+id/firstName"
+            android:id="@+id/txtFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_first_name"
@@ -43,7 +39,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/lastName"
+            android:id="@+id/txtLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_last_name"
@@ -52,27 +48,27 @@
             android:singleLine="true" />
 
         <RadioGroup
-            android:id="@+id/gender"
+            android:id="@+id/rdoGrpGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
             <RadioButton
-                android:id="@+id/radioMale"
+                android:id="@+id/rdoMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="@string/prompt_male" />
 
             <RadioButton
-                android:id="@+id/radioFemale"
+                android:id="@+id/rdoFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/prompt_female" />
         </RadioGroup>
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/txtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_username"
@@ -81,7 +77,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_password"
@@ -90,7 +86,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/repeatPassword"
+            android:id="@+id/txtRepeatPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_repeat_password"
@@ -99,7 +95,7 @@
             android:singleLine="true" />
 
         <Button
-            android:id="@+id/register_button"
+            android:id="@+id/btnRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

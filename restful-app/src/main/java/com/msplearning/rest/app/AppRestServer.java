@@ -1,4 +1,4 @@
-package com.msplearning.restful.app;
+package com.msplearning.rest.app;
 
 import java.io.File;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ import com.msplearning.entity.App;
 import com.msplearning.entity.common.BusinessException;
 import com.msplearning.entity.common.Response;
 import com.msplearning.entity.common.Status;
-import com.msplearning.restful.app.generic.GenericCrudRESTfulServer;
+import com.msplearning.rest.app.generic.GenericCrudRestServer;
 import com.msplearning.service.AppService;
 import com.msplearning.service.generic.GenericCrudService;
 
@@ -32,7 +32,7 @@ import com.msplearning.service.generic.GenericCrudService;
  */
 @Component
 @Path("/app")
-public class AppRESTfulServer extends GenericCrudRESTfulServer<App, Long> {
+public class AppRestServer extends GenericCrudRestServer<App, Long> {
 
 	/**
 	 * This field is set by Spring on context:property-placeholder configured in

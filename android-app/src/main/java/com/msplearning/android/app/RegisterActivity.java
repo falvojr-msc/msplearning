@@ -9,15 +9,14 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
 import android.app.AlertDialog;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.msplearning.android.app.base.BaseActivityRestSupport;
-import com.msplearning.android.app.interoperability.StudentRESTfulClient;
-import com.msplearning.android.app.interoperability.TeacherRESTfulClient;
+import com.msplearning.android.app.interoperability.StudentRestClient;
+import com.msplearning.android.app.interoperability.TeacherRestClient;
 import com.msplearning.entity.Gender;
 import com.msplearning.entity.Student;
 import com.msplearning.entity.Teacher;
@@ -32,28 +31,25 @@ import com.msplearning.entity.json.GsonFactory;
 @EActivity(R.layout.activity_register)
 public class RegisterActivity extends BaseActivityRestSupport {
 
-	@ViewById(R.id.firstName)
+	@ViewById(R.id.txtFirstName)
 	protected EditText mFirstNameView;
-	@ViewById(R.id.lastName)
+	@ViewById(R.id.txtLastName)
 	protected EditText mLastNameView;
-	@ViewById(R.id.gender)
+	@ViewById(R.id.rdoGrpGender)
 	protected RadioGroup mGenderView;
-	@ViewById(R.id.username)
+	@ViewById(R.id.txtUsername)
 	protected EditText mUsernameView;
-	@ViewById(R.id.password)
+	@ViewById(R.id.txtPassword)
 	protected EditText mPasswordView;
-	@ViewById(R.id.repeatPassword)
+	@ViewById(R.id.txtRepeatPassword)
 	protected EditText mRepeatPasswordView;
-	@ViewById(R.id.type)
+	@ViewById(R.id.rdoGrpType)
 	protected RadioGroup mTypeView;
 
-	@ViewById(R.id.register_form)
-	protected View mRegisterFormView;
-
 	@RestService
-	protected StudentRESTfulClient mStudentRESTfulClient;
+	protected StudentRestClient mStudentRESTfulClient;
 	@RestService
-	protected TeacherRESTfulClient mTeacherRESTfulClient;
+	protected TeacherRestClient mTeacherRESTfulClient;
 
 	@AfterViews
 	public void init() {
@@ -70,7 +66,7 @@ public class RegisterActivity extends BaseActivityRestSupport {
 		}
 	}
 
-	@Click(R.id.register_button)
+	@Click(R.id.btnRegister)
 	public void register() {
 		super.showLoadingProgressDialog();
 

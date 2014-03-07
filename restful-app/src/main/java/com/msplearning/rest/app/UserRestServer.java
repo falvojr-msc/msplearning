@@ -1,4 +1,4 @@
-package com.msplearning.restful.app;
+package com.msplearning.rest.app;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -22,7 +22,7 @@ import com.msplearning.service.UserService;
  */
 @Component
 @Path("/user")
-public class UserRESTfulServer {
+public class UserRestServer {
 
 	@Autowired
 	private UserService userService;
