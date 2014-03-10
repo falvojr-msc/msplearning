@@ -14,7 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.msplearning.android.app.base.BaseActivityRestSupport;
+import com.msplearning.android.app.generic.AbstractAsyncRestActivity;
 import com.msplearning.android.app.interoperability.StudentRestClient;
 import com.msplearning.android.app.interoperability.TeacherRestClient;
 import com.msplearning.entity.Gender;
@@ -29,7 +29,7 @@ import com.msplearning.entity.json.GsonFactory;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_register)
-public class RegisterActivity extends BaseActivityRestSupport {
+public class RegisterActivity extends AbstractAsyncRestActivity<MSPLearningApp> {
 
 	@ViewById(R.id.txtFirstName)
 	protected EditText mFirstNameView;

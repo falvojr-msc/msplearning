@@ -5,9 +5,9 @@ import org.androidannotations.annotations.EActivity;
 
 import android.content.Intent;
 
-import com.msplearning.android.app.base.BaseActivityRestSupport;
-import com.msplearning.android.ext.FacebookWebOAuthActivity;
-import com.msplearning.android.ext.TwitterWebOAuthActivity;
+import com.msplearning.android.app.ext.FacebookWebOAuthActivity;
+import com.msplearning.android.app.ext.TwitterWebOAuthActivity;
+import com.msplearning.android.app.generic.AbstractAsyncRestActivity;
 
 /**
  * The RegisterActivity class.
@@ -15,7 +15,7 @@ import com.msplearning.android.ext.TwitterWebOAuthActivity;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_choose_login)
-public class ChooseLoginActivity extends BaseActivityRestSupport {
+public class ChooseLoginActivity extends AbstractAsyncRestActivity<MSPLearningApp> {
 
 	@Click(R.id.btnLogInMSPL)
 	protected void logInMSPLearning() {

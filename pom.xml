@@ -24,11 +24,11 @@
 			</modules>
 		</profile>
 		<profile>
-			<id>profile-restful</id>
+			<id>profile-rest</id>
 			<modules>
 				<module>repository</module>
 				<module>service</module>
-				<module>restful-app</module>
+				<module>rest-app</module>
 			</modules>
 		</profile>
 	</profiles>

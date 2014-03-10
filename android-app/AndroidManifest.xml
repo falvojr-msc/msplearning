@@ -26,8 +26,8 @@
         <activity android:name=".RegisterActivity_" ></activity>
         
         <!-- External Activities -->
-        <activity android:name="com.msplearning.android.ext.FacebookWebOAuthActivity" ></activity>
-        <activity android:name="com.msplearning.android.ext.TwitterWebOAuthActivity" ></activity>
+        <activity android:name="com.msplearning.android.app.ext.FacebookWebOAuthActivity" ></activity>
+        <activity android:name="com.msplearning.android.app.ext.TwitterWebOAuthActivity" ></activity>
     
     </application>
 

@@ -18,7 +18,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.msplearning.android.app.base.BaseActivityRestSupport;
+import com.msplearning.android.app.generic.AbstractAsyncRestActivity;
 import com.msplearning.android.app.interoperability.UserRestClient;
 import com.msplearning.entity.User;
 import com.msplearning.entity.common.Response;
@@ -30,7 +30,7 @@ import com.msplearning.entity.common.Response;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_login)
-public class LoginActivity extends BaseActivityRestSupport {
+public class LoginActivity extends AbstractAsyncRestActivity<MSPLearningApp> {
 
 	public static final String KEY_PASSWORD = "password";
 	public static final String KEY_USERNAME = "username";
