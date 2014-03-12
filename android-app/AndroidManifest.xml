@@ -26,8 +26,15 @@
         <activity android:name=".RegisterActivity_" ></activity>
         
         <!-- External Activities -->
-        <activity android:name="com.msplearning.android.app.ext.FacebookWebOAuthActivity" ></activity>
-        <activity android:name="com.msplearning.android.app.ext.TwitterWebOAuthActivity" ></activity>
+        <activity android:name=".ext.FacebookWebOAuthActivity" android:excludeFromRecents="true" android:noHistory="true" />
+        <activity android:name=".ext.TwitterWebOAuthActivity" android:excludeFromRecents="true" android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />           
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />               
+                <data android:host="twitter-oauth-response" android:scheme="x-com-msplearning-android-twitterclient" />
+            </intent-filter>
+        </activity>
     
     </application>
 
