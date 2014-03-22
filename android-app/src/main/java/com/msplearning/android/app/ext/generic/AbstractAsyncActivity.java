@@ -16,9 +16,9 @@
 
 package com.msplearning.android.app.ext.generic;
 
-import android.app.Activity;
 import android.app.Application;
 import android.app.ProgressDialog;
+import android.support.v7.app.ActionBarActivity;
 
 /**
  * The AbstractAsyncActivity class provides methods useful for performing
@@ -28,7 +28,7 @@ import android.app.ProgressDialog;
  * @author Pierre-Yves Ricau (original author)
  * @author Venilton Falvo Junior (author of specialized implementations)
  */
-public abstract class AbstractAsyncActivity<T extends Application> extends Activity implements AsyncActivity<T> {
+public abstract class AbstractAsyncActivity<T extends Application> extends ActionBarActivity implements AsyncActivity<T> {
 
 	protected static final String TAG = AbstractAsyncActivity.class.getSimpleName();
 

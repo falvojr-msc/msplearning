@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -33,7 +34,7 @@ import com.msplearning.android.app.R;
  * @author Roy Clarkson (original author)
  * @author Venilton Falvo Junior (author of specialized implementations)
  */
-public abstract class AbstractWebViewActivity<T extends Application> extends Activity implements AsyncActivity<T> {
+public abstract class AbstractWebViewActivity<T extends Application> extends ActionBarActivity implements AsyncActivity<T> {
 
 	protected static final String TAG = AbstractWebViewActivity.class.getSimpleName();
 
