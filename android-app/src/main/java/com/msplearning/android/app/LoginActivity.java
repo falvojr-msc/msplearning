@@ -18,6 +18,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.msplearning.android.app.ext.FacebookWebOAuthActivity;
+import com.msplearning.android.app.ext.TwitterWebOAuthActivity;
 import com.msplearning.android.app.generic.AbstractAsyncRestActivity;
 import com.msplearning.android.app.interoperability.UserRestClient;
 import com.msplearning.entity.User;
@@ -171,5 +173,21 @@ public class LoginActivity extends AbstractAsyncRestActivity<MSPLearningApp> {
 	protected void showNotFoundUserError(String message) {
 		this.mUsernameView.setError(message);
 		this.mUsernameView.requestFocus();
+	}
+
+	@Click(R.id.btnLogInFacebook)
+	protected void logInFacebook() {
+		Intent intent = new Intent();
+		intent.setClass(this, FacebookWebOAuthActivity.class);
+		this.startActivity(intent);
+		this.finish();
+	}
+
+	@Click(R.id.btnLogInTwitter)
+	protected void logInTwitter() {
+		Intent intent = new Intent();
+		intent.setClass(this, TwitterWebOAuthActivity.class);
+		this.startActivity(intent);
+		this.finish();
 	}
 }

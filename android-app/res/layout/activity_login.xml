@@ -3,7 +3,7 @@
     android:layout_height="match_parent" >
 
     <LinearLayout
-        android:layout_width="400dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
@@ -24,21 +24,36 @@
             android:layout_height="wrap_content"
             android:hint="@string/prompt_password"
             android:imeActionId="@+id/login"
-            android:imeActionLabel="@string/action_sign_in_short"
-            android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true" />
 
         <Button
             android:id="@+id/btnSignIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="16dp"
-            android:paddingLeft="32dp"
-            android:paddingRight="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableLeft="@drawable/ic_mspl"
+            android:gravity="center"
             android:text="@string/action_sign_in_register" />
+
+        <View style="@style/Separator" />
+
+        <Button
+            android:id="@+id/btnLogInFacebook"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableLeft="@drawable/ic_facebook"
+            android:gravity="center"
+            android:text="@string/action_facebook" />
+
+        <Button
+            android:id="@+id/btnLogInTwitter"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableLeft="@drawable/ic_twitter"
+            android:gravity="center"
+            android:text="@string/action_twitter" />
+
     </LinearLayout>
 
 </ScrollView>

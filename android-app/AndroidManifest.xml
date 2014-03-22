@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.msplearning.android.app"
-    android:versionCode="1" android:versionName="1.0-SNAPSHOT" >
+    package="com.msplearning.android.app" android:versionCode="1" android:versionName="1.0-SNAPSHOT" >
 
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="19" />
     
@@ -16,13 +15,12 @@
         android:theme="@style/AppTheme">
         
         <!-- Internal Activities -->
-        <activity android:name=".ChooseLoginActivity_" >
+        <activity android:name=".LoginActivity_" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity_" ></activity>
         <activity android:name=".RegisterActivity_" ></activity>
         
         <!-- External Activities -->
