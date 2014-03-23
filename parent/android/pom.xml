@@ -23,6 +23,7 @@
 		<java-version>1.6</java-version>
 		<!-- Dependencies versions -->
 		<com.actionbarsherlock-version>4.4.0</com.actionbarsherlock-version>
+		<com.android.support-version>19.0.1</com.android.support-version>
 		<com.google.android-version>4.1.1.4</com.google.android-version>
 		<org.androidannotations-version>3.0.1</org.androidannotations-version>
 		<org.codehaus.jackson-version>1.9.13</org.codehaus.jackson-version>
