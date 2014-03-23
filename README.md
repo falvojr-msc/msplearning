@@ -14,8 +14,6 @@ Environment
         + Android 4.1.2 (API 16) - *M-SPLearning required API*
             + SDK Platform
             + ARM EABI v7a System Image
-		+ Android 4.0 (API 14) - *ActionBarSherlock required API*
-            + SDK Platform
         + Extras
             + Android Support Repository
             + Android Support Library
@@ -26,50 +24,22 @@ Environment
 
 Execution
 -----
-+ Clone **ActionBarSherlock**[⁶](#references) repository on your computer:
-```
-git clone https://github.com/JakeWharton/ActionBarSherlock.git
-```
 
 + Clone M-SPLearning repository on your computer:
 ```
 git clone https://github.com/veniltonjr/msplearning.git
 ```
-
-+ On Eclipse import as "Existing Maven Projects" the following projects:
-```
-ActionBarSherlock
-├── actionbarsherlock <--
-│   └── pom.xml
-├── actionbarsherlock-fest
-│   └── pom.xml
-├── actionbarsherlock-i18n
-│   └── pom.xml
-├── actionbarsherlock-samples
-│   ├── demos
-│   │   └── pom.xml
-│   ├── fragments
-│   │   └── pom.xml
-│   ├── known-bugs
-│   │   └── pom.xml
-│   ├── roboguice
-│   │   └── pom.xml
-│   ├── styled
-│   │   └── pom.xml
-│   └── pom.xml
-└── pom.xml
-```
 ```
 M-SPLearning
-├── android-app <--
+├── android-app
 │   └── pom.xml
-├── restful-app <--
+├── restful-app
 │   └── pom.xml
-├── entity      <--
+├── entity     
 │   └── pom.xml
-├── repository  <--
+├── repository
 │   └── pom.xml
-├── service     <--
+├── service    
 │   └── pom.xml
 └── pom.xml
 ```
@@ -85,5 +55,3 @@ References
 ⁴ Available [here](http://developer.android.com/sdk/installing/installing-adt.html). *We used the option "Help > Install New Software..." for installation*.
 
 ⁵ Available [here](http://rgladwell.github.io/m2e-android). *We used the option "Help > Eclipse Marcketplace..." for installation*.
-
-⁶ Available [here](http://actionbarsherlock.com/). *We're using ActionBarSherlock 4.4.0*.
