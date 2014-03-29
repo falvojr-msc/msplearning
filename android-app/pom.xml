@@ -21,6 +21,22 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- Uncomment to run the build with Maven 
+		<dependency>
+			<groupId>com.android.support</groupId> 
+			<artifactId>appcompat-v7</artifactId>
+			<version>${com.android.support-version}</version> 
+			<type>aar</type>
+		</dependency> -->
+
+		<!-- Comment to run the build with Maven -->
+		<dependency>
+			<groupId>com.msplearning</groupId>
+			<artifactId>android-support-v7-appcompat</artifactId>
+			<version>${project.version}</version>
+			<type>apklib</type>
+		</dependency>
+
 		<dependency>
 			<groupId>com.msplearning</groupId>
 			<artifactId>entity</artifactId>

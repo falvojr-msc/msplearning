@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.msplearning</groupId>
 	<artifactId>parent-android</artifactId>
@@ -22,8 +21,7 @@
 		<android-platform>16</android-platform>
 		<java-version>1.6</java-version>
 		<!-- Dependencies versions -->
-		<com.actionbarsherlock-version>4.4.0</com.actionbarsherlock-version>
-		<com.android.support-version>19.0.1</com.android.support-version>
+		<com.android.support-version>19.1.0</com.android.support-version>
 		<com.google.android-version>4.1.1.4</com.google.android-version>
 		<org.androidannotations-version>3.0.1</org.androidannotations-version>
 		<org.codehaus.jackson-version>1.9.13</org.codehaus.jackson-version>
@@ -40,6 +38,11 @@
 			<name>Android ROME Feed Reader Repository</name>
 			<url>https://android-rome-feed-reader.googlecode.com/svn/maven2/releases</url>
 		</repository>
+		<repository>
+			<id>android-support-repository</id>
+			<name>Android Support Libraries SDK Repository</name>
+			<url>file://${env.ANDROID_HOME}/extras/android/m2repository</url>
+		</repository>
 	</repositories>
 
 	<build>
@@ -55,7 +58,7 @@
 						<lifecycleMappingMetadata>
 							<pluginExecutions>
 								<pluginExecution>
-								    <!-- Registers a filter to omit support for AAR files, available since version 3.7.0 -->
+									<!-- Registers a filter to omit support for AAR files, available since version 3.7.0 -->
 									<pluginExecutionFilter>
 										<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 										<artifactId>android-maven-plugin</artifactId>
