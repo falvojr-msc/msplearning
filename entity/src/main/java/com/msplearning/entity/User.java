@@ -18,6 +18,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.ForeignKey;
@@ -53,6 +54,7 @@ public class User implements Serializable {
 	@Column(name = "gender", length = 1, nullable = false)
 	private Gender gender;
 
+	@Transient
 	@Column(name = "date_birth")
 	@Temporal(TemporalType.DATE)
 	private Date dateBirth;
@@ -75,16 +77,19 @@ public class User implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateLastLogin;
 
+	@Transient
 	@OneToMany
 	@JoinColumn(name = "id_user", nullable = false)
 	@ForeignKey(name="fk_tb_address_2_tb_user")
 	private List<Address> addresses;
 
+	@Transient
 	@OneToMany
 	@JoinColumn(name = "id_user", nullable = false)
 	@ForeignKey(name="fk_tb_email_2_tb_user")
 	private List<Email> emails;
 
+	@Transient
 	@OneToMany
 	@JoinColumn(name = "id_user", nullable = false)
 	@ForeignKey(name="fk_tb_phone_2_tb_user")
@@ -190,18 +195,18 @@ public class User implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (this.addresses == null ? 0 : this.addresses.hashCode());
-		result = prime * result + (this.dateBirth == null ? 0 : this.dateBirth.hashCode());
-		result = prime * result + (this.dateLastLogin == null ? 0 : this.dateLastLogin.hashCode());
-		result = prime * result + (this.dateRegistration == null ? 0 : this.dateRegistration.hashCode());
-		result = prime * result + (this.emails == null ? 0 : this.emails.hashCode());
-		result = prime * result + (this.firstName == null ? 0 : this.firstName.hashCode());
-		result = prime * result + (this.gender == null ? 0 : this.gender.hashCode());
-		result = prime * result + (this.id == null ? 0 : this.id.hashCode());
-		result = prime * result + (this.lastName == null ? 0 : this.lastName.hashCode());
-		result = prime * result + (this.password == null ? 0 : this.password.hashCode());
-		result = prime * result + (this.phones == null ? 0 : this.phones.hashCode());
-		result = prime * result + (this.username == null ? 0 : this.username.hashCode());
+		result = (prime * result) + (this.addresses == null ? 0 : this.addresses.hashCode());
+		result = (prime * result) + (this.dateBirth == null ? 0 : this.dateBirth.hashCode());
+		result = (prime * result) + (this.dateLastLogin == null ? 0 : this.dateLastLogin.hashCode());
+		result = (prime * result) + (this.dateRegistration == null ? 0 : this.dateRegistration.hashCode());
+		result = (prime * result) + (this.emails == null ? 0 : this.emails.hashCode());
+		result = (prime * result) + (this.firstName == null ? 0 : this.firstName.hashCode());
+		result = (prime * result) + (this.gender == null ? 0 : this.gender.hashCode());
+		result = (prime * result) + (this.id == null ? 0 : this.id.hashCode());
+		result = (prime * result) + (this.lastName == null ? 0 : this.lastName.hashCode());
+		result = (prime * result) + (this.password == null ? 0 : this.password.hashCode());
+		result = (prime * result) + (this.phones == null ? 0 : this.phones.hashCode());
+		result = (prime * result) + (this.username == null ? 0 : this.username.hashCode());
 		return result;
 	}
 
