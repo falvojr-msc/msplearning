@@ -1,4 +1,4 @@
-package com.msplearning.rest.app.provider;
+package com.msplearning.rest.app.json;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +19,7 @@ import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
 
 import com.google.gson.Gson;
-import com.msplearning.entity.json.GsonFactory;
+import com.msplearning.entity.common.json.GsonFactory;
 
 /**
  * The GsonProvider class implements {@link MessageBodyReader} and

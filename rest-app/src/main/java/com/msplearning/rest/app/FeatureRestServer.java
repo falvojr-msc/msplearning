@@ -1,14 +1,17 @@
 package com.msplearning.rest.app;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.msplearning.entity.Feature;
 import com.msplearning.entity.common.BusinessException;
+import com.msplearning.entity.common.Response;
+import com.msplearning.entity.common.Status;
 import com.msplearning.service.FeatureService;
 
 /**
@@ -25,11 +28,11 @@ public class FeatureRestServer {
 	private FeatureService featureService;
 
 	@GET
-	public Response getAll() {
+	public Response<List<Feature>> getAll() {
 		try {
-			return Response.ok(this.featureService.getAll()).build();
+			return new Response<List<Feature>>(Status.OK, this.featureService.getAll());
 		} catch (BusinessException businessException) {
-			return Response.serverError().entity(businessException.getMessage()).build();
+			return new Response<List<Feature>>(Status.OK, businessException.getMessage());
 		}
 	}
 }

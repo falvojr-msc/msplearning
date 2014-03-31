@@ -13,8 +13,7 @@ import com.msplearning.repository.FeatureRepository;
 import com.msplearning.service.generic.BaseService;
 
 /**
- * The FeatureServiceJpa class provides the business operations of entity
- * {@link Feature}.
+ * The FeatureService class provides the business operations of entity {@link Feature}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */

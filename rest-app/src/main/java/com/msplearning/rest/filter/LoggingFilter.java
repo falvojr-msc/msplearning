@@ -1,4 +1,4 @@
-package com.msplearning.rest.app.filter;
+package com.msplearning.rest.filter;
 
 import java.io.IOException;
 import java.util.Locale;

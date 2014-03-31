@@ -9,8 +9,7 @@ import com.msplearning.repository.UserRepository;
 import com.msplearning.service.generic.BaseService;
 
 /**
- * The UserServiceJpa class provides the business operations of entity
- * {@link User}.
+ * The UserService class provides the business operations of entity {@link User}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
@@ -27,7 +26,7 @@ public class UserService extends BaseService {
 	}
 
 	public void findByUsername(String username) {
-		if(this.userRepository.findByUsername(username) == null) {
+		if (this.userRepository.findByUsername(username) == null) {
 			throw new BusinessException(super.getMessage("project.messages.mi0002"));
 		}
 	}

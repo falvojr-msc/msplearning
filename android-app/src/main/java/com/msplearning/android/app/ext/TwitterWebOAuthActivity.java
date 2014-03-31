@@ -31,7 +31,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import com.msplearning.android.app.MSPLearningApp;
+import com.msplearning.android.app.MSPLearningApplication;
 import com.msplearning.android.app.R;
 import com.msplearning.android.app.ext.generic.AbstractWebViewActivity;
 
@@ -41,7 +41,7 @@ import com.msplearning.android.app.ext.generic.AbstractWebViewActivity;
  * @author Roy Clarkson (original author)
  * @author Venilton Falvo Junior (author of specialized implementations)
  */
-public class TwitterWebOAuthActivity extends AbstractWebViewActivity<MSPLearningApp> {
+public class TwitterWebOAuthActivity extends AbstractWebViewActivity<MSPLearningApplication> {
 
 	@SuppressWarnings("unused")
 	private static final String TAG = TwitterWebOAuthActivity.class.getSimpleName();

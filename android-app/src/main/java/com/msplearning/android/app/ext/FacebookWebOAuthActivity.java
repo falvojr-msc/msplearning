@@ -36,7 +36,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.msplearning.android.app.MSPLearningApp;
+import com.msplearning.android.app.MSPLearningApplication;
 import com.msplearning.android.app.R;
 import com.msplearning.android.app.ext.generic.AbstractWebViewActivity;
 
@@ -46,7 +46,7 @@ import com.msplearning.android.app.ext.generic.AbstractWebViewActivity;
  * @author Roy Clarkson (original author)
  * @author Venilton Falvo Junior (author of specialized implementations)
  */
-public class FacebookWebOAuthActivity extends AbstractWebViewActivity<MSPLearningApp> {
+public class FacebookWebOAuthActivity extends AbstractWebViewActivity<MSPLearningApplication> {
 
 	private static final String TAG = FacebookWebOAuthActivity.class.getSimpleName();
 

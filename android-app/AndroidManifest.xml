@@ -8,20 +8,22 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     
     <application
-        android:name=".MSPLearningApp_"
+        android:name=".MSPLearningApplication_"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         
         <!-- Internal Activities -->
-        <activity android:name=".LoginActivity_" >
+        <activity android:name=".SignInActivity_" android:label="@string/title_activity_sign_in" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity_" ></activity>
+        <activity android:name=".RegisterActivity_" android:label="@string/title_activity_register" ></activity>
+        <activity android:name=".DashboardActivity_" android:label="@string/title_activity_dashboard" ></activity>
+        <activity android:name=".ContentManagementActivity_" android:label="@string/title_activity_content_management" ></activity>
         
         <!-- External Activities -->
         <activity android:name=".ext.FacebookWebOAuthActivity" android:excludeFromRecents="true" android:noHistory="true" />

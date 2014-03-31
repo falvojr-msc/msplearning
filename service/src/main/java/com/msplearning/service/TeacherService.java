@@ -13,8 +13,7 @@ import com.msplearning.repository.generic.GenericRepository;
 import com.msplearning.service.generic.GenericCrudService;
 
 /**
- * The TeacherServiceJpa class provides the business operations of entity
- * {@link Teacher}.
+ * The TeacherService class provides the business operations of entity {@link Teacher}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */

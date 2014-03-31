@@ -21,8 +21,7 @@ import android.app.ProgressDialog;
 import android.support.v7.app.ActionBarActivity;
 
 /**
- * The AbstractAsyncActivity class provides methods useful for performing
- * asynchronous requests.
+ * The AbstractAsyncActivity class provides methods useful for performing asynchronous requests.
  * 
  * @author Roy Clarkson (original author)
  * @author Pierre-Yves Ricau (original author)

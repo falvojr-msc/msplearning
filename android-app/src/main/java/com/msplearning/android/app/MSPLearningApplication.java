@@ -15,7 +15,7 @@ import android.app.Application;
 import android.database.sqlite.SQLiteOpenHelper;
 
 @EApplication
-public class MSPLearningApp extends Application {
+public class MSPLearningApplication extends Application {
 
 	private ConnectionFactoryRegistry connectionFactoryRegistry;
 	private SQLiteOpenHelper repositoryHelper;

@@ -9,19 +9,19 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.msplearning.android.app.generic.AbstractAsyncRestActivity;
-import com.msplearning.android.app.interoperability.StudentRestClient;
-import com.msplearning.android.app.interoperability.TeacherRestClient;
+import com.msplearning.android.app.generic.GenericAsyncRestActivity;
+import com.msplearning.android.rest.StudentRestClient;
+import com.msplearning.android.rest.TeacherRestClient;
 import com.msplearning.entity.Gender;
 import com.msplearning.entity.Student;
 import com.msplearning.entity.Teacher;
 import com.msplearning.entity.User;
-import com.msplearning.entity.json.GsonFactory;
+import com.msplearning.entity.common.json.GsonFactory;
 
 /**
  * The RegisterActivity class.
@@ -29,7 +29,7 @@ import com.msplearning.entity.json.GsonFactory;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_register)
-public class RegisterActivity extends AbstractAsyncRestActivity<MSPLearningApp> {
+public class RegisterActivity extends GenericAsyncRestActivity<MSPLearningApplication> {
 
 	@ViewById(R.id.txtFirstName)
 	protected EditText mFirstNameView;
@@ -53,21 +53,21 @@ public class RegisterActivity extends AbstractAsyncRestActivity<MSPLearningApp> 
 
 	@AfterViews
 	public void init() {
-		String username = this.getIntent().getStringExtra(LoginActivity.KEY_USERNAME);
+		String username = this.getIntent().getStringExtra(SignInActivity.KEY_USERNAME);
 		if (username != null) {
 			this.mUsernameView.setText(username);
-			this.getIntent().removeExtra(LoginActivity.KEY_USERNAME);
+			this.getIntent().removeExtra(SignInActivity.KEY_USERNAME);
 		}
 
-		String password = this.getIntent().getStringExtra(LoginActivity.KEY_PASSWORD);
+		String password = this.getIntent().getStringExtra(SignInActivity.KEY_PASSWORD);
 		if (password != null) {
 			this.mPasswordView.setText(password);
-			this.getIntent().removeExtra(LoginActivity.KEY_PASSWORD);
+			this.getIntent().removeExtra(SignInActivity.KEY_PASSWORD);
 		}
 	}
 
-	@Click(R.id.btnRegister)
-	public void register() {
+	@Click
+	public void btnRegister() {
 		super.showLoadingProgressDialog();
 
 		User user = new User();
@@ -94,12 +94,9 @@ public class RegisterActivity extends AbstractAsyncRestActivity<MSPLearningApp> 
 		} finally {
 			super.dismissProgressDialog();
 		}
-		this.showUiMessage("User created!");
-	}
-
-	@UiThread
-	void showUiMessage(String message) {
-		Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+		Intent intent = DashboardActivity_.intent(this.getApplicationContext()).get();
+		this.startActivity(intent);
+		this.finish();
 	}
 
 	@UiThread

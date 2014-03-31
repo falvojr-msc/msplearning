@@ -19,8 +19,7 @@ package com.msplearning.android.app.ext.generic;
 import android.app.Application;
 
 /**
- * The AsyncActivity interface provides the signatures of the useful methods to
- * perform asynchronous requests.
+ * The AsyncActivity interface provides the signatures of the useful methods to perform asynchronous requests.
  * 
  * @author Roy Clarkson (original author)
  * @author Venilton Falvo Junior (author of specialized implementations)

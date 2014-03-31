@@ -1,9 +1,9 @@
 package com.msplearning.entity.common;
 
-public class Response {
+public class Response <T> {
 
 	private Status status;
-	private Object entity;
+	private T entity;
 	private String businessMessage;
 
 	public Response() {
@@ -15,7 +15,7 @@ public class Response {
 		this.status = status;
 	}
 
-	public Response(Status status, Object entity) {
+	public Response(Status status, T entity) {
 		super();
 		this.status = status;
 		this.entity = entity;
@@ -43,11 +43,11 @@ public class Response {
 		this.status = status;
 	}
 
-	public Object getEntity() {
+	public T getEntity() {
 		return this.entity;
 	}
 
-	public void setEntity(Object entity) {
+	public void setEntity(T entity) {
 		this.entity = entity;
 	}
 

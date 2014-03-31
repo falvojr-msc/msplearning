@@ -15,8 +15,7 @@ import com.msplearning.entity.common.Status;
 import com.msplearning.service.UserService;
 
 /**
- * The UserRESTfulServer class provides the RESTful services of the generic
- * entity {@link User}.
+ * The UserRESTfulServer class provides the RESTful services of the generic entity {@link User}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
@@ -29,23 +28,23 @@ public class UserRestServer {
 
 	@Path("auth")
 	@POST
-	public Response authenticate(User user) {
+	public Response<Void> authenticate(User user) {
 		try {
 			this.userService.authenticate(user.getUsername(), user.getPassword());
-			return new Response(Status.OK);
+			return new Response<Void>(Status.OK);
 		} catch (BusinessException businessException) {
-			return new Response(Status.OK);
+			return new Response<Void>(Status.OK, businessException);
 		}
 	}
 
 	@Path("{username}")
 	@GET
-	public Response findByUsername(@PathParam("username") String username) {
+	public Response<Void> findByUsername(@PathParam("username") String username) {
 		try {
 			this.userService.findByUsername(username);
-			return new Response(Status.OK);
+			return new Response<Void>(Status.OK);
 		} catch (BusinessException businessException) {
-			return new Response(Status.OK, businessException);
+			return new Response<Void>(Status.OK, businessException);
 		}
 	}
 }

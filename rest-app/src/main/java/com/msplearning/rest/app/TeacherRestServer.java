@@ -11,8 +11,7 @@ import com.msplearning.service.TeacherService;
 import com.msplearning.service.generic.GenericCrudService;
 
 /**
- * The TeacherRESTfulServer class provides the RESTful services of entity
- * {@link Teacher}.
+ * The TeacherRESTfulServer class provides the RESTful services of entity {@link Teacher}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */

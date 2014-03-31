@@ -1,4 +1,4 @@
-package com.msplearning.entity.json;
+package com.msplearning.entity.common.json;
 
 import java.lang.reflect.Type;
 import java.util.Date;

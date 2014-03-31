@@ -12,8 +12,7 @@ import com.msplearning.repository.generic.GenericRepository;
 import com.msplearning.service.generic.GenericCrudService;
 
 /**
- * The StudentServiceJpa class provides the business operations of entity
- * {@link App}.
+ * The AppService class provides the business operations of entity {@link App}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
@@ -27,7 +26,7 @@ public class AppService extends GenericCrudService<App, Long> {
 	protected GenericRepository<App, Long> getRepository() {
 		return this.appRepository;
 	}
-	
+
 	@Override
 	public void insert(App entity) {
 		entity.setDateCreation(new Date());

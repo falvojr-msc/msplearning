@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="title_activity_dashboard">M-SPLearning: Dashboard</string>
+
+    <!-- Strings related to actions on Dashboard -->
+    <string name="action_content_management">Content Management</string>
+
+</resources>

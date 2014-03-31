@@ -28,8 +28,7 @@ import android.webkit.WebView;
 import com.msplearning.android.app.R;
 
 /**
- * The AbstractAsyncActivity class provides methods useful for performing
- * asynchronous requests and rendering web pages.
+ * The AbstractAsyncActivity class provides methods useful for performing asynchronous requests and rendering web pages.
  * 
  * @author Roy Clarkson (original author)
  * @author Venilton Falvo Junior (author of specialized implementations)
@@ -44,7 +43,7 @@ public abstract class AbstractWebViewActivity<T extends Application> extends Act
 
 	private ProgressDialog progressDialog = null;
 
-	private boolean destroyed = false;
+	private final boolean destroyed = false;
 
 	// ***************************************
 	// Activity methods

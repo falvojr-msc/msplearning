@@ -1,6 +1,7 @@
 package com.msplearning.rest.app.generic;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,64 +16,64 @@ import com.msplearning.entity.common.Status;
 import com.msplearning.service.generic.GenericCrudService;
 
 /**
- * BaseCrudController.
+ * The GenericCrudRestServer class.
  * 
  * @param <T>
- *            tipo entidade
+ *            Entiity type.
  * @param <K>
- *            tipo de chave
+ *            Key type.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 public abstract class GenericCrudRestServer<T extends Serializable, K extends Serializable> {
 
 	@POST
-	public Response insert(T entity) {
+	public Response<T> insert(T entity) {
 		try {
 			this.getService().insert(entity);
-			return new Response(Status.OK, entity);
+			return new Response<T>(Status.OK, entity);
 		} catch (BusinessException businessException) {
-			return new Response(Status.OK, businessException);
+			return new Response<T>(Status.OK, businessException);
 		}
 	}
 
 	@PUT
-	public Response update(T entity) {
+	public Response<T> update(T entity) {
 		try {
 			this.getService().update(entity);
-			return new Response(Status.OK, entity);
+			return new Response<T>(Status.OK, entity);
 		} catch (BusinessException businessException) {
-			return new Response(Status.OK, businessException);
+			return new Response<T>(Status.OK, businessException);
 		}
 	}
 
 	@GET
-	public Response getAll() {
+	public Response<List<T>> getAll() {
 		try {
-			return new Response(Status.OK, this.getService().getAll());
+			return new Response<List<T>>(Status.OK, this.getService().getAll());
 		} catch (BusinessException businessException) {
-			return new Response(Status.OK, businessException);
+			return new Response<List<T>>(Status.OK, businessException);
 		}
 	}
 
 	@Path("{id}")
 	@GET
-	public Response getById(@PathParam("id") K id) {
+	public Response<T> getById(@PathParam("id") K id) {
 		try {
-			return new Response(Status.OK, this.getService().getById(id));
+			return new Response<T>(Status.OK, this.getService().getById(id));
 		} catch (BusinessException businessException) {
-			return new Response(Status.OK, businessException);
+			return new Response<T>(Status.OK, businessException);
 		}
 	}
 
 	@Path("{id}")
 	@DELETE
-	public Response delete(@PathParam("id") K id) {
+	public Response<Void> delete(@PathParam("id") K id) {
 		try {
 			this.getService().delete(id);
-			return new Response(Status.OK);
+			return new Response<Void>(Status.OK);
 		} catch (BusinessException businessException) {
-			return new Response(Status.OK, businessException);
+			return new Response<Void>(Status.OK, businessException);
 		}
 	}
 

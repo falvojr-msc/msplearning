@@ -25,8 +25,7 @@ import com.msplearning.service.AppService;
 import com.msplearning.service.generic.GenericCrudService;
 
 /**
- * The StudentRESTfulServer class provides the RESTful services of entity
- * {@link App}.
+ * The StudentRESTfulServer class provides the RESTful services of entity {@link App}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
@@ -35,8 +34,7 @@ import com.msplearning.service.generic.GenericCrudService;
 public class AppRestServer extends GenericCrudRestServer<App, Long> {
 
 	/**
-	 * This field is set by Spring on context:property-placeholder configured in
-	 * applicationContext.xml
+	 * This field is set by Spring on context:property-placeholder configured in applicationContext.xml
 	 */
 	@Value("${project.basedirectory}")
 	private String baseDirectory;
@@ -50,11 +48,9 @@ public class AppRestServer extends GenericCrudRestServer<App, Long> {
 	}
 
 	@POST
-	@Override
-	public Response insert(App entity) {
+	@Path(value = "/apk")
+	public Response<File> generateApk(App entity) {
 		try {
-			this.getService().insert(entity);
-
 			InvocationRequest request = new DefaultInvocationRequest();
 			request.setPomFile(new File(this.baseDirectory + "\\pom.xml"));
 			request.setGoals(Arrays.asList("-DskipTests=true", "verify"));
@@ -65,14 +61,14 @@ public class AppRestServer extends GenericCrudRestServer<App, Long> {
 
 			if (result.getExitCode() == 0) {
 				String path = this.baseDirectory + "\\android-app\\target\\android-app-1.0-SNAPSHOT.apk";
-				return new Response(Status.OK, new File(path));
+				return new Response<File>(Status.OK, new File(path));
 			} else {
-				return new Response(Status.SERVER_ERROR);
+				return new Response<File>(Status.SERVER_ERROR);
 			}
 		} catch (BusinessException businessException) {
-			return new Response(Status.OK, businessException);
+			return new Response<File>(Status.OK, businessException);
 		} catch (MavenInvocationException mavenException) {
-			return new Response(Status.SERVER_ERROR);
+			return new Response<File>(Status.SERVER_ERROR);
 		}
 	}
 }

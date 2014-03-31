@@ -18,6 +18,7 @@
 		<class>com.msplearning.entity.AppUserId</class>
 		<class>com.msplearning.entity.City</class>
 		<class>com.msplearning.entity.Country</class>
+		<class>com.msplearning.entity.Discipline</class>
 		<class>com.msplearning.entity.Email</class>
 		<class>com.msplearning.entity.Feature</class>
 		<class>com.msplearning.entity.Phone</class>
