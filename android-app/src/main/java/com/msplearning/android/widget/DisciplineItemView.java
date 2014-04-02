@@ -10,7 +10,7 @@ import com.msplearning.android.app.R;
 import com.msplearning.android.widget.generic.AbstractItemView;
 import com.msplearning.entity.Discipline;
 
-@EViewGroup(R.layout.widget_listview_item)
+@EViewGroup(R.layout.widget_list_item)
 public class DisciplineItemView extends AbstractItemView<Discipline> {
 
 	@ViewById

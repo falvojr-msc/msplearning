@@ -4,6 +4,13 @@
     <string name="app_name">M-SPLearning</string>
     <string name="action_settings">Settings</string>
     
-    <!-- Common strings -->
+    <!-- Common Dialog strings -->
     <string name="title_dialog_error">Error</string>
+    
+    <!-- Common ActionBar Actions strings -->
+    <string name="action_new">New</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_discard">Discard</string>
+    <string name="action_refresh">Refresh</string>
+    
 </resources>

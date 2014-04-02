@@ -17,7 +17,7 @@ public class DashboardActivity extends GenericAsyncRestActivity<MSPLearningAppli
 
 	@Click
 	protected void btnContentManagement() {
-		Intent intent = ContentManagementActivity_.intent(this.getApplicationContext()).get();
+		Intent intent = DisciplineListActivity_.intent(this.getApplicationContext()).get();
 		this.startActivity(intent);
 		this.finish();
 	}

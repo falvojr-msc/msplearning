@@ -6,7 +6,7 @@
     <LinearLayout style="@style/Form" >
 
         <EditText
-            android:id="@+id/txtUsername"
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_username"
@@ -15,7 +15,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/txtPassword"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_password"
@@ -25,7 +25,7 @@
             android:singleLine="true" />
 
         <Button
-            android:id="@+id/btnSignIn"
+            android:id="@+id/button_sign_in"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:drawableLeft="@drawable/ic_mspl"
@@ -35,7 +35,7 @@
         <View style="@style/Separator" />
 
         <Button
-            android:id="@+id/btnLogInFacebook"
+            android:id="@+id/button_facebook"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:drawableLeft="@drawable/ic_facebook"
@@ -43,7 +43,7 @@
             android:text="@string/action_facebook" />
 
         <Button
-            android:id="@+id/btnLogInTwitter"
+            android:id="@+id/button_twitter"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:drawableLeft="@drawable/ic_twitter"

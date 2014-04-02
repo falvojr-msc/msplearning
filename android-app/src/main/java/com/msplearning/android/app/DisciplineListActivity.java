@@ -6,6 +6,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
@@ -22,10 +23,11 @@ import com.msplearning.entity.Discipline;
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
-@EActivity(R.layout.activity_content_management)
-public class ContentManagementActivity extends GenericAsyncRestActivity<MSPLearningApplication> {
+@EActivity(R.layout.activity_discipline_list)
+@OptionsMenu(R.menu.activity_discipline_list_actions)
+public class DisciplineListActivity extends GenericAsyncRestActivity<MSPLearningApplication> {
 
-	@ViewById
+	@ViewById(R.id.list_view_disciplines)
 	protected ListView mListView;
 
 	@RestService

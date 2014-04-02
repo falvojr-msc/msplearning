@@ -41,9 +41,9 @@ public class SignInActivity extends GenericAsyncRestActivity<MSPLearningApplicat
 	private String mPassword;
 
 	// UI references.
-	@ViewById(R.id.txtUsername)
+	@ViewById(R.id.username)
 	protected EditText mUsernameView;
-	@ViewById(R.id.txtPassword)
+	@ViewById(R.id.password)
 	protected EditText mPasswordView;
 
 	// RESTful client.
@@ -57,7 +57,7 @@ public class SignInActivity extends GenericAsyncRestActivity<MSPLearningApplicat
 			@Override
 			public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
 				if ((id == R.id.login) || (id == EditorInfo.IME_NULL)) {
-					SignInActivity.this.btnSignIn();
+					SignInActivity.this.onSignIn();
 					return true;
 				}
 				return false;
@@ -70,8 +70,8 @@ public class SignInActivity extends GenericAsyncRestActivity<MSPLearningApplicat
 	 * Attempts to sign in or register the account specified by the login form. If there are form errors (invalid email, missing fields, etc.), the errors are presented
 	 * and no actual login attempt is made.
 	 */
-	@Click
-	protected void btnSignIn() {
+	@Click(R.id.button_sign_in)
+	protected void onSignIn() {
 
 		// Reset errors.
 		this.mUsernameView.setError(null);
@@ -177,16 +177,16 @@ public class SignInActivity extends GenericAsyncRestActivity<MSPLearningApplicat
 		this.mUsernameView.requestFocus();
 	}
 
-	@Click(R.id.btnLogInFacebook)
-	protected void logInFacebook() {
+	@Click(R.id.button_facebook)
+	protected void onFacebookOAuth() {
 		Intent intent = new Intent();
 		intent.setClass(this, FacebookWebOAuthActivity.class);
 		this.startActivity(intent);
 		this.finish();
 	}
 
-	@Click(R.id.btnLogInTwitter)
-	protected void logInTwitter() {
+	@Click(R.id.button_twitter)
+	protected void onTwitterOAuth() {
 		Intent intent = new Intent();
 		intent.setClass(this, TwitterWebOAuthActivity.class);
 		this.startActivity(intent);
