@@ -5,8 +5,14 @@
 
     <LinearLayout style="@style/Form" >
 
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
         <Button
-            android:id="@+id/btnContentManagement"
+            android:id="@+id/button_content"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"

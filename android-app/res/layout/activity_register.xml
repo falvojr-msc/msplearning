@@ -6,27 +6,25 @@
     <LinearLayout style="@style/Form" >
 
         <RadioGroup
-            android:id="@+id/rdoGrpType"
+            android:id="@+id/radio_group_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
             <RadioButton
-                android:id="@+id/rdoStudent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="@string/prompt_student" />
 
             <RadioButton
-                android:id="@+id/rdoTeacher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/prompt_teacher" />
         </RadioGroup>
 
         <EditText
-            android:id="@+id/txtFirstName"
+            android:id="@+id/first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_first_name"
@@ -35,7 +33,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/txtLastName"
+            android:id="@+id/last_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_last_name"
@@ -44,27 +42,25 @@
             android:singleLine="true" />
 
         <RadioGroup
-            android:id="@+id/rdoGrpGender"
+            android:id="@+id/radio_group_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
             <RadioButton
-                android:id="@+id/rdoMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="@string/prompt_male" />
 
             <RadioButton
-                android:id="@+id/rdoFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/prompt_female" />
         </RadioGroup>
 
         <EditText
-            android:id="@+id/txtUsername"
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_username"
@@ -73,7 +69,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/txtPassword"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_password"
@@ -82,7 +78,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/txtRepeatPassword"
+            android:id="@+id/repeat_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_repeat_password"
@@ -91,7 +87,7 @@
             android:singleLine="true" />
 
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/button_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

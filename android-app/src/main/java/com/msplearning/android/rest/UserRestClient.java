@@ -19,7 +19,7 @@ import com.msplearning.entity.common.Response;
 public interface UserRestClient extends RestClientSupport {
 
 	@Post("/user/auth")
-	Response<Void> authenticate(User user);
+	Response<User> authenticate(User user);
 
 	@Get("/user/{username}")
 	Response<Void> findByUsername(String username);

@@ -28,12 +28,11 @@ public class UserRestServer {
 
 	@Path("auth")
 	@POST
-	public Response<Void> authenticate(User user) {
+	public Response<User> authenticate(User user) {
 		try {
-			this.userService.authenticate(user.getUsername(), user.getPassword());
-			return new Response<Void>(Status.OK);
+			return new Response<User>(Status.OK, this.userService.authenticate(user.getUsername(), user.getPassword()));
 		} catch (BusinessException businessException) {
-			return new Response<Void>(Status.OK, businessException);
+			return new Response<User>(Status.OK, businessException);
 		}
 	}
 

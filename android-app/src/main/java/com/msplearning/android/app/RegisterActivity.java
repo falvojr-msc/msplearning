@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
 import com.msplearning.android.app.generic.GenericAsyncRestActivity;
+import com.msplearning.android.app.generic.GenericLoggedUserAsyncActivity;
 import com.msplearning.android.rest.StudentRestClient;
 import com.msplearning.android.rest.TeacherRestClient;
 import com.msplearning.entity.Gender;
@@ -25,25 +26,25 @@ import com.msplearning.entity.common.json.GsonFactory;
 
 /**
  * The RegisterActivity class.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_register)
 public class RegisterActivity extends GenericAsyncRestActivity<MSPLearningApplication> {
 
-	@ViewById(R.id.txtFirstName)
+	@ViewById(R.id.first_name)
 	protected EditText mFirstNameView;
-	@ViewById(R.id.txtLastName)
+	@ViewById(R.id.last_name)
 	protected EditText mLastNameView;
-	@ViewById(R.id.rdoGrpGender)
+	@ViewById(R.id.radio_group_gender)
 	protected RadioGroup mGenderView;
-	@ViewById(R.id.txtUsername)
+	@ViewById(R.id.username)
 	protected EditText mUsernameView;
-	@ViewById(R.id.txtPassword)
+	@ViewById(R.id.password)
 	protected EditText mPasswordView;
-	@ViewById(R.id.txtRepeatPassword)
+	@ViewById(R.id.repeat_password)
 	protected EditText mRepeatPasswordView;
-	@ViewById(R.id.rdoGrpType)
+	@ViewById(R.id.radio_group_type)
 	protected RadioGroup mTypeView;
 
 	@RestService
@@ -53,21 +54,23 @@ public class RegisterActivity extends GenericAsyncRestActivity<MSPLearningApplic
 
 	@AfterViews
 	public void init() {
-		String username = this.getIntent().getStringExtra(SignInActivity.KEY_USERNAME);
+		String username = this.getIntent().getStringExtra(SignInActivity.EXTRA_KEY_USERNAME);
 		if (username != null) {
 			this.mUsernameView.setText(username);
-			this.getIntent().removeExtra(SignInActivity.KEY_USERNAME);
 		}
 
-		String password = this.getIntent().getStringExtra(SignInActivity.KEY_PASSWORD);
+		String password = this.getIntent().getStringExtra(SignInActivity.EXTRA_KEY_PASSWORD);
 		if (password != null) {
 			this.mPasswordView.setText(password);
-			this.getIntent().removeExtra(SignInActivity.KEY_PASSWORD);
 		}
+
+		// Remove used Intent's extras
+		this.getIntent().removeExtra(SignInActivity.EXTRA_KEY_USERNAME);
+		this.getIntent().removeExtra(SignInActivity.EXTRA_KEY_PASSWORD);
 	}
 
-	@Click
-	public void btnRegister() {
+	@Click(R.id.button_register)
+	public void onUserRegister() {
 		super.showLoadingProgressDialog();
 
 		User user = new User();
@@ -85,17 +88,18 @@ public class RegisterActivity extends GenericAsyncRestActivity<MSPLearningApplic
 		Gson gson = GsonFactory.createGson();
 		try {
 			if (this.mTypeView.indexOfChild(this.findViewById(this.mTypeView.getCheckedRadioButtonId())) == 0) {
-				this.mStudentRESTfulClient.insert(gson.fromJson(gson.toJson(user), Student.class));
+				user = this.mStudentRESTfulClient.insert(gson.fromJson(gson.toJson(user), Student.class)).getEntity();
 			} else {
-				this.mTeacherRESTfulClient.insert(gson.fromJson(gson.toJson(user), Teacher.class));
+				user = this.mTeacherRESTfulClient.insert(gson.fromJson(gson.toJson(user), Teacher.class)).getEntity();
 			}
 		} catch (Exception exception) {
 			this.showDialogAlertError(exception);
 		} finally {
 			super.dismissProgressDialog();
 		}
-		Intent intent = DashboardActivity_.intent(this.getApplicationContext()).get();
-		this.startActivity(intent);
+		Intent intent = new Intent();
+		intent.putExtra(GenericLoggedUserAsyncActivity.EXTRA_KEY_LOGGED_USER, user);
+		this.setResult(RESULT_OK, intent);
 		this.finish();
 	}
 

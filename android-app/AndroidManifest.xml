@@ -16,15 +16,14 @@
         
         <!-- Internal Activities -->
         <activity android:name=".SignInActivity_" android:label="@string/title_activity_sign_in" >
-            
-        </activity>
-        <activity android:name=".RegisterActivity_" android:label="@string/title_activity_register" ></activity>
-        <activity android:name=".DashboardActivity_" android:label="@string/title_activity_dashboard" ></activity>
-        <activity android:name=".DisciplineListActivity_" android:label="@string/title_activity_content_management" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity_" android:label="@string/title_activity_register" ></activity>
+        <activity android:name=".DashboardActivity_" android:label="@string/title_activity_dashboard" ></activity>
+        <activity android:name=".DisciplineListActivity_" android:label="@string/title_activity_content_management" >
         </activity>
         
         <!-- External Activities -->
