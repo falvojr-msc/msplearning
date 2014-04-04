@@ -15,13 +15,13 @@ import com.msplearning.entity.common.Status;
 import com.msplearning.service.UserService;
 
 /**
- * The UserRESTfulServer class provides the RESTful services of the generic entity {@link User}.
+ * The UserRestService class provides the RESTful services of the generic entity {@link User}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Component
 @Path("/user")
-public class UserRestServer {
+public class UserRestService {
 
 	@Autowired
 	private UserService userService;

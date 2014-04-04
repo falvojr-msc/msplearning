@@ -13,19 +13,19 @@ import org.androidannotations.annotations.rest.RestService;
 
 import android.widget.ListView;
 
-import com.msplearning.android.app.generic.GenericAsyncRestActivity;
+import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
 import com.msplearning.android.rest.DisciplineRestClient;
 import com.msplearning.android.widget.DisciplineListAdapter;
 import com.msplearning.entity.Discipline;
 
 /**
  * The DisciplineActivity class.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_discipline_list)
 @OptionsMenu(R.menu.activity_discipline_list_actions)
-public class DisciplineListActivity extends GenericAsyncRestActivity<MSPLearningApplication> {
+public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
 
 	@ViewById(R.id.list_view_disciplines)
 	protected ListView mListView;

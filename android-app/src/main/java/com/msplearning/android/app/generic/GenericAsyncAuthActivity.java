@@ -12,9 +12,9 @@ import com.msplearning.entity.User;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity
-public abstract class GenericLoggedUserAsyncActivity<T extends Application> extends GenericAsyncActivity<T> {
+public abstract class GenericAsyncAuthActivity<T extends Application> extends GenericAsyncActivity<T> {
 
-	protected static final String TAG = GenericLoggedUserAsyncActivity.class.getSimpleName();
+	protected static final String TAG = GenericAsyncAuthActivity.class.getSimpleName();
 
 	public static final String EXTRA_KEY_LOGGED_USER = "activity.common.loggedUser";
 

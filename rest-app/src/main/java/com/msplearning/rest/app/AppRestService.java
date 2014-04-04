@@ -20,18 +20,18 @@ import com.msplearning.entity.App;
 import com.msplearning.entity.common.BusinessException;
 import com.msplearning.entity.common.Response;
 import com.msplearning.entity.common.Status;
-import com.msplearning.rest.app.generic.GenericCrudRestServer;
+import com.msplearning.rest.app.generic.GenericCrudRestService;
 import com.msplearning.service.AppService;
 import com.msplearning.service.generic.GenericCrudService;
 
 /**
- * The StudentRESTfulServer class provides the RESTful services of entity {@link App}.
+ * The AppRestService class provides the RESTful services of entity {@link App}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Component
 @Path("/app")
-public class AppRestServer extends GenericCrudRestServer<App, Long> {
+public class AppRestService extends GenericCrudRestService<App, Long> {
 
 	/**
 	 * This field is set by Spring on context:property-placeholder configured in applicationContext.xml
@@ -48,7 +48,7 @@ public class AppRestServer extends GenericCrudRestServer<App, Long> {
 	}
 
 	@POST
-	@Path(value = "/apk")
+	@Path("/apk")
 	public Response<File> generateApk(App entity) {
 		try {
 			InvocationRequest request = new DefaultInvocationRequest();

@@ -6,18 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.msplearning.entity.Student;
-import com.msplearning.rest.app.generic.GenericCrudRestServer;
+import com.msplearning.rest.app.generic.GenericCrudRestService;
 import com.msplearning.service.StudentService;
 import com.msplearning.service.generic.GenericCrudService;
 
 /**
- * The StudentRESTfulServer class provides the RESTful services of entity {@link Student}.
+ * The StudentRestService class provides the RESTful services of entity {@link Student}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Component
 @Path("/student")
-public class StudentRestServer extends GenericCrudRestServer<Student, Long> {
+public class StudentRestService extends GenericCrudRestService<Student, Long> {
 
 	@Autowired
 	private StudentService studentService;

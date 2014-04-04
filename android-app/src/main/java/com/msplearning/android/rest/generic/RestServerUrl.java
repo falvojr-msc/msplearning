@@ -3,7 +3,7 @@ package com.msplearning.android.rest.generic;
 /**
  * The RESTfulServer class centralizes constants useful for interfaces with
  * @Rest.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 public final class RestServerUrl {
@@ -15,7 +15,7 @@ public final class RestServerUrl {
 	/**
 	 * URL from local server.
 	 */
-	public static final String DEBUG = "http://192.168.1.103:8080/rest-app/rest";
+	public static final String DEBUG = "http://192.168.0.101:8080/rest-app/rest";
 
 	/**
 	 * URL from dedicated server.

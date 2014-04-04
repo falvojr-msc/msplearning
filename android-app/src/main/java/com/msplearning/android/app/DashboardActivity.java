@@ -9,7 +9,7 @@ import org.androidannotations.annotations.ViewById;
 import android.content.Intent;
 import android.widget.TextView;
 
-import com.msplearning.android.app.generic.GenericLoggedUserAsyncActivity;
+import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
 
 /**
  * The DisciplineActivity class.
@@ -17,7 +17,7 @@ import com.msplearning.android.app.generic.GenericLoggedUserAsyncActivity;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_dashboard)
-public class DashboardActivity extends GenericLoggedUserAsyncActivity<MSPLearningApplication> {
+public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
 
 	@ViewById(R.id.welcome)
 	protected TextView mWelcome;

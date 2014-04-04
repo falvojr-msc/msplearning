@@ -4,18 +4,16 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
-import com.msplearning.android.app.generic.GenericAsyncRestActivity;
-import com.msplearning.android.app.generic.GenericLoggedUserAsyncActivity;
+import com.msplearning.android.app.generic.GenericAsyncActivity;
+import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
 import com.msplearning.android.rest.StudentRestClient;
 import com.msplearning.android.rest.TeacherRestClient;
 import com.msplearning.entity.Gender;
@@ -30,7 +28,7 @@ import com.msplearning.entity.common.json.GsonFactory;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_register)
-public class RegisterActivity extends GenericAsyncRestActivity<MSPLearningApplication> {
+public class RegisterActivity extends GenericAsyncActivity<MSPLearningApplication> {
 
 	@ViewById(R.id.first_name)
 	protected EditText mFirstNameView;
@@ -93,19 +91,13 @@ public class RegisterActivity extends GenericAsyncRestActivity<MSPLearningApplic
 				user = this.mTeacherRESTfulClient.insert(gson.fromJson(gson.toJson(user), Teacher.class)).getEntity();
 			}
 		} catch (Exception exception) {
-			this.showDialogAlertError(exception);
+			this.showDialogAlert(exception.getMessage(), null);
 		} finally {
 			super.dismissProgressDialog();
 		}
 		Intent intent = new Intent();
-		intent.putExtra(GenericLoggedUserAsyncActivity.EXTRA_KEY_LOGGED_USER, user);
+		intent.putExtra(GenericAsyncAuthActivity.EXTRA_KEY_LOGGED_USER, user);
 		this.setResult(RESULT_OK, intent);
 		this.finish();
-	}
-
-	@UiThread
-	protected void showDialogAlertError(Exception exception) {
-		new AlertDialog.Builder(this).setTitle(this.getString(R.string.title_dialog_error)).setMessage(exception.getMessage())
-		.setIcon(android.R.drawable.ic_dialog_alert).setNeutralButton(android.R.string.ok, null).show();
 	}
 }

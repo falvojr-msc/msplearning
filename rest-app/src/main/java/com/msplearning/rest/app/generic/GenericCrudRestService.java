@@ -25,7 +25,7 @@ import com.msplearning.service.generic.GenericCrudService;
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
-public abstract class GenericCrudRestServer<T extends Serializable, K extends Serializable> {
+public abstract class GenericCrudRestService<T extends Serializable, K extends Serializable> {
 
 	@POST
 	public Response<T> insert(T entity) {

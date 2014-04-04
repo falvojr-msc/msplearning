@@ -11,8 +11,8 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -23,8 +23,8 @@ import android.widget.TextView;
 
 import com.msplearning.android.app.ext.FacebookWebOAuthActivity;
 import com.msplearning.android.app.ext.TwitterWebOAuthActivity;
-import com.msplearning.android.app.generic.GenericAsyncRestActivity;
-import com.msplearning.android.app.generic.GenericLoggedUserAsyncActivity;
+import com.msplearning.android.app.generic.GenericAsyncActivity;
+import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
 import com.msplearning.android.rest.UserRestClient;
 import com.msplearning.entity.User;
 import com.msplearning.entity.common.Response;
@@ -35,7 +35,7 @@ import com.msplearning.entity.common.Response;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_sign_in)
-public class SignInActivity extends GenericAsyncRestActivity<MSPLearningApplication> {
+public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication> {
 
 	// Intent's extra keys
 	public static final String EXTRA_KEY_PASSWORD = "activity.signin.password";
@@ -136,9 +136,28 @@ public class SignInActivity extends GenericAsyncRestActivity<MSPLearningApplicat
 		try {
 			Response<User> responseAuth = this.mUserRESTfulClient.authenticate(userAuth);
 			if (responseAuth.hasBusinessMessage()) {
-				Response<Void> responseUsername = this.mUserRESTfulClient.findByUsername(userAuth.getUsername());
+				final Response<Void> responseUsername = this.mUserRESTfulClient.findByUsername(userAuth.getUsername());
 				if (responseUsername.hasBusinessMessage()) {
-					this.showDialogConfirm("");
+
+					OnClickListener listenerYes = new OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int whichButton) {
+							Intent intent = RegisterActivity_.intent(SignInActivity.this.getApplicationContext()).get();
+							intent.putExtra(EXTRA_KEY_USERNAME, SignInActivity.this.mUsername);
+							intent.putExtra(EXTRA_KEY_PASSWORD, SignInActivity.this.mPassword);
+							SignInActivity.this.startActivityForResult(intent, REQUEST_CODE_USER_REGISTER);
+						}
+					};
+
+					OnClickListener listenerNo = new OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int whichButton) {
+							SignInActivity.this.showFieldError(SignInActivity.this.mUsernameView, responseUsername.getBusinessMessage());
+						}
+					};
+
+					this.showDialogConfirm( this.getString(R.string.title_dialog_register), this.getString(R.string.message_dialog_register), listenerYes, listenerNo);
+
 				} else {
 					this.showFieldError(this.mPasswordView, responseAuth.getBusinessMessage());
 				}
@@ -146,7 +165,7 @@ public class SignInActivity extends GenericAsyncRestActivity<MSPLearningApplicat
 				this.startDashboardActivity(responseAuth.getEntity());
 			}
 		} catch (Exception exception) {
-			this.showDialogAlert(exception.getMessage());
+			this.showDialogAlert(exception.getMessage(), null);
 		} finally {
 			super.dismissProgressDialog();
 		}
@@ -155,47 +174,17 @@ public class SignInActivity extends GenericAsyncRestActivity<MSPLearningApplicat
 	@OnActivityResult(REQUEST_CODE_USER_REGISTER)
 	protected void onResult(int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
-			this.startDashboardActivity(data.getSerializableExtra(GenericLoggedUserAsyncActivity.EXTRA_KEY_LOGGED_USER));
+			this.startDashboardActivity(data.getSerializableExtra(GenericAsyncAuthActivity.EXTRA_KEY_LOGGED_USER));
 		} else if (resultCode == RESULT_CANCELED) {
-			this.showDialogAlert("Unexpected error");
+			this.showDialogAlert("Unexpected error", null);
 		}
 	}
 
 	protected void startDashboardActivity(Serializable user) {
 		Intent intent = DashboardActivity_.intent(this.getApplicationContext()).get();
-		intent.putExtra(GenericLoggedUserAsyncActivity.EXTRA_KEY_LOGGED_USER, user);
+		intent.putExtra(GenericAsyncAuthActivity.EXTRA_KEY_LOGGED_USER, user);
 		this.startActivity(intent);
 		this.finish();
-	}
-
-	@UiThread
-	protected void showDialogAlert(String message) {
-		new AlertDialog.Builder(this)
-			.setTitle(this.getString(R.string.title_dialog_error))
-			.setMessage(message).setIcon(android.R.drawable.ic_dialog_alert)
-			.setNeutralButton(android.R.string.ok, null)
-			.show();
-	}
-
-	@UiThread
-	protected void showDialogConfirm(final String message) {
-		new AlertDialog.Builder(this)
-			.setTitle(this.getString(R.string.title_dialog_register))
-			.setMessage(this.getString(R.string.message_dialog_register))
-			.setIcon(android.R.drawable.ic_dialog_info).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int whichButton) {
-					Intent intent = RegisterActivity_.intent(SignInActivity.this.getApplicationContext()).get();
-					intent.putExtra(EXTRA_KEY_USERNAME, SignInActivity.this.mUsername);
-					intent.putExtra(EXTRA_KEY_PASSWORD, SignInActivity.this.mPassword);
-					SignInActivity.this.startActivityForResult(intent, REQUEST_CODE_USER_REGISTER);
-				}
-			}).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int whichButton) {
-					SignInActivity.this.showFieldError(SignInActivity.this.mUsernameView, message);
-				}
-			}).show();
 	}
 
 	@UiThread

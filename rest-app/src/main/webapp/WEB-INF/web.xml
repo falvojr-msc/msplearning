@@ -4,9 +4,11 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>WEB-INF/applicationContext.xml</param-value>
   </context-param>
+  
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
   <filter>
     <filter-name>CorsFilter</filter-name>
     <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
@@ -15,6 +17,7 @@
     <filter-name>CorsFilter</filter-name>
     <url-pattern>/rest/*</url-pattern>
   </filter-mapping>
+  
   <servlet>
     <servlet-name>JerseySerlvet</servlet-name>
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>

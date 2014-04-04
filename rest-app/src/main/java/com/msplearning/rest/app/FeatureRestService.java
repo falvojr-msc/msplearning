@@ -15,14 +15,13 @@ import com.msplearning.entity.common.Status;
 import com.msplearning.service.FeatureService;
 
 /**
- * The FeatureRESTfulServer class provides the RESTful services of entity
- * {@link Feature}.
+ * The FeatureRestService class provides the RESTful services of entity {@link Feature}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Component
 @Path("/feature")
-public class FeatureRestServer {
+public class FeatureRestService {
 
 	@Autowired
 	private FeatureService featureService;

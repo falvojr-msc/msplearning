@@ -1,42 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.msplearning.android.app" android:versionCode="1" android:versionName="1.0-SNAPSHOT" >
+    package="com.msplearning.android.app"
+    android:versionCode="1"
+    android:versionName="1.0-SNAPSHOT" >
 
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="19" />
-    
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="19" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    
+
     <application
         android:name=".MSPLearningApplication_"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-        
+        android:theme="@style/AppTheme" >
+
         <!-- Internal Activities -->
-        <activity android:name=".SignInActivity_" android:label="@string/title_activity_sign_in" >
+
+        <activity
+            android:name=".MainActivity_" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity_" android:label="@string/title_activity_register" ></activity>
-        <activity android:name=".DashboardActivity_" android:label="@string/title_activity_dashboard" ></activity>
-        <activity android:name=".DisciplineListActivity_" android:label="@string/title_activity_content_management" >
+        <activity
+            android:name=".SignInActivity_"
+            android:label="@string/title_activity_sign_in" >
         </activity>
-        
+        <activity
+            android:name=".RegisterActivity_"
+            android:label="@string/title_activity_register"
+            android:parentActivityName=".SignInActivity_" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SignInActivity_" />
+        </activity>
+        <activity
+            android:name=".DashboardActivity_"
+            android:label="@string/title_activity_dashboard"
+            android:parentActivityName=".SignInActivity_" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SignInActivity_" />
+        </activity>
+        <activity
+            android:name=".DisciplineListActivity_"
+            android:label="@string/title_activity_content_management"
+            android:parentActivityName=".DashboardActivity_" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity_" />
+        </activity>
+
         <!-- External Activities -->
-        <activity android:name=".ext.FacebookWebOAuthActivity" android:excludeFromRecents="true" android:noHistory="true" />
-        <activity android:name=".ext.TwitterWebOAuthActivity" android:excludeFromRecents="true" android:noHistory="true" >
+
+        <activity
+            android:name=".ext.FacebookWebOAuthActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:parentActivityName=".SignInActivity_" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SignInActivity_" />
+        </activity>
+        <activity
+            android:name=".ext.TwitterWebOAuthActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:parentActivityName=".SignInActivity_" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SignInActivity_" />
+
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />           
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />               
-                <data android:host="twitter-oauth-response" android:scheme="x-com-msplearning-android-twitterclient" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="twitter-oauth-response"
+                    android:scheme="x-com-msplearning-android-twitterclient" />
             </intent-filter>
         </activity>
-    
     </application>
 
 </manifest>
