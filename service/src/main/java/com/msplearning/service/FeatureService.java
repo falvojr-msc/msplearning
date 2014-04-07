@@ -1,6 +1,6 @@
 package com.msplearning.service;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.InitializingBean;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.msplearning.entity.Feature;
 import com.msplearning.entity.FeatureOperator;
+import com.msplearning.entity.Variability;
 import com.msplearning.repository.FeatureRepository;
 import com.msplearning.service.generic.BaseService;
 
@@ -38,33 +39,41 @@ public class FeatureService extends BaseService implements InitializingBean {
 	private void createFeaturesIfThereAreNo() {
 		if (this.featureRepository.findAll().size() == 0) {
 
-			Feature pedagogical = new Feature("Pedagogical", FeatureOperator.A, true, false, false);
-			pedagogical.setChildren(new ArrayList<Feature>());
-			pedagogical.getChildren().add(new Feature("Content Management", null, true, false, false));
-			pedagogical.getChildren().add(new Feature("Educational Activities", null, true, false, false));
-			pedagogical.getChildren().add(new Feature("Interactivity", null, true, false, false));
-			pedagogical.getChildren().add(new Feature("Multimedia Resources", null, true, false, false));
+			// Pedagogical concrete features:
+			Feature pedagogical = new Feature(1L, "Pedagogical", FeatureOperator.A, true, false, false);
+			pedagogical.setChildren(new HashSet<Feature>());
+			pedagogical.getChildren().add(new Feature(5L, "Content Management", null, true, false, false));
+			pedagogical.getChildren().add(new Feature(6L, "Educational Activities", null, true, false, false));
+			pedagogical.getChildren().add(new Feature(Variability.INTERACTIVITY.getId(), "Interactivity", null, false, false, false));
+			Feature multimediaResources = new Feature(8L, "Multimedia Resources", FeatureOperator.O, true, false, false);
+			multimediaResources.setChildren(new HashSet<Feature>());
+			multimediaResources.getChildren().add(new Feature(Variability.AUDIO.getId(), "Audio", null, false, false, false));
+			multimediaResources.getChildren().add(new Feature(Variability.IMAGE.getId(), "Image", null, false, false, false));
+			multimediaResources.getChildren().add(new Feature(Variability.TEXT.getId(), "Text", null, false, false, false));
+			multimediaResources.getChildren().add(new Feature(Variability.VIDEO.getId(), "Video", null, false, false, false));
+			pedagogical.getChildren().add(multimediaResources);
 
-			Feature usability = new Feature("Usability", FeatureOperator.A, true, false, false);
-			usability.setChildren(new ArrayList<Feature>());
-			usability.getChildren().add(new Feature("Accessibility", null, true, false, false));
-			usability.getChildren().add(new Feature("Attractiveness", null, true, false, false));
-			usability.getChildren().add(new Feature("Intelligibility", null, true, false, false));
-			usability.getChildren().add(new Feature("Learnability", null, true, false, false));
-			usability.getChildren().add(new Feature("Operability", null, true, false, false));
+			// Usability abstract features:
+			Feature usability = new Feature(2L, "Usability", FeatureOperator.A, true, true, false);
+			usability.setChildren(new HashSet<Feature>());
+			usability.getChildren().add(new Feature(9L, "Accessibility", null, true, true, false));
+			usability.getChildren().add(new Feature(10L, "Attractiveness", null, true, true, false));
+			usability.getChildren().add(new Feature(11L, "Intelligibility", null, true, true, false));
+			usability.getChildren().add(new Feature(12L, "Learnability", null, true, true, false));
+			usability.getChildren().add(new Feature(13L, "Operability", null, true, true, false));
 
-			Feature compatibility = new Feature("Compatibility", FeatureOperator.A, true, false, false);
-			compatibility.setChildren(new ArrayList<Feature>());
-			compatibility.getChildren().add(new Feature("Coexistence", null, true, false, false));
-			compatibility.getChildren().add(new Feature("Interoperability", null, true, false, false));
+			// Compatibility concrete features:
+			Feature compatibility = new Feature(3L, "Compatibility", FeatureOperator.A, true, false, false);
+			compatibility.setChildren(new HashSet<Feature>());
+			compatibility.getChildren().add(new Feature(14L, "Coexistence", null, true, true, false));
+			compatibility.getChildren().add(new Feature(15L, "Interoperability", null, true, false, false));
 
-			Feature security = new Feature("Security", FeatureOperator.A, true, false, false);
-			security.setChildren(new ArrayList<Feature>());
-			security.getChildren().add(new Feature("Accountablility", null, false, false, false));
-			security.getChildren().add(new Feature("Authenticity", null, false, false, false));
-			security.getChildren().add(new Feature("Confidentiality", null, false, false, false));
-			security.getChildren().add(new Feature("Integrity", null, true, false, false));
-			security.getChildren().add(new Feature("Reliability", null, true, false, false));
+			// Security concrete features:
+			Feature security = new Feature(4L, "Security", FeatureOperator.A, true, false, false);
+			security.setChildren(new HashSet<Feature>());
+			security.getChildren().add(new Feature(Variability.AUTHENTICITY.getId(), "Authenticity", null, false, false, false));
+			security.getChildren().add(new Feature(17L, "Confidentiality", null, true, false, false));
+			security.getChildren().add(new Feature(18L, "Integrity", null, true, false, false));
 
 			this.featureRepository.insert(pedagogical);
 			this.featureRepository.insert(usability);

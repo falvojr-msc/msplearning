@@ -4,6 +4,8 @@ import java.util.Date;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.msplearning.entity.AppFeatureId;
+import com.msplearning.entity.AppUserId;
 
 public final class GsonFactory {
 
@@ -11,11 +13,17 @@ public final class GsonFactory {
 		super();
 	}
 
-	public static Gson createGson() {
+	static GsonBuilder createGsonBuilderDateAdapters() {
 		return new GsonBuilder()
-		.registerTypeAdapter(Date.class, new DateGsonSerializer())
-		.registerTypeAdapter(java.sql.Date.class, new DateGsonSerializer())
-		.registerTypeAdapter(java.sql.Timestamp.class, new DateGsonSerializer())
-		.create();
+			.registerTypeAdapter(Date.class, new DateGsonSerializer())
+			.registerTypeAdapter(java.sql.Date.class, new DateGsonSerializer())
+			.registerTypeAdapter(java.sql.Timestamp.class, new DateGsonSerializer());
+	}
+
+	public static Gson createGson() {
+		return GsonFactory.createGsonBuilderDateAdapters()
+			.registerTypeAdapter(AppFeatureId.class, new AppEmbeddedIdSerializer<AppFeatureId>())
+			.registerTypeAdapter(AppUserId.class, new AppEmbeddedIdSerializer<AppUserId>())
+			.create();
 	}
 }

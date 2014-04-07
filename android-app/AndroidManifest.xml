@@ -13,7 +13,7 @@
 
     <application
         android:name=".MSPLearningApplication_"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
@@ -21,19 +21,21 @@
         <!-- Internal Activities -->
 
         <activity
-            android:name=".MainActivity_" >
+            android:name=".MainActivity_"
+            android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".SignInActivity_"
-            android:label="@string/title_activity_sign_in" >
+            android:noHistory="true" >
         </activity>
         <activity
             android:name=".RegisterActivity_"
-            android:label="@string/title_activity_register"
+            android:noHistory="true"
             android:parentActivityName=".SignInActivity_" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -41,7 +43,7 @@
         </activity>
         <activity
             android:name=".DashboardActivity_"
-            android:label="@string/title_activity_dashboard"
+            android:noHistory="true"
             android:parentActivityName=".SignInActivity_" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -49,7 +51,7 @@
         </activity>
         <activity
             android:name=".DisciplineListActivity_"
-            android:label="@string/title_activity_content_management"
+            android:noHistory="true"
             android:parentActivityName=".DashboardActivity_" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

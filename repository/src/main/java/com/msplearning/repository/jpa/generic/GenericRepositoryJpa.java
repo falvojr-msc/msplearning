@@ -15,8 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.msplearning.repository.generic.GenericRepository;
 
 /**
- * The GenericDaoImpl class provides of the basic operations and also the
- * fundamental objects of persistence.
+ * The GenericDaoImpl class provides of the basic operations and also the fundamental objects of persistence.
  * 
  * @author Renan Johannsen de Paula (renanjp)
  * 

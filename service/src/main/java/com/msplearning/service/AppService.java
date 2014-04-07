@@ -34,5 +34,8 @@ public class AppService extends GenericCrudService<App, Long> {
 			appFeature.getId().setApp(entity);
 		}
 		super.insert(entity);
+		for (AppFeature appFeature : entity.getAppFeatures()) {
+			appFeature.getId().setApp(new App(entity.getId()));
+		}
 	}
 }

@@ -24,14 +24,14 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 
 	@AfterInject
 	protected void init() {
-		if (super.getLoggedUser() != null) {
+		if (super.getApplicationContext().getAppSettings().getUser() != null) {
 			this.showWelcomeMessage();
 		}
 	}
 
 	@UiThread
 	protected void showWelcomeMessage() {
-		this.mWelcome.setText(String.format("Welcome, %s!", super.getLoggedUser().getFirstName()));
+		this.mWelcome.setText(String.format("Welcome, %s!", super.getApplicationContext().getAppSettings().getUser().getFirstName()));
 	}
 
 	@Click(R.id.button_content)

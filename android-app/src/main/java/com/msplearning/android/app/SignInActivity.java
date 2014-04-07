@@ -1,7 +1,5 @@
 package com.msplearning.android.app;
 
-import java.io.Serializable;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
@@ -24,7 +22,6 @@ import android.widget.TextView;
 import com.msplearning.android.app.ext.FacebookWebOAuthActivity;
 import com.msplearning.android.app.ext.TwitterWebOAuthActivity;
 import com.msplearning.android.app.generic.GenericAsyncActivity;
-import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
 import com.msplearning.android.rest.UserRestClient;
 import com.msplearning.entity.User;
 import com.msplearning.entity.common.Response;
@@ -162,7 +159,8 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 					this.showFieldError(this.mPasswordView, responseAuth.getBusinessMessage());
 				}
 			} else {
-				this.startDashboardActivity(responseAuth.getEntity());
+				super.getApplicationContext().getAppSettings().setUser(responseAuth.getEntity());
+				DashboardActivity_.intent(this.getApplicationContext()).start();
 			}
 		} catch (Exception exception) {
 			this.showDialogAlert(exception.getMessage(), null);
@@ -174,17 +172,10 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	@OnActivityResult(REQUEST_CODE_USER_REGISTER)
 	protected void onResult(int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
-			this.startDashboardActivity(data.getSerializableExtra(GenericAsyncAuthActivity.EXTRA_KEY_LOGGED_USER));
+			DashboardActivity_.intent(this.getApplicationContext()).start();
 		} else if (resultCode == RESULT_CANCELED) {
 			this.showDialogAlert("Unexpected error", null);
 		}
-	}
-
-	protected void startDashboardActivity(Serializable user) {
-		Intent intent = DashboardActivity_.intent(this.getApplicationContext()).get();
-		intent.putExtra(GenericAsyncAuthActivity.EXTRA_KEY_LOGGED_USER, user);
-		this.startActivity(intent);
-		this.finish();
 	}
 
 	@UiThread

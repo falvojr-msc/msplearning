@@ -9,8 +9,7 @@ import com.msplearning.repository.FeatureRepository;
 import com.msplearning.repository.jpa.generic.GenericRepositoryJpa;
 
 /**
- * The FeatureRepositoryJpa class provides the persistence operations of entity
- * {@link Feature}.
+ * The FeatureRepositoryJpa class provides the persistence operations of entity {@link Feature}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
@@ -20,7 +19,7 @@ public class FeatureRepositoryJpa extends GenericRepositoryJpa<Feature, Long> im
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Feature> findAll() {
-		return (List<Feature>) super.findByJPQL("FROM Feature WHERE idParent IS NULL");
+		return (List<Feature>) super.findByJPQL("FROM Feature f WHERE f.id IN (1, 2, 3, 4)");
 	}
 
 }

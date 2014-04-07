@@ -2,7 +2,7 @@ package com.msplearning.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 
 /**
  * The App class.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Entity
@@ -40,8 +40,20 @@ public class App implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id.app", cascade=CascadeType.ALL)
-	private List<AppFeature> appFeatures;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "id.app", cascade = CascadeType.ALL)
+	private Set<AppFeature> appFeatures;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "id.app", cascade = CascadeType.ALL)
+	private Set<AppUser> appUsers;
+
+	public App() {
+		super();
+	}
+
+	public App(Long id) {
+		super();
+		this.id = id;
+	}
 
 	public Long getId() {
 		return this.id;
@@ -67,22 +79,27 @@ public class App implements Serializable {
 		this.dateCreation = dateCreation;
 	}
 
-	public List<AppFeature> getAppFeatures() {
+	public Set<AppFeature> getAppFeatures() {
 		return this.appFeatures;
 	}
 
-	public void setAppFeatures(List<AppFeature> appFeatures) {
+	public void setAppFeatures(Set<AppFeature> appFeatures) {
 		this.appFeatures = appFeatures;
+	}
+
+	public Set<AppUser> getAppUsers() {
+		return this.appUsers;
+	}
+
+	public void setAppUsers(Set<AppUser> appUsers) {
+		this.appUsers = appUsers;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (this.appFeatures == null ? 0 : this.appFeatures.hashCode());
-		result = prime * result + (this.dateCreation == null ? 0 : this.dateCreation.hashCode());
-		result = prime * result + (this.id == null ? 0 : this.id.hashCode());
-		result = prime * result + (this.name == null ? 0 : this.name.hashCode());
+		result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
 		return result;
 	}
 
@@ -98,32 +115,11 @@ public class App implements Serializable {
 			return false;
 		}
 		App other = (App) obj;
-		if (this.appFeatures == null) {
-			if (other.appFeatures != null) {
-				return false;
-			}
-		} else if (!this.appFeatures.equals(other.appFeatures)) {
-			return false;
-		}
-		if (this.dateCreation == null) {
-			if (other.dateCreation != null) {
-				return false;
-			}
-		} else if (!this.dateCreation.equals(other.dateCreation)) {
-			return false;
-		}
 		if (this.id == null) {
 			if (other.id != null) {
 				return false;
 			}
 		} else if (!this.id.equals(other.id)) {
-			return false;
-		}
-		if (this.name == null) {
-			if (other.name != null) {
-				return false;
-			}
-		} else if (!this.name.equals(other.name)) {
 			return false;
 		}
 		return true;

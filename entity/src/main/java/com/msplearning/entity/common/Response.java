@@ -1,10 +1,6 @@
 package com.msplearning.entity.common;
 
-import java.io.Serializable;
-
-public class Response<T> implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Response<T> {
 
 	private Status status;
 	private T entity;

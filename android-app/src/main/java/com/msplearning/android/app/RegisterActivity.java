@@ -7,13 +7,11 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
-import android.content.Intent;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
 import com.msplearning.android.app.generic.GenericAsyncActivity;
-import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
 import com.msplearning.android.rest.StudentRestClient;
 import com.msplearning.android.rest.TeacherRestClient;
 import com.msplearning.entity.Gender;
@@ -95,9 +93,7 @@ public class RegisterActivity extends GenericAsyncActivity<MSPLearningApplicatio
 		} finally {
 			super.dismissProgressDialog();
 		}
-		Intent intent = new Intent();
-		intent.putExtra(GenericAsyncAuthActivity.EXTRA_KEY_LOGGED_USER, user);
-		this.setResult(RESULT_OK, intent);
-		this.finish();
+		super.getApplicationContext().getAppSettings().setUser(user);
+		this.setResult(RESULT_OK);
 	}
 }

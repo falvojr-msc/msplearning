@@ -14,8 +14,12 @@ import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 import android.app.Application;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.msplearning.entity.AppUserId;
+
 @EApplication
 public class MSPLearningApplication extends Application {
+
+	private AppUserId appSettings;
 
 	private ConnectionFactoryRegistry connectionFactoryRegistry;
 	private SQLiteOpenHelper repositoryHelper;
@@ -58,4 +62,13 @@ public class MSPLearningApplication extends Application {
 	public TwitterConnectionFactory getTwitterConnectionFactory() {
 		return (TwitterConnectionFactory) this.connectionFactoryRegistry.getConnectionFactory(Twitter.class);
 	}
+
+	public AppUserId getAppSettings() {
+		return this.appSettings;
+	}
+
+	public void setAppSettings(AppUserId appSettings) {
+		this.appSettings = appSettings;
+	}
+
 }

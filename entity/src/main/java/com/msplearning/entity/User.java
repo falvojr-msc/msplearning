@@ -2,7 +2,6 @@ package com.msplearning.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,23 +11,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.Type;
 
 import com.msplearning.entity.crypto.Base64Type;
 
 /**
  * The User class.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Entity
@@ -54,7 +49,6 @@ public class User implements Serializable {
 	@Column(name = "gender", length = 1, nullable = false)
 	private Gender gender;
 
-	@Transient
 	@Column(name = "date_birth")
 	@Temporal(TemporalType.DATE)
 	private Date dateBirth;
@@ -62,9 +56,6 @@ public class User implements Serializable {
 	@Column(name = "username", length = 20, nullable = false)
 	private String username;
 
-	/**
-	 * The length 28 has calculated for one field with size 20 (Base 64).
-	 */
 	@Column(name = "password", length = 30, nullable = false)
 	@Type(type = Base64Type.TYPE)
 	private String password;
@@ -76,24 +67,6 @@ public class User implements Serializable {
 	@Column(name = "date_last_login", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateLastLogin;
-
-	@Transient
-	@OneToMany
-	@JoinColumn(name = "id_user", nullable = false)
-	@ForeignKey(name="fk_tb_address_2_tb_user")
-	private List<Address> addresses;
-
-	@Transient
-	@OneToMany
-	@JoinColumn(name = "id_user", nullable = false)
-	@ForeignKey(name="fk_tb_email_2_tb_user")
-	private List<Email> emails;
-
-	@Transient
-	@OneToMany
-	@JoinColumn(name = "id_user", nullable = false)
-	@ForeignKey(name="fk_tb_phone_2_tb_user")
-	private List<Phone> phones;
 
 	public Long getId() {
 		return this.id;
@@ -167,46 +140,11 @@ public class User implements Serializable {
 		this.dateLastLogin = dateLastLogin;
 	}
 
-	public List<Address> getAddresses() {
-		return this.addresses;
-	}
-
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
-	}
-
-	public List<Email> getEmails() {
-		return this.emails;
-	}
-
-	public void setEmails(List<Email> emails) {
-		this.emails = emails;
-	}
-
-	public List<Phone> getPhones() {
-		return this.phones;
-	}
-
-	public void setPhones(List<Phone> phones) {
-		this.phones = phones;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = (prime * result) + (this.addresses == null ? 0 : this.addresses.hashCode());
-		result = (prime * result) + (this.dateBirth == null ? 0 : this.dateBirth.hashCode());
-		result = (prime * result) + (this.dateLastLogin == null ? 0 : this.dateLastLogin.hashCode());
-		result = (prime * result) + (this.dateRegistration == null ? 0 : this.dateRegistration.hashCode());
-		result = (prime * result) + (this.emails == null ? 0 : this.emails.hashCode());
-		result = (prime * result) + (this.firstName == null ? 0 : this.firstName.hashCode());
-		result = (prime * result) + (this.gender == null ? 0 : this.gender.hashCode());
-		result = (prime * result) + (this.id == null ? 0 : this.id.hashCode());
-		result = (prime * result) + (this.lastName == null ? 0 : this.lastName.hashCode());
-		result = (prime * result) + (this.password == null ? 0 : this.password.hashCode());
-		result = (prime * result) + (this.phones == null ? 0 : this.phones.hashCode());
-		result = (prime * result) + (this.username == null ? 0 : this.username.hashCode());
+		result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
 		return result;
 	}
 
@@ -222,84 +160,11 @@ public class User implements Serializable {
 			return false;
 		}
 		User other = (User) obj;
-		if (this.addresses == null) {
-			if (other.addresses != null) {
-				return false;
-			}
-		} else if (!this.addresses.equals(other.addresses)) {
-			return false;
-		}
-		if (this.dateBirth == null) {
-			if (other.dateBirth != null) {
-				return false;
-			}
-		} else if (!this.dateBirth.equals(other.dateBirth)) {
-			return false;
-		}
-		if (this.dateLastLogin == null) {
-			if (other.dateLastLogin != null) {
-				return false;
-			}
-		} else if (!this.dateLastLogin.equals(other.dateLastLogin)) {
-			return false;
-		}
-		if (this.dateRegistration == null) {
-			if (other.dateRegistration != null) {
-				return false;
-			}
-		} else if (!this.dateRegistration.equals(other.dateRegistration)) {
-			return false;
-		}
-		if (this.emails == null) {
-			if (other.emails != null) {
-				return false;
-			}
-		} else if (!this.emails.equals(other.emails)) {
-			return false;
-		}
-		if (this.firstName == null) {
-			if (other.firstName != null) {
-				return false;
-			}
-		} else if (!this.firstName.equals(other.firstName)) {
-			return false;
-		}
-		if (this.gender != other.gender) {
-			return false;
-		}
 		if (this.id == null) {
 			if (other.id != null) {
 				return false;
 			}
 		} else if (!this.id.equals(other.id)) {
-			return false;
-		}
-		if (this.lastName == null) {
-			if (other.lastName != null) {
-				return false;
-			}
-		} else if (!this.lastName.equals(other.lastName)) {
-			return false;
-		}
-		if (this.password == null) {
-			if (other.password != null) {
-				return false;
-			}
-		} else if (!this.password.equals(other.password)) {
-			return false;
-		}
-		if (this.phones == null) {
-			if (other.phones != null) {
-				return false;
-			}
-		} else if (!this.phones.equals(other.phones)) {
-			return false;
-		}
-		if (this.username == null) {
-			if (other.username != null) {
-				return false;
-			}
-		} else if (!this.username.equals(other.username)) {
 			return false;
 		}
 		return true;

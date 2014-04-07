@@ -4,8 +4,6 @@ import org.androidannotations.annotations.EActivity;
 
 import android.app.Application;
 
-import com.msplearning.entity.User;
-
 /**
  * The GenericLoggedUserAsyncActivity class extends {@link GenericAsyncActivity}. Set the loggedUser property on @AfterInject event.
  *
@@ -15,15 +13,5 @@ import com.msplearning.entity.User;
 public abstract class GenericAsyncAuthActivity<T extends Application> extends GenericAsyncActivity<T> {
 
 	protected static final String TAG = GenericAsyncAuthActivity.class.getSimpleName();
-
-	public static final String EXTRA_KEY_LOGGED_USER = "activity.common.loggedUser";
-
-	public User getLoggedUser() {
-		return (User) this.getIntent().getSerializableExtra(EXTRA_KEY_LOGGED_USER);
-	}
-
-	public void removeLoggedUser() {
-		this.getIntent().removeExtra(EXTRA_KEY_LOGGED_USER);
-	}
 
 }

@@ -12,9 +12,8 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 /**
- * The DateGsonSerializer class. Useful for serializing and deserializing of
- * type {@link Date}, working as an adapter for this type of data.
- * 
+ * The DateGsonSerializer class. Useful for serializing and deserializing of type {@link Date}, working as an adapter for this type of data.
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 public class DateGsonSerializer implements JsonSerializer<Date>, JsonDeserializer<Date> {

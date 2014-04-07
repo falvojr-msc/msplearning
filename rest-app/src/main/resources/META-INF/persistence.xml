@@ -10,19 +10,13 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<!-- Maped entities (necessary for creating tables by property "hibernate.hbm2ddl.auto") -->
-		<class>com.msplearning.entity.Address</class>
 		<class>com.msplearning.entity.App</class>
 		<class>com.msplearning.entity.AppFeature</class>
 		<class>com.msplearning.entity.AppFeatureId</class>
 		<class>com.msplearning.entity.AppUser</class>
 		<class>com.msplearning.entity.AppUserId</class>
-		<class>com.msplearning.entity.City</class>
-		<class>com.msplearning.entity.Country</class>
 		<class>com.msplearning.entity.Discipline</class>
-		<class>com.msplearning.entity.Email</class>
 		<class>com.msplearning.entity.Feature</class>
-		<class>com.msplearning.entity.Phone</class>
-		<class>com.msplearning.entity.State</class>
 		<class>com.msplearning.entity.Student</class>
 		<class>com.msplearning.entity.Teacher</class>
 		<class>com.msplearning.entity.User</class>

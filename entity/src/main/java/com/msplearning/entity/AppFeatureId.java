@@ -3,7 +3,6 @@ package com.msplearning.entity;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.ForeignKey;
@@ -14,12 +13,10 @@ public class AppFeatureId implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(name="id_app", nullable=false)
 	@ForeignKey(name="fk_tb_app_feature_2_tb_app")
 	private App app;
 
 	@ManyToOne
-	@JoinColumn(name="id_feature", nullable=false)
 	@ForeignKey(name="fk_tb_app_feature_2_tb_feature")
 	private Feature feature;
 
@@ -43,8 +40,8 @@ public class AppFeatureId implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (this.app == null ? 0 : this.app.hashCode());
-		result = prime * result + (this.feature == null ? 0 : this.feature.hashCode());
+		result = (prime * result) + ((this.app == null) ? 0 : this.app.hashCode());
+		result = (prime * result) + ((this.feature == null) ? 0 : this.feature.hashCode());
 		return result;
 	}
 
