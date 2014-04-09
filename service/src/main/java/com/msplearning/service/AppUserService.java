@@ -1,5 +1,7 @@
 package com.msplearning.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,12 @@ public class AppUserService extends GenericCrudService<AppUser, AppUserId> {
 	@Override
 	protected GenericRepository<AppUser, AppUserId> getRepository() {
 		return this.appUserRepository;
+	}
+
+	@Override
+	public void insert(AppUser entity) {
+		entity.setDateRequest(new Date());
+
+		super.insert(entity);
 	}
 }

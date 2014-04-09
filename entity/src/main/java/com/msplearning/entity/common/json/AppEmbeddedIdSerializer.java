@@ -13,7 +13,7 @@ import com.msplearning.entity.AppFeatureId;
 import com.msplearning.entity.AppUserId;
 
 /**
- * The CompositeIdSerializer class. Useful for serializing and deserializing of {@link AppFeatureId} and {@link AppUserId} classes.
+ * The AppEmbeddedIdSerializer class. Useful for serializing and deserializing of {@link AppFeatureId} and {@link AppUserId} classes.
  *
  * @author Venilton Falvo Junior (veniltonjr)
  */

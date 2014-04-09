@@ -41,7 +41,7 @@ public class MainActivity extends GenericAsyncActivity<MSPLearningApplication> {
 	}
 
 	/**
-	 * XXX Vairation Point: Authenticity.
+	 * XXX Variation Point: Authenticity.
 	 *
 	 * @param idApp
 	 */

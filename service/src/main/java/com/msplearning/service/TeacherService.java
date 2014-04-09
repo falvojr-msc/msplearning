@@ -49,6 +49,7 @@ public class TeacherService extends GenericCrudService<Teacher, Long> implements
 			teacher.setGender(Math.random() > 0.5 ? Gender.M : Gender.F);
 			teacher.setUsername("teacher" + i);
 			teacher.setPassword("123456");
+			teacher.setAcademicIdentifier("7902878");
 			this.insert(teacher);
 		}
 	}

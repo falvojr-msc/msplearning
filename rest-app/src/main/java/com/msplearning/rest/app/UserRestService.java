@@ -38,9 +38,9 @@ public class UserRestService {
 
 	@Path("{username}")
 	@GET
-	public Response<Void> findByUsername(@PathParam("username") String username) {
+	public Response<Void> verifyUsername(@PathParam("username") String username) {
 		try {
-			this.userService.findByUsername(username);
+			this.userService.verifyUsername(username);
 			return new Response<Void>(Status.OK);
 		} catch (BusinessException businessException) {
 			return new Response<Void>(Status.OK, businessException);

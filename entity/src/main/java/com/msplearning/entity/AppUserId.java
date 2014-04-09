@@ -25,6 +25,16 @@ public class AppUserId implements Serializable {
 	@ForeignKey(name = "fk_tb_app_user_2_tb_user")
 	private User user;
 
+	public AppUserId() {
+		super();
+	}
+
+	public AppUserId(Long idApp, Long idUser) {
+	super();
+	this.app = new App(idApp);
+	this.user = new User(idUser);
+}
+
 	public App getApp() {
 		return this.app;
 	}

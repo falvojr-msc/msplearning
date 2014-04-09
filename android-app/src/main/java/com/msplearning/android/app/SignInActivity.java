@@ -139,7 +139,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 					OnClickListener listenerYes = new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int whichButton) {
-							Intent intent = RegisterActivity_.intent(SignInActivity.this.getApplicationContext()).get();
+							Intent intent = RegisterActivity_.intent(SignInActivity.this).get();
 							intent.putExtra(EXTRA_KEY_USERNAME, SignInActivity.this.mUsername);
 							intent.putExtra(EXTRA_KEY_PASSWORD, SignInActivity.this.mPassword);
 							SignInActivity.this.startActivityForResult(intent, REQUEST_CODE_USER_REGISTER);
@@ -160,7 +160,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 				}
 			} else {
 				super.getApplicationContext().getAppSettings().setUser(responseAuth.getEntity());
-				DashboardActivity_.intent(this.getApplicationContext()).start();
+				DashboardActivity_.intent(this).start();
 			}
 		} catch (Exception exception) {
 			this.showDialogAlert(exception.getMessage(), null);
@@ -172,7 +172,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	@OnActivityResult(REQUEST_CODE_USER_REGISTER)
 	protected void onResult(int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
-			DashboardActivity_.intent(this.getApplicationContext()).start();
+			DashboardActivity_.intent(this).start();
 		} else if (resultCode == RESULT_CANCELED) {
 			this.showDialogAlert("Unexpected error", null);
 		}

@@ -5,18 +5,33 @@
 
     <LinearLayout style="@style/Form" >
 
-        <TextView
-            android:id="@+id/welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
         <Button
-            android:id="@+id/button_content"
+            android:id="@+id/button_manage_view_educational_content"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:text="@string/action_content_management" />
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/button_access_requests"
+            android:text="@string/action_access_requests"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/button_edit_profile"
+            android:text="@string/action_edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/button_info"
+            android:text="@string/action_info"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center" />
     </LinearLayout>
 
 </ScrollView>

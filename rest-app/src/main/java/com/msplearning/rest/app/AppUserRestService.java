@@ -20,7 +20,7 @@ import com.msplearning.service.generic.GenericCrudService;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Component
-@Path("/appuser")
+@Path("/appUser")
 public class AppUserRestService extends GenericCrudRestService<AppUser, AppUserId> {
 
 	@Autowired
@@ -32,10 +32,10 @@ public class AppUserRestService extends GenericCrudRestService<AppUser, AppUserI
 	}
 
 	@POST
-	@Path("/getById")
+	@Path("/findById")
 	@Override
-	public Response<AppUser> getById(AppUserId id) {
-		return super.getById(id);
+	public Response<AppUser> findById(AppUserId id) {
+		return super.findById(id);
 	}
 
 	@POST

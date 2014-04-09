@@ -3,6 +3,10 @@
     <string name="title_activity_dashboard">M-SPLearning: Dashboard</string>
 
     <!-- Strings related to actions on Dashboard -->
-    <string name="action_content_management">Content Management</string>
+    <string name="action_manage_educational_content">Manage Educational Content</string>
+    <string name="action_view_educational_content">View Educational Content</string>
+    <string name="action_access_requests">Access Requests</string>
+    <string name="action_edit_profile">Edit Profile</string>
+    <string name="action_info">Info</string>
 
 </resources>

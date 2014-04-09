@@ -15,6 +15,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Type;
@@ -67,6 +68,18 @@ public class User implements Serializable {
 	@Column(name = "date_last_login", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateLastLogin;
+
+	@Transient
+	private boolean isTeacher;
+
+	public User() {
+		super();
+	}
+
+	public User(Long id) {
+		super();
+		this.id = id;
+	}
 
 	public Long getId() {
 		return this.id;
@@ -138,6 +151,14 @@ public class User implements Serializable {
 
 	public void setDateLastLogin(Date dateLastLogin) {
 		this.dateLastLogin = dateLastLogin;
+	}
+
+	public boolean isTeacher() {
+		return this instanceof Teacher;
+	}
+
+	public void setTeacher(boolean isTeacher) {
+		this.isTeacher = isTeacher;
 	}
 
 	@Override

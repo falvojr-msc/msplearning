@@ -27,12 +27,11 @@ public class UserService extends BaseService {
 		return user;
 	}
 
-	public User findByUsername(String username) {
+	public void verifyUsername(String username) {
 		User user = this.userRepository.findByUsername(username);
 		if (user == null) {
 			throw new BusinessException(super.getMessage("project.messages.mi0002"));
 		}
-		return user;
 	}
 
 }

@@ -9,9 +9,9 @@ import org.androidannotations.api.rest.RestClientSupport;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 
 import android.app.AlertDialog;
-import android.app.Application;
 import android.content.DialogInterface.OnClickListener;
 
+import com.msplearning.android.app.MSPLearningApplication;
 import com.msplearning.android.app.R;
 import com.msplearning.android.app.ext.generic.AbstractAsyncActivity;
 
@@ -24,7 +24,7 @@ import com.msplearning.android.app.ext.generic.AbstractAsyncActivity;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity
-public abstract class GenericAsyncActivity<T extends Application> extends AbstractAsyncActivity<T> {
+public abstract class GenericAsyncActivity<T extends MSPLearningApplication> extends AbstractAsyncActivity<T> {
 
 	protected static final String TAG = GenericAsyncActivity.class.getSimpleName();
 

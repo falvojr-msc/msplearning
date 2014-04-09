@@ -58,7 +58,7 @@ public abstract class GenericCrudRestService<T extends Serializable, K extends S
 
 	@Path("{id}")
 	@GET
-	public Response<T> getById(@PathParam("id") K id) {
+	public Response<T> findById(@PathParam("id") K id) {
 		try {
 			return new Response<T>(Status.OK, this.getService().getById(id));
 		} catch (BusinessException businessException) {

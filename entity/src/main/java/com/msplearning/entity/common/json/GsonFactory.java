@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.msplearning.entity.AppFeatureId;
 import com.msplearning.entity.AppUserId;
+import com.msplearning.entity.User;
 
 public final class GsonFactory {
 
@@ -24,6 +25,7 @@ public final class GsonFactory {
 		return GsonFactory.createGsonBuilderDateAdapters()
 			.registerTypeAdapter(AppFeatureId.class, new AppEmbeddedIdSerializer<AppFeatureId>())
 			.registerTypeAdapter(AppUserId.class, new AppEmbeddedIdSerializer<AppUserId>())
+			.registerTypeAdapter(User.class, new UserPolymorphismSerializer())
 			.create();
 	}
 }

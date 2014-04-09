@@ -1,5 +1,6 @@
 package com.msplearning.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -8,7 +9,7 @@ import org.hibernate.annotations.ForeignKey;
 
 /**
  * The Teacher class.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Entity
@@ -18,5 +19,16 @@ import org.hibernate.annotations.ForeignKey;
 public class Teacher extends User {
 
 	private static final long serialVersionUID = 1L;
+
+	@Column(name = "academic_identifier", length = 50)
+	private String academicIdentifier;
+
+	public String getAcademicIdentifier() {
+		return this.academicIdentifier;
+	}
+
+	public void setAcademicIdentifier(String academicIdentifier) {
+		this.academicIdentifier = academicIdentifier;
+	}
 
 }
