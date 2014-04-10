@@ -145,7 +145,6 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 							SignInActivity.this.startActivityForResult(intent, REQUEST_CODE_USER_REGISTER);
 						}
 					};
-
 					OnClickListener listenerNo = new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int whichButton) {
@@ -160,7 +159,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 				}
 			} else {
 				super.getApplicationContext().getAppSettings().setUser(responseAuth.getEntity());
-				DashboardActivity_.intent(this).start();
+				this.redirectToDashboard();
 			}
 		} catch (Exception exception) {
 			this.showDialogAlert(exception.getMessage(), null);
@@ -170,9 +169,9 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	}
 
 	@OnActivityResult(REQUEST_CODE_USER_REGISTER)
-	protected void onResult(int resultCode, Intent data) {
+	protected void onResult(int resultCode) {
 		if (resultCode == RESULT_OK) {
-			DashboardActivity_.intent(this).start();
+			this.redirectToDashboard();
 		} else if (resultCode == RESULT_CANCELED) {
 			this.showDialogAlert("Unexpected error", null);
 		}
@@ -182,5 +181,10 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	protected void showFieldError(EditText editText, String message) {
 		editText.setError(message);
 		editText.requestFocus();
+	}
+
+	private void redirectToDashboard() {
+		DashboardActivity_.intent(this).start();
+		this.finish();
 	}
 }

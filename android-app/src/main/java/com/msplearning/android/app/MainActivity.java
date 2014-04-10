@@ -30,11 +30,11 @@ public class MainActivity extends GenericAsyncActivity<MSPLearningApplication> {
 	protected void init() {
 		try {
 			// Load "product.properties", file where the id of the application in question is stored.
-		    Properties properties = new Properties();
-		    properties.load(this.getResources().getAssets().open("product.properties"));
-		    Long idApp = Long.parseLong(properties.getProperty("msplearning.app.id", BigInteger.ZERO.toString()));
+			Properties properties = new Properties();
+			properties.load(this.getResources().getAssets().open("product.properties"));
+			Long idApp = Long.parseLong(properties.getProperty("msplearning.app.id", BigInteger.ZERO.toString()));
 
-		    this.resolveAuthenticityVariability(idApp);
+			this.resolveAuthenticityVariability(idApp);
 		} catch (IOException e) {
 			this.showDialogAlert("Unable to load the properties file.", null);
 		}
@@ -64,6 +64,7 @@ public class MainActivity extends GenericAsyncActivity<MSPLearningApplication> {
 			} else {
 				DashboardActivity_.intent(this).start();
 			}
+			this.finish();
 		} catch (Exception e) {
 			this.showDialogAlert("Unable to configure App.", null);
 		}

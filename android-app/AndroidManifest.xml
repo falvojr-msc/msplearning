@@ -25,17 +25,13 @@
             android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SignInActivity_"
-            android:noHistory="true" >
+        <activity android:name=".SignInActivity_" >
         </activity>
         <activity
             android:name=".RegisterActivity_"
-            android:noHistory="true"
             android:parentActivityName=".SignInActivity_" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -43,7 +39,6 @@
         </activity>
         <activity
             android:name=".DashboardActivity_"
-            android:noHistory="true"
             android:parentActivityName=".SignInActivity_" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -51,7 +46,6 @@
         </activity>
         <activity
             android:name=".DisciplineListActivity_"
-            android:noHistory="true"
             android:parentActivityName=".DashboardActivity_" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

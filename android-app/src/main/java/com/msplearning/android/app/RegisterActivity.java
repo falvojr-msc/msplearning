@@ -95,5 +95,6 @@ public class RegisterActivity extends GenericAsyncActivity<MSPLearningApplicatio
 		}
 		super.getApplicationContext().getAppSettings().setUser(user);
 		this.setResult(RESULT_OK);
+		this.finish();
 	}
 }
