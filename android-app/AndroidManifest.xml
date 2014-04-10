@@ -51,9 +51,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity_" />
         </activity>
+        <activity
+            android:name=".AccessRequestsActivity_"
+            android:parentActivityName=".AccessRequestsActivity_" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AccessRequestsActivity_" />
+        </activity>
 
         <!-- External Activities -->
-
         <activity
             android:name=".ext.FacebookWebOAuthActivity"
             android:excludeFromRecents="true"

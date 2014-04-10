@@ -81,7 +81,7 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 
 	@Click(R.id.button_access_requests)
 	protected void onAccessRequests() {
-		//TODO: Access Requests Functionality.
+		AccessRequestsActivity_.intent(this).start();
 	}
 
 	@Click(R.id.button_edit_profile)
