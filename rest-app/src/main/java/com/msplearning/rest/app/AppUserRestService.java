@@ -1,5 +1,7 @@
 package com.msplearning.rest.app;
 
+import java.util.List;
+
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
@@ -10,6 +12,7 @@ import com.msplearning.entity.App;
 import com.msplearning.entity.AppUser;
 import com.msplearning.entity.AppUserId;
 import com.msplearning.entity.common.Response;
+import com.msplearning.entity.common.Status;
 import com.msplearning.rest.app.generic.GenericCrudRestService;
 import com.msplearning.service.AppUserService;
 import com.msplearning.service.generic.GenericCrudService;
@@ -44,4 +47,11 @@ public class AppUserRestService extends GenericCrudRestService<AppUser, AppUserI
 	public Response<Void> delete(AppUserId id) {
 		return super.delete(id);
 	}
+	
+	@POST
+	@Path("/findManagedAppUsersFrom")
+	public Response<List<AppUser>> findManagedAppUsersFrom(AppUserId appUserId) {
+		return new Response<List<AppUser>>(Status.OK, this.appUserService.findManagedAppUsersFrom(appUserId.getApp().getId(), appUserId.getUser().getId()));
+	}
+	
 }

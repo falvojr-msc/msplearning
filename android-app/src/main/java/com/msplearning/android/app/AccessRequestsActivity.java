@@ -16,6 +16,7 @@ import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
 import com.msplearning.android.rest.AppUserRestClient;
 import com.msplearning.android.widget.UserRequestListAdapter;
 import com.msplearning.entity.AppUser;
+import com.msplearning.entity.AppUserId;
 
 /**
  * The AccessRequestsActivity class.
@@ -42,7 +43,7 @@ public class AccessRequestsActivity extends GenericAsyncAuthActivity<MSPLearning
 
 	@Background
 	protected void loadRequests() {
-		List<AppUser> appUsers = this.mAppUserRestClient.findAll(/*new AppUserId(getApp().getId(),null)*/).getEntity();
+		List<AppUser> appUsers = this.mAppUserRestClient.findManagedAppUsersFrom(new AppUserId(getApp().getId(),getUser().getId())).getEntity();
 		this.refreshRequests(appUsers);
 		super.dismissProgressDialog();
 	}

@@ -36,4 +36,7 @@ public interface AppUserRestClient extends RestClientSupport {
 
 	@Post("/appUser/delete")
 	Response<Void> delete(Long id);
+	
+	@Post("/appUser/findManagedAppUsersFrom")
+	Response<List<AppUser>> findManagedAppUsersFrom(AppUserId appUser);
 }
