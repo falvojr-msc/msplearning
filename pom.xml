@@ -20,8 +20,8 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<modules>
-				<module>android-support-v7-appcompat</module>
 				<module>android-app</module>
+				<module>android-support</module>
 			</modules>
 		</profile>
 		<profile>

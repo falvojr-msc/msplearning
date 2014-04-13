@@ -9,7 +9,7 @@
 		<relativePath>../parent/android/pom.xml</relativePath>
 	</parent>
 	<artifactId>android-app</artifactId>
-	<name>M-SPLearning Android</name>
+	<name>M-SPLearning Android App</name>
 	<description>Module that provides the Android application</description>
 	<packaging>apk</packaging>
 
@@ -21,18 +21,9 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Uncomment to run the build with Maven 
-		<dependency>
-			<groupId>com.android.support</groupId> 
-			<artifactId>appcompat-v7</artifactId>
-			<version>${com.android.support-version}</version> 
-			<type>aar</type>
-		</dependency> -->
-
-		<!-- Comment to run the build with Maven -->
 		<dependency>
 			<groupId>com.msplearning</groupId>
-			<artifactId>android-support-v7-appcompat</artifactId>
+			<artifactId>android-support</artifactId>
 			<version>${project.version}</version>
 			<type>apklib</type>
 		</dependency>

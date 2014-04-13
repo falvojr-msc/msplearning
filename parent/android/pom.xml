@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.msplearning</groupId>
 	<artifactId>parent-android</artifactId>
@@ -13,7 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<!-- Plugins versions -->
-		<android-maven-plugin-version>3.8.2</android-maven-plugin-version>
+		<android-maven-plugin-version>3.7.0</android-maven-plugin-version>
 		<lifecycle-mapping-version>1.0.0</lifecycle-mapping-version>
 		<maven-compiler-plugin-version>3.1</maven-compiler-plugin-version>
 		<maven-eclipse-plugin-version>2.9</maven-eclipse-plugin-version>
@@ -21,7 +22,6 @@
 		<android-platform>16</android-platform>
 		<java-version>1.6</java-version>
 		<!-- Dependencies versions -->
-		<com.android.support-version>19.1.0</com.android.support-version>
 		<com.google.android-version>4.1.1.4</com.google.android-version>
 		<org.androidannotations-version>3.0.1</org.androidannotations-version>
 		<org.codehaus.jackson-version>1.9.13</org.codehaus.jackson-version>
@@ -38,63 +38,10 @@
 			<name>Android ROME Feed Reader Repository</name>
 			<url>https://android-rome-feed-reader.googlecode.com/svn/maven2/releases</url>
 		</repository>
-		<repository>
-			<id>android-support-repository</id>
-			<name>Android Support Libraries SDK Repository</name>
-			<url>file://${env.ANDROID_HOME}/extras/android/m2repository</url>
-		</repository>
 	</repositories>
 
 	<build>
-		<finalName>${project.artifactId}</finalName>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>${lifecycle-mapping-version}</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<!-- Registers a filter to omit support for AAR files, available since version 3.7.0 -->
-									<pluginExecutionFilter>
-										<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-										<artifactId>android-maven-plugin</artifactId>
-										<versionRange>[3.7.0,)</versionRange>
-										<goals>
-											<goal>consume-aar</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>${maven-eclipse-plugin-version}</version>
-				<configuration>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin-version}</version>
-				<configuration>
-					<source>${java-version}</source>
-					<target>${java-version}</target>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 				<artifactId>android-maven-plugin</artifactId>
@@ -104,8 +51,14 @@
 					<sdk>
 						<platform>${android-platform}</platform>
 					</sdk>
-					<deleteConflictingFiles>true</deleteConflictingFiles>
-					<undeployBeforeDeploy>true</undeployBeforeDeploy>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin-version}</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
 				</configuration>
 			</plugin>
 		</plugins>

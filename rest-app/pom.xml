@@ -10,7 +10,7 @@
 		<relativePath>../parent/web/pom.xml</relativePath>
 	</parent>
 	<artifactId>rest-app</artifactId>
-	<name>M-SPLearning REST</name>
+	<name>M-SPLearning REST App</name>
 	<description>Module that provides web services in REST architecture</description>
 	<packaging>war</packaging>
 
