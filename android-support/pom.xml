@@ -20,18 +20,16 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!-- 3rd party JARs provided through commands of terminal on ANDROID HOME directory -->
+		<!-- 3rd party JARs provided by M-SPLearning Sonatype Nexus Repository -->
 		<dependency>
-		    <!-- mvn install:install-file -Dfile=./extras/android/support/v7/appcompat/libs/android-support-v4.jar -DgroupId=com.msplearning -DartifactId=android-support-v4 -Dversion=1.0-SNAPSHOT -Dpackaging=jar -DgeneratePom=true -->
 			<groupId>com.msplearning</groupId>
 			<artifactId>android-support-v4</artifactId>
-			<version>${project.version}</version>
+			<version>${com.android.support-version}</version>
 		</dependency>
 		<dependency>
-		    <!-- mvn install:install-file -Dfile=./extras/android/support/v7/appcompat/libs/android-support-v7-appcompat.jar -DgroupId=com.msplearning -DartifactId=android-support-v7-appcompat -Dversion=1.0-SNAPSHOT -Dpackaging=jar -DgeneratePom=true -->
 			<groupId>com.msplearning</groupId>
 			<artifactId>android-support-v7-appcompat</artifactId>
-			<version>${project.version}</version>
+			<version>${com.android.support-version}</version>
 		</dependency>
 	</dependencies>
 
