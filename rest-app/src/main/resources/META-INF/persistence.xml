@@ -22,21 +22,15 @@
 		<class>com.msplearning.entity.User</class>
 
 		<!-- Connection configurations -->
-		<properties>
-		    <!-- Alternative connection: MySQL
-		    <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-			<property name="hibernate.connection.username" value="root" />
-			<property name="hibernate.connection.password" value="" />
-			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/msplearning" />-->			
+		<properties>	
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
-			<property name="hibernate.connection.username" value="postgres" />
-			<property name="hibernate.connection.password" value="postgres" />
-			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/msplearning?autoReconnect=true" />
+			<property name="hibernate.connection.username" value="rest" />
+			<property name="hibernate.connection.password" value="@r3$t" />
+			<property name="hibernate.connection.url" value="jdbc:postgresql://www.labes.icmc.usp.br:55432/rest?autoReconnect=true" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.archive.autodetection" value="class, hbm" />
 		</properties>
 

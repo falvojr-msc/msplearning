@@ -1,6 +1,5 @@
 package com.msplearning.service;
 
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ import com.msplearning.service.generic.GenericCrudService;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Service("disciplineService")
-public class DisciplineService extends GenericCrudService<Discipline, Long> implements InitializingBean {
+public class DisciplineService extends GenericCrudService<Discipline, Long> {
 
 	@Autowired
 	private DisciplineRepository disciplineRepository;
@@ -23,23 +22,5 @@ public class DisciplineService extends GenericCrudService<Discipline, Long> impl
 	@Override
 	protected GenericRepository<Discipline, Long> getRepository() {
 		return this.disciplineRepository;
-	}
-
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		this.createDisciplineMock();
-	}
-
-	private void createDisciplineMock() {
-		for (int i = 1; i < 21; i++) {
-			Discipline discipline = new Discipline();
-			discipline.setName("Disciline " + i);
-			String description = "";
-			for (int j = 0; j < 35; j++) {
-				description += " Lorem Ipsum " + j;
-			}
-			discipline.setDescription(description.trim());
-			this.insert(discipline);
-		}
 	}
 }
