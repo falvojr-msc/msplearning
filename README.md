@@ -14,7 +14,7 @@ Master's project called M-SPLearning, the goal is to apply the concepts of Softw
 </p>
 
 + Download and install [Eclipse IDE][ref04] 4.3.1 or higher for Java EE Developers;
-    + Install [m2e-android][ref05] plugin as the following figure, this will ensure the installation of all the necessary plugins:
+    + Install [m2e-android][ref05] plugin, this ensures installation the other required plugins:
 
 <p align="left">
     <img src="https://www.dropbox.com/s/8m8belqv9glndd0/m2e-android.png?dl=1" />
