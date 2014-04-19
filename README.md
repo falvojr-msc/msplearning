@@ -23,7 +23,7 @@ Master's project called M-SPLearning, the goal is to apply the concepts of Softw
 ## Execution
 
 + Clone M-SPLearning project on your computer;
-+ On Eclipse import the project using "Existing Maven Projects" option and select all modules as the following figure:
++ On Eclipse import the project using "Existing Maven Projects" option and select all modules:
 
 <p align="left">
     <img src="https://www.dropbox.com/s/s2ahfxsqmql1156/import.png?dl=1" />
