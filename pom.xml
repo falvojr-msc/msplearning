@@ -15,17 +15,17 @@
 
 	<profiles>
 		<profile>
-			<id>profile-android</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+			<id>android</id>
 			<modules>
 				<module>android-app</module>
 				<module>android-support</module>
 			</modules>
 		</profile>
 		<profile>
-			<id>profile-rest</id>
+			<id>rest</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<modules>
 				<module>repository</module>
 				<module>service</module>
