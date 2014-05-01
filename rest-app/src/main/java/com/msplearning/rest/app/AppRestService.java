@@ -53,7 +53,7 @@ public class AppRestService extends GenericCrudRestService<App, Long> {
 		try {
 			InvocationRequest request = new DefaultInvocationRequest();
 			request.setPomFile(new File(this.baseDirectory + "\\pom.xml"));
-			request.setGoals(Arrays.asList("-DskipTests=true", "verify"));
+			request.setGoals(Arrays.asList("install", "-P android", "-DskipTests=true"));
 
 			Invoker invoker = new DefaultInvoker();
 			invoker.setMavenHome(new File(System.getenv("M3_HOME")));
