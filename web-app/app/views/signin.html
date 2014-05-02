@@ -1,0 +1,60 @@
+<div class="page-header">
+    <h1>Sign in it's free!</h1>
+</div>
+
+<div class="row">
+	<div class="col-md-9">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>
+	</div>
+
+	<div class="col-md-3">
+		<form role="form" data-ng-show="flow == flows.LOGIN" data-ng-submit="login()">
+			<h2>Login</h2>
+
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="User name" required autofocus data-ng-model="user.username">
+			</div>
+
+			<div class="form-group">
+				<input type="password" class="form-control" placeholder="Password" required data-ng-model="user.password">
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6">
+					<button class="btn btn-lg btn-primary btn-block" type="button" data-ng-click="register()">Register</button>
+				</div>	
+				<div class="col-md-6">
+					<button class="btn btn-lg btn-success btn-block" type="submit">Log in</button>
+				</div>
+			</div>
+		</form>
+
+		<form role="form" data-ng-show="flow == flows.SIGNIN" data-ng-submit="save()">
+			<h2>Register:</h2>
+
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="User name" required
+				 autofocus data-ng-model="user.username">
+			</div>
+
+			<div class="form-group">
+				<input type="password" class="form-control" placeholder="Password" required data-ng-model="user.password">
+			</div>
+
+			<div class="form-group">
+				<input type="password" class="form-control" placeholder="Confirm Password" required data-ng-model="confirmPassword">
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6">
+					<button class="btn btn-lg btn-danger btn-block" type="button" data-ng-click="cancel()">Cancel</button>
+				</div>	
+				<div class="col-md-6">
+					<button class="btn btn-lg btn-success btn-block" type="submit">Save</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

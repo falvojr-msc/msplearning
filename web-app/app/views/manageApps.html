@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-sm-3 col-md-2 sidebar">
+		<ul class="nav nav-sidebar">
+			<li class="{{flow == flows.NEW ? 'active' : ''}}"><a href="#/apps" data-ng-click="newApp()"> <span class="glyphicon glyphicon-plus-sign"> New</span></a></li>
+		</ul>  	
+	</div>
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<div data-ng-show="flow == flows.NEW">
+			<h1 class="page-header">Create your app</h1>
+			<form>
+				<input type="text" class="form-control" placeholder="Name App" required autofocus data-ng-model="app.name">
+
+			    <script type="text/ng-template" id="partialFeacture">
+					<ul>
+						<li data-ng-repeat="feature in features" class="list-group">
+							{{feature.name}} 
+							<input type="checkbox" data-ng-model="feature.selected" data-ng-disabled="feature.isMandatory">
+							<div ng-switch on="feature.children.length > 0">
+								<div ng-switch-when="true">
+									<div ng-init="features = feature.children" ng-include="'partialFeacture'">
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+			    </script>
+				
+				<div ng-include="'partialFeacture'"></div>
+			</form>	
+		</div>
+	</div>
+</div>
