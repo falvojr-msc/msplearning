@@ -25,8 +25,8 @@ import com.msplearning.entity.common.json.GsonFactory;
  *
  * @author Venilton Falvo Junior (veniltonjr)
  */
-@EActivity(R.layout.activity_register)
-public class RegisterActivity extends GenericAsyncActivity<MSPLearningApplication> {
+@EActivity(R.layout.activity_user_manager)
+public class UserManagerActivity extends GenericAsyncActivity<MSPLearningApplication> {
 
 	@ViewById(R.id.first_name)
 	protected EditText mFirstNameView;

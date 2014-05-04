@@ -35,8 +35,8 @@ import com.msplearning.entity.common.Response;
 public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication> {
 
 	// Intent's extra keys
-	public static final String EXTRA_KEY_PASSWORD = "activity.signin.password";
-	public static final String EXTRA_KEY_USERNAME = "activity.signin.username";
+	public static final String EXTRA_KEY_PASSWORD = "activity.user.password";
+	public static final String EXTRA_KEY_USERNAME = "activity.user.username";
 
 	// Intent's request code
 	private static final int REQUEST_CODE_USER_REGISTER = 0;
@@ -139,7 +139,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 					OnClickListener listenerYes = new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int whichButton) {
-							Intent intent = RegisterActivity_.intent(SignInActivity.this).get();
+							Intent intent = UserManagerActivity_.intent(SignInActivity.this).get();
 							intent.putExtra(EXTRA_KEY_USERNAME, SignInActivity.this.mUsername);
 							intent.putExtra(EXTRA_KEY_PASSWORD, SignInActivity.this.mPassword);
 							SignInActivity.this.startActivityForResult(intent, REQUEST_CODE_USER_REGISTER);
@@ -152,7 +152,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 						}
 					};
 
-					this.showDialogConfirm( this.getString(R.string.title_dialog_register), this.getString(R.string.message_dialog_register), listenerYes, listenerNo);
+					this.showDialogConfirm( this.getString(R.string.dialog_title_register), this.getString(R.string.dialog_message_register), listenerYes, listenerNo);
 
 				} else {
 					this.showFieldError(this.mPasswordView, responseAuth.getBusinessMessage());

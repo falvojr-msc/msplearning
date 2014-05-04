@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
     <!-- Application strings -->
     <string name="app_name">M-SPLearning</string>
-    <string name="action_settings">Settings</string>
     
-    <!-- Common Dialog strings -->
+    <!-- Dialog strings -->
     <string name="title_dialog_error">Error</string>
     
-    <!-- Common ActionBar Actions strings -->
+    <!-- Buttons common strings -->
     <string name="action_new">New</string>
     <string name="action_edit">Edit</string>
     <string name="action_discard">Discard</string>

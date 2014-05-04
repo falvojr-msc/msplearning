@@ -1,20 +1,20 @@
 <resources>
-
-    <string name="title_activity_sign_in">M-SPLearning: Sign in</string>
-    
-	<string name="action_facebook">Sign in using Facebook</string>
-	<string name="action_twitter">Sign in using Twitter</string>
-    
-    <!-- Strings related to login using M-SPLearning -->
-    <string name="action_sign_in_register">Sign in or register</string>
+	
+    <!-- Hint strings -->
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
-    <string name="action_forgot_password">Recover lost password</string>
-    <string name="login_progress_signing_in">Signing in&#8230;</string>
+    
+    <!-- Buttons strings -->
+    <string name="action_sign_in_register">Sign in or register</string>
+    <string name="action_facebook">Sign in using Facebook</string>
+	<string name="action_twitter">Sign in using Twitter</string>
+    
+    <!-- Errors strings -->
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_field_required">This field is required</string>
-    <string name="title_dialog_register">Confirm registration</string>
-    <string name="message_dialog_register">This user was not found. Want to register it?</string>
-
+    
+    <!-- Dialog strings -->
+    <string name="dialog_title_register">Confirm registration</string>
+    <string name="dialog_message_register">This user was not found. Want to register it?</string>
     
 </resources>

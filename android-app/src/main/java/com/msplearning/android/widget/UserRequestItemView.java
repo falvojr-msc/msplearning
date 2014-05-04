@@ -10,11 +10,11 @@ import com.msplearning.android.app.R;
 import com.msplearning.android.widget.generic.AbstractItemView;
 import com.msplearning.entity.AppUser;
 
-@EViewGroup(R.layout.user_request_list_item)
+@EViewGroup(R.layout.widget_list_item)
 public class UserRequestItemView extends AbstractItemView<AppUser> {
 
-	@ViewById
-	TextView userName;
+	@ViewById(R.id.textview_description)
+	TextView mUserName;
 
 	public UserRequestItemView(Context context) {
 		super(context);
@@ -22,6 +22,6 @@ public class UserRequestItemView extends AbstractItemView<AppUser> {
 
 	@Override
 	public void bind(AppUser appUser) {
-		this.userName.setText(appUser.getId().getUser().getFirstName());
+		this.mUserName.setText(appUser.getId().getUser().getFirstName());
 	}
 }

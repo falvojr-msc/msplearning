@@ -13,8 +13,8 @@ import com.msplearning.entity.Discipline;
 @EViewGroup(R.layout.widget_list_item)
 public class DisciplineItemView extends AbstractItemView<Discipline> {
 
-	@ViewById
-	TextView disciplineName;
+	@ViewById(R.id.textview_description)
+	TextView mDisciplineName;
 
 	public DisciplineItemView(Context context) {
 		super(context);
@@ -22,6 +22,6 @@ public class DisciplineItemView extends AbstractItemView<Discipline> {
 
 	@Override
 	public void bind(Discipline discipline) {
-		this.disciplineName.setText(discipline.getName());
+		this.mDisciplineName.setText(discipline.getName());
 	}
 }

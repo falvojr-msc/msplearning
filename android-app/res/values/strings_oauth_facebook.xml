@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="facebook_app_id">1469994953220347</string>
     <string name="facebook_app_secret">930ff6cba674e1db89f2e2fa45b56315</string>
     <string name="facebook_oauth_callback_url">https://www.facebook.com/connect/login_success.html</string>
     <string name="facebook_scope">"publish_stream,offline_access,read_stream,user_about_me,email"</string>
+
 </resources>

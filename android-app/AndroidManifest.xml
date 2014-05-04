@@ -25,24 +25,20 @@
             android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".SignInActivity_" >
         </activity>
         <activity
-            android:name=".RegisterActivity_"
+            android:name=".UserManagerActivity_"
             android:parentActivityName=".SignInActivity_" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".SignInActivity_" />
         </activity>
-        <activity
-            android:name=".DashboardActivity_"
-            android:parentActivityName=".SignInActivity_" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SignInActivity_" />
+        <activity android:name=".DashboardActivity_" >
         </activity>
         <activity
             android:name=".DisciplineListActivity_"
@@ -50,6 +46,13 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity_" />
+        </activity>
+        <activity
+            android:name=".DisciplineManagerActivity_"
+            android:parentActivityName=".DisciplineListActivity_" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DisciplineListActivity_" />
         </activity>
         <activity
             android:name=".AccessRequestsActivity_"

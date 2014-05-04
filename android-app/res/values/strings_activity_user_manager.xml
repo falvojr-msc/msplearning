@@ -1,8 +1,9 @@
 <resources>
 
-    <string name="title_activity_register">M-SPLearning: Register</string>
-
-    <!-- Strings related to register -->
+    <!-- Labels strings -->
+    <string name="label_user_manager">User Form</string>
+    
+    <!-- Hint strings -->
     <string name="prompt_first_name">First name</string>
     <string name="prompt_last_name">Last name</string>
     <string name="prompt_repeat_password">Repeat password</string>
@@ -10,7 +11,8 @@
     <string name="prompt_female">Female</string>
     <string name="prompt_teacher">Teacher</string>
     <string name="prompt_student">Student</string>
+    
+    <!-- Buttons strings -->
     <string name="action_register">Register</string>
-    <string name="register_progress_signing_in">Registering in&#8230;</string>
 
 </resources>
