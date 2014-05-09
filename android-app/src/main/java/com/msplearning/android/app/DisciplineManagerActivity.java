@@ -35,6 +35,11 @@ public class DisciplineManagerActivity extends GenericAsyncActivity<MSPLearningA
 	public void afterViews() {
 		// Load current discipline (if functionality is editing)
 		this.currentDiscipline = (Discipline) this.getIntent().getSerializableExtra(DisciplineListActivity.EXTRA_KEY_DISCIPLINE);
+		// Load data if functionality is editing
+		if(this.currentDiscipline != null) {
+			this.mName.setText(this.currentDiscipline.getName());
+			this.mDescription.setText(this.currentDiscipline.getDescription());
+		}
 		// Remove used Intent's extras
 		this.getIntent().removeExtra(DisciplineListActivity.EXTRA_KEY_DISCIPLINE);
 	}

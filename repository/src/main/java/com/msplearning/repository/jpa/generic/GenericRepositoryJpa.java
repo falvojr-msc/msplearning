@@ -70,23 +70,23 @@ public class GenericRepositoryJpa<T extends Serializable, K extends Serializable
 	}
 
 	@Override
-	public List<?> findByJPQL(String jpql, Object... parans) {
-		return this.createQuery(jpql, parans).getResultList();
+	public List<?> findByJPQL(String jpql, Object... params) {
+		return this.createQuery(jpql, params).getResultList();
 	}
 
 	@Override
-	public Object findSingleResultByJPQL(String jpql, Map<String, Object> parans) {
-		return this.createQueryWithNamedParameter(jpql, parans).getResultList();
+	public List<?> findByJPQL(String jpql, Map<String, Object> params) {
+		return this.createQueryWithNamedParameter(jpql, params).getResultList();
 	}
-
+	
 	@Override
-	public Object findSingleResultByJPQL(String jpql, Object... parans) {
-		return this.createQuery(jpql, parans).getSingleResult();
+	public Object findSingleResultByJPQL(String jpql, Object... params) {
+		return this.createQuery(jpql, params).getSingleResult();
 	}
-
+	
 	@Override
-	public List<?> findByJPQL(String jpql, Map<String, Object> parans) {
-		return this.createQueryWithNamedParameter(jpql, parans).getResultList();
+	public Object findSingleResultByJPQL(String jpql, Map<String, Object> params) {
+		return this.createQueryWithNamedParameter(jpql, params).getSingleResult();
 	}
 
 	protected Class<T> getPersistentClass() {
@@ -117,20 +117,20 @@ public class GenericRepositoryJpa<T extends Serializable, K extends Serializable
 		return Integer.parseInt(this.createQuery(jpql).getSingleResult().toString());
 	}
 
-	private Query createQuery(String jpql, Object... parans) {
+	private Query createQuery(String jpql, Object... params) {
 		Query query = this.getEntityManager().createQuery(jpql);
 		int i = 0;
-		for (Object object : parans) {
+		for (Object object : params) {
 			query.setParameter(++i, object);
 		}
 		return query;
 	}
 
-	private Query createQueryWithNamedParameter(String jpql, Map<String, Object> parans) {
+	private Query createQueryWithNamedParameter(String jpql, Map<String, Object> params) {
 		Query query = this.getEntityManager().createQuery(jpql);
-		Object[] keys = parans.keySet().toArray();
+		Object[] keys = params.keySet().toArray();
 		for (Object key : keys) {
-			query.setParameter(key.toString(), parans.get(key));
+			query.setParameter(key.toString(), params.get(key));
 		}
 		return query;
 	}

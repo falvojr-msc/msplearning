@@ -3,6 +3,7 @@
     <!-- Toast strings -->
     <string name="toast_new_discipline_success">Discipline included successfully.</string>
     <string name="toast_edit_discipline_success">Discipline edited successfully.</string>
+    <string name="toast_discard_discipline_success">Discipline discarded successfully.</string>
     
     <!-- Dialog strings -->
     <string name="dialog_title_discard">Confirmation of discard</string>

@@ -1,5 +1,7 @@
 package com.msplearning.android.app;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.androidannotations.annotations.AfterViews;
@@ -12,7 +14,10 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
+import org.apache.commons.beanutils.BeanComparator;
 
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -59,16 +64,18 @@ public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearning
 
 	private void loadDisciplines() {
 		super.showLoadingProgressDialog();
-		this.findDisciplines();
+		this.asyncFindDisciplines();
 	}
-
+	
 	@Background
-	protected void findDisciplines() {
+	protected void asyncFindDisciplines() {
 		List<Discipline> disciplines = this.mDisciplineRestClient.findAll().getEntity();
+		Comparator<Discipline> fieldComparator = new BeanComparator<Discipline>("name");
+		Collections.sort(disciplines, fieldComparator);	
 		this.bindDisciplines(disciplines);
 		super.dismissProgressDialog();
 	}
-
+	
 	@UiThread
 	protected void bindDisciplines(List<Discipline> disciplines) {
 		this.mDisciplineAdapter.setContent(disciplines);
@@ -95,16 +102,22 @@ public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearning
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		final Discipline selectedDiscipline = this.mDisciplineAdapter.getItem(((AdapterContextMenuInfo) item.getMenuInfo()).position);
 		switch(item.getItemId()){
 		case R.id.action_edit:
 			Intent intent = DisciplineManagerActivity_.intent(this).get();
-			intent.putExtra(EXTRA_KEY_DISCIPLINE, this.mDisciplineAdapter.getItem(info.position));
+			intent.putExtra(EXTRA_KEY_DISCIPLINE, selectedDiscipline);
 			this.startActivityForResult(intent, REQUEST_CODE_EDIT_DISCIPLINE);
 			break;
 		case R.id.action_discard:
-			// Discipline discipline = this.mDisciplineAdapter.getItem(info.position);
-			// TODO: Implement async discard
+			OnClickListener listenerYes = new OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int whichButton) {
+					asyncDiscardDiscipline(selectedDiscipline.getId());
+				}
+				
+			};
+			this.showDialogConfirm( this.getString(R.string.dialog_title_register), this.getString(R.string.dialog_message_register), listenerYes, null);
 			break;
 		}
 		return true;
@@ -122,12 +135,21 @@ public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearning
 
 	private void showMessageFromResult(int resultCode, int idResource) {
 		if (resultCode == RESULT_OK) {
-			// Show informative message
-			Toast.makeText(this, super.getString(idResource), Toast.LENGTH_SHORT).show();
-			// TODO: Verify reload disciplines
-			this.loadDisciplines();
+			reloadDisciplinesShowingToastMessage(idResource);
 		} else if (resultCode == RESULT_CANCELED) {
 			this.showDialogAlert("Unexpected error", null);
 		}
+	}
+
+	@Background
+	protected void asyncDiscardDiscipline(Long id) {
+		DisciplineListActivity.this.mDisciplineRestClient.delete(id);
+		reloadDisciplinesShowingToastMessage(R.string.toast_discard_discipline_success);
+	}
+	
+	@UiThread
+	protected void reloadDisciplinesShowingToastMessage(int idResource) {
+		Toast.makeText(this, super.getString(idResource), Toast.LENGTH_SHORT).show();
+		this.loadDisciplines();
 	}
 }
