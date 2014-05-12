@@ -50,10 +50,6 @@ public class User implements Serializable {
 	@Column(name = "gender", length = 1, nullable = false)
 	private Gender gender;
 
-	@Column(name = "date_birth")
-	@Temporal(TemporalType.DATE)
-	private Date dateBirth;
-
 	@Column(name = "username", length = 20, nullable = false)
 	private String username;
 
@@ -111,14 +107,6 @@ public class User implements Serializable {
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
-	}
-
-	public Date getDateBirth() {
-		return this.dateBirth;
-	}
-
-	public void setDateBirth(Date dateBirth) {
-		this.dateBirth = dateBirth;
 	}
 
 	public String getUsername() {

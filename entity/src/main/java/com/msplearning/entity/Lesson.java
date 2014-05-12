@@ -18,46 +18,38 @@ import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
 
 /**
- * The Discipline class.
+ * The Lesson class.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Entity
-@Table(name = "tb_discipline")
-@SequenceGenerator(name = "sequenceDiscipline", sequenceName = "sq_tb_discipline")
-public class Discipline implements Serializable {
+@Table(name = "tb_lesson")
+@SequenceGenerator(name = "sequenceLesson", sequenceName = "sq_tb_lesson")
+public class Lesson implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator = "sequenceDiscipline")
+	@GeneratedValue(generator = "sequenceLesson")
 	@Column(name = "id")
 	private Long id;
 
 	@Column(name = "name", length = 50, nullable = false)
 	private String name;
 
-	@Column(name = "description", length = 1000)
-	private String description;
-
 	@ManyToOne
-	@JoinColumn(name = "id_app", nullable = false)
-	@ForeignKey(name = "fk_tb_discipline_2_tb_app")
-	private App app;
+	@JoinColumn(name = "id_discipline", nullable = false)
+	@ForeignKey(name = "fk_tb_lesson_2_tb_discipline")
+	private Discipline discipline;
 
-	@ManyToOne
-	@JoinColumn(name = "id_creator", nullable = false)
-	@ForeignKey(name = "fk_tb_discipline_2_tb_user")
-	private User creator;
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "discipline", cascade = CascadeType.ALL)
-	private Set<Lesson> lessons;
-
-	public Discipline() {
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "lesson", cascade = CascadeType.ALL)
+	private Set<Slide> slides;
+	
+	public Lesson() {
 		super();
 	}
-
-	public Discipline(Long id) {
+	
+	public Lesson(Long id) {
 		super();
 		this.id = id;
 	}
@@ -78,36 +70,20 @@ public class Discipline implements Serializable {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public Discipline getDiscipline() {
+		return discipline;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDiscipline(Discipline discipline) {
+		this.discipline = discipline;
 	}
 
-	public App getApp() {
-		return app;
+	public Set<Slide> getSlides() {
+		return slides;
 	}
 
-	public void setApp(App app) {
-		this.app = app;
-	}
-
-	public User getCreator() {
-		return creator;
-	}
-
-	public void setCreator(User creator) {
-		this.creator = creator;
-	}
-
-	public Set<Lesson> getLessons() {
-		return lessons;
-	}
-
-	public void setLessons(Set<Lesson> lessons) {
-		this.lessons = lessons;
+	public void setSlides(Set<Slide> slides) {
+		this.slides = slides;
 	}
 
 	@Override
@@ -129,7 +105,7 @@ public class Discipline implements Serializable {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		Discipline other = (Discipline) obj;
+		Lesson other = (Lesson) obj;
 		if (this.id == null) {
 			if (other.id != null) {
 				return false;

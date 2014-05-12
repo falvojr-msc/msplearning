@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 
 /**
  * The App class.
- *
+ * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Entity
@@ -45,6 +45,9 @@ public class App implements Serializable {
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "id.app", cascade = CascadeType.ALL)
 	private Set<AppUser> appUsers;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "app", cascade = CascadeType.ALL)
+	private Set<Discipline> disciplines;
 
 	public App() {
 		super();
@@ -93,6 +96,14 @@ public class App implements Serializable {
 
 	public void setAppUsers(Set<AppUser> appUsers) {
 		this.appUsers = appUsers;
+	}
+
+	public Set<Discipline> getDisciplines() {
+		return this.disciplines;
+	}
+
+	public void setDisciplines(Set<Discipline> disciplines) {
+		this.disciplines = disciplines;
 	}
 
 	@Override

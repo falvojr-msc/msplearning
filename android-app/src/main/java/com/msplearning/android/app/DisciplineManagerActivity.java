@@ -33,14 +33,13 @@ public class DisciplineManagerActivity extends GenericAsyncActivity<MSPLearningA
 
 	@AfterViews
 	public void afterViews() {
-		// Load current discipline (if functionality is editing)
 		this.currentDiscipline = (Discipline) this.getIntent().getSerializableExtra(DisciplineListActivity.EXTRA_KEY_DISCIPLINE);
-		// Load data if functionality is editing
-		if(this.currentDiscipline != null) {
+		if(this.currentDiscipline == null) {
+			this.currentDiscipline = new Discipline();
+		} else {
 			this.mName.setText(this.currentDiscipline.getName());
 			this.mDescription.setText(this.currentDiscipline.getDescription());
 		}
-		// Remove used Intent's extras
 		this.getIntent().removeExtra(DisciplineListActivity.EXTRA_KEY_DISCIPLINE);
 	}
 
@@ -48,24 +47,23 @@ public class DisciplineManagerActivity extends GenericAsyncActivity<MSPLearningA
 	public void onDisciplineSave() {
 		super.showLoadingProgressDialog();
 
-		Discipline discipline = new Discipline();
-		discipline.setName(this.mName.getText().toString());
-		discipline.setDescription(this.mDescription.getText().toString());
+		this.currentDiscipline.setName(this.mName.getText().toString());
+		this.currentDiscipline.setDescription(this.mDescription.getText().toString());
+		this.currentDiscipline.setApp(super.getApplicationContext().getAppSettings().getApp());
+		this.currentDiscipline.setCreator(super.getApplicationContext().getAppSettings().getUser());
 
-		this.saveDiscipline(discipline);
+		this.saveDiscipline();
 	}
 
 	@Background
-	public void saveDiscipline(Discipline discipline) {
+	public void saveDiscipline() {
 		try {
-			if (this.currentDiscipline == null) {
-				this.mDisciplineRestClient.insert(discipline);
+			if (this.currentDiscipline.getId() == null) {
+				this.mDisciplineRestClient.insert(this.currentDiscipline);
 			} else {
-				this.currentDiscipline.setName(discipline.getName());
-				this.currentDiscipline.setDescription(discipline.getDescription());
 				this.mDisciplineRestClient.update(this.currentDiscipline);
-				this.currentDiscipline = null;
 			}
+			this.currentDiscipline = null;
 		} catch (Exception exception) {
 			super.showDialogAlert(exception.getMessage(), null);
 		} finally {

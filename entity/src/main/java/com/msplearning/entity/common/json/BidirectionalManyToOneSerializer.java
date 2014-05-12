@@ -11,13 +11,16 @@ import com.google.gson.JsonSerializer;
 import com.msplearning.entity.App;
 import com.msplearning.entity.AppFeatureId;
 import com.msplearning.entity.AppUserId;
+import com.msplearning.entity.Discipline;
+import com.msplearning.entity.Lesson;
+import com.msplearning.entity.Slide;
 
 /**
- * The AppEmbeddedIdSerializer class. Useful for serializing and deserializing of {@link AppFeatureId} and {@link AppUserId} classes.
+ * The BidirectionalManyToOneSerializer class. Useful for serializing and deserializing of bidirectional OneToMany/ManyToOne associations.
  *
  * @author Venilton Falvo Junior (veniltonjr)
  */
-public class AppEmbeddedIdSerializer<T extends Serializable> implements JsonSerializer<T> {
+public class BidirectionalManyToOneSerializer<T extends Serializable> implements JsonSerializer<T> {
 
 	@Override
 	public JsonElement serialize(T src, Type typeOfSrc, JsonSerializationContext context) {
@@ -29,6 +32,15 @@ public class AppEmbeddedIdSerializer<T extends Serializable> implements JsonSeri
 		} else if (src instanceof AppUserId) {
 			AppUserId appUserId = ((AppUserId) src);
 			appUserId.setApp(new App(appUserId.getApp().getId()));
+		} else if (src instanceof Discipline) {
+			Discipline discipline = ((Discipline) src);
+			discipline.setApp(new App(discipline.getApp().getId()));
+		} else if (src instanceof Lesson) {
+			Lesson lesson = ((Lesson) src);
+			lesson.setDiscipline(new Discipline(lesson.getDiscipline().getId()));
+		} else if (src instanceof Slide) {
+			Slide slide = ((Slide) src);
+			slide.setLesson(new Lesson(slide.getLesson().getId()));
 		}
 
 		return new JsonParser().parse(gsonBuilder.create().toJson(src, typeOfSrc));

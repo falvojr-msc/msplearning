@@ -2,9 +2,11 @@ package com.msplearning.service;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.msplearning.entity.Gender;
 import com.msplearning.entity.Teacher;
 import com.msplearning.repository.TeacherRepository;
 import com.msplearning.repository.generic.GenericRepository;
@@ -16,7 +18,7 @@ import com.msplearning.service.generic.GenericCrudService;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Service("teacherService")
-public class TeacherService extends GenericCrudService<Teacher, Long> {
+public class TeacherService extends GenericCrudService<Teacher, Long> implements InitializingBean {
 
 	@Autowired
 	private TeacherRepository teacherRepository;
@@ -34,4 +36,20 @@ public class TeacherService extends GenericCrudService<Teacher, Long> {
 		super.insert(entity);
 	}
 
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		if (this.teacherRepository.findById(1L) == null) {
+			this.createTeacherMock();
+		}
+	}
+
+	private void createTeacherMock() {
+		Teacher teacher = new Teacher();
+		teacher.setFirstName("Venilton");
+		teacher.setLastName("Falvo Junior");
+		teacher.setGender(Gender.M);
+		teacher.setUsername("admin");
+		teacher.setPassword("admin");
+		this.insert(teacher);
+	}
 }

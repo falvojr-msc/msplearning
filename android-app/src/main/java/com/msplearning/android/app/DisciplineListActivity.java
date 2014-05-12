@@ -1,7 +1,5 @@
 package com.msplearning.android.app;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.androidannotations.annotations.AfterViews;
@@ -14,7 +12,6 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
-import org.apache.commons.beanutils.BeanComparator;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -70,8 +67,6 @@ public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearning
 	@Background
 	protected void asyncFindDisciplines() {
 		List<Discipline> disciplines = this.mDisciplineRestClient.findAll().getEntity();
-		Comparator<Discipline> fieldComparator = new BeanComparator<Discipline>("name");
-		Collections.sort(disciplines, fieldComparator);	
 		this.bindDisciplines(disciplines);
 		super.dismissProgressDialog();
 	}
