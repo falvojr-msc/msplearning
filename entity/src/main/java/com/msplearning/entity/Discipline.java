@@ -3,6 +3,8 @@ package com.msplearning.entity;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +27,9 @@ import org.hibernate.annotations.ForeignKey;
 @Entity
 @Table(name = "tb_discipline")
 @SequenceGenerator(name = "sequenceDiscipline", sequenceName = "sq_tb_discipline")
+@AssociationOverrides({
+	@AssociationOverride(name = "app", joinColumns = @JoinColumn(name = "id_app", nullable = false)),
+	@AssociationOverride(name = "creator", joinColumns = @JoinColumn(name = "id_creator", nullable = false)) })
 public class Discipline implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,16 +46,14 @@ public class Discipline implements Serializable {
 	private String description;
 
 	@ManyToOne
-	@JoinColumn(name = "id_app", nullable = false)
 	@ForeignKey(name = "fk_tb_discipline_2_tb_app")
 	private App app;
 
 	@ManyToOne
-	@JoinColumn(name = "id_creator", nullable = false)
 	@ForeignKey(name = "fk_tb_discipline_2_tb_user")
 	private User creator;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "discipline", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "discipline", cascade = CascadeType.ALL)
 	private Set<Lesson> lessons;
 
 	public Discipline() {

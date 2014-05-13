@@ -2,6 +2,8 @@ package com.msplearning.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +23,8 @@ import org.hibernate.annotations.ForeignKey;
 @Entity
 @Table(name = "tb_slide")
 @SequenceGenerator(name = "sequenceSlide", sequenceName = "sq_tb_slide")
+@AssociationOverrides({
+	@AssociationOverride(name = "lesson", joinColumns = @JoinColumn(name = "id_lesson", nullable = false)) })
 public class Slide implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,7 +41,6 @@ public class Slide implements Serializable {
 	private String content;
 
 	@ManyToOne
-	@JoinColumn(name = "id_lesson", nullable = false)
 	@ForeignKey(name = "fk_tb_slide_2_tb_lesson")
 	private Lesson lesson;
 

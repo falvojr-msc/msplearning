@@ -43,10 +43,10 @@ public class App implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "id.app", cascade = CascadeType.ALL)
 	private Set<AppFeature> appFeatures;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "id.app", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id.app", cascade = CascadeType.ALL)
 	private Set<AppUser> appUsers;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "app", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "app", cascade = CascadeType.ALL)
 	private Set<Discipline> disciplines;
 
 	public App() {
