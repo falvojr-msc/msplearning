@@ -48,7 +48,7 @@ public class TeacherService extends GenericCrudService<Teacher, Long> implements
 		teacher.setFirstName("Venilton");
 		teacher.setLastName("Falvo Junior");
 		teacher.setGender(Gender.M);
-		teacher.setUsername("admin");
+		teacher.setEmail("venilton.falvo@gmail.com");
 		teacher.setPassword("admin");
 		this.insert(teacher);
 	}

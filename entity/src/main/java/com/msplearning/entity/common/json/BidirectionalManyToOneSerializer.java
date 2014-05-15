@@ -11,7 +11,6 @@ import com.google.gson.JsonSerializer;
 import com.msplearning.entity.App;
 import com.msplearning.entity.AppFeatureId;
 import com.msplearning.entity.AppUserId;
-import com.msplearning.entity.Discipline;
 import com.msplearning.entity.Lesson;
 import com.msplearning.entity.Slide;
 
@@ -32,12 +31,6 @@ public class BidirectionalManyToOneSerializer<T extends Serializable> implements
 		} else if (src instanceof AppUserId) {
 			AppUserId appUserId = ((AppUserId) src);
 			appUserId.setApp(new App(appUserId.getApp().getId()));
-		} else if (src instanceof Discipline) {
-			Discipline discipline = ((Discipline) src);
-			discipline.setApp(new App(discipline.getApp().getId()));
-		} else if (src instanceof Lesson) {
-			Lesson lesson = ((Lesson) src);
-			lesson.setDiscipline(new Discipline(lesson.getDiscipline().getId()));
 		} else if (src instanceof Slide) {
 			Slide slide = ((Slide) src);
 			slide.setLesson(new Lesson(slide.getLesson().getId()));

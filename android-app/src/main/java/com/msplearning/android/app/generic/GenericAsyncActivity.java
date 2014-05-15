@@ -57,20 +57,20 @@ public abstract class GenericAsyncActivity<T extends MSPLearningApplication> ext
 	@UiThread
 	protected void showDialogAlert(String message, OnClickListener listenerOk) {
 		new AlertDialog.Builder(this)
-			.setTitle(this.getString(R.string.title_dialog_error))
-			.setMessage(message).setIcon(android.R.drawable.ic_dialog_alert)
-			.setNeutralButton(android.R.string.ok, listenerOk)
-			.show();
+		.setTitle(this.getString(R.string.dialog_title_error))
+		.setMessage(message).setIcon(android.R.drawable.ic_dialog_alert)
+		.setNeutralButton(android.R.string.ok, listenerOk)
+		.show();
 	}
 
 	@UiThread
 	protected void showDialogConfirm(String title, String message, OnClickListener listenerYes, OnClickListener listenerNo) {
 		new AlertDialog.Builder(this)
-			.setTitle(title)
-			.setMessage(message)
-			.setIcon(android.R.drawable.ic_dialog_info)
-			.setPositiveButton(android.R.string.yes, listenerYes)
-			.setNegativeButton(android.R.string.no, listenerNo)
-			.show();
+		.setTitle(title)
+		.setMessage(message)
+		.setIcon(android.R.drawable.ic_dialog_info)
+		.setPositiveButton(android.R.string.yes, listenerYes)
+		.setNegativeButton(android.R.string.no, listenerNo)
+		.show();
 	}
 }

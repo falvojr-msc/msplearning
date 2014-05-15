@@ -2,8 +2,6 @@ package com.msplearning.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.AssociationOverride;
-import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ForeignKey;
-
 /**
  * The Slide class.
  * 
@@ -23,8 +19,6 @@ import org.hibernate.annotations.ForeignKey;
 @Entity
 @Table(name = "tb_slide")
 @SequenceGenerator(name = "sequenceSlide", sequenceName = "sq_tb_slide")
-@AssociationOverrides({
-	@AssociationOverride(name = "lesson", joinColumns = @JoinColumn(name = "id_lesson", nullable = false)) })
 public class Slide implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,11 +35,11 @@ public class Slide implements Serializable {
 	private String content;
 
 	@ManyToOne
-	@ForeignKey(name = "fk_tb_slide_2_tb_lesson")
+	@JoinColumn(name = "id_lesson", nullable = false)
 	private Lesson lesson;
 
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
@@ -53,7 +47,7 @@ public class Slide implements Serializable {
 	}
 
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 
 	public void setTitle(String title) {
@@ -61,7 +55,7 @@ public class Slide implements Serializable {
 	}
 
 	public String getContent() {
-		return content;
+		return this.content;
 	}
 
 	public void setContent(String content) {
@@ -69,7 +63,7 @@ public class Slide implements Serializable {
 	}
 
 	public Lesson getLesson() {
-		return lesson;
+		return this.lesson;
 	}
 
 	public void setLesson(Lesson lesson) {

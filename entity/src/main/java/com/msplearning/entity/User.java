@@ -15,8 +15,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Type;
 
@@ -28,7 +26,7 @@ import com.msplearning.entity.crypto.Base64Type;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Entity
-@Table(name = "tb_user", uniqueConstraints = { @UniqueConstraint(name = "uk_tb_user_username", columnNames = { "username" }) })
+@Table(name = "tb_user")
 @Inheritance(strategy = InheritanceType.JOINED)
 @SequenceGenerator(name = "sequenceUser", sequenceName = "sq_tb_user")
 public class User implements Serializable {
@@ -50,8 +48,8 @@ public class User implements Serializable {
 	@Column(name = "gender", length = 1, nullable = false)
 	private Gender gender;
 
-	@Column(name = "username", length = 20, nullable = false)
-	private String username;
+	@Column(name = "email", length = 50, nullable = false)
+	private String email;
 
 	@Column(name = "password", length = 30, nullable = false)
 	@Type(type = Base64Type.TYPE)
@@ -64,9 +62,6 @@ public class User implements Serializable {
 	@Column(name = "date_last_login", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateLastLogin;
-
-	@Transient
-	private boolean isTeacher;
 
 	public User() {
 		super();
@@ -109,12 +104,12 @@ public class User implements Serializable {
 		this.gender = gender;
 	}
 
-	public String getUsername() {
-		return this.username;
+	public String getEmail() {
+		return this.email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -139,14 +134,6 @@ public class User implements Serializable {
 
 	public void setDateLastLogin(Date dateLastLogin) {
 		this.dateLastLogin = dateLastLogin;
-	}
-
-	public boolean isTeacher() {
-		return this instanceof Teacher;
-	}
-
-	public void setTeacher(boolean isTeacher) {
-		this.isTeacher = isTeacher;
 	}
 
 	@Override

@@ -5,7 +5,8 @@
     <string name="app_name">M-SPLearning</string>
     
     <!-- Dialog strings -->
-    <string name="title_dialog_error">Error</string>
+    <string name="dialog_title_discard">Confirmation of discard</string>
+    <string name="dialog_title_error">Error</string>
     
     <!-- Buttons common strings -->
     <string name="action_new">New</string>

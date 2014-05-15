@@ -5,19 +5,15 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.ForeignKey;
-
 @Embeddable
 public class AppFeatureId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@ForeignKey(name="fk_tb_app_feature_2_tb_app")
 	private App app;
 
 	@ManyToOne
-	@ForeignKey(name="fk_tb_app_feature_2_tb_feature")
 	private Feature feature;
 
 	public App getApp() {

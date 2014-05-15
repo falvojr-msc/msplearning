@@ -49,8 +49,8 @@ public class DisciplineManagerActivity extends GenericAsyncActivity<MSPLearningA
 
 		this.currentDiscipline.setName(this.mName.getText().toString());
 		this.currentDiscipline.setDescription(this.mDescription.getText().toString());
-		this.currentDiscipline.setApp(super.getApplicationContext().getAppSettings().getApp());
-		this.currentDiscipline.setCreator(super.getApplicationContext().getAppSettings().getUser());
+		this.currentDiscipline.setIdApp(super.getApplicationContext().getAppSettings().getApp().getId());
+		this.currentDiscipline.setIdCreator(super.getApplicationContext().getAppSettings().getUser().getId());
 
 		this.saveDiscipline();
 	}

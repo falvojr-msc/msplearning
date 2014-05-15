@@ -1,23 +1,13 @@
 package com.msplearning.entity;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.AssociationOverride;
-import javax.persistence.AssociationOverrides;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ForeignKey;
 
 /**
  * The Discipline class.
@@ -27,9 +17,6 @@ import org.hibernate.annotations.ForeignKey;
 @Entity
 @Table(name = "tb_discipline")
 @SequenceGenerator(name = "sequenceDiscipline", sequenceName = "sq_tb_discipline")
-@AssociationOverrides({
-	@AssociationOverride(name = "app", joinColumns = @JoinColumn(name = "id_app", nullable = false)),
-	@AssociationOverride(name = "creator", joinColumns = @JoinColumn(name = "id_creator", nullable = false)) })
 public class Discipline implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -42,19 +29,14 @@ public class Discipline implements Serializable {
 	@Column(name = "name", length = 50, nullable = false)
 	private String name;
 
-	@Column(name = "description", length = 1000)
+	@Column(name = "description", length = 500)
 	private String description;
 
-	@ManyToOne
-	@ForeignKey(name = "fk_tb_discipline_2_tb_app")
-	private App app;
+	@Column(name = "id_app", nullable = false)
+	private Long idApp;
 
-	@ManyToOne
-	@ForeignKey(name = "fk_tb_discipline_2_tb_user")
-	private User creator;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "discipline", cascade = CascadeType.ALL)
-	private Set<Lesson> lessons;
+	@Column(name = "id_creator", nullable = false)
+	private Long idCreator;
 
 	public Discipline() {
 		super();
@@ -66,7 +48,7 @@ public class Discipline implements Serializable {
 	}
 
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
@@ -74,7 +56,7 @@ public class Discipline implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -82,35 +64,27 @@ public class Discipline implements Serializable {
 	}
 
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public App getApp() {
-		return app;
+	public Long getIdApp() {
+		return this.idApp;
 	}
 
-	public void setApp(App app) {
-		this.app = app;
+	public void setIdApp(Long idApp) {
+		this.idApp = idApp;
 	}
 
-	public User getCreator() {
-		return creator;
+	public Long getIdCreator() {
+		return this.idCreator;
 	}
 
-	public void setCreator(User creator) {
-		this.creator = creator;
-	}
-
-	public Set<Lesson> getLessons() {
-		return lessons;
-	}
-
-	public void setLessons(Set<Lesson> lessons) {
-		this.lessons = lessons;
+	public void setIdCreator(Long idCreator) {
+		this.idCreator = idCreator;
 	}
 
 	@Override

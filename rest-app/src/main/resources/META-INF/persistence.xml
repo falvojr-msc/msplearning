@@ -32,7 +32,7 @@
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/msplearning?autoReconnect=true" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="validate" />
 			<property name="hibernate.archive.autodetection" value="class, hbm" />
 		</properties>
 

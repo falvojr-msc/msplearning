@@ -14,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ForeignKey;
-
 @Entity
 @Table(name = "tb_feature")
 public class Feature implements Serializable {
@@ -44,7 +42,6 @@ public class Feature implements Serializable {
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_parent")
-	@ForeignKey(name = "fk_tb_feature_2_tb_feature")
 	private Set<Feature> children;
 
 	public Feature() {

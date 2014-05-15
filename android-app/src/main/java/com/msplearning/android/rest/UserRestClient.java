@@ -21,6 +21,6 @@ public interface UserRestClient extends RestClientSupport {
 	@Post("/user/auth")
 	Response<User> authenticate(User user);
 
-	@Get("/user/{username}")
-	Response<Void> findByUsername(String username);
+	@Get("/user/{email}")
+	Response<Void> findByUsername(String email);
 }

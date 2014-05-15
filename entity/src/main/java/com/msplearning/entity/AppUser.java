@@ -31,7 +31,7 @@ public class AppUser implements Serializable {
 	private AppUserId id;
 
 	@Column(name = "date_request", nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateRequest;
 
 	@Column(name = "active", nullable = false)

@@ -19,16 +19,16 @@ public class UserService extends BaseService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public User authenticate(String username, String password) {
-		User user = this.userRepository.authenticate(username, password);
+	public User authenticate(String email, String password) {
+		User user = this.userRepository.authenticate(email, password);
 		if (user == null) {
 			throw new BusinessException(super.getMessage("project.messages.mi0001"));
 		}
 		return user;
 	}
 
-	public void verifyUsername(String username) {
-		User user = this.userRepository.findByUsername(username);
+	public void verifyUsername(String email) {
+		User user = this.userRepository.findByUsername(email);
 		if (user == null) {
 			throw new BusinessException(super.getMessage("project.messages.mi0002"));
 		}

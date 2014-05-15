@@ -63,14 +63,14 @@ public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearning
 		super.showLoadingProgressDialog();
 		this.asyncFindDisciplines();
 	}
-	
+
 	@Background
 	protected void asyncFindDisciplines() {
 		List<Discipline> disciplines = this.mDisciplineRestClient.findAll().getEntity();
 		this.bindDisciplines(disciplines);
 		super.dismissProgressDialog();
 	}
-	
+
 	@UiThread
 	protected void bindDisciplines(List<Discipline> disciplines) {
 		this.mDisciplineAdapter.setContent(disciplines);
@@ -108,11 +108,11 @@ public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearning
 			OnClickListener listenerYes = new OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int whichButton) {
-					asyncDiscardDiscipline(selectedDiscipline.getId());
+					DisciplineListActivity.this.asyncDiscardDiscipline(selectedDiscipline.getId());
 				}
-				
+
 			};
-			this.showDialogConfirm( this.getString(R.string.dialog_title_register), this.getString(R.string.dialog_message_register), listenerYes, null);
+			this.showDialogConfirm( this.getString(R.string.dialog_title_discard), this.getString(R.string.dialog_message_discard), listenerYes, null);
 			break;
 		}
 		return true;
@@ -130,7 +130,7 @@ public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearning
 
 	private void showMessageFromResult(int resultCode, int idResource) {
 		if (resultCode == RESULT_OK) {
-			reloadDisciplinesShowingToastMessage(idResource);
+			this.reloadDisciplinesShowingToastMessage(idResource);
 		} else if (resultCode == RESULT_CANCELED) {
 			this.showDialogAlert("Unexpected error", null);
 		}
@@ -139,9 +139,9 @@ public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearning
 	@Background
 	protected void asyncDiscardDiscipline(Long id) {
 		DisciplineListActivity.this.mDisciplineRestClient.delete(id);
-		reloadDisciplinesShowingToastMessage(R.string.toast_discard_discipline_success);
+		this.reloadDisciplinesShowingToastMessage(R.string.toast_discard_discipline_success);
 	}
-	
+
 	@UiThread
 	protected void reloadDisciplinesShowingToastMessage(int idResource) {
 		Toast.makeText(this, super.getString(idResource), Toast.LENGTH_SHORT).show();

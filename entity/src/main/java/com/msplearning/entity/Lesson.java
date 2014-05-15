@@ -3,21 +3,15 @@ package com.msplearning.entity;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.AssociationOverride;
-import javax.persistence.AssociationOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ForeignKey;
 
 /**
  * The Lesson class.
@@ -27,8 +21,6 @@ import org.hibernate.annotations.ForeignKey;
 @Entity
 @Table(name = "tb_lesson")
 @SequenceGenerator(name = "sequenceLesson", sequenceName = "sq_tb_lesson")
-@AssociationOverrides({
-	@AssociationOverride(name = "discipline", joinColumns = @JoinColumn(name = "id_discipline", nullable = false)) })
 public class Lesson implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,24 +33,23 @@ public class Lesson implements Serializable {
 	@Column(name = "name", length = 50, nullable = false)
 	private String name;
 
-	@ManyToOne
-	@ForeignKey(name = "fk_tb_lesson_2_tb_discipline")
-	private Discipline discipline;
+	@Column(name = "id_discipline", nullable = false)
+	private Long idDiscipline;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lesson", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "lesson", cascade = CascadeType.ALL)
 	private Set<Slide> slides;
-	
+
 	public Lesson() {
 		super();
 	}
-	
+
 	public Lesson(Long id) {
 		super();
 		this.id = id;
 	}
 
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
@@ -66,23 +57,23 @@ public class Lesson implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public Discipline getDiscipline() {
-		return discipline;
+	public Long getIdDiscipline() {
+		return this.idDiscipline;
 	}
 
-	public void setDiscipline(Discipline discipline) {
-		this.discipline = discipline;
+	public void setIdDiscipline(Long idDiscipline) {
+		this.idDiscipline = idDiscipline;
 	}
 
 	public Set<Slide> getSlides() {
-		return slides;
+		return this.slides;
 	}
 
 	public void setSlides(Set<Slide> slides) {

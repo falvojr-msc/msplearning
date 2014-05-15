@@ -21,10 +21,10 @@ public class UserRepositoryJpa extends GenericRepositoryJpa<User, Long> implemen
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public User authenticate(String username, String password) {
-		String jpql = "FROM User WHERE username = :username AND password = :password";
+	public User authenticate(String email, String password) {
+		String jpql = "FROM User WHERE email = :email AND password = :password";
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("username", username);
+		params.put("email", email);
 		params.put("password", password);
 		List<User> users = (List<User>) this.findByJPQL(jpql, params);
 		return this.firstOrDefault(users);
@@ -32,10 +32,10 @@ public class UserRepositoryJpa extends GenericRepositoryJpa<User, Long> implemen
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public User findByUsername(String username) {
-		String jpql = "FROM User WHERE username = :username";
+	public User findByUsername(String email) {
+		String jpql = "FROM User WHERE email = :email";
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("username", username);
+		params.put("email", email);
 		List<User> users = (List<User>) this.findByJPQL(jpql, params);
 		return this.firstOrDefault(users);
 	}

@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.ForeignKey;
-
 /**
  * The UserAppId class.
  *
@@ -18,11 +16,9 @@ public class AppUserId implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@ForeignKey(name = "fk_tb_app_user_2_tb_app")
 	private App app;
 
 	@ManyToOne
-	@ForeignKey(name = "fk_tb_app_user_2_tb_user")
 	private User user;
 
 	public AppUserId() {
@@ -30,10 +26,10 @@ public class AppUserId implements Serializable {
 	}
 
 	public AppUserId(Long idApp, Long idUser) {
-	super();
-	this.app = new App(idApp);
-	this.user = new User(idUser);
-}
+		super();
+		this.app = new App(idApp);
+		this.user = new User(idUser);
+	}
 
 	public App getApp() {
 		return this.app;

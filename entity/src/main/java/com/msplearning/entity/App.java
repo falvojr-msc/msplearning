@@ -37,17 +37,11 @@ public class App implements Serializable {
 	private String name;
 
 	@Column(name = "date_creation", nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreation;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "id.app", cascade = CascadeType.ALL)
 	private Set<AppFeature> appFeatures;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id.app", cascade = CascadeType.ALL)
-	private Set<AppUser> appUsers;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "app", cascade = CascadeType.ALL)
-	private Set<Discipline> disciplines;
 
 	public App() {
 		super();
@@ -88,22 +82,6 @@ public class App implements Serializable {
 
 	public void setAppFeatures(Set<AppFeature> appFeatures) {
 		this.appFeatures = appFeatures;
-	}
-
-	public Set<AppUser> getAppUsers() {
-		return this.appUsers;
-	}
-
-	public void setAppUsers(Set<AppUser> appUsers) {
-		this.appUsers = appUsers;
-	}
-
-	public Set<Discipline> getDisciplines() {
-		return this.disciplines;
-	}
-
-	public void setDisciplines(Set<Discipline> disciplines) {
-		this.disciplines = disciplines;
 	}
 
 	@Override

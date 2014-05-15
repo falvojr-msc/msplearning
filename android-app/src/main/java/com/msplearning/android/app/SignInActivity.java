@@ -127,13 +127,13 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	protected void authenticate() {
 
 		final User userAuth = new User();
-		userAuth.setUsername(this.mUsername);
+		userAuth.setEmail(this.mUsername);
 		userAuth.setPassword(this.mPassword);
 
 		try {
 			Response<User> responseAuth = this.mUserRESTfulClient.authenticate(userAuth);
 			if (responseAuth.hasBusinessMessage()) {
-				final Response<Void> responseUsername = this.mUserRESTfulClient.findByUsername(userAuth.getUsername());
+				final Response<Void> responseUsername = this.mUserRESTfulClient.findByUsername(userAuth.getEmail());
 				if (responseUsername.hasBusinessMessage()) {
 
 					OnClickListener listenerYes = new OnClickListener() {

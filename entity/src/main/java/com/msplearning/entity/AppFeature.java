@@ -13,8 +13,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_app_feature")
 @AssociationOverrides({
-		@AssociationOverride(name = "id.app", joinColumns = @JoinColumn(name = "id_app", nullable = false)),
-		@AssociationOverride(name = "id.feature", joinColumns = @JoinColumn(name = "id_feature", nullable = false)) })
+	@AssociationOverride(name = "id.app", joinColumns = @JoinColumn(name = "id_app", nullable = false)),
+	@AssociationOverride(name = "id.feature", joinColumns = @JoinColumn(name = "id_feature", nullable = false)) })
 public class AppFeature implements Serializable {
 
 	private static final long serialVersionUID = 1L;

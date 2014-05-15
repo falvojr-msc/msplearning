@@ -73,7 +73,7 @@ public class UserManagerActivity extends GenericAsyncActivity<MSPLearningApplica
 		user.setFirstName(this.mFirstNameView.getText().toString());
 		user.setLastName(this.mLastNameView.getText().toString());
 		user.setGender(this.mGenderView.indexOfChild(this.findViewById(this.mGenderView.getCheckedRadioButtonId())) == 0 ? Gender.M : Gender.F);
-		user.setUsername(this.mUsernameView.getText().toString());
+		user.setEmail(this.mUsernameView.getText().toString());
 		user.setPassword(this.mPasswordView.getText().toString());
 
 		this.insertUser(user);
