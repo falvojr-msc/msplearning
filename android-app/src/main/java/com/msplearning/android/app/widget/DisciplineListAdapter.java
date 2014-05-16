@@ -1,8 +1,8 @@
-package com.msplearning.android.widget;
+package com.msplearning.android.app.widget;
 
 import org.androidannotations.annotations.EBean;
 
-import com.msplearning.android.widget.generic.AbstractListAdapter;
+import com.msplearning.android.app.widget.generic.AbstractListAdapter;
 import com.msplearning.entity.Discipline;
 
 @EBean

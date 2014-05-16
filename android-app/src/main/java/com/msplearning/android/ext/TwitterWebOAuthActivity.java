@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.msplearning.android.app.ext;
+package com.msplearning.android.ext;
 
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
@@ -33,7 +33,7 @@ import android.os.Bundle;
 
 import com.msplearning.android.app.MSPLearningApplication;
 import com.msplearning.android.app.R;
-import com.msplearning.android.app.ext.generic.AbstractWebViewActivity;
+import com.msplearning.android.ext.generic.AbstractWebViewActivity;
 
 /**
  * The TwitterWebOAuthActivity class, the activity for OAuth Twitter login.

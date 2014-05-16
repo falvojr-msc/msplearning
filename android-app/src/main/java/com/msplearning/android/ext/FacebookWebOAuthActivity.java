@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.msplearning.android.app.ext;
+package com.msplearning.android.ext;
 
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
@@ -38,7 +38,7 @@ import android.widget.Toast;
 
 import com.msplearning.android.app.MSPLearningApplication;
 import com.msplearning.android.app.R;
-import com.msplearning.android.app.ext.generic.AbstractWebViewActivity;
+import com.msplearning.android.ext.generic.AbstractWebViewActivity;
 
 /**
  * The FacebookWebOAuthActivity class, the activity for OAuth Facebook login.

@@ -10,7 +10,7 @@ import org.androidannotations.annotations.rest.RestService;
 import android.widget.EditText;
 
 import com.msplearning.android.app.generic.GenericAsyncActivity;
-import com.msplearning.android.rest.DisciplineRestClient;
+import com.msplearning.android.app.rest.DisciplineRestClient;
 import com.msplearning.entity.Discipline;
 
 /**

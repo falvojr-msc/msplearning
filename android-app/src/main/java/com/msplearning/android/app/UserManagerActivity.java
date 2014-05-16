@@ -12,8 +12,8 @@ import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
 import com.msplearning.android.app.generic.GenericAsyncActivity;
-import com.msplearning.android.rest.StudentRestClient;
-import com.msplearning.android.rest.TeacherRestClient;
+import com.msplearning.android.app.rest.StudentRestClient;
+import com.msplearning.android.app.rest.TeacherRestClient;
 import com.msplearning.entity.Gender;
 import com.msplearning.entity.Student;
 import com.msplearning.entity.Teacher;

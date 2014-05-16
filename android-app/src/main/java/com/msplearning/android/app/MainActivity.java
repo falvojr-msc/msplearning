@@ -10,7 +10,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.rest.RestService;
 
 import com.msplearning.android.app.generic.GenericAsyncActivity;
-import com.msplearning.android.rest.AppRestClient;
+import com.msplearning.android.app.rest.AppRestClient;
 import com.msplearning.entity.AppFeature;
 import com.msplearning.entity.AppUserId;
 import com.msplearning.entity.Variability;

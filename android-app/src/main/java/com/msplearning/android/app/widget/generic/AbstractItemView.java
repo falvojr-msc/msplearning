@@ -1,4 +1,4 @@
-package com.msplearning.android.widget.generic;
+package com.msplearning.android.app.widget.generic;
 
 import java.io.Serializable;
 

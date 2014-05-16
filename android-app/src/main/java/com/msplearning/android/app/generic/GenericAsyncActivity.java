@@ -13,7 +13,7 @@ import android.content.DialogInterface.OnClickListener;
 
 import com.msplearning.android.app.MSPLearningApplication;
 import com.msplearning.android.app.R;
-import com.msplearning.android.app.ext.generic.AbstractAsyncActivity;
+import com.msplearning.android.ext.generic.AbstractAsyncActivity;
 
 /**
  * The GenericAsyncRestActivity class extends {@link AbstractAsyncActivity}. Technical adaptation of the bug (java.io.EOFException) already known by Spring and Google

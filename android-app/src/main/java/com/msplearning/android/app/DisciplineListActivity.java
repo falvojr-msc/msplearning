@@ -25,8 +25,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
-import com.msplearning.android.rest.DisciplineRestClient;
-import com.msplearning.android.widget.DisciplineListAdapter;
+import com.msplearning.android.app.rest.DisciplineRestClient;
+import com.msplearning.android.app.widget.DisciplineListAdapter;
 import com.msplearning.entity.Discipline;
 
 /**

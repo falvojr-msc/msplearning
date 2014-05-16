@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
-import com.msplearning.android.rest.AppUserRestClient;
+import com.msplearning.android.app.rest.AppUserRestClient;
 import com.msplearning.entity.AppUser;
 import com.msplearning.entity.AppUserId;
 import com.msplearning.entity.Teacher;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.msplearning.android.app.ext.generic;
+package com.msplearning.android.ext.generic;
 
 import android.app.Activity;
 import android.app.Application;

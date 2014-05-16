@@ -20,10 +20,10 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.msplearning.android.app.ext.FacebookWebOAuthActivity;
-import com.msplearning.android.app.ext.TwitterWebOAuthActivity;
 import com.msplearning.android.app.generic.GenericAsyncActivity;
-import com.msplearning.android.rest.UserRestClient;
+import com.msplearning.android.app.rest.UserRestClient;
+import com.msplearning.android.ext.FacebookWebOAuthActivity;
+import com.msplearning.android.ext.TwitterWebOAuthActivity;
 import com.msplearning.entity.User;
 import com.msplearning.entity.common.Response;
 

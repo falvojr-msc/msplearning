@@ -13,8 +13,8 @@ import org.androidannotations.annotations.rest.RestService;
 import android.widget.ListView;
 
 import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
-import com.msplearning.android.rest.AppUserRestClient;
-import com.msplearning.android.widget.UserRequestListAdapter;
+import com.msplearning.android.app.rest.AppUserRestClient;
+import com.msplearning.android.app.widget.UserRequestListAdapter;
 import com.msplearning.entity.AppUser;
 import com.msplearning.entity.AppUserId;
 

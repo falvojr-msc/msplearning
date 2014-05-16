@@ -20,12 +20,17 @@
 
         <!-- Internal Activities -->
 
-        <activity
-            android:name=".MainActivity_"
-            android:noHistory="true" >
+        <activity 
+            android:name="com.msplearning.android.app.fragment.SlideListActivity_" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity_">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -64,7 +69,7 @@
 
         <!-- External Activities -->
         <activity
-            android:name=".ext.FacebookWebOAuthActivity"
+            android:name="com.msplearning.android.ext.FacebookWebOAuthActivity"
             android:excludeFromRecents="true"
             android:noHistory="true"
             android:parentActivityName=".SignInActivity_" >
@@ -73,7 +78,7 @@
                 android:value=".SignInActivity_" />
         </activity>
         <activity
-            android:name=".ext.TwitterWebOAuthActivity"
+            android:name="com.msplearning.android.ext.TwitterWebOAuthActivity"
             android:excludeFromRecents="true"
             android:noHistory="true"
             android:parentActivityName=".SignInActivity_" >

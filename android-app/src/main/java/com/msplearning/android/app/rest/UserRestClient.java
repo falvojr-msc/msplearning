@@ -1,12 +1,11 @@
-package com.msplearning.android.rest;
+package com.msplearning.android.app.rest;
 
 import org.androidannotations.annotations.rest.Get;
 import org.androidannotations.annotations.rest.Post;
 import org.androidannotations.annotations.rest.Rest;
 import org.androidannotations.api.rest.RestClientSupport;
 
-import com.msplearning.android.rest.generic.RestServerUrl;
-import com.msplearning.android.rest.json.CustomGsonHttpMessageConverter;
+import com.msplearning.android.app.rest.json.CustomGsonHttpMessageConverter;
 import com.msplearning.entity.User;
 import com.msplearning.entity.common.Response;
 
@@ -15,7 +14,7 @@ import com.msplearning.entity.common.Response;
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
-@Rest(rootUrl = RestServerUrl.DEBUG, converters = { CustomGsonHttpMessageConverter.class })
+@Rest(rootUrl = RestServerUtil.DEBUG, converters = { CustomGsonHttpMessageConverter.class })
 public interface UserRestClient extends RestClientSupport {
 
 	@Post("/user/auth")
