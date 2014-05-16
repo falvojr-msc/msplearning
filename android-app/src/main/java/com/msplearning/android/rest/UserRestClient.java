@@ -22,5 +22,5 @@ public interface UserRestClient extends RestClientSupport {
 	Response<User> authenticate(User user);
 
 	@Get("/user/{email}")
-	Response<Void> findByUsername(String email);
+	Response<Void> verifyEmail(String email);
 }

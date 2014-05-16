@@ -91,6 +91,7 @@ public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearning
 
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
+		menu.setHeaderTitle(this.getString(R.string.context_menu_title));
 		super.onCreateContextMenu(menu, view, menuInfo);
 		super.getMenuInflater().inflate(R.menu.contextual_discipline_list , menu);
 	}

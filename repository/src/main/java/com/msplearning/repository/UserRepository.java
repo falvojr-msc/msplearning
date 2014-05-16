@@ -13,5 +13,5 @@ public interface UserRepository extends GenericRepository<User, Long> {
 
 	User authenticate(String email, String password);
 
-	User findByUsername(String email);
+	User findByEmail(String email);
 }

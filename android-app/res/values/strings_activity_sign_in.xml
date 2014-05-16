@@ -1,7 +1,7 @@
 <resources>
 	
     <!-- Hint strings -->
-    <string name="prompt_username">Username</string>
+    <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     
     <!-- Buttons strings -->
@@ -11,7 +11,8 @@
     
     <!-- Errors strings -->
     <string name="error_invalid_password">This password is too short</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="error_required">This field is required</string>
+    <string name="error_invalid_email">Invalid email address</string>
     
     <!-- Dialog strings -->
     <string name="dialog_title_register">Confirm registration</string>

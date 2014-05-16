@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -36,24 +37,24 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 
 	// Intent's extra keys
 	public static final String EXTRA_KEY_PASSWORD = "activity.user.password";
-	public static final String EXTRA_KEY_USERNAME = "activity.user.username";
+	public static final String EXTRA_KEY_EMAIL = "activity.user.email";
 
 	// Intent's request code
 	private static final int REQUEST_CODE_USER_REGISTER = 0;
 
 	// Values for email and password at the time of the login attempt.
-	private String mUsername;
+	private String mEmail;
 	private String mPassword;
 
 	// UI references.
-	@ViewById(R.id.username)
-	protected EditText mUsernameView;
+	@ViewById(R.id.email)
+	protected EditText mEmailView;
 	@ViewById(R.id.password)
 	protected EditText mPasswordView;
 
 	// RESTful client.
 	@RestService
-	protected UserRestClient mUserRESTfulClient;
+	protected UserRestClient mUserRestClient;
 
 	@AfterViews
 	protected void init() {
@@ -73,11 +74,11 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	protected void onSignIn() {
 
 		// Reset errors.
-		this.mUsernameView.setError(null);
+		this.mEmailView.setError(null);
 		this.mPasswordView.setError(null);
 
 		// Store values at the time of the login attempt.
-		this.mUsername = this.mUsernameView.getText().toString();
+		this.mEmail = this.mEmailView.getText().toString();
 		this.mPassword = this.mPasswordView.getText().toString();
 
 		boolean cancel = false;
@@ -86,15 +87,16 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 		// Check for a valid password.
 		boolean isEmpty = TextUtils.isEmpty(this.mPassword);
 		if (isEmpty || (this.mPassword.length() < 4)) {
-			this.mPasswordView.setError(this.getString(isEmpty ? R.string.error_field_required : R.string.error_invalid_password));
+			this.mPasswordView.setError(this.getString(isEmpty ? R.string.error_required : R.string.error_invalid_password));
 			focusView = this.mPasswordView;
 			cancel = true;
 		}
 
-		// Check for a valid username.
-		if (TextUtils.isEmpty(this.mUsername)) {
-			this.mUsernameView.setError(this.getString(R.string.error_field_required));
-			focusView = this.mUsernameView;
+		// Check for a valid email.
+		final boolean isEmptyEmail = TextUtils.isEmpty(this.mEmail);
+		if (isEmptyEmail || !Patterns.EMAIL_ADDRESS.matcher(this.mEmail).matches()) {
+			this.mEmailView.setError(this.getString(isEmptyEmail ? R.string.error_required : R.string.error_invalid_email));
+			focusView = this.mEmailView;
 			cancel = true;
 		}
 
@@ -127,20 +129,20 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	protected void authenticate() {
 
 		final User userAuth = new User();
-		userAuth.setEmail(this.mUsername);
+		userAuth.setEmail(this.mEmail);
 		userAuth.setPassword(this.mPassword);
 
 		try {
-			Response<User> responseAuth = this.mUserRESTfulClient.authenticate(userAuth);
+			Response<User> responseAuth = this.mUserRestClient.authenticate(userAuth);
 			if (responseAuth.hasBusinessMessage()) {
-				final Response<Void> responseUsername = this.mUserRESTfulClient.findByUsername(userAuth.getEmail());
-				if (responseUsername.hasBusinessMessage()) {
+				final Response<Void> responseUser = this.mUserRestClient.verifyEmail(userAuth.getEmail());
+				if (responseUser.hasBusinessMessage()) {
 
 					OnClickListener listenerYes = new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int whichButton) {
 							Intent intent = UserManagerActivity_.intent(SignInActivity.this).get();
-							intent.putExtra(EXTRA_KEY_USERNAME, SignInActivity.this.mUsername);
+							intent.putExtra(EXTRA_KEY_EMAIL, SignInActivity.this.mEmail);
 							intent.putExtra(EXTRA_KEY_PASSWORD, SignInActivity.this.mPassword);
 							SignInActivity.this.startActivityForResult(intent, REQUEST_CODE_USER_REGISTER);
 						}
@@ -148,7 +150,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 					OnClickListener listenerNo = new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int whichButton) {
-							SignInActivity.this.showFieldError(SignInActivity.this.mUsernameView, responseUsername.getBusinessMessage());
+							SignInActivity.this.showFieldError(SignInActivity.this.mEmailView, responseUser.getBusinessMessage());
 						}
 					};
 

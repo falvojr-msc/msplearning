@@ -27,8 +27,8 @@ public class UserService extends BaseService {
 		return user;
 	}
 
-	public void verifyUsername(String email) {
-		User user = this.userRepository.findByUsername(email);
+	public void verifyEmail(String email) {
+		User user = this.userRepository.findByEmail(email);
 		if (user == null) {
 			throw new BusinessException(super.getMessage("project.messages.mi0002"));
 		}

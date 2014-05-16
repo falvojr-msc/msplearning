@@ -50,7 +50,7 @@ public class UserManagerActivity extends GenericAsyncActivity<MSPLearningApplica
 
 	@AfterViews
 	public void init() {
-		String username = this.getIntent().getStringExtra(SignInActivity.EXTRA_KEY_USERNAME);
+		String username = this.getIntent().getStringExtra(SignInActivity.EXTRA_KEY_EMAIL);
 		if (username != null) {
 			this.mUsernameView.setText(username);
 		}
@@ -61,7 +61,7 @@ public class UserManagerActivity extends GenericAsyncActivity<MSPLearningApplica
 		}
 
 		// Remove used Intent's extras
-		this.getIntent().removeExtra(SignInActivity.EXTRA_KEY_USERNAME);
+		this.getIntent().removeExtra(SignInActivity.EXTRA_KEY_EMAIL);
 		this.getIntent().removeExtra(SignInActivity.EXTRA_KEY_PASSWORD);
 	}
 

@@ -4,11 +4,14 @@
     <!-- Application strings -->
     <string name="app_name">M-SPLearning</string>
     
-    <!-- Dialog strings -->
+    <!-- Dialog common strings -->
     <string name="dialog_title_discard">Confirmation of discard</string>
     <string name="dialog_title_error">Error</string>
     
-    <!-- Buttons common strings -->
+    <!-- Context menu common strings -->
+    <string name="context_menu_title">Options</string>
+    
+    <!-- Actions common strings -->
     <string name="action_new">New</string>
     <string name="action_edit">Edit</string>
     <string name="action_discard">Discard</string>

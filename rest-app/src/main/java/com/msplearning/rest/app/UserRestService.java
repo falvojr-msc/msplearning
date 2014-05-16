@@ -30,17 +30,17 @@ public class UserRestService {
 	@POST
 	public Response<User> authenticate(User user) {
 		try {
-			return new Response<User>(Status.OK, this.userService.authenticate(user.getUsername(), user.getPassword()));
+			return new Response<User>(Status.OK, this.userService.authenticate(user.getEmail(), user.getPassword()));
 		} catch (BusinessException businessException) {
 			return new Response<User>(Status.OK, businessException);
 		}
 	}
 
-	@Path("{username}")
+	@Path("{email}")
 	@GET
-	public Response<Void> verifyUsername(@PathParam("username") String username) {
+	public Response<Void> verifyEmail(@PathParam("email") String email) {
 		try {
-			this.userService.verifyUsername(username);
+			this.userService.verifyEmail(email);
 			return new Response<Void>(Status.OK);
 		} catch (BusinessException businessException) {
 			return new Response<Void>(Status.OK, businessException);

@@ -6,7 +6,6 @@
     <string name="toast_discard_discipline_success">Discipline discarded successfully.</string>
     
     <!-- Dialog strings -->
-    <string name="dialog_title_discard">Confirmation of discard</string>
     <string name="dialog_message_discard">This discipline will be discarded. Want to confirm?</string>
 
 </resources>

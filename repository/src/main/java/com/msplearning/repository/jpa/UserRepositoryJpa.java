@@ -32,7 +32,7 @@ public class UserRepositoryJpa extends GenericRepositoryJpa<User, Long> implemen
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public User findByUsername(String email) {
+	public User findByEmail(String email) {
 		String jpql = "FROM User WHERE email = :email";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("email", email);
