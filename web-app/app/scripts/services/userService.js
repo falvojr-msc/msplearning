@@ -2,7 +2,7 @@
 
 angular.module('msplearningApp').service('userService', function ($cookies, $http) {
 
-	var BASE_URL = "http://192.168.1.104:8080/rest-app/rest/";
+	var BASE_URL = "http://192.168.1.103:8080/rest-app/rest/";
 	$cookies.user = null;
 
 	this.getAuthenticatedUser = function() {
@@ -11,15 +11,15 @@ angular.module('msplearningApp').service('userService', function ($cookies, $htt
 	};	
 
 	this.login = function(user, success, error) {
-		//$http.post(BASE_URL + "user/auth/", user)
-		//.success(function(data, status, headers, config){
-		//	$cookies.user = JSON.stringfy(data.entity);
-			$cookies.user = JSON.stringify({firstName:"geremias"});
+		$http.post(BASE_URL + "user/auth/", user)
+		.success(function(data, status, headers, config){
+			$cookies.user = JSON.stringify(data.entity.properties);
+			// $cookies.user = JSON.stringify({firstName:"geremias"});
 			success();
-		//})
-		//.error(function(data, status, headers, config){
-		//	error(data);
-		//});
+		})
+		.error(function(data, status, headers, config){
+			error(data);
+		});
 	};
 
 	this.logout = function() {
