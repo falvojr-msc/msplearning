@@ -15,9 +15,9 @@
 						<li data-ng-repeat="feature in features">
 							{{feature.name}} 
 							<input type="checkbox" data-ng-model="feature.selected" data-ng-disabled="feature.isMandatory">
-							<div ng-switch on="feature.children.length > 0">
-								<div ng-switch-when="true">
-									<div ng-init="features = feature.children" ng-include="'partialFeacture'">
+							<div data-ng-switch on="feature.children.length > 0">
+								<div data-ng-switch-when="true">
+									<div ng-init="features = feature.children" data-ng-include="'partialFeacture'">
 									</div>
 								</div>
 							</div>
@@ -28,6 +28,8 @@
 				<div ng-include="'partialFeacture'"></div>
 
 				<button type="button" class="btn btn-success" data-ng-click="test()">Create</button>
+
+				<button type="button" class="btn btn-danger" data-ng-click="cancel()">Cancel</button>
 			</form>	
 		</div>
 	</div>

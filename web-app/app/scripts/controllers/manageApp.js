@@ -6,7 +6,7 @@ angular.module('msplearningApp').controller('ManageAppsCtrl', function ($scope, 
 		APP_MANAGER : "APP_MANAGER"
 	};
 
-	$scope.flow = $scope.flows.NEW;
+	$scope.flow = $scope.flows.APP_MANAGER;
 	$scope.app = {};
     $scope.apps = [];
     $scope.features = [];

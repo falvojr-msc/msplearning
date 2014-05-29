@@ -8,7 +8,7 @@ angular.module('msplearningApp').controller('SigninCtrl', function ($scope, $loc
 
 	$scope.flow = $scope.flows.LOGIN;
 
-	$scope.user = {};
+	$scope.user = { gender : 'M' };
 
 	$scope.confirmPassword = "";
 
@@ -17,7 +17,8 @@ angular.module('msplearningApp').controller('SigninCtrl', function ($scope, $loc
 	}
 
 	$scope.cancel = function() {
-		$scope.user = {};
+		$scope.user = { gender : 'M' };
+		$scope.confirmPassword = "";
 		$scope.flow = $scope.flows.LOGIN;
 	}
 
