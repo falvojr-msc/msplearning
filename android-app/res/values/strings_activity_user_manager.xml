@@ -11,8 +11,5 @@
     <string name="prompt_female">Female</string>
     <string name="prompt_teacher">Teacher</string>
     <string name="prompt_student">Student</string>
-    
-    <!-- Buttons strings -->
-    <string name="action_register">Register</string>
 
 </resources>

@@ -2,12 +2,5 @@
 
     <!-- Labels strings -->
     <string name="label_discipline_manager">Discipline Form</string>
-    
-    <!-- Hints strings -->
-    <string name="prompt_name">Name</string>
-    <string name="prompt_description">Description</string>
-    
-    <!-- Buttons strings -->
-    <string name="action_save">Save</string>
-    
+
 </resources>

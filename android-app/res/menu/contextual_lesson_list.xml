@@ -2,8 +2,8 @@
     xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
 
     <item
-        android:id="@+id/action_manage_lessons"
-        android:title="@string/action_manage_lessons"/>
+        android:id="@+id/action_manage_slides"
+        android:title="@string/action_manage_slides"/>
     <item
         android:id="@+id/action_edit"
         android:title="@string/action_edit"/>

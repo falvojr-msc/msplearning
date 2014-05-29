@@ -20,13 +20,6 @@
 
         <!-- Internal Activities -->
 
-        <activity 
-            android:name="com.msplearning.android.app.fragment.SlideListActivity_" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".MainActivity_">
             <intent-filter>
@@ -58,6 +51,20 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DisciplineListActivity_" />
+        </activity>
+        <activity
+            android:name=".LessonListActivity_"
+            android:parentActivityName=".DisciplineListActivity_" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DisciplineListActivity_" />
+        </activity>
+        <activity
+            android:name=".LessonManagerActivity_"
+            android:parentActivityName=".LessonListActivity_" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LessonListActivity_" />
         </activity>
         <activity
             android:name=".AccessRequestsActivity_"

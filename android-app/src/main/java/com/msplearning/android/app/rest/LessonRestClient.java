@@ -10,29 +10,32 @@ import org.androidannotations.annotations.rest.Rest;
 import org.androidannotations.api.rest.RestClientSupport;
 
 import com.msplearning.android.app.rest.json.CustomGsonHttpMessageConverter;
-import com.msplearning.entity.Discipline;
+import com.msplearning.entity.Lesson;
 import com.msplearning.entity.common.Response;
 
 /**
- * The DisciplineRestClient interface provides the RESTful services of {@link Discipline} entity.
+ * The LessonRestClient interface provides the RESTful services of {@link Lesson} entity.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Rest(rootUrl = RestServerUtil.DEBUG, converters = { CustomGsonHttpMessageConverter.class })
-public interface DisciplineRestClient extends RestClientSupport {
+public interface LessonRestClient extends RestClientSupport {
 
-	@Post("/discipline")
-	Response<Discipline> insert(Discipline discipline);
+	@Post("/lesson")
+	Response<Lesson> insert(Lesson lesson);
 
-	@Put("/discipline")
-	Response<Discipline> update(Discipline discipline);
+	@Put("/lesson")
+	Response<Lesson> update(Lesson lesson);
 
-	@Get("/discipline/{id}")
-	Response<Discipline> findById(Long id);
+	@Get("/lesson/{id}")
+	Response<Lesson> findById(Long id);
 
-	@Get("/discipline")
-	Response<List<Discipline>> findAll();
+	@Get("/lesson")
+	Response<List<Lesson>> findAll();
 
-	@Delete("/discipline/{id}")
+	@Delete("/lesson/{id}")
 	Response<Void> delete(Long id);
+
+	@Post("/lesson/discipline")
+	Response<List<Lesson>> findByDiscipline(Long idDiscipline);
 }

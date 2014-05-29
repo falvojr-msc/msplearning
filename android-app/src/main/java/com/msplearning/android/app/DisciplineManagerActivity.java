@@ -9,7 +9,7 @@ import org.androidannotations.annotations.rest.RestService;
 
 import android.widget.EditText;
 
-import com.msplearning.android.app.generic.GenericAsyncActivity;
+import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
 import com.msplearning.android.app.rest.DisciplineRestClient;
 import com.msplearning.entity.Discipline;
 
@@ -19,7 +19,7 @@ import com.msplearning.entity.Discipline;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_discipline_manager)
-public class DisciplineManagerActivity extends GenericAsyncActivity<MSPLearningApplication> {
+public class DisciplineManagerActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
 
 	@ViewById(R.id.discipline_name)
 	protected EditText mName;

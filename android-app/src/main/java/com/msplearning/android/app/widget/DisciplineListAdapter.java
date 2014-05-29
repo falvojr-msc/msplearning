@@ -12,5 +12,4 @@ public class DisciplineListAdapter extends AbstractListAdapter<Discipline, Disci
 	public DisciplineItemView buildSpecificViewUsingAA() {
 		return DisciplineItemView_.build(super.mContext);
 	}
-
 }

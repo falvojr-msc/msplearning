@@ -1,11 +1,6 @@
 <resources>
+ 
+     <!-- Actions strings -->
+     <string name="action_manage_lessons">Manage lessons</string>
     
-    <!-- Toast strings -->
-    <string name="toast_new_discipline_success">Discipline included successfully.</string>
-    <string name="toast_edit_discipline_success">Discipline edited successfully.</string>
-    <string name="toast_discard_discipline_success">Discipline discarded successfully.</string>
-    
-    <!-- Dialog strings -->
-    <string name="dialog_message_discard">This discipline will be discarded. Want to confirm?</string>
-
 </resources>

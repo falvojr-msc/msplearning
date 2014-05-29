@@ -1,15 +1,14 @@
 package com.msplearning.android.app;
 
 import java.util.List;
+import java.util.Locale;
 
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
-import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
@@ -20,13 +19,12 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
+import com.msplearning.android.app.generic.GenericActivityListView;
 import com.msplearning.android.app.rest.DisciplineRestClient;
 import com.msplearning.android.app.widget.DisciplineListAdapter;
+import com.msplearning.android.app.widget.generic.AbstractListAdapter;
 import com.msplearning.entity.Discipline;
 
 /**
@@ -35,12 +33,17 @@ import com.msplearning.entity.Discipline;
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_discipline_list)
-@OptionsMenu(R.menu.actionbar_discipline_list)
-public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
+@OptionsMenu(R.menu.actionbar)
+public class DisciplineListActivity extends GenericActivityListView<Discipline> {
 
 	private static final int REQUEST_CODE_NEW_DISCIPLINE = 0;
 	private static final int REQUEST_CODE_EDIT_DISCIPLINE = 1;
+	private static final int REQUEST_CODE_LESSONS = 2;
+
+	private static final String DISCIPLINE = "Discipline";
+
 	public static final String EXTRA_KEY_DISCIPLINE = "activity.discipline";
+	public static final String EXTRA_KEY_ID_DISCIPLINE = "activity.discipline.id";
 
 	@ViewById(R.id.list_view_disciplines)
 	protected ListView mListView;
@@ -51,42 +54,14 @@ public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearning
 	@RestService
 	protected DisciplineRestClient mDisciplineRestClient;
 
-	@AfterViews
-	protected void afterViews() {
-		// Register the mListView for contextual menu
-		this.registerForContextMenu(this.mListView);
-		// Async load disciplines on mListView
-		this.loadDisciplines();
+	@Override
+	protected ListView getListView() {
+		return this.mListView;
 	}
 
-	private void loadDisciplines() {
-		super.showLoadingProgressDialog();
-		this.asyncFindDisciplines();
-	}
-
-	@Background
-	protected void asyncFindDisciplines() {
-		List<Discipline> disciplines = this.mDisciplineRestClient.findAll().getEntity();
-		this.bindDisciplines(disciplines);
-		super.dismissProgressDialog();
-	}
-
-	@UiThread
-	protected void bindDisciplines(List<Discipline> disciplines) {
-		this.mDisciplineAdapter.setContent(disciplines);
-		this.mListView.setAdapter(this.mDisciplineAdapter);
-		this.mDisciplineAdapter.notifyDataSetChanged();
-	}
-
-	@OptionsItem(R.id.action_refresh)
-	protected void onRefresh() {
-		this.loadDisciplines();
-	}
-
-	@OptionsItem(R.id.action_new)
-	protected void onNew() {
-		Intent intent = DisciplineManagerActivity_.intent(this).get();
-		this.startActivityForResult(intent, REQUEST_CODE_NEW_DISCIPLINE);
+	@Override
+	protected AbstractListAdapter<Discipline, ?> getListAdapter() {
+		return this.mDisciplineAdapter;
 	}
 
 	@Override
@@ -96,42 +71,60 @@ public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearning
 		super.getMenuInflater().inflate(R.menu.contextual_discipline_list , menu);
 	}
 
+	@OptionsItem(R.id.action_refresh)
+	protected void onRefresh() {
+		this.loadListItens();
+	}
+
+	@OptionsItem(R.id.action_new)
+	protected void onNew() {
+		Intent intent = DisciplineManagerActivity_.intent(this).get();
+		this.startActivityForResult(intent, REQUEST_CODE_NEW_DISCIPLINE);
+	}
+
+	@OnActivityResult(REQUEST_CODE_NEW_DISCIPLINE)
+	protected void onResultNew(int resultCode) {
+		this.showMessageFromResult(resultCode, R.string.toast_new_success);
+	}
+
 	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-		final Discipline selectedDiscipline = this.mDisciplineAdapter.getItem(((AdapterContextMenuInfo) item.getMenuInfo()).position);
+	protected void onContextItemSelected(MenuItem item, final Discipline selectedItem) {
 		switch(item.getItemId()){
+		case R.id.action_manage_lessons:
+			Intent intentLessons = LessonListActivity_.intent(this).get();
+			intentLessons.putExtra(EXTRA_KEY_ID_DISCIPLINE, selectedItem.getId());
+			this.startActivityForResult(intentLessons, REQUEST_CODE_LESSONS);
+			break;
 		case R.id.action_edit:
-			Intent intent = DisciplineManagerActivity_.intent(this).get();
-			intent.putExtra(EXTRA_KEY_DISCIPLINE, selectedDiscipline);
-			this.startActivityForResult(intent, REQUEST_CODE_EDIT_DISCIPLINE);
+			Intent intentManageDiscipline = DisciplineManagerActivity_.intent(this).get();
+			intentManageDiscipline.putExtra(EXTRA_KEY_DISCIPLINE, selectedItem);
+			this.startActivityForResult(intentManageDiscipline, REQUEST_CODE_EDIT_DISCIPLINE);
 			break;
 		case R.id.action_discard:
 			OnClickListener listenerYes = new OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int whichButton) {
-					DisciplineListActivity.this.asyncDiscardDiscipline(selectedDiscipline.getId());
+					DisciplineListActivity.this.asyncDiscardDiscipline(selectedItem.getId());
 				}
-
 			};
-			this.showDialogConfirm( this.getString(R.string.dialog_title_discard), this.getString(R.string.dialog_message_discard), listenerYes, null);
+			this.showDialogConfirm( this.getString(R.string.dialog_title_discard), this.getString(R.string.dialog_message_discard, DISCIPLINE.toLowerCase(Locale.getDefault())), listenerYes, null);
 			break;
 		}
-		return true;
-	}
-
-	@OnActivityResult(REQUEST_CODE_NEW_DISCIPLINE)
-	protected void onResultNew(int resultCode) {
-		this.showMessageFromResult(resultCode, R.string.toast_new_discipline_success);
 	}
 
 	@OnActivityResult(REQUEST_CODE_EDIT_DISCIPLINE)
 	protected void onResultEdit(int resultCode) {
-		this.showMessageFromResult(resultCode, R.string.toast_edit_discipline_success);
+		this.showMessageFromResult(resultCode, R.string.toast_edit_success);
+	}
+
+	@OnActivityResult(REQUEST_CODE_LESSONS)
+	protected void onResultLessons(int resultCode) {
+		// TODO: Callback manage lessons
 	}
 
 	private void showMessageFromResult(int resultCode, int idResource) {
 		if (resultCode == RESULT_OK) {
-			this.reloadDisciplinesShowingToastMessage(idResource);
+			super.reloadItensShowingToastMessage(super.getString(idResource, DISCIPLINE));
 		} else if (resultCode == RESULT_CANCELED) {
 			this.showDialogAlert("Unexpected error", null);
 		}
@@ -139,13 +132,13 @@ public class DisciplineListActivity extends GenericAsyncAuthActivity<MSPLearning
 
 	@Background
 	protected void asyncDiscardDiscipline(Long id) {
-		DisciplineListActivity.this.mDisciplineRestClient.delete(id);
-		this.reloadDisciplinesShowingToastMessage(R.string.toast_discard_discipline_success);
+		this.mDisciplineRestClient.delete(id);
+		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success, DISCIPLINE));
 	}
 
-	@UiThread
-	protected void reloadDisciplinesShowingToastMessage(int idResource) {
-		Toast.makeText(this, super.getString(idResource), Toast.LENGTH_SHORT).show();
-		this.loadDisciplines();
+	@Override
+	protected List<Discipline> findListItens() {
+		//TODO: Filter by App
+		return this.mDisciplineRestClient.findAll().getEntity();
 	}
 }
