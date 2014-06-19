@@ -1,11 +1,9 @@
 'use strict';
 
-angular.module('msplearningApp').service('appService', function ($http) {
-
-	var BASE_URL = "http://localhost:8080/rest-app/rest/";
+angular.module('msplearningApp').service('appService', function ($rootScope, $http) {
 
 	this.getFeactures = function(success, error) {
-		$http.get(BASE_URL + "feature/")
+		$http.get($rootScope.getResourceAddress('feature/'))
 		.success(function(data, status, headers, config){
 			success(data.entity);
 		})

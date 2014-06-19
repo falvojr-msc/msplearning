@@ -1,20 +1,22 @@
 'use strict';
 
-angular.module('msplearningApp').service('userService', function ($cookies, $http) {
-
-	var BASE_URL = "http://192.168.1.103:8080/rest-app/rest/";
-	$cookies.user = null;
-
+angular.module('msplearningApp').service('userService', function ($rootScope, $cookies, $http) {
+	
 	this.getAuthenticatedUser = function() {
-		var user = angular.fromJson($cookies.user);
-		return user;
-	};	
+		if(!$cookies.user) {
+			$cookies.user = null;
+		}
+		return angular.fromJson($cookies.user);
+	};
+
+	this.isLogged = function() {
+		return this.getAuthenticatedUser() != null;
+	};
 
 	this.login = function(user, success, error) {
-		$http.post(BASE_URL + "user/auth/", user)
+		$http.post($rootScope.getResourceAddress('user/auth/'), user)
 		.success(function(data, status, headers, config){
 			$cookies.user = JSON.stringify(data.entity.properties);
-			// $cookies.user = JSON.stringify({firstName:"geremias"});
 			success();
 		})
 		.error(function(data, status, headers, config){

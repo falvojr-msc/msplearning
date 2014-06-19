@@ -21,4 +21,10 @@ angular.module('msplearningApp', [
       .otherwise({
         redirectTo: '/'
       });
+  }).run(function($rootScope) {
+    var SERVER_URL = "http://localhost:8080/rest-app/rest/";
+    
+    $rootScope.getResourceAddress = function(resource) {
+      return SERVER_URL + resource
+    }
   });
