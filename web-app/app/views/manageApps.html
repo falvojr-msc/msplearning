@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" data-ng-init="init()">
 	<div class="col-sm-3 col-md-2 sidebar">
 		<ul class="nav nav-sidebar">
 			<li class="{{flow == flows.NEW ? 'active' : ''}}"><a href="#/apps" data-ng-click="newApp()"> <span class="glyphicon glyphicon-plus-sign"> New</span></a></li>
@@ -27,7 +27,7 @@
 				
 				<div ng-include="'partialFeacture'"></div>
 
-				<button type="button" class="btn btn-success" data-ng-click="test()">Create</button>
+				<button type="button" class="btn btn-success" data-ng-click="create()">Create</button>
 
 				<button type="button" class="btn btn-danger" data-ng-click="cancel()">Cancel</button>
 			</form>	

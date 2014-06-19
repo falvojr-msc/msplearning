@@ -1,15 +1,18 @@
 'use strict';
 
 angular.module('msplearningApp').controller('ManageAppsCtrl', function ($scope, appService) {
-	$scope.flows = {
-		NEW : "NEW",
-		APP_MANAGER : "APP_MANAGER"
-	};
+	
+    $scope.init = function() {
+        $scope.flows = {
+            NEW : "NEW",
+            APP_MANAGER : "APP_MANAGER"
+        };
 
-	$scope.flow = $scope.flows.APP_MANAGER;
-	$scope.app = {};
-    $scope.apps = [];
-    $scope.features = [];
+        $scope.flow = $scope.flows.APP_MANAGER;
+        $scope.app = {};
+        $scope.apps = [];
+        $scope.features = [];
+    };
 
     $scope.newApp = function(){
     	$scope.getFeactures();
@@ -30,14 +33,12 @@ angular.module('msplearningApp').controller('ManageAppsCtrl', function ($scope, 
     	appService.getFeactures(success, error);
     };
 
-    $scope.isValid = function(features) {
-        var valid = true;
-        
-        return valid;
+    $scope.create = function() {
+        alert($scope.features);
     };
 
-    $scope.test = function() {
-        alert($scope.isValid($scope.features));
+    $scope.cancel = function() {
+        $scope.init();
     };
 
     function addSelectedAttribute(features) {
@@ -48,4 +49,5 @@ angular.module('msplearningApp').controller('ManageAppsCtrl', function ($scope, 
             }
         }
     }
+
 });
