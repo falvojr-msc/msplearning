@@ -34,7 +34,8 @@ angular.module('msplearningApp').controller('ManageAppsCtrl', function ($scope, 
     };
 
     $scope.create = function() {
-        alert($scope.features);
+        $scope.app.features = $scope.features;
+        appService.create($scope.app);
     };
 
     $scope.cancel = function() {

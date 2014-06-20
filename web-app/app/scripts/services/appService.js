@@ -12,4 +12,25 @@ angular.module('msplearningApp').service('appService', function ($rootScope, $ht
 		});
 	};
 
+	this.create = function(app) {
+		var appFeatures = [];
+
+		for (var i = 0; i < app.features.length; i++) {
+			var feature = app.features[i];
+			appFeatures.push({
+				id : {feature : feature}
+			});
+		};
+
+		app.appFeatures = appFeatures;
+
+		$http.post($rootScope.getResourceAddress('app/'), app)
+		.success(function(data, status, headers, config){
+			alert('sucesso!');
+		})
+		.error(function(data, status, headers, config){
+			alert('erro!');
+		});
+	};
+
 });
