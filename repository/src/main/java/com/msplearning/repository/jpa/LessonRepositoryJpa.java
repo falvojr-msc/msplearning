@@ -11,7 +11,7 @@ import com.msplearning.repository.LessonRepository;
 import com.msplearning.repository.jpa.generic.GenericRepositoryJpa;
 
 /**
- * The DisciplineRepositoryJpa class provides the persistence operations of entity {@link Lesson}.
+ * The LessonRepositoryJpa class provides the persistence operations of entity {@link Lesson}.
  * 
  * @author Venilton Falvo Junior (veniltonjr)
  */

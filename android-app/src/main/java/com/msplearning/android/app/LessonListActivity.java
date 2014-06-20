@@ -43,6 +43,7 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 	private static final String LESSON = "Lesson";
 
 	public static final String EXTRA_KEY_LESSON = "activity.lesson";
+	public static final String EXTRA_KEY_ID_LESSON = "activity.lesson.id";
 
 	@ViewById(R.id.list_view_lessons)
 	protected ListView mListView;
@@ -101,7 +102,9 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 	protected void onContextItemSelected(MenuItem item, final Lesson selectedItem) {
 		switch(item.getItemId()){
 		case R.id.action_manage_slides:
-			//TODO Implement manage slides action
+			Intent intentSlides = SlideListActivity_.intent(this).get();
+			intentSlides.putExtra(EXTRA_KEY_ID_LESSON, selectedItem.getId());
+			this.startActivity(intentSlides);
 			break;
 		case R.id.action_edit:
 			Intent intentManageLesson = LessonManagerActivity_.intent(this).get();

@@ -14,29 +14,22 @@
  * limitations under the License.
  */
 
-package com.msplearning.android.app.fragment;
+package com.msplearning.android.app;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.msplearning.android.app.MainActivity;
 import com.msplearning.android.app.R;
+import com.msplearning.android.app.fragment.SlidePagerAdapter;
+import com.msplearning.entity.Lesson;
 
 @EActivity(R.layout.activity_slide_list)
 public class SlideListActivity extends ActionBarActivity {
@@ -53,6 +46,11 @@ public class SlideListActivity extends ActionBarActivity {
 	 * The {@link android.support.v4.view.ViewPager} that will display the object collection.
 	 */
 	ViewPager mViewPager;
+
+	/**
+	 * The selected id of {@link Lesson}.
+	 */
+	private Long idSelectedLesson;
 
 	@AfterViews
 	public void afterViews() {
@@ -73,6 +71,9 @@ public class SlideListActivity extends ActionBarActivity {
 		// Set up the ViewPager, attaching the adapter.
 		this.mViewPager = (ViewPager) this.findViewById(R.id.pager);
 		this.mViewPager.setAdapter(this.mSlidePagerAdapter);
+
+		// Store the Lesson id.
+		this.idSelectedLesson = this.getIntent().getLongExtra(LessonListActivity.EXTRA_KEY_ID_LESSON, 0L);
 	}
 
 	@Override
@@ -99,51 +100,5 @@ public class SlideListActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	/**
-	 * A {@link android.support.v4.app.FragmentStatePagerAdapter} that returns a fragment representing an object in the collection.
-	 */
-	public static class SlidePagerAdapter extends FragmentStatePagerAdapter {
-
-		public SlidePagerAdapter(FragmentManager fm) {
-			super(fm);
-		}
-
-		@Override
-		public Fragment getItem(int i) {
-			Fragment fragment = new SlideFragment();
-			Bundle args = new Bundle();
-			args.putInt(SlideFragment.ARG_OBJECT, i + 1); // Our object is just an integer :-P
-			fragment.setArguments(args);
-			return fragment;
-		}
-
-		@Override
-		public int getCount() {
-			// For this contrived example, we have a 100-object collection.
-			return 100;
-		}
-
-		@Override
-		public CharSequence getPageTitle(int position) {
-			return "Slide " + (position + 1);
-		}
-	}
-
-	/**
-	 * A dummy fragment representing a section of the app, but that simply displays dummy text.
-	 */
-	public static class SlideFragment extends Fragment {
-
-		public static final String ARG_OBJECT = "slide";
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_list_item, container, false);
-			Bundle args = this.getArguments();
-			((TextView) rootView.findViewById(android.R.id.text1)).setText(Integer.toString(args.getInt(ARG_OBJECT)));
-			return rootView;
-		}
 	}
 }

@@ -67,6 +67,13 @@
                 android:value=".LessonListActivity_" />
         </activity>
         <activity
+            android:name=".SlideListActivity_"
+            android:parentActivityName=".LessonListActivity_" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LessonListActivity_" />
+        </activity>
+        <activity
             android:name=".AccessRequestsActivity_"
             android:parentActivityName=".AccessRequestsActivity_" >
             <meta-data

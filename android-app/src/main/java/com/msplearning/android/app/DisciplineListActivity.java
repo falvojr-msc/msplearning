@@ -38,7 +38,6 @@ public class DisciplineListActivity extends GenericActivityListView<Discipline> 
 
 	private static final int REQUEST_CODE_NEW_DISCIPLINE = 0;
 	private static final int REQUEST_CODE_EDIT_DISCIPLINE = 1;
-	private static final int REQUEST_CODE_LESSONS = 2;
 
 	private static final String DISCIPLINE = "Discipline";
 
@@ -93,7 +92,7 @@ public class DisciplineListActivity extends GenericActivityListView<Discipline> 
 		case R.id.action_manage_lessons:
 			Intent intentLessons = LessonListActivity_.intent(this).get();
 			intentLessons.putExtra(EXTRA_KEY_ID_DISCIPLINE, selectedItem.getId());
-			this.startActivityForResult(intentLessons, REQUEST_CODE_LESSONS);
+			this.startActivity(intentLessons);
 			break;
 		case R.id.action_edit:
 			Intent intentManageDiscipline = DisciplineManagerActivity_.intent(this).get();
@@ -115,11 +114,6 @@ public class DisciplineListActivity extends GenericActivityListView<Discipline> 
 	@OnActivityResult(REQUEST_CODE_EDIT_DISCIPLINE)
 	protected void onResultEdit(int resultCode) {
 		this.showMessageFromResult(resultCode, R.string.toast_edit_success);
-	}
-
-	@OnActivityResult(REQUEST_CODE_LESSONS)
-	protected void onResultLessons(int resultCode) {
-		// TODO: Callback manage lessons
 	}
 
 	private void showMessageFromResult(int resultCode, int idResource) {

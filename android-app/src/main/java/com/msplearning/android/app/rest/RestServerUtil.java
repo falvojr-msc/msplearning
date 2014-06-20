@@ -15,7 +15,7 @@ public final class RestServerUtil {
 	/**
 	 * URL from local server.
 	 */
-	public static final String DEBUG = "http://192.168.1.101:8080/rest-app/rest";
+	public static final String DEBUG = "http://192.168.1.100:8080/rest-app/rest";
 
 	/**
 	 * URL from dedicated server.

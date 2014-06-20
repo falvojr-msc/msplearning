@@ -76,7 +76,6 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 	@Click(R.id.button_manage_view_educational_content)
 	protected void onManageViewEducationalContent() {
 		DisciplineListActivity_.intent(this).start();
-		this.finish();
 	}
 
 	@Click(R.id.button_access_requests)
