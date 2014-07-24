@@ -4,15 +4,25 @@ angular.module('msplearningApp').service('appService', function ($rootScope, $ht
 
 	this.getFeactures = function(success, error) {
 		$http.get($rootScope.getResourceAddress('feature/'))
-		.success(function(data, status, headers, config){
-			success(data.entity);
+		.success(function(data) {
+			callBackSuccess(data, success);
 		})
-		.error(function(data, status, headers, config){
-			error(data);
+		.error(function(data) {
+			callBackError(data, error);
 		});
 	};
 
-	this.create = function(app) {
+	this.getApps = function(success, error) {
+		$http.get($rootScope.getResourceAddress('app/'))
+		.success(function(data) {
+			callBackSuccess(data, success);
+		})
+		.error(function(data) {
+			callBackError(data, error);
+		});
+	};
+
+	this.create = function(app, success, error) {
 		var appFeatures = [];
 
 		for (var i = 0; i < app.features.length; i++) {
@@ -25,12 +35,23 @@ angular.module('msplearningApp').service('appService', function ($rootScope, $ht
 		app.appFeatures = appFeatures;
 
 		$http.post($rootScope.getResourceAddress('app/'), app)
-		.success(function(data, status, headers, config){
-			alert('sucesso!');
+		.success(function(data) {
+			callBackSuccess(data, success);
 		})
-		.error(function(data, status, headers, config){
-			alert('erro!');
+		.error(function(data) {
+			callBackError(data, error);
 		});
 	};
 
+	function callBackSuccess(data, callback) {
+		if(callback !== undefined) {
+			callback(data.entity);
+		}
+	};
+
+	function callBackError(data, callback) {
+		if(callback !== undefined) {
+			callback(data.entity);
+		}
+	};
 });

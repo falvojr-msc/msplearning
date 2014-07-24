@@ -1,10 +1,16 @@
 <div class="row" data-ng-init="init()">
 	<div class="col-sm-3 col-md-2 sidebar">
-		<ul class="nav nav-sidebar">
-			<li class="{{flow == flows.NEW ? 'active' : ''}}"><a href="#/apps" data-ng-click="newApp()"> <span class="glyphicon glyphicon-plus-sign"> New</span></a></li>
+		<ul class="nav nav-sidebar" data-ng-init="loadApps()">
+			<li class="{{flow == flows.NEW ? 'active' : ''}}"><a data-ng-click="newApp()"> <span class="glyphicon glyphicon-plus-sign"> New</span></a></li>
+			<li data-ng-repeat="app in apps">
+				<a href="http://media02.hongkiat.com/html5-download-attribute/download-cover.jpg" download><span class="glyphicon glyphicon-download-alt"> {{app.name}}</span></a>
+			</li>
 		</ul>  	
 	</div>
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<div data-ng-repeat="alert in alerts" class="alert {{alert.class}}" role="alert">
+			{{alert.message}}
+		</div>
 		<div data-ng-show="flow == flows.NEW">
 			<h1 class="page-header">Create your app</h1>
 			<form>
@@ -27,7 +33,7 @@
 				
 				<div ng-include="'partialFeacture'"></div>
 
-				<button type="button" class="btn btn-success" data-ng-click="create()">Create</button>
+				<button type="button" data-ng-hide="app.id != null" class="btn btn-success" data-ng-click="create()">Create</button>
 
 				<button type="button" class="btn btn-danger" data-ng-click="cancel()">Cancel</button>
 			</form>	

@@ -8,16 +8,33 @@ angular.module('msplearningApp').controller('ManageAppsCtrl', function ($scope, 
             APP_MANAGER : "APP_MANAGER"
         };
 
+        $scope.alerts = [];
         $scope.flow = $scope.flows.APP_MANAGER;
         $scope.app = {};
         $scope.apps = [];
         $scope.features = [];
     };
 
+    $scope.success = function(message) {
+        $scope.alerts.push({message:message, class:'alert-success'});
+    };
+
+    $scope.error = function(message) {
+        $scope.alerts.push({message:message, class:'alert-danger'});
+    }
+
+    $scope.loadApps = function() {
+        var success = function(data) {
+            $scope.apps = data;
+        };
+
+        appService.getApps(success, $scope.error);
+    }
+
     $scope.newApp = function(){
-    	$scope.getFeactures();
-    	$scope.flow = $scope.flows.NEW;
-    	$scope.app = {};
+    	 $scope.getFeactures();
+    	 $scope.flow = $scope.flows.NEW;
+    	 $scope.alerts = [];
     };
 
     $scope.getFeactures = function() {
@@ -26,16 +43,20 @@ angular.module('msplearningApp').controller('ManageAppsCtrl', function ($scope, 
     		$scope.features = data;
     	};
 
-    	var error = function(msg) {
-    		alert(msg);
-    	};
-
-    	appService.getFeactures(success, error);
+    	appService.getFeactures(success, $scope.error);
     };
 
     $scope.create = function() {
+        $scope.alerts = [];
         $scope.app.features = $scope.features;
-        appService.create($scope.app);
+        
+        var success = function(data) {
+            $scope.flow = $scope.flows.APP_MANAGER;
+            $scope.loadApps();
+            $scope.success("Aplicação gerada com sucesso!");
+        };
+        
+        appService.create($scope.app, success, $scope.error);
     };
 
     $scope.cancel = function() {
