@@ -21,6 +21,10 @@ import com.msplearning.entity.Lesson;
 @EActivity(R.layout.activity_lesson_manager)
 public class LessonManagerActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
 
+	// Intent extra keys:
+	public static final String EXTRA_KEY_LESSON = "E.lesson";
+	public static final String EXTRA_KEY_ID_DISCIPLINE = "E.discipline.id";
+
 	@ViewById(R.id.discipline_name)
 	protected EditText mName;
 
@@ -31,16 +35,16 @@ public class LessonManagerActivity extends GenericAsyncAuthActivity<MSPLearningA
 
 	@AfterViews
 	public void afterViews() {
-		this.currentLesson = (Lesson) this.getIntent().getSerializableExtra(LessonListActivity.EXTRA_KEY_LESSON);
+		this.currentLesson = (Lesson) this.getIntent().getSerializableExtra(EXTRA_KEY_LESSON);
 		if(this.currentLesson == null) {
-			Long idDiscipline = this.getIntent().getLongExtra(DisciplineListActivity.EXTRA_KEY_ID_DISCIPLINE, 0L);
+			Long idDiscipline = this.getIntent().getLongExtra(EXTRA_KEY_ID_DISCIPLINE, 0L);
 			this.currentLesson = new Lesson();
 			this.currentLesson.setIdDiscipline(idDiscipline);
 		} else {
 			this.mName.setText(this.currentLesson.getName());
 		}
-		this.getIntent().removeExtra(LessonListActivity.EXTRA_KEY_LESSON);
-		this.getIntent().removeExtra(DisciplineListActivity.EXTRA_KEY_ID_DISCIPLINE);
+		this.getIntent().removeExtra(EXTRA_KEY_LESSON);
+		this.getIntent().removeExtra(EXTRA_KEY_ID_DISCIPLINE);
 	}
 
 	@Click(R.id.button_save)

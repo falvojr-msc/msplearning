@@ -1,7 +1,5 @@
 package com.msplearning.android.app.rest;
 
-import java.util.List;
-
 import org.androidannotations.annotations.rest.Delete;
 import org.androidannotations.annotations.rest.Get;
 import org.androidannotations.annotations.rest.Post;
@@ -9,30 +7,29 @@ import org.androidannotations.annotations.rest.Put;
 import org.androidannotations.annotations.rest.Rest;
 import org.androidannotations.api.rest.RestClientSupport;
 
-import com.msplearning.android.app.rest.json.CustomGsonHttpMessageConverter;
+import com.msplearning.android.app.rest.json.MSPLearningHttpMessageConverter;
 import com.msplearning.entity.Student;
-import com.msplearning.entity.common.Response;
 
 /**
  * The StudentRestClient interface provides the RESTful services of {@link Student} entity.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
-@Rest(rootUrl = RestServerUtil.DEBUG, converters = { CustomGsonHttpMessageConverter.class })
+@Rest(rootUrl = RestServerUtil.ROOT_URL, converters = { MSPLearningHttpMessageConverter.class })
 public interface StudentRestClient extends RestClientSupport {
 
 	@Post("/student")
-	Response<Student> insert(Student student);
-
-	@Put("/student")
-	Response<Student> update(Student student);
-
-	@Get("/student/{id}")
-	Response<Student> findById(Long id);
+	Student insert(Student student);
 
 	@Get("/student")
-	Response<List<Student>> findAll();
+	Student[] findAll();
+
+	@Get("/student/{id}")
+	Student findById(Long id);
+
+	@Put("/student")
+	Student update(Student student);
 
 	@Delete("/student/{id}")
-	Response<Void> delete(Long id);
+	void delete(Long id);
 }

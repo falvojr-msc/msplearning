@@ -19,98 +19,61 @@
         android:theme="@style/AppTheme" >
 
         <!-- Internal Activities -->
-
-        <activity
-            android:name=".MainActivity_">
+        
+        <activity android:name=".MainActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity android:name=".SignInActivity_" >
         </activity>
-        <activity
-            android:name=".UserManagerActivity_"
-            android:parentActivityName=".SignInActivity_" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SignInActivity_" />
+        
+        <activity android:name=".UserManagerActivity_" android:parentActivityName=".SignInActivity_" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.SignInActivity_" />
         </activity>
-        <activity android:name=".DashboardActivity_" >
+        
+        <activity android:name=".DashboardActivity_" android:parentActivityName=".SignInActivity_" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.SignInActivity_" />
         </activity>
-        <activity
-            android:name=".DisciplineListActivity_"
-            android:parentActivityName=".DashboardActivity_" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DashboardActivity_" />
+        
+        <activity android:name=".DisciplineListActivity_" android:parentActivityName=".DashboardActivity_" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.DashboardActivity_" />
         </activity>
-        <activity
-            android:name=".DisciplineManagerActivity_"
-            android:parentActivityName=".DisciplineListActivity_" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DisciplineListActivity_" />
+        
+        <activity android:name=".DisciplineManagerActivity_" android:parentActivityName=".DisciplineListActivity_" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.DisciplineListActivity_" />
         </activity>
-        <activity
-            android:name=".LessonListActivity_"
-            android:parentActivityName=".DisciplineListActivity_" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DisciplineListActivity_" />
+        
+        <activity android:name=".LessonListActivity_" android:parentActivityName=".DisciplineListActivity_" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.DisciplineListActivity_" />
         </activity>
-        <activity
-            android:name=".LessonManagerActivity_"
-            android:parentActivityName=".LessonListActivity_" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LessonListActivity_" />
+        
+        <activity android:name=".LessonManagerActivity_" android:parentActivityName=".LessonListActivity_" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.LessonListActivity_" />
         </activity>
-        <activity
-            android:name=".SlideListActivity_"
-            android:parentActivityName=".LessonListActivity_" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LessonListActivity_" />
-        </activity>
-        <activity
-            android:name=".AccessRequestsActivity_"
-            android:parentActivityName=".AccessRequestsActivity_" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AccessRequestsActivity_" />
+        
+        <activity android:name=".AccessRequestsActivity_" android:parentActivityName=".DashboardActivity_" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.DashboardActivity_" />
         </activity>
 
         <!-- External Activities -->
-        <activity
-            android:name="com.msplearning.android.ext.FacebookWebOAuthActivity"
-            android:excludeFromRecents="true"
-            android:noHistory="true"
-            android:parentActivityName=".SignInActivity_" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SignInActivity_" />
+        
+        <activity android:name="com.msplearning.android.ext.FacebookWebOAuthActivity" android:excludeFromRecents="true" android:noHistory="true" android:parentActivityName=".SignInActivity_" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.SignInActivity_" />
         </activity>
-        <activity
-            android:name="com.msplearning.android.ext.TwitterWebOAuthActivity"
-            android:excludeFromRecents="true"
-            android:noHistory="true"
-            android:parentActivityName=".SignInActivity_" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SignInActivity_" />
-
+        
+        <activity android:name="com.msplearning.android.ext.TwitterWebOAuthActivity" android:excludeFromRecents="true" android:noHistory="true" android:parentActivityName=".SignInActivity_" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.SignInActivity_" />
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="twitter-oauth-response"
-                    android:scheme="x-com-msplearning-android-twitterclient" />
+                <data android:host="twitter-oauth-response" android:scheme="x-com-msplearning-android-twitterclient" />
             </intent-filter>
         </activity>
+        
     </application>
 
 </manifest>

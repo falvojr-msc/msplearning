@@ -1,9 +1,10 @@
 package com.msplearning.android.app;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
@@ -24,6 +25,7 @@ import android.widget.ListView;
 
 import com.msplearning.android.app.generic.GenericActivityListView;
 import com.msplearning.android.app.rest.LessonRestClient;
+import com.msplearning.android.app.widget.LessonItemView;
 import com.msplearning.android.app.widget.LessonListAdapter;
 import com.msplearning.android.app.widget.generic.AbstractListAdapter;
 import com.msplearning.entity.Lesson;
@@ -37,13 +39,10 @@ import com.msplearning.entity.Lesson;
 @OptionsMenu(R.menu.actionbar)
 public class LessonListActivity extends GenericActivityListView<Lesson> {
 
-	protected static final int REQUEST_CODE_NEW_LESSON = 0;
-	protected static final int REQUEST_CODE_EDIT_LESSON = 1;
+	// Intent extra keys:
+	public static final String EXTRA_KEY_ID_DISCIPLINE = "E.discipline.id";
 
 	private static final String LESSON = "Lesson";
-
-	public static final String EXTRA_KEY_LESSON = "activity.lesson";
-	public static final String EXTRA_KEY_ID_LESSON = "activity.lesson.id";
 
 	@ViewById(R.id.list_view_lessons)
 	protected ListView mListView;
@@ -62,23 +61,19 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 	}
 
 	@Override
-	protected AbstractListAdapter<Lesson, ?> getListAdapter() {
+	protected AbstractListAdapter<Lesson, LessonItemView> getListAdapter() {
 		return this.mLessonAdapter;
 	}
 
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
-		menu.setHeaderTitle(this.getString(R.string.context_menu_title));
-		super.onCreateContextMenu(menu, view, menuInfo);
-		super.getMenuInflater().inflate(R.menu.contextual_lesson_list, menu);
+	protected List<Lesson> findListItens() {
+		return Arrays.asList(this.mLessonRestClient.findByDiscipline(this.idSelectedDiscipline));
 	}
 
-	@Override
-	@AfterViews
-	public void afterViews() {
-		this.idSelectedDiscipline = this.getIntent().getLongExtra(DisciplineListActivity.EXTRA_KEY_ID_DISCIPLINE, 0L);
-		super.afterViews();
-		this.getIntent().removeExtra(DisciplineListActivity.EXTRA_KEY_DISCIPLINE);
+	@AfterInject
+	public void afterInject() {
+		this.idSelectedDiscipline = this.getIntent().getLongExtra(EXTRA_KEY_ID_DISCIPLINE, 0L);
+		this.getIntent().removeExtra(EXTRA_KEY_ID_DISCIPLINE);
 	}
 
 	@OptionsItem(R.id.action_refresh)
@@ -89,33 +84,33 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 	@OptionsItem(R.id.action_new)
 	protected void onNew() {
 		Intent intent = LessonManagerActivity_.intent(this).get();
-		intent.putExtra(DisciplineListActivity.EXTRA_KEY_ID_DISCIPLINE, this.idSelectedDiscipline);
-		this.startActivityForResult(intent, REQUEST_CODE_NEW_LESSON);
+		intent.putExtra(LessonManagerActivity.EXTRA_KEY_ID_DISCIPLINE, this.idSelectedDiscipline);
+		this.startActivityForResult(intent, REQUEST_CODE_CREATE);
 	}
 
-	@OnActivityResult(REQUEST_CODE_NEW_LESSON)
-	protected void onResultNew(int resultCode) {
-		this.showMessageFromResult(resultCode, R.string.toast_new_success);
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
+		menu.setHeaderTitle(this.getString(R.string.context_menu_title));
+		super.onCreateContextMenu(menu, view, menuInfo);
+		super.getMenuInflater().inflate(R.menu.contextual_lesson_list, menu);
 	}
 
 	@Override
 	protected void onContextItemSelected(MenuItem item, final Lesson selectedItem) {
 		switch(item.getItemId()){
 		case R.id.action_manage_slides:
-			Intent intentSlides = SlideListActivity_.intent(this).get();
-			intentSlides.putExtra(EXTRA_KEY_ID_LESSON, selectedItem.getId());
-			this.startActivity(intentSlides);
+			// TODO Implement manage educational content
 			break;
 		case R.id.action_edit:
 			Intent intentManageLesson = LessonManagerActivity_.intent(this).get();
-			intentManageLesson.putExtra(EXTRA_KEY_LESSON, selectedItem);
-			this.startActivityForResult(intentManageLesson, REQUEST_CODE_EDIT_LESSON);
+			intentManageLesson.putExtra(LessonManagerActivity.EXTRA_KEY_LESSON, selectedItem);
+			this.startActivityForResult(intentManageLesson, REQUEST_CODE_UPDATE);
 			break;
 		case R.id.action_discard:
 			OnClickListener listenerYes = new OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int whichButton) {
-					LessonListActivity.this.asyncDiscardLesson(selectedItem.getId());
+					LessonListActivity.this.deleteLesson(selectedItem.getId());
 				}
 			};
 			this.showDialogConfirm( this.getString(R.string.dialog_title_discard), this.getString(R.string.dialog_message_discard, LESSON.toLowerCase(Locale.getDefault())), listenerYes, null);
@@ -123,27 +118,25 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 		}
 	}
 
-	@OnActivityResult(REQUEST_CODE_EDIT_LESSON)
+	@OnActivityResult(REQUEST_CODE_CREATE)
+	protected void onResultNew(int resultCode) {
+		this.showMessageFromResult(resultCode, R.string.toast_new_success);
+	}
+
+	@OnActivityResult(REQUEST_CODE_UPDATE)
 	protected void onResultEdit(int resultCode) {
 		this.showMessageFromResult(resultCode, R.string.toast_edit_success);
+	}
+
+	@Background
+	protected void deleteLesson(Long id) {
+		this.mLessonRestClient.delete(id);
+		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success, LESSON));
 	}
 
 	private void showMessageFromResult(int resultCode, int idResource) {
 		if (resultCode == RESULT_OK) {
 			super.reloadItensShowingToastMessage(super.getString(idResource, LESSON));
-		} else if (resultCode == RESULT_CANCELED) {
-			this.showDialogAlert("Unexpected error", null);
 		}
-	}
-
-	@Background
-	protected void asyncDiscardLesson(Long id) {
-		this.mLessonRestClient.delete(id);
-		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success, LESSON));
-	}
-
-	@Override
-	protected List<Lesson> findListItens() {
-		return this.mLessonRestClient.findByDiscipline(this.idSelectedDiscipline).getEntity();
 	}
 }

@@ -12,7 +12,7 @@ import com.msplearning.service.generic.GenericCrudService;
 
 /**
  * The StudentRestService class provides the RESTful services of entity {@link Student}.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Component
@@ -26,5 +26,4 @@ public class StudentRestService extends GenericCrudRestService<Student, Long> {
 	protected GenericCrudService<Student, Long> getService() {
 		return this.studentService;
 	}
-
 }

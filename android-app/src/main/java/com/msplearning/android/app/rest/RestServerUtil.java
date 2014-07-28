@@ -1,7 +1,7 @@
 package com.msplearning.android.app.rest;
 
 /**
- * The RESTfulServer class centralizes constants useful for interfaces with
+ * The RestServerUtil class centralizes constants useful for interfaces with
  * @Rest.
  *
  * @author Venilton Falvo Junior (veniltonjr)
@@ -13,12 +13,7 @@ public final class RestServerUtil {
 	}
 
 	/**
-	 * URL from local server.
+	 * Root URL from RESTful services.
 	 */
-	public static final String DEBUG = "http://192.168.1.100:8080/rest-app/rest";
-
-	/**
-	 * URL from dedicated server.
-	 */
-	public static final String RELEASE = "http://msplearning.com/rest-app/rest";
+	public static final String ROOT_URL = "http://192.168.1.36:8080/rest-app/rest";
 }

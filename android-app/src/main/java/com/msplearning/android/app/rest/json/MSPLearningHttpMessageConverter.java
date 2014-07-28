@@ -6,14 +6,13 @@ import com.google.gson.Gson;
 import com.msplearning.entity.common.json.GsonFactory;
 
 /**
- * The CustomGsonHttpMessageConverter class extends {@link GsonHttpMessageConverter}, configuring the {@link Gson} object for serialization standards used were.
- * 
+ * The MSPLearningHttpMessageConverter class extends {@link GsonHttpMessageConverter}, configuring the {@link Gson} object for serialization standards used were.
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
-public class CustomGsonHttpMessageConverter extends GsonHttpMessageConverter {
+public class MSPLearningHttpMessageConverter extends GsonHttpMessageConverter {
 
-	public CustomGsonHttpMessageConverter() {
+	public MSPLearningHttpMessageConverter() {
 		super(GsonFactory.createGson());
 	}
-
 }

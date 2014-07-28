@@ -12,7 +12,7 @@ import com.msplearning.service.generic.GenericCrudService;
 
 /**
  * The DisciplineRestService class provides the RESTful services of entity {@link Discipline}.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Component
@@ -26,5 +26,4 @@ public class DisciplineRestService extends GenericCrudRestService<Discipline, Lo
 	protected GenericCrudService<Discipline, Long> getService() {
 		return this.disciplineService;
 	}
-
 }

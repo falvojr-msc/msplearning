@@ -8,6 +8,7 @@ import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
+import org.springframework.web.client.RestClientException;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -24,8 +25,6 @@ import com.msplearning.android.app.generic.GenericAsyncActivity;
 import com.msplearning.android.app.rest.UserRestClient;
 import com.msplearning.android.ext.FacebookWebOAuthActivity;
 import com.msplearning.android.ext.TwitterWebOAuthActivity;
-import com.msplearning.entity.User;
-import com.msplearning.entity.common.Response;
 
 /**
  * The LoginActivity class. Activity which displays a login screen to the user, offering registration as well.
@@ -34,13 +33,6 @@ import com.msplearning.entity.common.Response;
  */
 @EActivity(R.layout.activity_sign_in)
 public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication> {
-
-	// Intent's extra keys
-	public static final String EXTRA_KEY_PASSWORD = "activity.user.password";
-	public static final String EXTRA_KEY_EMAIL = "activity.user.email";
-
-	// Intent's request code
-	private static final int REQUEST_CODE_USER_REGISTER = 0;
 
 	// Values for email and password at the time of the login attempt.
 	private String mEmail;
@@ -61,7 +53,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 		this.mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-				if ((id == R.id.login) || (id == EditorInfo.IME_NULL)) {
+				if (id == R.id.login || id == EditorInfo.IME_NULL) {
 					SignInActivity.this.onSignIn();
 					return true;
 				}
@@ -86,7 +78,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 
 		// Check for a valid password.
 		boolean isEmpty = TextUtils.isEmpty(this.mPassword);
-		if (isEmpty || (this.mPassword.length() < 4)) {
+		if (isEmpty || this.mPassword.length() < 4) {
 			this.mPasswordView.setError(this.getString(isEmpty ? R.string.error_required : R.string.error_invalid_password));
 			focusView = this.mPasswordView;
 			cancel = true;
@@ -127,55 +119,42 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 
 	@Background
 	protected void authenticate() {
-
-		final User userAuth = new User();
-		userAuth.setEmail(this.mEmail);
-		userAuth.setPassword(this.mPassword);
-
 		try {
-			Response<User> responseAuth = this.mUserRestClient.authenticate(userAuth);
-			if (responseAuth.hasBusinessMessage()) {
-				final Response<Void> responseUser = this.mUserRestClient.verifyEmail(userAuth.getEmail());
-				if (responseUser.hasBusinessMessage()) {
-
-					OnClickListener listenerYes = new OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int whichButton) {
-							Intent intent = UserManagerActivity_.intent(SignInActivity.this).get();
-							intent.putExtra(EXTRA_KEY_EMAIL, SignInActivity.this.mEmail);
-							intent.putExtra(EXTRA_KEY_PASSWORD, SignInActivity.this.mPassword);
-							SignInActivity.this.startActivityForResult(intent, REQUEST_CODE_USER_REGISTER);
-						}
-					};
-					OnClickListener listenerNo = new OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int whichButton) {
-							SignInActivity.this.showFieldError(SignInActivity.this.mEmailView, responseUser.getBusinessMessage());
-						}
-					};
-
-					this.showDialogConfirm( this.getString(R.string.dialog_title_register), this.getString(R.string.dialog_message_register), listenerYes, listenerNo);
-
-				} else {
-					this.showFieldError(this.mPasswordView, responseAuth.getBusinessMessage());
-				}
-			} else {
-				super.getApplicationContext().getAppSettings().setUser(responseAuth.getEntity());
-				this.redirectToDashboard();
+			super.getApplicationContext().getAppSettings().setUser(this.mUserRestClient.authenticate(this.mEmail, this.mPassword));
+			this.redirectToDashboard();
+		} catch (RestClientException exceptionAuth) {
+			try {
+				this.mUserRestClient.findByEmail(this.mEmail);
+				this.showFieldError(this.mPasswordView, this.getString(R.string.rest_error_password_incorrect));
+			} catch (RestClientException exceptionUsername) {
+				OnClickListener listenerYes = new OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int whichButton) {
+						Intent intent = UserManagerActivity_.intent(SignInActivity.this).get();
+						intent.putExtra(UserManagerActivity.EXTRA_KEY_EMAIL, SignInActivity.this.mEmail);
+						intent.putExtra(UserManagerActivity.EXTRA_KEY_PASSWORD, SignInActivity.this.mPassword);
+						SignInActivity.this.startActivityForResult(intent, REQUEST_CODE_CREATE);
+					}
+				};
+				OnClickListener listenerNo = new OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int whichButton) {
+						SignInActivity.this.showFieldError(SignInActivity.this.mEmailView, SignInActivity.this.getString(R.string.rest_error_email_not_found));
+					}
+				};
+				this.showDialogConfirm(
+						this.getString(R.string.dialog_title_register),
+						this.getString(R.string.dialog_message_register), listenerYes, listenerNo);
 			}
-		} catch (Exception exception) {
-			this.showDialogAlert(exception.getMessage(), null);
 		} finally {
 			super.dismissProgressDialog();
 		}
 	}
 
-	@OnActivityResult(REQUEST_CODE_USER_REGISTER)
+	@OnActivityResult(REQUEST_CODE_CREATE)
 	protected void onResult(int resultCode) {
 		if (resultCode == RESULT_OK) {
 			this.redirectToDashboard();
-		} else if (resultCode == RESULT_CANCELED) {
-			this.showDialogAlert("Unexpected error", null);
 		}
 	}
 

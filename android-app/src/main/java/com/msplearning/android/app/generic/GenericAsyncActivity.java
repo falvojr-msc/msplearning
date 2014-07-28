@@ -28,6 +28,9 @@ public abstract class GenericAsyncActivity<T extends MSPLearningApplication> ext
 
 	protected static final String TAG = GenericAsyncActivity.class.getSimpleName();
 
+	protected static final int REQUEST_CODE_CREATE = 0;
+	protected static final int REQUEST_CODE_UPDATE = 1;
+
 	@UiThread
 	@Override
 	public void dismissProgressDialog() {

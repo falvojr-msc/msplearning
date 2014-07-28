@@ -1,5 +1,6 @@
 package com.msplearning.android.app;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -23,6 +24,7 @@ import android.widget.ListView;
 
 import com.msplearning.android.app.generic.GenericActivityListView;
 import com.msplearning.android.app.rest.DisciplineRestClient;
+import com.msplearning.android.app.widget.DisciplineItemView;
 import com.msplearning.android.app.widget.DisciplineListAdapter;
 import com.msplearning.android.app.widget.generic.AbstractListAdapter;
 import com.msplearning.entity.Discipline;
@@ -36,13 +38,7 @@ import com.msplearning.entity.Discipline;
 @OptionsMenu(R.menu.actionbar)
 public class DisciplineListActivity extends GenericActivityListView<Discipline> {
 
-	private static final int REQUEST_CODE_NEW_DISCIPLINE = 0;
-	private static final int REQUEST_CODE_EDIT_DISCIPLINE = 1;
-
 	private static final String DISCIPLINE = "Discipline";
-
-	public static final String EXTRA_KEY_DISCIPLINE = "activity.discipline";
-	public static final String EXTRA_KEY_ID_DISCIPLINE = "activity.discipline.id";
 
 	@ViewById(R.id.list_view_disciplines)
 	protected ListView mListView;
@@ -59,15 +55,14 @@ public class DisciplineListActivity extends GenericActivityListView<Discipline> 
 	}
 
 	@Override
-	protected AbstractListAdapter<Discipline, ?> getListAdapter() {
+	protected AbstractListAdapter<Discipline, DisciplineItemView> getListAdapter() {
 		return this.mDisciplineAdapter;
 	}
 
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
-		menu.setHeaderTitle(this.getString(R.string.context_menu_title));
-		super.onCreateContextMenu(menu, view, menuInfo);
-		super.getMenuInflater().inflate(R.menu.contextual_discipline_list , menu);
+	protected List<Discipline> findListItens() {
+		//TODO: Filter by App
+		return Arrays.asList(this.mDisciplineRestClient.findAll());
 	}
 
 	@OptionsItem(R.id.action_refresh)
@@ -78,12 +73,14 @@ public class DisciplineListActivity extends GenericActivityListView<Discipline> 
 	@OptionsItem(R.id.action_new)
 	protected void onNew() {
 		Intent intent = DisciplineManagerActivity_.intent(this).get();
-		this.startActivityForResult(intent, REQUEST_CODE_NEW_DISCIPLINE);
+		this.startActivityForResult(intent, REQUEST_CODE_CREATE);
 	}
 
-	@OnActivityResult(REQUEST_CODE_NEW_DISCIPLINE)
-	protected void onResultNew(int resultCode) {
-		this.showMessageFromResult(resultCode, R.string.toast_new_success);
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
+		menu.setHeaderTitle(this.getString(R.string.context_menu_title));
+		super.onCreateContextMenu(menu, view, menuInfo);
+		super.getMenuInflater().inflate(R.menu.contextual_discipline_list , menu);
 	}
 
 	@Override
@@ -91,19 +88,19 @@ public class DisciplineListActivity extends GenericActivityListView<Discipline> 
 		switch(item.getItemId()){
 		case R.id.action_manage_lessons:
 			Intent intentLessons = LessonListActivity_.intent(this).get();
-			intentLessons.putExtra(EXTRA_KEY_ID_DISCIPLINE, selectedItem.getId());
+			intentLessons.putExtra(LessonListActivity.EXTRA_KEY_ID_DISCIPLINE, selectedItem.getId());
 			this.startActivity(intentLessons);
 			break;
 		case R.id.action_edit:
 			Intent intentManageDiscipline = DisciplineManagerActivity_.intent(this).get();
-			intentManageDiscipline.putExtra(EXTRA_KEY_DISCIPLINE, selectedItem);
-			this.startActivityForResult(intentManageDiscipline, REQUEST_CODE_EDIT_DISCIPLINE);
+			intentManageDiscipline.putExtra(DisciplineManagerActivity.EXTRA_KEY_DISCIPLINE, selectedItem);
+			this.startActivityForResult(intentManageDiscipline, REQUEST_CODE_UPDATE);
 			break;
 		case R.id.action_discard:
 			OnClickListener listenerYes = new OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int whichButton) {
-					DisciplineListActivity.this.asyncDiscardDiscipline(selectedItem.getId());
+					DisciplineListActivity.this.deleteDiscipline(selectedItem.getId());
 				}
 			};
 			this.showDialogConfirm( this.getString(R.string.dialog_title_discard), this.getString(R.string.dialog_message_discard, DISCIPLINE.toLowerCase(Locale.getDefault())), listenerYes, null);
@@ -111,28 +108,25 @@ public class DisciplineListActivity extends GenericActivityListView<Discipline> 
 		}
 	}
 
-	@OnActivityResult(REQUEST_CODE_EDIT_DISCIPLINE)
+	@OnActivityResult(REQUEST_CODE_CREATE)
+	protected void onResultNew(int resultCode) {
+		this.showMessageFromResult(resultCode, R.string.toast_new_success);
+	}
+
+	@OnActivityResult(REQUEST_CODE_UPDATE)
 	protected void onResultEdit(int resultCode) {
 		this.showMessageFromResult(resultCode, R.string.toast_edit_success);
+	}
+
+	@Background
+	protected void deleteDiscipline(Long id) {
+		this.mDisciplineRestClient.delete(id);
+		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success, DISCIPLINE));
 	}
 
 	private void showMessageFromResult(int resultCode, int idResource) {
 		if (resultCode == RESULT_OK) {
 			super.reloadItensShowingToastMessage(super.getString(idResource, DISCIPLINE));
-		} else if (resultCode == RESULT_CANCELED) {
-			this.showDialogAlert("Unexpected error", null);
 		}
-	}
-
-	@Background
-	protected void asyncDiscardDiscipline(Long id) {
-		this.mDisciplineRestClient.delete(id);
-		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success, DISCIPLINE));
-	}
-
-	@Override
-	protected List<Discipline> findListItens() {
-		//TODO: Filter by App
-		return this.mDisciplineRestClient.findAll().getEntity();
 	}
 }

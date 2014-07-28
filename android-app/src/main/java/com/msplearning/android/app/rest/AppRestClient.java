@@ -1,38 +1,36 @@
 package com.msplearning.android.app.rest;
 
-import java.util.List;
-
 import org.androidannotations.annotations.rest.Delete;
 import org.androidannotations.annotations.rest.Get;
 import org.androidannotations.annotations.rest.Post;
 import org.androidannotations.annotations.rest.Put;
 import org.androidannotations.annotations.rest.Rest;
 import org.androidannotations.api.rest.RestClientSupport;
+import org.springframework.web.client.RestClientException;
 
-import com.msplearning.android.app.rest.json.CustomGsonHttpMessageConverter;
+import com.msplearning.android.app.rest.json.MSPLearningHttpMessageConverter;
 import com.msplearning.entity.App;
-import com.msplearning.entity.common.Response;
 
 /**
  * The AppRestClient interface provides the RESTful services of {@link App} entity.
  *
  * @author Venilton Falvo Junior (veniltonjr)
  */
-@Rest(rootUrl = RestServerUtil.DEBUG, converters = { CustomGsonHttpMessageConverter.class })
+@Rest(rootUrl = RestServerUtil.ROOT_URL, converters = { MSPLearningHttpMessageConverter.class })
 public interface AppRestClient extends RestClientSupport {
 
 	@Post("/app")
-	Response<App> insert(App app);
-
-	@Put("/app")
-	Response<App> update(App app);
-
-	@Get("/app/{id}")
-	Response<App> findById(Long id);
+	App insert(App app) throws RestClientException;
 
 	@Get("/app")
-	Response<List<App>> findAll();
+	App[] findAll();
+
+	@Get("/app/{id}")
+	App findById(Long id);
+
+	@Put("/app")
+	App update(App app) throws RestClientException;
 
 	@Delete("/app/{id}")
-	Response<Void> delete(Long id);
+	void delete(Long id);
 }

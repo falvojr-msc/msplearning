@@ -7,9 +7,11 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
+import org.springframework.web.client.RestClientException;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
 import com.msplearning.android.app.rest.AppUserRestClient;
@@ -48,14 +50,23 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 
 	@Background
 	protected void findAppUserRelationship() {
-		AppUserId appUserId = new AppUserId(super.getApp().getId(), super.getUser().getId());
-		AppUser appUser = this.mAppUserRestClient.findById(appUserId).getEntity();
-		if (appUser == null) {
+		Long idApp = super.getApp().getId();
+		Long idUser = super.getUser().getId();
+		AppUser appUser;
+		try {
+			appUser = this.mAppUserRestClient.findById(idApp, idUser);
+		} catch (RestClientException notFoundException) {
 			appUser = new AppUser();
-			appUser.setId(appUserId);
-			appUser = this.mAppUserRestClient.insert(appUser).getEntity();
+			appUser.setId(new AppUserId(idApp, idUser));
+			appUser = this.mAppUserRestClient.insert(appUser);
+			this.showToastAccessRequest();
 		}
 		this.resolveContentManagementCommonality(appUser);
+	}
+
+	@UiThread
+	protected void showToastAccessRequest() {
+		Toast.makeText(this, this.getString(R.string.toast_access_request), Toast.LENGTH_LONG).show();
 	}
 
 	@UiThread
@@ -63,7 +74,7 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 		if (appUser == null) {
 			this.mButtonManageViewEducationalContent.setText(this.getString(R.string.action_view_educational_content));
 		} else {
-			boolean isTeacherOrAdmin = (super.getUser() instanceof Teacher) || appUser.isAdmin();
+			boolean isTeacherOrAdmin = super.getUser() instanceof Teacher || appUser.isAdmin();
 
 			this.mButtonManageViewEducationalContent.setText(this.getString(isTeacherOrAdmin ? R.string.action_manage_educational_content : R.string.action_view_educational_content));
 			this.mButtonManageViewEducationalContent.setEnabled(appUser.isActive());

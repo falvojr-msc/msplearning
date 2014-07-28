@@ -6,25 +6,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
  * The Slide class.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Entity
-@Table(name = "tb_slide")
-@SequenceGenerator(name = "sequenceSlide", sequenceName = "sq_tb_slide")
-public class Slide implements Serializable {
+@Table(name = "tb_educational_content")
+@SequenceGenerator(name = "sequenceEducationalContent", sequenceName = "sq_tb_educational_content")
+public class EducationalContent implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator = "sequenceSlide")
+	@GeneratedValue(generator = "sequenceEducationalContent")
 	@Column(name = "id")
 	private Long id;
 
@@ -34,9 +32,14 @@ public class Slide implements Serializable {
 	@Column(name = "content", length = 500, nullable = false)
 	private String content;
 
-	@ManyToOne
-	@JoinColumn(name = "id_lesson", nullable = false)
-	private Lesson lesson;
+	@Column(name = "footnote", length = 50)
+	private String footnote;
+
+	@Column(name = "page", nullable = false)
+	private Long page;
+
+	@Column(name = "id_lesson", nullable = false)
+	private Long idLesson;
 
 	public Long getId() {
 		return this.id;
@@ -62,19 +65,35 @@ public class Slide implements Serializable {
 		this.content = content;
 	}
 
-	public Lesson getLesson() {
-		return this.lesson;
+	public String getFootnote() {
+		return this.footnote;
 	}
 
-	public void setLesson(Lesson lesson) {
-		this.lesson = lesson;
+	public void setFootnote(String footnote) {
+		this.footnote = footnote;
+	}
+
+	public Long getPage() {
+		return this.page;
+	}
+
+	public void setPage(Long page) {
+		this.page = page;
+	}
+
+	public Long getIdLesson() {
+		return this.idLesson;
+	}
+
+	public void setIdLesson(Long idLesson) {
+		this.idLesson = idLesson;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
+		result = prime * result + (this.id == null ? 0 : this.id.hashCode());
 		return result;
 	}
 
@@ -89,7 +108,7 @@ public class Slide implements Serializable {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		Slide other = (Slide) obj;
+		EducationalContent other = (EducationalContent) obj;
 		if (this.id == null) {
 			if (other.id != null) {
 				return false;

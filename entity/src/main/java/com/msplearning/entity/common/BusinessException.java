@@ -3,7 +3,7 @@ package com.msplearning.entity.common;
 /**
  * The ServiceException class, a generic {@link RuntimeException} for business
  * exceptions.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 public class BusinessException extends RuntimeException {

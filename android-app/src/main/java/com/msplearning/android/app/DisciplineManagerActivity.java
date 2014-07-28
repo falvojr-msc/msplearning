@@ -21,6 +21,8 @@ import com.msplearning.entity.Discipline;
 @EActivity(R.layout.activity_discipline_manager)
 public class DisciplineManagerActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
 
+	public static final String EXTRA_KEY_DISCIPLINE = "E.discipline";
+	
 	@ViewById(R.id.discipline_name)
 	protected EditText mName;
 	@ViewById(R.id.discipline_description)
@@ -33,14 +35,14 @@ public class DisciplineManagerActivity extends GenericAsyncAuthActivity<MSPLearn
 
 	@AfterViews
 	public void afterViews() {
-		this.currentDiscipline = (Discipline) this.getIntent().getSerializableExtra(DisciplineListActivity.EXTRA_KEY_DISCIPLINE);
+		this.currentDiscipline = (Discipline) this.getIntent().getSerializableExtra(EXTRA_KEY_DISCIPLINE);
 		if(this.currentDiscipline == null) {
 			this.currentDiscipline = new Discipline();
 		} else {
 			this.mName.setText(this.currentDiscipline.getName());
 			this.mDescription.setText(this.currentDiscipline.getDescription());
 		}
-		this.getIntent().removeExtra(DisciplineListActivity.EXTRA_KEY_DISCIPLINE);
+		this.getIntent().removeExtra(EXTRA_KEY_DISCIPLINE);
 	}
 
 	@Click(R.id.button_save)

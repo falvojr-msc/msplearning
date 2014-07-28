@@ -21,12 +21,16 @@ import com.msplearning.entity.User;
 import com.msplearning.entity.common.json.GsonFactory;
 
 /**
- * The RegisterActivity class.
+ * The UserManagerActivity class.
  *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @EActivity(R.layout.activity_user_manager)
 public class UserManagerActivity extends GenericAsyncActivity<MSPLearningApplication> {
+
+	// Intent extra keys:
+	public static final String EXTRA_KEY_PASSWORD = "E.user.password";
+	public static final String EXTRA_KEY_EMAIL = "E.user.email";
 
 	@ViewById(R.id.first_name)
 	protected EditText mFirstNameView;
@@ -50,19 +54,17 @@ public class UserManagerActivity extends GenericAsyncActivity<MSPLearningApplica
 
 	@AfterViews
 	public void init() {
-		String username = this.getIntent().getStringExtra(SignInActivity.EXTRA_KEY_EMAIL);
+		String username = this.getIntent().getStringExtra(EXTRA_KEY_EMAIL);
+		String password = this.getIntent().getStringExtra(EXTRA_KEY_PASSWORD);
+
 		if (username != null) {
 			this.mUsernameView.setText(username);
+			this.getIntent().removeExtra(EXTRA_KEY_EMAIL);
 		}
-
-		String password = this.getIntent().getStringExtra(SignInActivity.EXTRA_KEY_PASSWORD);
 		if (password != null) {
 			this.mPasswordView.setText(password);
+			this.getIntent().removeExtra(EXTRA_KEY_PASSWORD);
 		}
-
-		// Remove used Intent's extras
-		this.getIntent().removeExtra(SignInActivity.EXTRA_KEY_EMAIL);
-		this.getIntent().removeExtra(SignInActivity.EXTRA_KEY_PASSWORD);
 	}
 
 	@Click(R.id.button_register)
@@ -84,9 +86,9 @@ public class UserManagerActivity extends GenericAsyncActivity<MSPLearningApplica
 		Gson gson = GsonFactory.createGson();
 		try {
 			if (this.mTypeView.indexOfChild(this.findViewById(this.mTypeView.getCheckedRadioButtonId())) == 0) {
-				user = this.mStudentRESTfulClient.insert(gson.fromJson(gson.toJson(user), Student.class)).getEntity();
+				user = this.mStudentRESTfulClient.insert(gson.fromJson(gson.toJson(user), Student.class));
 			} else {
-				user = this.mTeacherRESTfulClient.insert(gson.fromJson(gson.toJson(user), Teacher.class)).getEntity();
+				user = this.mTeacherRESTfulClient.insert(gson.fromJson(gson.toJson(user), Teacher.class));
 			}
 		} catch (Exception exception) {
 			this.showDialogAlert(exception.getMessage(), null);

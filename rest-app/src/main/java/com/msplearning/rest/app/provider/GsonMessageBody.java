@@ -1,4 +1,4 @@
-package com.msplearning.rest.app.json;
+package com.msplearning.rest.app.provider;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,16 +22,15 @@ import com.google.gson.Gson;
 import com.msplearning.entity.common.json.GsonFactory;
 
 /**
- * The GsonProvider class implements {@link MessageBodyReader} and
- * {@link MessageBodyWriter}, configuring the {@link Gson} object for
- * serialization standards used were.
- * 
+ * The GsonMessageBody class implements {@link MessageBodyReader} and {@link MessageBodyWriter}, configuring the {@link Gson} object for serialization standards
+ * used were.
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Provider
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class GsonProvider implements MessageBodyReader<Object>, MessageBodyWriter<Object> {
+public class GsonMessageBody implements MessageBodyReader<Object>, MessageBodyWriter<Object> {
 
 	@Override
 	public long getSize(Object object, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {

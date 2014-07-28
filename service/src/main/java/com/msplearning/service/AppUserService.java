@@ -14,7 +14,7 @@ import com.msplearning.service.generic.GenericCrudService;
 
 /**
  * The AppUserService class provides the business operations of entity {@link AppUser}.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Service("appUserService")
@@ -34,7 +34,7 @@ public class AppUserService extends GenericCrudService<AppUser, AppUserId> {
 		super.insert(entity);
 	}
 
-	public List<AppUser> findManagedAppUsersFrom(Long appId, Long userId) {
-		return appUserRepository.findManagedAppUsersFrom(appId, userId);
+	public List<AppUser> findAccessRequests(AppUserId id) {
+		return this.appUserRepository.findAccessRequests(id);
 	}
 }

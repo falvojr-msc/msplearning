@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="twitter_consumer_key">ATkhgM6sSGNsnMP9MQLzg</string>
     <string name="twitter_consumer_key_secret">xGDMUZXkp6KTQnZoYZpZJCAm94V37bG1YNR1cXjBI</string>
     <string name="twitter_oauth_callback_url">x-com-msplearning-android-twitterclient://twitter-oauth-response</string>
-
 </resources>

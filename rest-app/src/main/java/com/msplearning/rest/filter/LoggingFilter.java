@@ -14,14 +14,14 @@ import javax.servlet.annotation.WebFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebFilter(filterName = "LoggingFilter", urlPatterns = "/*")
+@WebFilter(filterName = "LoggingFilter", urlPatterns = "/rest/*")
 public class LoggingFilter implements Filter {
 
 	private Logger logger;
 
 	@Override
-	public void destroy() {
-
+	public void init(FilterConfig filterConfig) throws ServletException {
+		this.logger = LoggerFactory.getLogger(LoggingFilter.class);
 	}
 
 	@Override
@@ -34,14 +34,9 @@ public class LoggingFilter implements Filter {
 		}
 	}
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		this.logger = LoggerFactory.getLogger(LoggingFilter.class);
-	}
-
 	/**
 	 * Identify and set the default {@link Locale} for the application.
-	 * 
+	 *
 	 * @param request
 	 *            {@link ServletRequest}
 	 */
@@ -57,5 +52,10 @@ public class LoggingFilter implements Filter {
 				Locale.setDefault(localeLang);
 			}
 		}
+	}
+
+	@Override
+	public void destroy() {
+
 	}
 }

@@ -9,14 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.msplearning.entity.Feature;
-import com.msplearning.entity.common.BusinessException;
-import com.msplearning.entity.common.Response;
-import com.msplearning.entity.common.Status;
 import com.msplearning.service.FeatureService;
 
 /**
  * The FeatureRestService class provides the RESTful services of entity {@link Feature}.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Component
@@ -27,11 +24,7 @@ public class FeatureRestService {
 	private FeatureService featureService;
 
 	@GET
-	public Response<List<Feature>> getAll() {
-		try {
-			return new Response<List<Feature>>(Status.OK, this.featureService.getAll());
-		} catch (BusinessException businessException) {
-			return new Response<List<Feature>>(Status.OK, businessException.getMessage());
-		}
+	public List<Feature> getAll() {
+		return this.featureService.getAll();
 	}
 }

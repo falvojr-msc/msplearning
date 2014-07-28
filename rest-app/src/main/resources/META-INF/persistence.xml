@@ -18,7 +18,7 @@
 		<class>com.msplearning.entity.Discipline</class>
 		<class>com.msplearning.entity.Feature</class>
 		<class>com.msplearning.entity.Lesson</class>
-		<class>com.msplearning.entity.Slide</class>
+		<class>com.msplearning.entity.EducationalContent</class>
 		<class>com.msplearning.entity.Student</class>
 		<class>com.msplearning.entity.Teacher</class>
 		<class>com.msplearning.entity.User</class>
@@ -28,7 +28,7 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
 			<property name="hibernate.connection.username" value="postgres" />
-			<property name="hibernate.connection.password" value="masterkey" />
+			<property name="hibernate.connection.password" value="postgres" />
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/msplearning?autoReconnect=true" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />

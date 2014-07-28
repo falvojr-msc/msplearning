@@ -1,31 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <!-- Application strings -->
-    <string name="app_name">M-SPLearning</string>
-    
-    <!-- Hints common strings -->
-    <string name="prompt_name">Name</string>
-    <string name="prompt_description">Description</string>
-    
-    <!-- Toast common strings -->
-    <string name="toast_new_success">%1$s included successfully.</string>
-    <string name="toast_edit_success">%1$s edited successfully.</string>
-    <string name="toast_discard_success">%1$s discarded successfully.</string>
-    
-    <!-- Dialog common strings -->
-    <string name="dialog_title_discard">Confirmation of discard</string>
-    <string name="dialog_title_error">Error</string>
-    <string name="dialog_message_discard">This %1$s will be discarded. Want to confirm?</string>
-    
-    <!-- Context menu common strings -->
-    <string name="context_menu_title">Options</string>
-    
-    <!-- Actions common strings -->
-    <string name="action_new">New</string>
-    <string name="action_edit">Edit</string>
+    <!-- Application common strings -->
     <string name="action_discard">Discard</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_new">New</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_save">Save</string>
+    <string name="app_name">M-SPLearning</string>
+    <string name="context_menu_title">Options</string>
+    <string name="dialog_message_discard">This %1$s will be discarded. Want to confirm?</string>
+    <string name="dialog_title_discard">Confirmation of discard</string>
+    <string name="dialog_title_error">Error</string>
+    <string name="error_required">This field is required</string>
+    <string name="prompt_description">Description</string>
+    <string name="prompt_name">Name</string>  
+    <string name="toast_discard_success">%1$s discarded successfully.</string>
+    <string name="toast_edit_success">%1$s edited successfully.</string>
+    <string name="toast_new_success">%1$s included successfully.</string>
+    
+    <!-- Main strings -->
+    <string name="error_find_id_app">Unable to find the App identifier.</string>
+    <string name="rest_error_find_app">Unable to configure the App.</string>
+    
+    <!-- SignIn strings -->
+    <string name="action_facebook">Sign in using Facebook</string>
+    <string name="action_sign_in_register">Sign in or register</string>  
+	<string name="action_twitter">Sign in using Twitter</string>
+	<string name="dialog_message_register">This user was not found. Want to register it?</string>
+    <string name="dialog_title_register">Confirm registration</string>
+    <string name="error_invalid_email">Invalid email address</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="rest_error_password_incorrect">This password is incorrect.</string>
+    <string name="rest_error_email_not_found">This email was not found.</string>
+    
+    <!-- User strings -->
+    <string name="label_user_manager">User Form</string>
+    <string name="prompt_female">Female</string>
+    <string name="prompt_first_name">First name</string>
+    <string name="prompt_last_name">Last name</string>
+    <string name="prompt_male">Male</string>
+    <string name="prompt_repeat_password">Repeat password</string>
+    <string name="prompt_student">Student</string>
+    <string name="prompt_teacher">Teacher</string>
+    
+    <!-- Dashboard strings -->
+    <string name="action_access_requests">Access Requests</string>
+    <string name="action_edit_profile">Edit Profile</string>
+    <string name="action_info">Info</string>
+    <string name="action_manage_educational_content">Manage Educational Content</string>
+    <string name="action_view_educational_content">View Educational Content</string>
+    <string name="toast_access_request">An access request has been sent.</string>
+    
+    <!-- Discipline strings -->
+    <string name="action_manage_lessons">Manage lessons</string>
+    <string name="label_discipline_manager">Discipline Form</string>
+    
+    <!-- Lesson strings -->
+    <string name="action_manage_slides">Manage slides</string>
+    <string name="label_lesson_manager">Lesson Form</string>
     
 </resources>

@@ -8,12 +8,11 @@ import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.rest.RestService;
+import org.springframework.web.client.RestClientException;
 
 import com.msplearning.android.app.generic.GenericAsyncActivity;
 import com.msplearning.android.app.rest.AppRestClient;
-import com.msplearning.entity.AppFeature;
 import com.msplearning.entity.AppUserId;
-import com.msplearning.entity.Variability;
 
 /**
  * The MainActivity class.
@@ -36,7 +35,7 @@ public class MainActivity extends GenericAsyncActivity<MSPLearningApplication> {
 
 			this.resolveAuthenticityVariability(idApp);
 		} catch (IOException e) {
-			this.showDialogAlert("Unable to load the properties file.", null);
+			this.showDialogAlert(this.getString(R.string.error_find_id_app), null);
 		}
 	}
 
@@ -49,24 +48,12 @@ public class MainActivity extends GenericAsyncActivity<MSPLearningApplication> {
 	protected void resolveAuthenticityVariability(Long idApp) {
 		try {
 			AppUserId appSetings = new AppUserId();
-			appSetings.setApp(this.mAppRestClient.findById(idApp).getEntity());
+			appSetings.setApp(this.mAppRestClient.findById(idApp));
 			this.getApplicationContext().setAppSettings(appSetings);
-
-			boolean hasAuth = false;
-			for (AppFeature appFeature : appSetings.getApp().getAppFeatures()) {
-				if (Variability.AUTHENTICITY.getId().equals(appFeature.getId().getFeature().getId())) {
-					hasAuth = appFeature.isActive();
-					break;
-				}
-			}
-			if (hasAuth) {
-				SignInActivity_.intent(this).start();
-			} else {
-				DashboardActivity_.intent(this).start();
-			}
+			SignInActivity_.intent(this).start();
 			this.finish();
-		} catch (Exception e) {
-			this.showDialogAlert("Unable to configure App.", null);
+		} catch (RestClientException restClientException) {
+			this.showDialogAlert(this.getString(R.string.rest_error_find_app), null);
 		}
 
 	}

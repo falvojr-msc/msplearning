@@ -9,11 +9,11 @@ import com.msplearning.repository.jpa.AppUserRepositoryJpa;
 
 /**
  * Interface of {@link AppUserRepositoryJpa}.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 public interface AppUserRepository extends GenericRepository<AppUser, AppUserId> {
 
-	List<AppUser> findManagedAppUsersFrom(Long appId, Long userId);
+	List<AppUser> findAccessRequests(AppUserId id);
 
 }

@@ -11,8 +11,6 @@ import com.google.gson.JsonSerializer;
 import com.msplearning.entity.App;
 import com.msplearning.entity.AppFeatureId;
 import com.msplearning.entity.AppUserId;
-import com.msplearning.entity.Lesson;
-import com.msplearning.entity.Slide;
 
 /**
  * The BidirectionalManyToOneSerializer class. Useful for serializing and deserializing of bidirectional OneToMany/ManyToOne associations.
@@ -31,9 +29,6 @@ public class BidirectionalManyToOneSerializer<T extends Serializable> implements
 		} else if (src instanceof AppUserId) {
 			AppUserId appUserId = ((AppUserId) src);
 			appUserId.setApp(new App(appUserId.getApp().getId()));
-		} else if (src instanceof Slide) {
-			Slide slide = ((Slide) src);
-			slide.setLesson(new Lesson(slide.getLesson().getId()));
 		}
 
 		return new JsonParser().parse(gsonBuilder.create().toJson(src, typeOfSrc));

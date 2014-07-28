@@ -1,15 +1,11 @@
 package com.msplearning.entity;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -35,9 +31,6 @@ public class Lesson implements Serializable {
 
 	@Column(name = "id_discipline", nullable = false)
 	private Long idDiscipline;
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "lesson", cascade = CascadeType.ALL)
-	private Set<Slide> slides;
 
 	public Lesson() {
 		super();
@@ -70,14 +63,6 @@ public class Lesson implements Serializable {
 
 	public void setIdDiscipline(Long idDiscipline) {
 		this.idDiscipline = idDiscipline;
-	}
-
-	public Set<Slide> getSlides() {
-		return this.slides;
-	}
-
-	public void setSlides(Set<Slide> slides) {
-		this.slides = slides;
 	}
 
 	@Override
