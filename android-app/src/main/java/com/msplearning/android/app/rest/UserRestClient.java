@@ -1,6 +1,7 @@
 package com.msplearning.android.app.rest;
 
 import org.androidannotations.annotations.rest.Get;
+import org.androidannotations.annotations.rest.Post;
 import org.androidannotations.annotations.rest.Rest;
 import org.androidannotations.api.rest.RestClientSupport;
 import org.springframework.web.client.RestClientException;
@@ -16,8 +17,8 @@ import com.msplearning.entity.User;
 @Rest(rootUrl = RestServerUtil.ROOT_URL, converters = { MSPLearningHttpMessageConverter.class })
 public interface UserRestClient extends RestClientSupport {
 
-	@Get("/user/auth/{email}/{password}")
-	User authenticate(String email, String password) throws RestClientException;
+	@Post("/user/auth")
+	User authenticate(User credential) throws RestClientException;
 
 	@Get("/user/{email}")
 	User findByEmail(String email) throws RestClientException;

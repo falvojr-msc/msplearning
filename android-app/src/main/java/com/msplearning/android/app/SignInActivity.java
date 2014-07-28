@@ -25,6 +25,7 @@ import com.msplearning.android.app.generic.GenericAsyncActivity;
 import com.msplearning.android.app.rest.UserRestClient;
 import com.msplearning.android.ext.FacebookWebOAuthActivity;
 import com.msplearning.android.ext.TwitterWebOAuthActivity;
+import com.msplearning.entity.User;
 
 /**
  * The LoginActivity class. Activity which displays a login screen to the user, offering registration as well.
@@ -120,7 +121,8 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	@Background
 	protected void authenticate() {
 		try {
-			super.getApplicationContext().getAppSettings().setUser(this.mUserRestClient.authenticate(this.mEmail, this.mPassword));
+			User credential = new User(this.mEmail, this.mPassword);
+			super.getApplicationContext().getAppSettings().setUser(this.mUserRestClient.authenticate(credential));
 			this.redirectToDashboard();
 		} catch (RestClientException exceptionAuth) {
 			try {

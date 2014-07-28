@@ -1,6 +1,7 @@
 package com.msplearning.rest.app;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
@@ -23,10 +24,10 @@ public class UserRestService {
 	@Autowired
 	private UserService userService;
 
-	@GET
-	@Path("auth/{email}/{password}")
-	public User authenticate(@PathParam("email") String email, @PathParam("password")String password) throws BusinessException {
-		return this.userService.authenticate(email, password);
+	@POST
+	@Path("auth/")
+	public User authenticate(User credential) throws BusinessException {
+		return this.userService.authenticate(credential.getEmail(), credential.getPassword());
 	}
 
 	@GET
