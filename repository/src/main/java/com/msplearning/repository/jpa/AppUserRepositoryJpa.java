@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.msplearning.entity.App;
 import com.msplearning.entity.AppUser;
 import com.msplearning.entity.AppUserId;
 import com.msplearning.repository.AppUserRepository;
@@ -26,6 +27,15 @@ public class AppUserRepositoryJpa extends GenericRepositoryJpa<AppUser, AppUserI
 		parans.put("appId", id.getApp().getId());
 		parans.put("userId", id.getUser().getId());
 		return (List<AppUser>) this.findByJPQL(jpql, parans);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<App> findAppsByUser(Long idUser) {
+		String jpql = "SELECT appUser.id.app FROM AppUser appUser WHERE appUser.id.user.id = :userId";
+		HashMap<String, Object> parans = new HashMap<String, Object>();
+		parans.put("userId", idUser);
+		return (List<App>) this.findByJPQL(jpql, parans);
 	}
 
 }

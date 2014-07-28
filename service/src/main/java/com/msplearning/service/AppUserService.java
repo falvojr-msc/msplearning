@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.msplearning.entity.App;
 import com.msplearning.entity.AppUser;
 import com.msplearning.entity.AppUserId;
 import com.msplearning.repository.AppUserRepository;
@@ -36,5 +37,9 @@ public class AppUserService extends GenericCrudService<AppUser, AppUserId> {
 
 	public List<AppUser> findAccessRequests(AppUserId id) {
 		return this.appUserRepository.findAccessRequests(id);
+	}
+
+	public List<App> findAppsByUser(Long idUser) {
+		return this.appUserRepository.findAppsByUser(idUser);
 	}
 }
