@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('msplearningApp').service('appService', function ($rootScope, $http) {
+angular.module('msplearningApp').service('appService', function ($rootScope, $http, userService) {
 
 	this.getFeactures = function(success, error) {
 		$http.get($rootScope.getResourceAddress('feature/'))
@@ -13,7 +13,7 @@ angular.module('msplearningApp').service('appService', function ($rootScope, $ht
 	};
 
 	this.getApps = function(success, error) {
-		$http.get($rootScope.getResourceAddress('app/'))
+		$http.get($rootScope.getResourceAddress('app/user/' + userService.getAuthenticatedUser().id))
 		.success(function(data) {
 			callBackSuccess(data, success);
 		})
@@ -34,7 +34,7 @@ angular.module('msplearningApp').service('appService', function ($rootScope, $ht
 
 		app.appFeatures = appFeatures;
 
-		$http.post($rootScope.getResourceAddress('app/'), app)
+		$http.post($rootScope.getResourceAddress('app/user/' + userService.getAuthenticatedUser().id), app)
 		.success(function(data) {
 			callBackSuccess(data, success);
 		})
@@ -45,13 +45,13 @@ angular.module('msplearningApp').service('appService', function ($rootScope, $ht
 
 	function callBackSuccess(data, callback) {
 		if(callback !== undefined) {
-			callback(data.entity);
+			callback(data);
 		}
 	};
 
 	function callBackError(data, callback) {
 		if(callback !== undefined) {
-			callback(data.entity);
+			callback(data);
 		}
 	};
 });

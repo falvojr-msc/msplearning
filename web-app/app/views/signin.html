@@ -10,6 +10,10 @@
 	</div>
 
 	<div class="col-md-3">
+		<div data-ng-repeat="alert in alerts" class="alert {{alert.class}}" role="alert">
+			{{alert.message}}
+		</div>
+
 		<form role="form" data-ng-show="flow == flows.LOGIN" data-ng-submit="login()">
 			<h2>Login</h2>
 

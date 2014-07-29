@@ -7,23 +7,29 @@ angular.module('msplearningApp').controller('SigninCtrl', function ($scope, $loc
 	};
 
 	$scope.flow = $scope.flows.LOGIN;
-
 	$scope.user = { gender : 'M' };
-
 	$scope.confirmPassword = "";
+	$scope.alerts = [];
 
 	$scope.register = function() {
 		$scope.flow = $scope.flows.SIGNIN;
 	}
 
 	$scope.cancel = function() {
+		$scope.alerts = [];
 		$scope.user = { gender : 'M' };
 		$scope.confirmPassword = "";
 		$scope.flow = $scope.flows.LOGIN;
 	}
 
 	$scope.save = function() {
-		userService.save($scope.user);
+		$scope.alerts = [];
+		var success = function(data) {
+            $scope.success("Usuário registrado com sucesso!");
+            $scope.flow = $scope.flows.LOGIN;
+        };
+		
+		userService.save($scope.user, success, $scope.error);
 	}
 
 	$scope.login = function() {
@@ -37,4 +43,12 @@ angular.module('msplearningApp').controller('SigninCtrl', function ($scope, $loc
 
 		userService.login($scope.user, success, error);
 	}
+
+	$scope.error = function(message) {
+        $scope.alerts.push({message:message, class:'alert-danger'});
+    }
+
+    $scope.success = function(message) {
+        $scope.alerts.push({message:message, class:'alert-success'});
+    };
 });

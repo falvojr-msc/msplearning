@@ -16,7 +16,7 @@ angular.module('msplearningApp').service('userService', function ($rootScope, $c
 	this.login = function(user, success, error) {
 		$http.post($rootScope.getResourceAddress('user/auth/'), user)
 		.success(function(data, status, headers, config){
-			$cookies.user = JSON.stringify(data.entity.properties);
+			$cookies.user = JSON.stringify(data.properties);
 			success();
 		})
 		.error(function(data, status, headers, config){
@@ -28,7 +28,25 @@ angular.module('msplearningApp').service('userService', function ($rootScope, $c
 		$cookies.user = null;
 	};
 
-	this.save = function(user) {
-		alert('#request for save: ' + user.username);
+	this.save = function(user, success, error) {
+		$http.post($rootScope.getResourceAddress('teacher'), user)
+		.success(function(data) {
+			callBackSuccess(data, success);
+		})
+		.error(function(data) {
+			callBackError(data, error);
+		});
+	};
+
+	function callBackSuccess(data, callback) {
+		if(callback !== undefined) {
+			callback(data);
+		}
+	};
+
+	function callBackError(data, callback) {
+		if(callback !== undefined) {
+			callback(data);
+		}
 	};
 });
