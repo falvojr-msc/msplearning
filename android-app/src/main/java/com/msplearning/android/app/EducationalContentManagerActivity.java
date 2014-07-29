@@ -131,7 +131,7 @@ public class EducationalContentManagerActivity extends GenericAsyncAuthActivity<
 		this.mLabelPageView.setText(String.format(EducationalContentManagerActivity.this.getString(R.string.prompt_page), currentPage, maxPage));
 	}
 
-	protected void configureMediaType() {
+	private void configureMediaType() {
 		boolean hasURL = this.mMultimediaImageView.isChecked() || this.mMultimediaVideoView.isChecked();
 		this.mContentView.setHint(hasURL ? R.string.prompt_url : R.string.prompt_description);
 		this.mContentView.setSingleLine(hasURL);
