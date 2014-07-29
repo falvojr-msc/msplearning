@@ -16,13 +16,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.msplearning.entity.App;
-import com.msplearning.entity.AppUser;
-import com.msplearning.entity.AppUserId;
 import com.msplearning.entity.common.BusinessException;
 import com.msplearning.rest.app.generic.GenericCrudRestService;
 import com.msplearning.rest.util.FileUtil;
 import com.msplearning.service.AppService;
-import com.msplearning.service.AppUserService;
 import com.msplearning.service.generic.GenericCrudService;
 
 /**
@@ -44,12 +41,9 @@ public class AppRestService extends GenericCrudRestService<App, Long> {
 
 	@Context
 	private ServletContext context;
-	
-	@Autowired
-	private AppService appService;
 
 	@Autowired
-	private AppUserService appUserService;
+	private AppService appService;
 
 	@Override
 	protected GenericCrudService<App, Long> getService() {
@@ -59,22 +53,17 @@ public class AppRestService extends GenericCrudRestService<App, Long> {
 	@GET
 	@Path("/user/{idUser}")
 	public List<App> findAppsByUser(@PathParam("idUser") Long idUser) {
-		return this.appUserService.findAppsByUser(idUser);
+		return this.appService.findByUser(idUser);
 	}
 
 	@POST
 	@Path("/user/{idUser}")
 	public App insert(App entity, @PathParam("idUser") Long idUser) throws BusinessException {
-		App app = super.insert(entity);
-		AppUser appUser = new AppUser();
-		appUser.setId(new AppUserId(app.getId(), idUser));
-		appUser.setAdmin(true);
-		appUser.setActive(true);
-		appUserService.insert(appUser);
-		
-		String apkFolderPath = context.getRealPath(File.separator) + File.separator + app.getId();
+		this.appService.insert(entity, idUser);
+
+		// Move this to AppService:
+		String apkFolderPath = this.context.getRealPath(File.separator) + File.separator + entity.getId();
 		FileUtil.makeFolder(apkFolderPath);
-		
 		try {
 			File apk = new File(apkFolderPath + "APK");
 			FileUtil.copy(new File(DEFAULT_APK_PATH), apk);
@@ -82,8 +71,8 @@ public class AppRestService extends GenericCrudRestService<App, Long> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		return app;
+
+		return entity;
 	}
 	//TODO: REST service for change the project.properties file inside the APK.
 }
