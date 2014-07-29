@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
@@ -15,6 +16,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.msplearning.entity.App;
+import com.msplearning.entity.AppUser;
+import com.msplearning.entity.AppUserId;
 import com.msplearning.entity.common.BusinessException;
 import com.msplearning.rest.app.generic.GenericCrudRestService;
 import com.msplearning.rest.util.FileUtil;
@@ -59,10 +62,16 @@ public class AppRestService extends GenericCrudRestService<App, Long> {
 		return this.appUserService.findAppsByUser(idUser);
 	}
 
-	@Override
-	public App insert(App entity) throws BusinessException {
+	@POST
+	@Path("/user/{idUser}")
+	public App insert(App entity, @PathParam("idUser") Long idUser) throws BusinessException {
 		App app = super.insert(entity);
-
+		AppUser appUser = new AppUser();
+		appUser.setId(new AppUserId(app.getId(), idUser));
+		appUser.setAdmin(true);
+		appUser.setActive(true);
+		appUserService.insert(appUser);
+		
 		String apkFolderPath = context.getRealPath(File.separator) + File.separator + app.getId();
 		FileUtil.makeFolder(apkFolderPath);
 		
