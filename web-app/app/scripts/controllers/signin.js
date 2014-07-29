@@ -12,6 +12,7 @@ angular.module('msplearningApp').controller('SigninCtrl', function ($scope, $loc
 	$scope.alerts = [];
 
 	$scope.register = function() {
+		$scope.alerts = [];
 		$scope.flow = $scope.flows.SIGNIN;
 	}
 
@@ -37,11 +38,7 @@ angular.module('msplearningApp').controller('SigninCtrl', function ($scope, $loc
 			$location.path("/");
 		};
 
-		var error = function(msg) {
-			console.log(msg);
-		};
-
-		userService.login($scope.user, success, error);
+		userService.login($scope.user, success, $scope.error);
 	}
 
 	$scope.error = function(message) {
