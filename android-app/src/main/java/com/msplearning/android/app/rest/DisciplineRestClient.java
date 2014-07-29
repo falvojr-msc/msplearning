@@ -21,11 +21,14 @@ public interface DisciplineRestClient extends RestClientSupport {
 	@Post("/discipline")
 	Discipline insert(Discipline discipline);
 
+	@Get("/discipline")
+	Discipline[] findAll();
+
 	@Get("/discipline/{id}")
 	Discipline findById(Long id);
 
-	@Get("/discipline")
-	Discipline[] findAll();
+	@Get("/discipline/app/{idApp}")
+	Discipline[] findByApp(Long idApp);
 
 	@Put("/discipline")
 	Discipline update(Discipline discipline);

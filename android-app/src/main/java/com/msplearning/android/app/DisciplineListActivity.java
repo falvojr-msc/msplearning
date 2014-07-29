@@ -61,8 +61,7 @@ public class DisciplineListActivity extends GenericActivityListView<Discipline> 
 
 	@Override
 	protected List<Discipline> findListItens() {
-		//TODO: Filter by App
-		return Arrays.asList(this.mDisciplineRestClient.findAll());
+		return Arrays.asList(this.mDisciplineRestClient.findByApp(super.getApp().getId()));
 	}
 
 	@OptionsItem(R.id.action_refresh)
