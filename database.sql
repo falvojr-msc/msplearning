@@ -118,6 +118,7 @@ CREATE TABLE tb_educational_content (
 	id BIGINT NOT NULL DEFAULT NEXTVAL('sq_tb_educational_content'),
 	content VARCHAR(500) NOT NULL,
 	footnote VARCHAR(50),
+	media_type VARCHAR(1) NOT NULL,
 	page BIGINT NOT NULL,
 	title VARCHAR(50) NOT NULL,
 	id_lesson BIGINT NOT NULL,
