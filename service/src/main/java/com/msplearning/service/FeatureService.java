@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.msplearning.entity.Feature;
-import com.msplearning.entity.FeatureOperator;
-import com.msplearning.entity.Variability;
+import com.msplearning.entity.enuns.FeatureOperator;
+import com.msplearning.entity.enuns.Variability;
 import com.msplearning.repository.FeatureRepository;
 import com.msplearning.service.generic.BaseService;
 

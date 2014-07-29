@@ -6,8 +6,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.msplearning.entity.Gender;
 import com.msplearning.entity.Teacher;
+import com.msplearning.entity.enuns.Gender;
 import com.msplearning.repository.TeacherRepository;
 import com.msplearning.repository.generic.GenericRepository;
 import com.msplearning.service.generic.GenericCrudService;

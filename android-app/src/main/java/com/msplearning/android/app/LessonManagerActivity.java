@@ -21,8 +21,13 @@ import com.msplearning.entity.Lesson;
 @EActivity(R.layout.activity_lesson_manager)
 public class LessonManagerActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
 
-	// Intent extra keys:
+	/**
+	 * EXTRA_KEY_LESSON Intent extra key.
+	 */
 	public static final String EXTRA_KEY_LESSON = "E.lesson";
+	/**
+	 * EXTRA_KEY_ID_DISCIPLINE Intent extra key.
+	 */
 	public static final String EXTRA_KEY_ID_DISCIPLINE = "E.discipline.id";
 
 	@ViewById(R.id.discipline_name)

@@ -21,8 +21,11 @@ import com.msplearning.entity.Discipline;
 @EActivity(R.layout.activity_discipline_manager)
 public class DisciplineManagerActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
 
+	/**
+	 * EXTRA_KEY_DISCIPLINE Intent extra key.
+	 */
 	public static final String EXTRA_KEY_DISCIPLINE = "E.discipline";
-	
+
 	@ViewById(R.id.discipline_name)
 	protected EditText mName;
 	@ViewById(R.id.discipline_description)

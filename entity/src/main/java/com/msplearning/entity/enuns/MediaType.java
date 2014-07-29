@@ -1,26 +1,29 @@
-package com.msplearning.entity;
+package com.msplearning.entity.enuns;
 
 /**
- * The Gender enum.
- * 
+ * The MediaType enum.
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
-public enum Gender {
+public enum MediaType {
 
 	/**
-	 * Male sex.
+	 * Text type.
 	 */
-	M("M", "Male"),
-
+	T("T", "Text"),
 	/**
-	 * Female Sex.
+	 * Image type.
 	 */
-	F("F", "Female");
+	I("I", "Image"),
+	/**
+	 * Video type.
+	 */
+	V("V", "Video");
 
 	private String code;
 	private String value;
 
-	private Gender(String code, String value) {
+	private MediaType(String code, String value) {
 		this.code = code;
 		this.value = value;
 	}

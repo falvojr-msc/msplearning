@@ -4,13 +4,17 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.msplearning.entity.enuns.MediaType;
+
 /**
- * The Slide class.
+ * The EducationalContent class.
  *
  * @author Venilton Falvo Junior (veniltonjr)
  */
@@ -25,6 +29,10 @@ public class EducationalContent implements Serializable {
 	@GeneratedValue(generator = "sequenceEducationalContent")
 	@Column(name = "id")
 	private Long id;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "media_type", length = 1, nullable = false)
+	private MediaType mediaType;
 
 	@Column(name = "title", length = 50, nullable = false)
 	private String title;
@@ -47,6 +55,14 @@ public class EducationalContent implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public MediaType getMediaType() {
+		return this.mediaType;
+	}
+
+	public void setMediaType(MediaType mediaType) {
+		this.mediaType = mediaType;
 	}
 
 	public String getTitle() {

@@ -6,11 +6,11 @@ import com.msplearning.android.app.widget.generic.AbstractListAdapter;
 import com.msplearning.entity.AppUser;
 
 @EBean
-public class UserRequestListAdapter extends AbstractListAdapter<AppUser, UserRequestItemView> {
+public class AccessRequestListAdapter extends AbstractListAdapter<AppUser, AccessRequestItemView> {
 
 	@Override
-	public UserRequestItemView buildSpecificViewUsingAA() {
-		return UserRequestItemView_.build(super.mContext);
+	public AccessRequestItemView buildSpecificViewUsingAA() {
+		return AccessRequestItemView_.build(super.mContext);
 	}
 
 }

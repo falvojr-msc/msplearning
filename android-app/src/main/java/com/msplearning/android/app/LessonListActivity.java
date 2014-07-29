@@ -39,7 +39,9 @@ import com.msplearning.entity.Lesson;
 @OptionsMenu(R.menu.actionbar)
 public class LessonListActivity extends GenericActivityListView<Lesson> {
 
-	// Intent extra keys:
+	/**
+	 * EXTRA_KEY_ID_DISCIPLINE Intent extra key.
+	 */
 	public static final String EXTRA_KEY_ID_DISCIPLINE = "E.discipline.id";
 
 	private static final String LESSON = "Lesson";
@@ -55,6 +57,14 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 
 	private Long idSelectedDiscipline;
 
+	@AfterInject
+	public void afterInject() {
+		if (this.idSelectedDiscipline == null) {
+			this.idSelectedDiscipline = this.getIntent().getLongExtra(EXTRA_KEY_ID_DISCIPLINE, 0L);
+			this.getIntent().removeExtra(EXTRA_KEY_ID_DISCIPLINE);
+		}
+	}
+
 	@Override
 	protected ListView getListView() {
 		return this.mListView;
@@ -68,12 +78,6 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 	@Override
 	protected List<Lesson> findListItens() {
 		return Arrays.asList(this.mLessonRestClient.findByDiscipline(this.idSelectedDiscipline));
-	}
-
-	@AfterInject
-	public void afterInject() {
-		this.idSelectedDiscipline = this.getIntent().getLongExtra(EXTRA_KEY_ID_DISCIPLINE, 0L);
-		this.getIntent().removeExtra(EXTRA_KEY_ID_DISCIPLINE);
 	}
 
 	@OptionsItem(R.id.action_refresh)
@@ -97,14 +101,16 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 
 	@Override
 	protected void onContextItemSelected(MenuItem item, final Lesson selectedItem) {
-		switch(item.getItemId()){
-		case R.id.action_manage_slides:
-			// TODO Implement manage educational content
+		switch (item.getItemId()) {
+		case R.id.action_manage_educational_content:
+			Intent intentEducationalContent = EducationalContentListActivity_.intent(this).get();
+			intentEducationalContent.putExtra(EducationalContentListActivity.EXTRA_KEY_ID_LESSON, selectedItem.getId());
+			this.startActivity(intentEducationalContent);
 			break;
 		case R.id.action_edit:
-			Intent intentManageLesson = LessonManagerActivity_.intent(this).get();
-			intentManageLesson.putExtra(LessonManagerActivity.EXTRA_KEY_LESSON, selectedItem);
-			this.startActivityForResult(intentManageLesson, REQUEST_CODE_UPDATE);
+			Intent intent = LessonManagerActivity_.intent(this).get();
+			intent.putExtra(LessonManagerActivity.EXTRA_KEY_LESSON, selectedItem);
+			this.startActivityForResult(intent, REQUEST_CODE_UPDATE);
 			break;
 		case R.id.action_discard:
 			OnClickListener listenerYes = new OnClickListener() {
@@ -113,7 +119,8 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 					LessonListActivity.this.deleteLesson(selectedItem.getId());
 				}
 			};
-			this.showDialogConfirm( this.getString(R.string.dialog_title_discard), this.getString(R.string.dialog_message_discard, LESSON.toLowerCase(Locale.getDefault())), listenerYes, null);
+			this.showDialogConfirm(this.getString(R.string.dialog_title_discard),
+					this.getString(R.string.dialog_message_discard, LESSON.toLowerCase(Locale.getDefault())), listenerYes, null);
 			break;
 		}
 	}

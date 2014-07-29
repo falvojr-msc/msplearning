@@ -1,4 +1,4 @@
-package com.msplearning.entity;
+package com.msplearning.entity.enuns;
 
 public enum Variability {
 

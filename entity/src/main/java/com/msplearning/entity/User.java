@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Type;
 
 import com.msplearning.entity.crypto.Base64Type;
+import com.msplearning.entity.enuns.Gender;
 
 /**
  * The User class.

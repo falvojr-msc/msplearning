@@ -15,13 +15,13 @@ import com.msplearning.repository.jpa.generic.GenericRepositoryJpa;
  *
  * @author Venilton Falvo Junior (veniltonjr)
  */
-@Repository("slideRepository")
+@Repository("educationalContentRepository")
 public class EducationalContentRepositoryJpa extends GenericRepositoryJpa<EducationalContent, Long> implements EducationalContentRepository {
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<EducationalContent> findByLesson(Long idLesson) {
-		String jpql = "FROM Slide WHERE lesson.id = :idLesson";
+		String jpql = "FROM EducationalContent WHERE idLesson = :idLesson";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("idLesson", idLesson);
 		return (List<EducationalContent>) this.findByJPQL(jpql, params);

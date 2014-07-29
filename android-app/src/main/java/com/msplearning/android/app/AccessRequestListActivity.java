@@ -13,8 +13,8 @@ import android.widget.ListView;
 
 import com.msplearning.android.app.generic.GenericActivityListView;
 import com.msplearning.android.app.rest.AppUserRestClient;
-import com.msplearning.android.app.widget.UserRequestItemView;
-import com.msplearning.android.app.widget.UserRequestListAdapter;
+import com.msplearning.android.app.widget.AccessRequestItemView;
+import com.msplearning.android.app.widget.AccessRequestListAdapter;
 import com.msplearning.android.app.widget.generic.AbstractListAdapter;
 import com.msplearning.entity.AppUser;
 
@@ -23,17 +23,17 @@ import com.msplearning.entity.AppUser;
  *
  * @author Renan Johannsen de Paula (renanjp)
  */
-@EActivity(R.layout.activity_access_requests)
-public class AccessRequestsActivity extends GenericActivityListView<AppUser> {
+@EActivity(R.layout.activity_access_request_list)
+public class AccessRequestListActivity extends GenericActivityListView<AppUser> {
 
-	@ViewById(R.id.list_view_requests)
+	@ViewById(R.id.list_view_access_requests)
 	protected ListView mListView;
 
 	@RestService
 	protected AppUserRestClient mAppUserRestClient;
 
 	@Bean
-	protected UserRequestListAdapter mUserRequestAdapter;
+	protected AccessRequestListAdapter mUserRequestAdapter;
 
 	@Override
 	protected ListView getListView() {
@@ -41,7 +41,7 @@ public class AccessRequestsActivity extends GenericActivityListView<AppUser> {
 	}
 
 	@Override
-	protected AbstractListAdapter<AppUser, UserRequestItemView> getListAdapter() {
+	protected AbstractListAdapter<AppUser, AccessRequestItemView> getListAdapter() {
 		return this.mUserRequestAdapter;
 	}
 

@@ -50,16 +50,26 @@
     <string name="action_access_requests">Access Requests</string>
     <string name="action_edit_profile">Edit Profile</string>
     <string name="action_info">Info</string>
-    <string name="action_manage_educational_content">Manage Educational Content</string>
+    <string name="action_manage_disciplines">Manage Disciplines</string>
     <string name="action_view_educational_content">View Educational Content</string>
     <string name="toast_access_request">An access request has been sent.</string>
     
     <!-- Discipline strings -->
-    <string name="action_manage_lessons">Manage lessons</string>
+    <string name="action_manage_lessons">Manage Lessons</string>
     <string name="label_discipline_manager">Discipline Form</string>
     
     <!-- Lesson strings -->
-    <string name="action_manage_slides">Manage slides</string>
+    <string name="action_manage_educational_content">Manage Educational Content</string>
     <string name="label_lesson_manager">Lesson Form</string>
+    
+    <!-- Educational Content strings -->
+    <string name="label_educational_content_manager">Educational Content Form</string>
+    <string name="prompt_title">Title</string>
+    <string name="prompt_url">URL</string>
+    <string name="prompt_footnote">Footnote</string>
+    <string name="prompt_page">Page %1$s of %2$s</string>
+    <string name="prompt_text">Text</string>
+    <string name="prompt_image">Image</string>
+    <string name="prompt_video">Video</string>
     
 </resources>

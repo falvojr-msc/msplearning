@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/prompt_description"
             android:maxLines="4"
+            android:minLines="3"
             android:singleLine="false" />
 
         <Button

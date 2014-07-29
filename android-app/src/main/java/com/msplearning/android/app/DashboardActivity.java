@@ -76,7 +76,7 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 		} else {
 			boolean isTeacherOrAdmin = super.getUser() instanceof Teacher || appUser.isAdmin();
 
-			this.mButtonManageViewEducationalContent.setText(this.getString(isTeacherOrAdmin ? R.string.action_manage_educational_content : R.string.action_view_educational_content));
+			this.mButtonManageViewEducationalContent.setText(this.getString(isTeacherOrAdmin ? R.string.action_manage_disciplines : R.string.action_view_educational_content));
 			this.mButtonManageViewEducationalContent.setEnabled(appUser.isActive());
 			if (appUser.isAdmin()) {
 				this.mButtonAccessRequests.setVisibility(View.VISIBLE);
@@ -91,7 +91,7 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 
 	@Click(R.id.button_access_requests)
 	protected void onAccessRequests() {
-		AccessRequestsActivity_.intent(this).start();
+		AccessRequestListActivity_.intent(this).start();
 	}
 
 	@Click(R.id.button_edit_profile)

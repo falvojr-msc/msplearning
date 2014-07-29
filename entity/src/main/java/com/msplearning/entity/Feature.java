@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.msplearning.entity.enuns.FeatureOperator;
+
 @Entity
 @Table(name = "tb_feature")
 public class Feature implements Serializable {

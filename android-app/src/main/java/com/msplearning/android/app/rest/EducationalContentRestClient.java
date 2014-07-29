@@ -11,7 +11,7 @@ import com.msplearning.android.app.rest.json.MSPLearningHttpMessageConverter;
 import com.msplearning.entity.EducationalContent;
 
 /**
- * The SlideRestClient interface provides the RESTful services of {@link EducationalContent} entity.
+ * The EducationalContentRestClient interface provides the RESTful services of {@link EducationalContent} entity.
  *
  * @author Venilton Falvo Junior (veniltonjr)
  */
@@ -19,7 +19,7 @@ import com.msplearning.entity.EducationalContent;
 public interface EducationalContentRestClient extends RestClientSupport {
 
 	@Post("/educationalContent")
-	EducationalContent insert(EducationalContent slide);
+	EducationalContent insert(EducationalContent educationalContent);
 
 	@Get("/educationalContent")
 	EducationalContent[] findAll();
@@ -31,7 +31,7 @@ public interface EducationalContentRestClient extends RestClientSupport {
 	EducationalContent[] findByLesson(Long idLesson);
 
 	@Put("/educationalContent")
-	EducationalContent update(EducationalContent slide);
+	EducationalContent update(EducationalContent educationalContent);
 
 	@Delete("/educationalContent/{id}")
 	void delete(Long id);

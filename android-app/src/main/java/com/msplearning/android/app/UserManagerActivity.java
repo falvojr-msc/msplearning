@@ -14,11 +14,11 @@ import com.google.gson.Gson;
 import com.msplearning.android.app.generic.GenericAsyncActivity;
 import com.msplearning.android.app.rest.StudentRestClient;
 import com.msplearning.android.app.rest.TeacherRestClient;
-import com.msplearning.entity.Gender;
 import com.msplearning.entity.Student;
 import com.msplearning.entity.Teacher;
 import com.msplearning.entity.User;
 import com.msplearning.entity.common.json.GsonFactory;
+import com.msplearning.entity.enuns.Gender;
 
 /**
  * The UserManagerActivity class.
@@ -28,8 +28,13 @@ import com.msplearning.entity.common.json.GsonFactory;
 @EActivity(R.layout.activity_user_manager)
 public class UserManagerActivity extends GenericAsyncActivity<MSPLearningApplication> {
 
-	// Intent extra keys:
+	/**
+	 * EXTRA_KEY_PASSWORD Intent extra key.
+	 */
 	public static final String EXTRA_KEY_PASSWORD = "E.user.password";
+	/**
+	 * EXTRA_KEY_EMAIL Intent extra key.
+	 */
 	public static final String EXTRA_KEY_EMAIL = "E.user.email";
 
 	@ViewById(R.id.first_name)

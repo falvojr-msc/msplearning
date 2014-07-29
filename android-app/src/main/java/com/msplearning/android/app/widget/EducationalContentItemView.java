@@ -8,20 +8,20 @@ import android.widget.TextView;
 
 import com.msplearning.android.app.R;
 import com.msplearning.android.app.widget.generic.AbstractItemView;
-import com.msplearning.entity.AppUser;
+import com.msplearning.entity.EducationalContent;
 
 @EViewGroup(R.layout.widget_list_item)
-public class UserRequestItemView extends AbstractItemView<AppUser> {
+public class EducationalContentItemView extends AbstractItemView<EducationalContent> {
 
 	@ViewById(R.id.textview_description)
-	TextView mUserName;
+	TextView mEducationalContentTitle;
 
-	public UserRequestItemView(Context context) {
+	public EducationalContentItemView(Context context) {
 		super(context);
 	}
 
 	@Override
-	public void bind(AppUser appUser) {
-		this.mUserName.setText(appUser.getId().getUser().getFirstName());
+	public void bind(EducationalContent educationalContent) {
+		this.mEducationalContentTitle.setText(educationalContent.getTitle());
 	}
 }
