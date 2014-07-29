@@ -1,17 +1,23 @@
 package com.msplearning.rest.app;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Context;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.msplearning.entity.App;
+import com.msplearning.entity.common.BusinessException;
 import com.msplearning.rest.app.generic.GenericCrudRestService;
+import com.msplearning.rest.util.FileUtil;
 import com.msplearning.service.AppService;
 import com.msplearning.service.AppUserService;
 import com.msplearning.service.generic.GenericCrudService;
@@ -31,6 +37,11 @@ public class AppRestService extends GenericCrudRestService<App, Long> {
 	@Value("${project.basedirectory}")
 	private String baseDirectory;
 
+	private static String DEFAULT_APK_PATH = "\\android-app\\target\\android-app-1.0-SNAPSHOT.apk";
+
+	@Context
+	private ServletContext context;
+	
 	@Autowired
 	private AppService appService;
 
@@ -48,5 +59,22 @@ public class AppRestService extends GenericCrudRestService<App, Long> {
 		return this.appUserService.findAppsByUser(idUser);
 	}
 
+	@Override
+	public App insert(App entity) throws BusinessException {
+		App app = super.insert(entity);
+
+		String apkFolderPath = context.getRealPath(File.separator) + File.separator + app.getId();
+		FileUtil.makeFolder(apkFolderPath);
+		
+		try {
+			File apk = new File(apkFolderPath + "APK");
+			FileUtil.copy(new File(DEFAULT_APK_PATH), apk);
+			// TODO: Edit apk file.
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return app;
+	}
 	//TODO: REST service for change the project.properties file inside the APK.
 }
