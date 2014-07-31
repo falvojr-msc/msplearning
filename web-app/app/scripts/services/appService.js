@@ -3,7 +3,7 @@
 angular.module('msplearningApp').service('appService', function ($rootScope, $http, userService) {
 
 	this.getFeactures = function(success, error) {
-		$http.get($rootScope.getResourceAddress('feature/'))
+		$http.get($rootScope.getRestMethod('feature/'))
 		.success(function(data) {
 			callBackSuccess(data, success);
 		})
@@ -13,8 +13,12 @@ angular.module('msplearningApp').service('appService', function ($rootScope, $ht
 	};
 
 	this.getApps = function(success, error) {
-		$http.get($rootScope.getResourceAddress('app/user/' + userService.getAuthenticatedUser().id))
+		$http.get($rootScope.getRestMethod('app/user/' + userService.getAuthenticatedUser().id))
 		.success(function(data) {
+			for (var i = 0; i < data.length; i++) {
+				var app = data[i];
+				app.urlapk = $rootScope.getResourceAddress('apps/' + app.id + '/MSPLearning.apk');
+			};
 			callBackSuccess(data, success);
 		})
 		.error(function(data) {
@@ -34,7 +38,7 @@ angular.module('msplearningApp').service('appService', function ($rootScope, $ht
 
 		app.appFeatures = appFeatures;
 
-		$http.post($rootScope.getResourceAddress('app/user/' + userService.getAuthenticatedUser().id), app)
+		$http.post($rootScope.getRestMethod('app/user/' + userService.getAuthenticatedUser().id), app)
 		.success(function(data) {
 			callBackSuccess(data, success);
 		})

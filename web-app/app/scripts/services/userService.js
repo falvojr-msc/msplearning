@@ -14,7 +14,7 @@ angular.module('msplearningApp').service('userService', function ($rootScope, $c
 	};
 
 	this.login = function(user, success, error) {
-		$http.post($rootScope.getResourceAddress('user/auth/'), user)
+		$http.post($rootScope.getRestMethod('user/auth/'), user)
 		.success(function(data, status, headers, config){
 			$cookies.user = JSON.stringify(data.properties);
 			success();
@@ -29,7 +29,7 @@ angular.module('msplearningApp').service('userService', function ($rootScope, $c
 	};
 
 	this.save = function(user, success, error) {
-		$http.post($rootScope.getResourceAddress('teacher'), user)
+		$http.post($rootScope.getRestMethod('teacher'), user)
 		.success(function(data) {
 			callBackSuccess(data, success);
 		})

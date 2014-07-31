@@ -24,10 +24,15 @@ angular.module('msplearningApp', [
         redirectTo: '/'
       });
   }).run(function($rootScope, $location, $route, userService) {
-    var SERVER_URL = "http://localhost:8080/rest-app/rest/";
+    var REST_URL = "http://localhost:8080/rest-app/rest/";
+    var RESOURCES_URL = "http://localhost:8080/rest-app/";
     
+    $rootScope.getRestMethod = function(resource) {
+      return REST_URL + resource
+    }
+
     $rootScope.getResourceAddress = function(resource) {
-      return SERVER_URL + resource
+      return RESOURCES_URL + resource
     }
 
     $rootScope.$on('$locationChangeStart', function(evt, next, current) {

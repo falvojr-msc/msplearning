@@ -3,7 +3,7 @@
 		<ul class="nav nav-sidebar" data-ng-init="loadApps()">
 			<li class="{{flow == flows.NEW ? 'active' : ''}}"><a data-ng-click="newApp()"> <span class="glyphicon glyphicon-plus-sign"> New</span></a></li>
 			<li data-ng-repeat="app in apps">
-				<a href="http://media02.hongkiat.com/html5-download-attribute/download-cover.jpg" download><span class="glyphicon glyphicon-download-alt"> {{app.name}}</span></a>
+				<a href="{{app.urlapk}}" download><span class="glyphicon glyphicon-download-alt"> {{app.name}}</span></a>
 			</li>
 		</ul>  	
 	</div>
