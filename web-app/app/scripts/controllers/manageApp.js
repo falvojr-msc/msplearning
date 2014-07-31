@@ -12,6 +12,7 @@ angular.module('msplearningApp').controller('ManageAppsCtrl', function ($scope, 
         $scope.flow = $scope.flows.APP_MANAGER;
         $scope.app = {};
         $scope.apps = [];
+        $scope.loadApps();
         $scope.features = [];
     };
 
@@ -34,6 +35,7 @@ angular.module('msplearningApp').controller('ManageAppsCtrl', function ($scope, 
     $scope.newApp = function(){
     	 $scope.getFeactures();
     	 $scope.flow = $scope.flows.NEW;
+         $scope.app = {};
     	 $scope.alerts = [];
     };
 

@@ -1,5 +1,5 @@
 <div class="row" data-ng-init="init()">
-	<div class="col-sm-3 col-md-2 sidebar">
+	<div class="col-sm-3 col-md-3 sidebar">
 		<ul class="nav nav-sidebar" data-ng-init="loadApps()">
 			<li class="{{flow == flows.NEW ? 'active' : ''}}"><a data-ng-click="newApp()"> <span class="glyphicon glyphicon-plus-sign"> New</span></a></li>
 			<li data-ng-repeat="app in apps">
@@ -7,13 +7,13 @@
 			</li>
 		</ul>  	
 	</div>
-	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
 		<div data-ng-repeat="alert in alerts" class="alert {{alert.class}}" role="alert">
 			{{alert.message}}
 		</div>
 		<div data-ng-show="flow == flows.NEW">
 			<h1 class="page-header">Create your app</h1>
-			<form>
+			<form data-ng-submit="create()">
 				<input type="text" class="form-control" placeholder="Name App" required autofocus data-ng-model="app.name">
 
 			    <script type="text/ng-template" id="partialFeacture">
@@ -21,7 +21,7 @@
 						<li data-ng-repeat="feature in features">
 							{{feature.name}} 
 							<input type="checkbox" data-ng-model="feature.selected" data-ng-disabled="feature.isMandatory">
-							<div data-ng-switch on="feature.children.length > 0">
+							<div data-ng-switch on="feature.children.length > 0" >
 								<div data-ng-switch-when="true">
 									<div ng-init="features = feature.children" data-ng-include="'partialFeacture'">
 									</div>
@@ -31,11 +31,16 @@
 					</ul>
 			    </script>
 				
-				<div ng-include="'partialFeacture'"></div>
+				<div class="feactures" ng-include="'partialFeacture'"></div>
 
-				<button type="button" data-ng-hide="app.id != null" class="btn btn-success" data-ng-click="create()">Create</button>
+				<button type="button" class="btn btn-lg btn-danger" data-ng-click="cancel()">
+					<span class="glyphicon glyphicon-remove"></span> Cancel
+				</button>
 
-				<button type="button" class="btn btn-danger" data-ng-click="cancel()">Cancel</button>
+				<button type="submit" data-ng-hide="app.id != null" class="btn btn-lg btn-success">
+					<span class="glyphicon glyphicon-ok"></span> Create
+				</button>
+
 			</form>	
 		</div>
 	</div>

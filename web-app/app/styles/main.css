@@ -39,3 +39,7 @@ body > .container {
 .main .page-header {
   margin-top: 0;
 }
+
+.feactures {
+  padding: 20px;
+}
