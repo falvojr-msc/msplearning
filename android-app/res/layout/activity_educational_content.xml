@@ -23,25 +23,27 @@
                 android:id="@+id/radio_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="@string/prompt_text" />
-			<RadioButton
+
+            <RadioButton
                 android:id="@+id/radio_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/prompt_image" />
+
             <RadioButton
                 android:id="@+id/radio_video"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/prompt_video" />
         </RadioGroup>
-        
+
         <EditText
             android:id="@+id/educational_content_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_title"
+            android:maxLength="50"
             android:maxLines="1"
             android:singleLine="true" />
 
@@ -49,7 +51,7 @@
             android:id="@+id/educational_content_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textUri"
+            android:maxLength="500"
             android:maxLines="1"
             android:singleLine="true" />
 
@@ -58,9 +60,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_footnote"
+            android:maxLength="50"
             android:maxLines="1"
             android:singleLine="true" />
-        
+
         <TextView
             android:id="@+id/educational_content_label_page"
             android:layout_width="match_parent"
@@ -70,7 +73,7 @@
             android:paddingTop="10dp"
             android:text="@string/prompt_page"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        
+
         <SeekBar
             android:id="@+id/educational_content_page"
             android:layout_width="match_parent"

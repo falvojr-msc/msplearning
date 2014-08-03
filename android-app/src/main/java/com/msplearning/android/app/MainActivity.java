@@ -23,10 +23,10 @@ import com.msplearning.entity.AppUserId;
 public class MainActivity extends GenericAsyncActivity<MSPLearningApplication> {
 
 	@RestService
-	protected AppRestClient mAppRestClient;
+	AppRestClient mAppRestClient;
 
 	@AfterInject
-	protected void init() {
+	void afterInject() {
 		try {
 			// Load "product.properties", file where the id of the application in question is stored.
 			Properties properties = new Properties();
@@ -45,7 +45,7 @@ public class MainActivity extends GenericAsyncActivity<MSPLearningApplication> {
 	 * @param idApp
 	 */
 	@Background
-	protected void resolveAuthenticityVariability(Long idApp) {
+	void resolveAuthenticityVariability(Long idApp) {
 		try {
 			AppUserId appSetings = new AppUserId();
 			appSetings.setApp(this.mAppRestClient.findById(idApp));

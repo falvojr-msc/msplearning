@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
@@ -13,6 +14,7 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -38,16 +40,22 @@ import com.msplearning.entity.Discipline;
 @OptionsMenu(R.menu.actionbar)
 public class DisciplineListActivity extends GenericActivityListView<Discipline> {
 
-	private static final String DISCIPLINE = "Discipline";
-
 	@ViewById(R.id.list_view_disciplines)
-	protected ListView mListView;
+	ListView mListView;
 
 	@Bean
-	protected DisciplineListAdapter mDisciplineAdapter;
+	DisciplineListAdapter mDisciplineAdapter;
 
 	@RestService
-	protected DisciplineRestClient mDisciplineRestClient;
+	DisciplineRestClient mDisciplineRestClient;
+
+	@SuppressLint("NewApi")
+	@AfterViews
+	@Override
+	protected void afterViews() {
+		super.afterViews();
+		super.getActionBar().setSubtitle(R.string.app_subtitle_discipline);
+	}
 
 	@Override
 	protected ListView getListView() {
@@ -65,13 +73,13 @@ public class DisciplineListActivity extends GenericActivityListView<Discipline> 
 	}
 
 	@OptionsItem(R.id.action_refresh)
-	protected void onRefresh() {
+	void onRefresh() {
 		this.loadListItens();
 	}
 
 	@OptionsItem(R.id.action_new)
-	protected void onNew() {
-		Intent intent = DisciplineManagerActivity_.intent(this).get();
+	void onNew() {
+		Intent intent = DisciplineActivity_.intent(this).get();
 		this.startActivityForResult(intent, REQUEST_CODE_CREATE);
 	}
 
@@ -91,8 +99,8 @@ public class DisciplineListActivity extends GenericActivityListView<Discipline> 
 			this.startActivity(intentLessons);
 			break;
 		case R.id.action_edit:
-			Intent intentManageDiscipline = DisciplineManagerActivity_.intent(this).get();
-			intentManageDiscipline.putExtra(DisciplineManagerActivity.EXTRA_KEY_DISCIPLINE, selectedItem);
+			Intent intentManageDiscipline = DisciplineActivity_.intent(this).get();
+			intentManageDiscipline.putExtra(DisciplineActivity.EXTRA_KEY_DISCIPLINE, selectedItem);
 			this.startActivityForResult(intentManageDiscipline, REQUEST_CODE_UPDATE);
 			break;
 		case R.id.action_discard:
@@ -102,30 +110,31 @@ public class DisciplineListActivity extends GenericActivityListView<Discipline> 
 					DisciplineListActivity.this.deleteDiscipline(selectedItem.getId());
 				}
 			};
-			this.showDialogConfirm( this.getString(R.string.dialog_title_discard), this.getString(R.string.dialog_message_discard, DISCIPLINE.toLowerCase(Locale.getDefault())), listenerYes, null);
+			String label = super.getString(R.string.app_subtitle_discipline).toLowerCase(Locale.getDefault());
+			this.showDialogConfirm( this.getString(R.string.dialog_title_confirmation), super.getString(R.string.dialog_message_discard, label), listenerYes, null);
 			break;
 		}
 	}
 
 	@OnActivityResult(REQUEST_CODE_CREATE)
-	protected void onResultNew(int resultCode) {
+	void onResultNew(int resultCode) {
 		this.showMessageFromResult(resultCode, R.string.toast_new_success);
 	}
 
 	@OnActivityResult(REQUEST_CODE_UPDATE)
-	protected void onResultEdit(int resultCode) {
+	void onResultEdit(int resultCode) {
 		this.showMessageFromResult(resultCode, R.string.toast_edit_success);
 	}
 
 	@Background
-	protected void deleteDiscipline(Long id) {
+	void deleteDiscipline(Long id) {
 		this.mDisciplineRestClient.delete(id);
-		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success, DISCIPLINE));
+		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success, super.getString(R.string.app_subtitle_discipline)));
 	}
 
 	private void showMessageFromResult(int resultCode, int idResource) {
 		if (resultCode == RESULT_OK) {
-			super.reloadItensShowingToastMessage(super.getString(idResource, DISCIPLINE));
+			super.reloadItensShowingToastMessage(super.getString(idResource, super.getString(R.string.app_subtitle_discipline)));
 		}
 	}
 }

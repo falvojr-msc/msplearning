@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
@@ -14,6 +14,7 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -44,25 +45,27 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 	 */
 	public static final String EXTRA_KEY_ID_DISCIPLINE = "E.discipline.id";
 
-	private static final String LESSON = "Lesson";
-
 	@ViewById(R.id.list_view_lessons)
-	protected ListView mListView;
+	ListView mListView;
 
 	@Bean
-	protected LessonListAdapter mLessonAdapter;
+	LessonListAdapter mLessonAdapter;
 
 	@RestService
-	protected LessonRestClient mLessonRestClient;
+	LessonRestClient mLessonRestClient;
 
 	private Long idSelectedDiscipline;
 
-	@AfterInject
-	public void afterInject() {
+	@SuppressLint("NewApi")
+	@AfterViews
+	@Override
+	protected void afterViews() {
 		if (this.idSelectedDiscipline == null) {
 			this.idSelectedDiscipline = this.getIntent().getLongExtra(EXTRA_KEY_ID_DISCIPLINE, 0L);
 			this.getIntent().removeExtra(EXTRA_KEY_ID_DISCIPLINE);
 		}
+		super.afterViews();
+		super.getActionBar().setSubtitle(R.string.app_subtitle_lesson);
 	}
 
 	@Override
@@ -81,14 +84,14 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 	}
 
 	@OptionsItem(R.id.action_refresh)
-	protected void onRefresh() {
+	void onRefresh() {
 		this.loadListItens();
 	}
 
 	@OptionsItem(R.id.action_new)
-	protected void onNew() {
-		Intent intent = LessonManagerActivity_.intent(this).get();
-		intent.putExtra(LessonManagerActivity.EXTRA_KEY_ID_DISCIPLINE, this.idSelectedDiscipline);
+	void onNew() {
+		Intent intent = LessonActivity_.intent(this).get();
+		intent.putExtra(LessonActivity.EXTRA_KEY_ID_DISCIPLINE, this.idSelectedDiscipline);
 		this.startActivityForResult(intent, REQUEST_CODE_CREATE);
 	}
 
@@ -108,8 +111,8 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 			this.startActivity(intentEducationalContent);
 			break;
 		case R.id.action_edit:
-			Intent intent = LessonManagerActivity_.intent(this).get();
-			intent.putExtra(LessonManagerActivity.EXTRA_KEY_LESSON, selectedItem);
+			Intent intent = LessonActivity_.intent(this).get();
+			intent.putExtra(LessonActivity.EXTRA_KEY_LESSON, selectedItem);
 			this.startActivityForResult(intent, REQUEST_CODE_UPDATE);
 			break;
 		case R.id.action_discard:
@@ -119,31 +122,31 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 					LessonListActivity.this.deleteLesson(selectedItem.getId());
 				}
 			};
-			this.showDialogConfirm(this.getString(R.string.dialog_title_discard),
-					this.getString(R.string.dialog_message_discard, LESSON.toLowerCase(Locale.getDefault())), listenerYes, null);
+			String label = super.getString(R.string.app_subtitle_lesson).toLowerCase(Locale.getDefault());
+			this.showDialogConfirm(this.getString(R.string.dialog_title_confirmation), this.getString(R.string.dialog_message_discard, label), listenerYes, null);
 			break;
 		}
 	}
 
 	@OnActivityResult(REQUEST_CODE_CREATE)
-	protected void onResultNew(int resultCode) {
+	void onResultNew(int resultCode) {
 		this.showMessageFromResult(resultCode, R.string.toast_new_success);
 	}
 
 	@OnActivityResult(REQUEST_CODE_UPDATE)
-	protected void onResultEdit(int resultCode) {
+	void onResultEdit(int resultCode) {
 		this.showMessageFromResult(resultCode, R.string.toast_edit_success);
 	}
 
 	@Background
-	protected void deleteLesson(Long id) {
+	void deleteLesson(Long id) {
 		this.mLessonRestClient.delete(id);
-		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success, LESSON));
+		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success, super.getString(R.string.app_subtitle_lesson)));
 	}
 
 	private void showMessageFromResult(int resultCode, int idResource) {
 		if (resultCode == RESULT_OK) {
-			super.reloadItensShowingToastMessage(super.getString(idResource, LESSON));
+			super.reloadItensShowingToastMessage(super.getString(idResource, super.getString(R.string.app_subtitle_lesson)));
 		}
 	}
 }

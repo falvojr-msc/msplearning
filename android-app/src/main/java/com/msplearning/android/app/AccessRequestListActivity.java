@@ -27,13 +27,13 @@ import com.msplearning.entity.AppUser;
 public class AccessRequestListActivity extends GenericActivityListView<AppUser> {
 
 	@ViewById(R.id.list_view_access_requests)
-	protected ListView mListView;
+	ListView mListView;
 
 	@RestService
-	protected AppUserRestClient mAppUserRestClient;
+	AppUserRestClient mAppUserRestClient;
 
 	@Bean
-	protected AccessRequestListAdapter mUserRequestAdapter;
+	AccessRequestListAdapter mUserRequestAdapter;
 
 	@Override
 	protected ListView getListView() {

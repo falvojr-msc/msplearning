@@ -7,6 +7,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
+import android.annotation.SuppressLint;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
@@ -25,8 +26,8 @@ import com.msplearning.entity.enuns.Gender;
  *
  * @author Venilton Falvo Junior (veniltonjr)
  */
-@EActivity(R.layout.activity_user_manager)
-public class UserManagerActivity extends GenericAsyncActivity<MSPLearningApplication> {
+@EActivity(R.layout.activity_user)
+public class UserActivity extends GenericAsyncActivity<MSPLearningApplication> {
 
 	/**
 	 * EXTRA_KEY_PASSWORD Intent extra key.
@@ -38,27 +39,30 @@ public class UserManagerActivity extends GenericAsyncActivity<MSPLearningApplica
 	public static final String EXTRA_KEY_EMAIL = "E.user.email";
 
 	@ViewById(R.id.first_name)
-	protected EditText mFirstNameView;
+	EditText mFirstNameView;
 	@ViewById(R.id.last_name)
-	protected EditText mLastNameView;
+	EditText mLastNameView;
 	@ViewById(R.id.radio_group_gender)
-	protected RadioGroup mGenderView;
+	RadioGroup mGenderView;
 	@ViewById(R.id.username)
-	protected EditText mUsernameView;
+	EditText mUsernameView;
 	@ViewById(R.id.password)
-	protected EditText mPasswordView;
+	EditText mPasswordView;
 	@ViewById(R.id.repeat_password)
-	protected EditText mRepeatPasswordView;
+	EditText mRepeatPasswordView;
 	@ViewById(R.id.radio_group_type)
-	protected RadioGroup mTypeView;
+	RadioGroup mTypeView;
 
 	@RestService
-	protected StudentRestClient mStudentRESTfulClient;
+	StudentRestClient mStudentRESTfulClient;
 	@RestService
-	protected TeacherRestClient mTeacherRESTfulClient;
+	TeacherRestClient mTeacherRESTfulClient;
 
+	@SuppressLint("NewApi")
 	@AfterViews
-	public void init() {
+	void afterViews() {
+		super.getActionBar().setSubtitle(R.string.app_subtitle_user);
+
 		String username = this.getIntent().getStringExtra(EXTRA_KEY_EMAIL);
 		String password = this.getIntent().getStringExtra(EXTRA_KEY_PASSWORD);
 
@@ -73,7 +77,7 @@ public class UserManagerActivity extends GenericAsyncActivity<MSPLearningApplica
 	}
 
 	@Click(R.id.button_register)
-	public void onUserRegister() {
+	void onUserRegister() {
 		super.showLoadingProgressDialog();
 
 		User user = new User();
@@ -87,7 +91,7 @@ public class UserManagerActivity extends GenericAsyncActivity<MSPLearningApplica
 	}
 
 	@Background
-	public void insertUser(User user) {
+	void insertUser(User user) {
 		Gson gson = GsonFactory.createGson();
 		try {
 			if (this.mTypeView.indexOfChild(this.findViewById(this.mTypeView.getCheckedRadioButtonId())) == 0) {

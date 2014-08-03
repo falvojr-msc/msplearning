@@ -15,7 +15,7 @@ import com.msplearning.service.generic.BaseService;
 
 /**
  * The FeatureService class provides the business operations of entity {@link Feature}.
- * 
+ *
  * @author Venilton Falvo Junior (veniltonjr)
  */
 @Service("featureService")
@@ -47,9 +47,8 @@ public class FeatureService extends BaseService implements InitializingBean {
 			pedagogical.getChildren().add(new Feature(Variability.INTERACTIVITY.getId(), "Interactivity", null, false, false, false));
 			Feature multimediaResources = new Feature(8L, "Multimedia Resources", FeatureOperator.O, true, false, false);
 			multimediaResources.setChildren(new HashSet<Feature>());
-			multimediaResources.getChildren().add(new Feature(Variability.AUDIO.getId(), "Audio", null, false, false, false));
-			multimediaResources.getChildren().add(new Feature(Variability.IMAGE.getId(), "Image", null, false, false, false));
 			multimediaResources.getChildren().add(new Feature(Variability.TEXT.getId(), "Text", null, false, false, false));
+			multimediaResources.getChildren().add(new Feature(Variability.IMAGE.getId(), "Image", null, false, false, false));
 			multimediaResources.getChildren().add(new Feature(Variability.VIDEO.getId(), "Video", null, false, false, false));
 			pedagogical.getChildren().add(multimediaResources);
 
@@ -71,7 +70,7 @@ public class FeatureService extends BaseService implements InitializingBean {
 			// Security concrete features:
 			Feature security = new Feature(4L, "Security", FeatureOperator.A, true, false, false);
 			security.setChildren(new HashSet<Feature>());
-			security.getChildren().add(new Feature(Variability.AUTHENTICITY.getId(), "Authenticity", null, false, false, false));
+			security.getChildren().add(new Feature(16L, "Authenticity", null, true, false, false));
 			security.getChildren().add(new Feature(17L, "Confidentiality", null, true, false, false));
 			security.getChildren().add(new Feature(18L, "Integrity", null, true, false, false));
 

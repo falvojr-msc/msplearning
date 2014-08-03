@@ -30,7 +30,7 @@
         <activity android:name=".SignInActivity_" android:launchMode="singleTop" >
         </activity>
         
-        <activity android:name=".UserManagerActivity_" android:parentActivityName=".SignInActivity_" android:launchMode="singleTop" >
+        <activity android:name=".UserActivity_" android:parentActivityName=".SignInActivity_" android:launchMode="singleTop" >
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.SignInActivity_" />
         </activity>
         
@@ -42,7 +42,7 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.DashboardActivity_" />
         </activity>
         
-        <activity android:name=".DisciplineManagerActivity_" android:parentActivityName=".DisciplineListActivity_" android:launchMode="singleTop" >
+        <activity android:name=".DisciplineActivity_" android:parentActivityName=".DisciplineListActivity_" android:launchMode="singleTop" >
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.DisciplineListActivity_" />
         </activity>
         
@@ -50,7 +50,7 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.DisciplineListActivity_" />
         </activity>
         
-        <activity android:name=".LessonManagerActivity_" android:parentActivityName=".LessonListActivity_" android:launchMode="singleTop" >
+        <activity android:name=".LessonActivity_" android:parentActivityName=".LessonListActivity_" android:launchMode="singleTop" >
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.LessonListActivity_" />
         </activity>
         
@@ -58,7 +58,7 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.LessonListActivity_" />
         </activity>
         
-        <activity android:name=".EducationalContentManagerActivity_" android:parentActivityName=".EducationalContentListActivity_" android:launchMode="singleTop" >
+        <activity android:name=".EducationalContentActivity_" android:parentActivityName=".EducationalContentListActivity_" android:launchMode="singleTop" >
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.EducationalContentListActivity_" />
         </activity>
         

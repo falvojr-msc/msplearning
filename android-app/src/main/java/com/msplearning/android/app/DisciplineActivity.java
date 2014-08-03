@@ -7,6 +7,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
+import android.annotation.SuppressLint;
 import android.widget.EditText;
 
 import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
@@ -18,8 +19,8 @@ import com.msplearning.entity.Discipline;
  *
  * @author Venilton Falvo Junior (veniltonjr)
  */
-@EActivity(R.layout.activity_discipline_manager)
-public class DisciplineManagerActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
+@EActivity(R.layout.activity_discipline)
+public class DisciplineActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
 
 	/**
 	 * EXTRA_KEY_DISCIPLINE Intent extra key.
@@ -27,17 +28,20 @@ public class DisciplineManagerActivity extends GenericAsyncAuthActivity<MSPLearn
 	public static final String EXTRA_KEY_DISCIPLINE = "E.discipline";
 
 	@ViewById(R.id.discipline_name)
-	protected EditText mName;
+	EditText mName;
 	@ViewById(R.id.discipline_description)
-	protected EditText mDescription;
+	EditText mDescription;
 
 	@RestService
-	protected DisciplineRestClient mDisciplineRestClient;
+	DisciplineRestClient mDisciplineRestClient;
 
 	private Discipline currentDiscipline;
 
+	@SuppressLint("NewApi")
 	@AfterViews
-	public void afterViews() {
+	void afterViews() {
+		super.getActionBar().setSubtitle(R.string.app_subtitle_discipline);
+
 		this.currentDiscipline = (Discipline) this.getIntent().getSerializableExtra(EXTRA_KEY_DISCIPLINE);
 		if(this.currentDiscipline == null) {
 			this.currentDiscipline = new Discipline();
@@ -49,7 +53,7 @@ public class DisciplineManagerActivity extends GenericAsyncAuthActivity<MSPLearn
 	}
 
 	@Click(R.id.button_save)
-	public void onDisciplineSave() {
+	void onDisciplineSave() {
 		super.showLoadingProgressDialog();
 
 		this.currentDiscipline.setName(this.mName.getText().toString());
@@ -61,7 +65,7 @@ public class DisciplineManagerActivity extends GenericAsyncAuthActivity<MSPLearn
 	}
 
 	@Background
-	public void saveDiscipline() {
+	void saveDiscipline() {
 		try {
 			if (this.currentDiscipline.getId() == null) {
 				this.mDisciplineRestClient.insert(this.currentDiscipline);

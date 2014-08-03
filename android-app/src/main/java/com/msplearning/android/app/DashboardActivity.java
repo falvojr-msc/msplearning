@@ -9,6 +9,7 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 import org.springframework.web.client.RestClientException;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -28,19 +29,22 @@ import com.msplearning.entity.Teacher;
 public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
 
 	@ViewById(R.id.button_manage_view_educational_content)
-	protected Button mButtonManageViewEducationalContent;
+	Button mButtonManageViewEducationalContent;
 	@ViewById(R.id.button_access_requests)
-	protected Button mButtonAccessRequests;
+	Button mButtonAccessRequests;
 	@ViewById(R.id.button_edit_profile)
-	protected Button mButtonEditProfile;
+	Button mButtonEditProfile;
 	@ViewById(R.id.button_info)
-	protected Button mButtonInfo;
+	Button mButtonInfo;
 
 	@RestService
-	protected AppUserRestClient mAppUserRestClient;
+	AppUserRestClient mAppUserRestClient;
 
+	@SuppressLint("NewApi")
 	@AfterViews
-	protected void init() {
+	void afterViews() {
+		super.getActionBar().setSubtitle(R.string.app_subtitle_dashboard);
+
 		if (super.getUser() == null) {
 			this.resolveContentManagementCommonality(null);
 		} else {
@@ -49,7 +53,7 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 	}
 
 	@Background
-	protected void findAppUserRelationship() {
+	void findAppUserRelationship() {
 		Long idApp = super.getApp().getId();
 		Long idUser = super.getUser().getId();
 		AppUser appUser;
@@ -65,12 +69,12 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 	}
 
 	@UiThread
-	protected void showToastAccessRequest() {
+	void showToastAccessRequest() {
 		Toast.makeText(this, this.getString(R.string.toast_access_request), Toast.LENGTH_LONG).show();
 	}
 
 	@UiThread
-	protected void resolveContentManagementCommonality(AppUser appUser) {
+	void resolveContentManagementCommonality(AppUser appUser) {
 		if (appUser == null) {
 			this.mButtonManageViewEducationalContent.setText(this.getString(R.string.action_view_educational_content));
 		} else {
@@ -85,22 +89,22 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 	}
 
 	@Click(R.id.button_manage_view_educational_content)
-	protected void onManageViewEducationalContent() {
+	void onManageViewEducationalContent() {
 		DisciplineListActivity_.intent(this).start();
 	}
 
 	@Click(R.id.button_access_requests)
-	protected void onAccessRequests() {
+	void onAccessRequests() {
 		AccessRequestListActivity_.intent(this).start();
 	}
 
 	@Click(R.id.button_edit_profile)
-	protected void onEditProfile() {
+	void onEditProfile() {
 		//TODO: Edit Profile Functionality.
 	}
 
 	@Click(R.id.button_info)
-	protected void onInfo() {
+	void onInfo() {
 		//TODO: Info Functionality.
 	}
 }

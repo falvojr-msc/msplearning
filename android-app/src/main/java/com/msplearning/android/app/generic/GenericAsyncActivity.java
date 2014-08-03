@@ -10,6 +10,8 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface.OnClickListener;
+import android.text.TextUtils;
+import android.widget.EditText;
 
 import com.msplearning.android.app.MSPLearningApplication;
 import com.msplearning.android.app.R;
@@ -75,5 +77,20 @@ public abstract class GenericAsyncActivity<T extends MSPLearningApplication> ext
 		.setPositiveButton(android.R.string.yes, listenerYes)
 		.setNegativeButton(android.R.string.no, listenerNo)
 		.show();
+	}
+
+	protected boolean verifyRequiredFields(EditText... fields) {
+		EditText firstInvalidField = null;
+		for (EditText field : fields) {
+			field.setError(null);
+			if (TextUtils.isEmpty(field.getText())) {
+				field.setError(this.getString(R.string.error_required));
+				if (firstInvalidField == null) {
+					firstInvalidField = field;
+					firstInvalidField.requestFocus();
+				}
+			}
+		}
+		return firstInvalidField == null;
 	}
 }

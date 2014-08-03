@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <!-- Application common strings -->
+    <!-- String application name -->
+    <string name="app_name">M-SPLearning</string>
+    
+    <!-- Common strings -->
     <string name="action_discard">Discard</string>
     <string name="action_edit">Edit</string>
     <string name="action_new">New</string>
     <string name="action_refresh">Refresh</string>
-    <string name="action_save">Save</string>
-    <string name="app_name">M-SPLearning</string>
+    <string name="action_save">Save</string>  
     <string name="context_menu_title">Options</string>
     <string name="dialog_message_discard">This %1$s will be discarded. Want to confirm?</string>
-    <string name="dialog_title_discard">Confirmation of discard</string>
+    <string name="dialog_title_confirmation">Confirmation</string>
     <string name="dialog_title_error">Error</string>
     <string name="error_required">This field is required</string>
     <string name="prompt_description">Description</string>
@@ -28,15 +30,15 @@
     <string name="action_sign_in_register">Sign in or register</string>  
 	<string name="action_twitter">Sign in using Twitter</string>
 	<string name="dialog_message_register">This user was not found. Want to register it?</string>
-    <string name="dialog_title_register">Confirm registration</string>
-    <string name="error_invalid_email">Invalid email address</string>
+    <string name="error_invalid_email">This email is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="rest_error_password_incorrect">This password is incorrect.</string>
-    <string name="rest_error_email_not_found">This email was not found.</string>
+    <string name="rest_error_password_incorrect">This password is incorrect</string>
+    <string name="rest_error_email_not_found">This email was not found</string>
     
     <!-- User strings -->
+    <string name="app_subtitle_user">User</string>
     <string name="label_user_manager">User Form</string>
     <string name="prompt_female">Female</string>
     <string name="prompt_first_name">First name</string>
@@ -47,6 +49,7 @@
     <string name="prompt_teacher">Teacher</string>
     
     <!-- Dashboard strings -->
+    <string name="app_subtitle_dashboard">Dashboard</string>
     <string name="action_access_requests">Access Requests</string>
     <string name="action_edit_profile">Edit Profile</string>
     <string name="action_info">Info</string>
@@ -55,14 +58,18 @@
     <string name="toast_access_request">An access request has been sent.</string>
     
     <!-- Discipline strings -->
+    <string name="app_subtitle_discipline">Discipline</string>
     <string name="action_manage_lessons">Manage Lessons</string>
     <string name="label_discipline_manager">Discipline Form</string>
     
     <!-- Lesson strings -->
+    <string name="app_subtitle_lesson">Lesson</string>
     <string name="action_manage_educational_content">Manage Educational Content</string>
     <string name="label_lesson_manager">Lesson Form</string>
     
     <!-- Educational Content strings -->
+    <string name="app_subtitle_educational_content">Educational Content</string>
+    <string name="error_invalid_url">This URL is invalid</string>
     <string name="label_educational_content_manager">Educational Content Form</string>
     <string name="prompt_title">Title</string>
     <string name="prompt_url">URL</string>

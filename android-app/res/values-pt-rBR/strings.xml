@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- String application name -->
+    <string name="app_name">M-SPLearning</string>
+    
+    <!-- Common strings -->
+    <string name="action_discard">Descartar</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_new">Novo</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_save">Salvar</string>  
+    <string name="context_menu_title">Opções</string>
+    <string name="dialog_message_discard">Este(a) %1$s será descartado(a). Deseja confirmar?</string>
+    <string name="dialog_title_confirmation">Confirmação</string>
+    <string name="dialog_title_error">Erro</string>
+    <string name="error_required">Este campo é obrigatório</string>
+    <string name="prompt_description">Descrição</string>
+    <string name="prompt_name">Nome</string>  
+    <string name="toast_discard_success">%1$s descartado(a) com sucesso.</string>
+    <string name="toast_edit_success">%1$s editado(a) com sucesso.</string>
+    <string name="toast_new_success">%1$s criado(a) com sucesso.</string>
+    
+    <!-- Main strings -->
+    <string name="error_find_id_app">Impossível encontrar o id da Aplicação.</string>
+    <string name="rest_error_find_app">Impossível configurar a Aplicação.</string>
+    
+    <!-- SignIn strings -->
+    <string name="action_facebook">Entrar usando o Facebook</string>
+    <string name="action_sign_in_register">Entrar ou Registrar-se</string>  
+	<string name="action_twitter">Entrar usando o Twitter</string>
+	<string name="dialog_message_register">Este usuário não foi encontrado. Deseja registrá-lo?</string>
+    
+    <string name="error_invalid_email">Este email é inválido</string>
+    <string name="error_invalid_password">Esta senha é muito curta</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Senha</string>
+    <string name="rest_error_password_incorrect">Esta senha está incorreta</string>
+    <string name="rest_error_email_not_found">Este email não foi encontrado</string>
+    
+    <!-- User strings -->
+    <string name="app_subtitle_user">Usuário</string>
+    <string name="label_user_manager">Formulário de Usuário</string>
+    <string name="prompt_female">Feminino</string>
+    <string name="prompt_first_name">Nome</string>
+    <string name="prompt_last_name">Sobrenome</string>
+    <string name="prompt_male">Masculino</string>
+    <string name="prompt_repeat_password">Repita a senha</string>
+    <string name="prompt_student">Estudante</string>
+    <string name="prompt_teacher">Professor</string>
+    
+    <!-- Dashboard strings -->
+    <string name="app_subtitle_dashboard">Dashboard</string>
+    <string name="action_access_requests">Requisições de Acesso</string>
+    <string name="action_edit_profile">Editar Perfil</string>
+    <string name="action_info">Informações</string>
+    <string name="action_manage_disciplines">Gerenciar Disciplinas</string>
+    <string name="action_view_educational_content">Visualizar Conteúdo Educacional</string>
+    <string name="toast_access_request">Uma requisição de acesso foi enviada.</string>
+    
+    <!-- Discipline strings -->
+    <string name="app_subtitle_discipline">Disciplina</string>
+    <string name="action_manage_lessons">Gerenciar Lições</string>
+    <string name="label_discipline_manager">Manter Disciplina</string>
+    
+    <!-- Lesson strings -->
+    <string name="app_subtitle_lesson">Lição</string>
+    <string name="action_manage_educational_content">Manage Educational Content</string>
+    <string name="label_lesson_manager">Manter Lição</string>
+    
+    <!-- Educational Content strings -->
+    <string name="app_subtitle_educational_content">Conteúdo Educacional</string>
+    <string name="error_invalid_url">Esta URL é inválida</string>
+    <string name="label_educational_content_manager">Manter Conteúdo Educacional</string>
+    <string name="prompt_title">Título</string>
+    <string name="prompt_url">URL</string>
+    <string name="prompt_footnote">Nota de Rodapé</string>
+    <string name="prompt_page">Página %1$s de %2$s</string>
+    <string name="prompt_text">Texto</string>
+    <string name="prompt_image">Imagem</string>
+    <string name="prompt_video">Vídeo</string>
+    
+</resources>

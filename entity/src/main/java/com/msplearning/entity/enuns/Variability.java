@@ -3,11 +3,9 @@ package com.msplearning.entity.enuns;
 public enum Variability {
 
 	INTERACTIVITY(7L),
-	AUTHENTICITY(16L),
-	AUDIO(19L),
+	TEXT(19L),
 	IMAGE(20L),
-	TEXT(21L),
-	VIDEO(22L);
+	VIDEO(21L);
 
 	private Long id;
 

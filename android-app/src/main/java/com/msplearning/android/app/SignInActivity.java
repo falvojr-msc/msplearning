@@ -41,16 +41,16 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 
 	// UI references.
 	@ViewById(R.id.email)
-	protected EditText mEmailView;
+	EditText mEmailView;
 	@ViewById(R.id.password)
-	protected EditText mPasswordView;
+	EditText mPasswordView;
 
 	// RESTful client.
 	@RestService
-	protected UserRestClient mUserRestClient;
+	UserRestClient mUserRestClient;
 
 	@AfterViews
-	protected void init() {
+	void afterViews() {
 		this.mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -64,7 +64,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	}
 
 	@Click(R.id.button_sign_in)
-	protected void onSignIn() {
+	void onSignIn() {
 
 		// Reset errors.
 		this.mEmailView.setError(null);
@@ -103,7 +103,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	}
 
 	@Click(R.id.button_facebook)
-	protected void onFacebookOAuth() {
+	void onFacebookOAuth() {
 		Intent intent = new Intent();
 		intent.setClass(this, FacebookWebOAuthActivity.class);
 		this.startActivity(intent);
@@ -111,7 +111,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	}
 
 	@Click(R.id.button_twitter)
-	protected void onTwitterOAuth() {
+	void onTwitterOAuth() {
 		Intent intent = new Intent();
 		intent.setClass(this, TwitterWebOAuthActivity.class);
 		this.startActivity(intent);
@@ -119,7 +119,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	}
 
 	@Background
-	protected void authenticate() {
+	void authenticate() {
 		try {
 			User credential = new User(this.mEmail, this.mPassword);
 			super.getApplicationContext().getAppSettings().setUser(this.mUserRestClient.authenticate(credential));
@@ -132,9 +132,9 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 				OnClickListener listenerYes = new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int whichButton) {
-						Intent intent = UserManagerActivity_.intent(SignInActivity.this).get();
-						intent.putExtra(UserManagerActivity.EXTRA_KEY_EMAIL, SignInActivity.this.mEmail);
-						intent.putExtra(UserManagerActivity.EXTRA_KEY_PASSWORD, SignInActivity.this.mPassword);
+						Intent intent = UserActivity_.intent(SignInActivity.this).get();
+						intent.putExtra(UserActivity.EXTRA_KEY_EMAIL, SignInActivity.this.mEmail);
+						intent.putExtra(UserActivity.EXTRA_KEY_PASSWORD, SignInActivity.this.mPassword);
 						SignInActivity.this.startActivityForResult(intent, REQUEST_CODE_CREATE);
 					}
 				};
@@ -145,7 +145,7 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 					}
 				};
 				this.showDialogConfirm(
-						this.getString(R.string.dialog_title_register),
+						this.getString(R.string.dialog_title_confirmation),
 						this.getString(R.string.dialog_message_register), listenerYes, listenerNo);
 			}
 		} finally {
@@ -154,14 +154,14 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 	}
 
 	@OnActivityResult(REQUEST_CODE_CREATE)
-	protected void onResult(int resultCode) {
+	void onResult(int resultCode) {
 		if (resultCode == RESULT_OK) {
 			this.redirectToDashboard();
 		}
 	}
 
 	@UiThread
-	protected void showFieldError(EditText editText, String message) {
+	void showFieldError(EditText editText, String message) {
 		editText.setError(message);
 		editText.requestFocus();
 	}

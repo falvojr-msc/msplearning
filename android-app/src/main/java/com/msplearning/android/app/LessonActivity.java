@@ -7,6 +7,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
+import android.annotation.SuppressLint;
 import android.widget.EditText;
 
 import com.msplearning.android.app.generic.GenericAsyncAuthActivity;
@@ -18,8 +19,8 @@ import com.msplearning.entity.Lesson;
  *
  * @author Venilton Falvo Junior (veniltonjr)
  */
-@EActivity(R.layout.activity_lesson_manager)
-public class LessonManagerActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
+@EActivity(R.layout.activity_lesson)
+public class LessonActivity extends GenericAsyncAuthActivity<MSPLearningApplication> {
 
 	/**
 	 * EXTRA_KEY_LESSON Intent extra key.
@@ -31,15 +32,18 @@ public class LessonManagerActivity extends GenericAsyncAuthActivity<MSPLearningA
 	public static final String EXTRA_KEY_ID_DISCIPLINE = "E.discipline.id";
 
 	@ViewById(R.id.discipline_name)
-	protected EditText mName;
+	EditText mName;
 
 	@RestService
-	protected LessonRestClient mLessonRestClient;
+	LessonRestClient mLessonRestClient;
 
 	private Lesson currentLesson;
 
+	@SuppressLint("NewApi")
 	@AfterViews
-	public void afterViews() {
+	void afterViews() {
+		super.getActionBar().setSubtitle(R.string.app_subtitle_lesson);
+
 		this.currentLesson = (Lesson) this.getIntent().getSerializableExtra(EXTRA_KEY_LESSON);
 		if(this.currentLesson == null) {
 			Long idDiscipline = this.getIntent().getLongExtra(EXTRA_KEY_ID_DISCIPLINE, 0L);
@@ -53,7 +57,7 @@ public class LessonManagerActivity extends GenericAsyncAuthActivity<MSPLearningA
 	}
 
 	@Click(R.id.button_save)
-	public void onDisciplineSave() {
+	void onDisciplineSave() {
 		super.showLoadingProgressDialog();
 
 		this.currentLesson.setName(this.mName.getText().toString());
@@ -62,7 +66,7 @@ public class LessonManagerActivity extends GenericAsyncAuthActivity<MSPLearningA
 	}
 
 	@Background
-	public void saveDiscipline() {
+	void saveDiscipline() {
 		try {
 			if (this.currentLesson.getId() == null) {
 				this.mLessonRestClient.insert(this.currentLesson);
