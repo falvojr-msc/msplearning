@@ -11,15 +11,19 @@
     <string name="action_refresh">Refresh</string>
     <string name="action_save">Salvar</string>  
     <string name="context_menu_title">Opções</string>
-    <string name="dialog_message_discard">Este(a) %1$s será descartado(a). Deseja confirmar?</string>
+    <string name="dialog_message_discard_male">Este %1$s será descartado. Deseja confirmar?</string>
+    <string name="dialog_message_discard_female">Esta %1$s será descartada. Deseja confirmar?</string>
     <string name="dialog_title_confirmation">Confirmação</string>
     <string name="dialog_title_error">Erro</string>
     <string name="error_required">Este campo é obrigatório</string>
     <string name="prompt_description">Descrição</string>
     <string name="prompt_name">Nome</string>  
-    <string name="toast_discard_success">%1$s descartado(a) com sucesso.</string>
-    <string name="toast_edit_success">%1$s editado(a) com sucesso.</string>
-    <string name="toast_new_success">%1$s criado(a) com sucesso.</string>
+    <string name="toast_discard_success_male">%1$s descartado com sucesso.</string>
+    <string name="toast_discard_success_female">%1$s descartada com sucesso.</string>
+    <string name="toast_edit_success_male">%1$s editado com sucesso.</string>
+    <string name="toast_edit_success_female">%1$s editada com sucesso.</string>
+    <string name="toast_new_success_male">%1$s criado com sucesso.</string>
+    <string name="toast_new_success_female">%1$s criada com sucesso.</string>
     
     <!-- Main strings -->
     <string name="error_find_id_app">Impossível encontrar o id da Aplicação.</string>
@@ -65,7 +69,7 @@
     
     <!-- Lesson strings -->
     <string name="app_subtitle_lesson">Lição</string>
-    <string name="action_manage_educational_content">Manage Educational Content</string>
+    <string name="action_manage_educational_content">Gerenciar Conteúdo Educacional</string>
     <string name="label_lesson_manager">Manter Lição</string>
     
     <!-- Educational Content strings -->

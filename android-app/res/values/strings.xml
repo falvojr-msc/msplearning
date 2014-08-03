@@ -11,15 +11,19 @@
     <string name="action_refresh">Refresh</string>
     <string name="action_save">Save</string>  
     <string name="context_menu_title">Options</string>
-    <string name="dialog_message_discard">This %1$s will be discarded. Want to confirm?</string>
+    <string name="dialog_message_discard_male">This %1$s will be discarded. Want to confirm?</string>
+    <string name="dialog_message_discard_female">This %1$s will be discarded. Want to confirm?</string>
     <string name="dialog_title_confirmation">Confirmation</string>
     <string name="dialog_title_error">Error</string>
     <string name="error_required">This field is required</string>
     <string name="prompt_description">Description</string>
     <string name="prompt_name">Name</string>  
-    <string name="toast_discard_success">%1$s discarded successfully.</string>
-    <string name="toast_edit_success">%1$s edited successfully.</string>
-    <string name="toast_new_success">%1$s included successfully.</string>
+    <string name="toast_discard_success_male">%1$s discarded successfully.</string>
+    <string name="toast_discard_success_female">%1$s discarded successfully.</string>
+    <string name="toast_edit_success_male">%1$s edited successfully.</string>
+    <string name="toast_edit_success_female">%1$s edited successfully.</string>
+    <string name="toast_new_success_male">%1$s included successfully.</string>
+    <string name="toast_new_success_female">%1$s included successfully.</string>
     
     <!-- Main strings -->
     <string name="error_find_id_app">Unable to find the App identifier.</string>

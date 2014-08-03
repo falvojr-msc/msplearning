@@ -123,25 +123,25 @@ public class LessonListActivity extends GenericActivityListView<Lesson> {
 				}
 			};
 			String label = super.getString(R.string.app_subtitle_lesson).toLowerCase(Locale.getDefault());
-			this.showDialogConfirm(this.getString(R.string.dialog_title_confirmation), this.getString(R.string.dialog_message_discard, label), listenerYes, null);
+			this.showDialogConfirm(this.getString(R.string.dialog_title_confirmation), this.getString(R.string.dialog_message_discard_female, label), listenerYes, null);
 			break;
 		}
 	}
 
 	@OnActivityResult(REQUEST_CODE_CREATE)
 	void onResultNew(int resultCode) {
-		this.showMessageFromResult(resultCode, R.string.toast_new_success);
+		this.showMessageFromResult(resultCode, R.string.toast_new_success_female);
 	}
 
 	@OnActivityResult(REQUEST_CODE_UPDATE)
 	void onResultEdit(int resultCode) {
-		this.showMessageFromResult(resultCode, R.string.toast_edit_success);
+		this.showMessageFromResult(resultCode, R.string.toast_edit_success_female);
 	}
 
 	@Background
 	void deleteLesson(Long id) {
 		this.mLessonRestClient.delete(id);
-		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success, super.getString(R.string.app_subtitle_lesson)));
+		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success_female, super.getString(R.string.app_subtitle_lesson)));
 	}
 
 	private void showMessageFromResult(int resultCode, int idResource) {

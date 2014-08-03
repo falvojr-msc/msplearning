@@ -121,25 +121,25 @@ public class EducationalContentListActivity extends GenericActivityListView<Educ
 				}
 			};
 			String label = super.getString(R.string.app_subtitle_educational_content).toLowerCase(Locale.getDefault());
-			this.showDialogConfirm(this.getString(R.string.dialog_title_confirmation), this.getString(R.string.dialog_message_discard, label), listenerYes, null);
+			this.showDialogConfirm(this.getString(R.string.dialog_title_confirmation), this.getString(R.string.dialog_message_discard_male, label), listenerYes, null);
 			break;
 		}
 	}
 
 	@OnActivityResult(REQUEST_CODE_CREATE)
 	void onResultNew(int resultCode) {
-		this.showMessageFromResult(resultCode, R.string.toast_new_success);
+		this.showMessageFromResult(resultCode, R.string.toast_new_success_male);
 	}
 
 	@OnActivityResult(REQUEST_CODE_UPDATE)
 	void onResultEdit(int resultCode) {
-		this.showMessageFromResult(resultCode, R.string.toast_edit_success);
+		this.showMessageFromResult(resultCode, R.string.toast_edit_success_male);
 	}
 
 	@Background
 	void deleteEducationalContent(Long id) {
 		this.mEducationalContentRestClient.delete(id);
-		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success, super.getString(R.string.app_subtitle_educational_content)));
+		this.reloadItensShowingToastMessage(super.getString(R.string.toast_discard_success_male, super.getString(R.string.app_subtitle_educational_content)));
 	}
 
 	private void showMessageFromResult(int resultCode, int idResource) {
