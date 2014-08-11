@@ -19,7 +19,7 @@
 	</bean>
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="postgresPU" />
+		<property name="persistenceUnitName" value="msplearningPU" />
 	</bean>
 
 	<bean class="org.springframework.orm.jpa.JpaTransactionManager">
