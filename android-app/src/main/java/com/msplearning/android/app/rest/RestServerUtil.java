@@ -15,5 +15,5 @@ public final class RestServerUtil {
 	/**
 	 * Root URL from RESTful services.
 	 */
-	public static final String ROOT_URL = "http://192.168.1.36:8080/rest-app/rest";
+	public static final String ROOT_URL = "http://msplearning-veniltonjr.rhcloud.com/rest";
 }
