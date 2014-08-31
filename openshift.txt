@@ -1,0 +1,7 @@
+rhc setup
+rhc git-clone msplearning
+rhc port-forward -a msplearning
+git rm -r src pom.xml
+git add .
+git commit -m "Comment"
+git push
