@@ -30,6 +30,7 @@
     <string name="rest_error_find_app">Unable to configure the App.</string>
     
     <!-- SignIn strings -->
+    <string name="app_subtitle_signin">Authentication</string>
     <string name="action_facebook">Sign in using Facebook</string>
     <string name="action_sign_in_register">Sign in or register</string>  
 	<string name="action_twitter">Sign in using Twitter</string>
@@ -82,5 +83,6 @@
     <string name="prompt_text">Text</string>
     <string name="prompt_image">Image</string>
     <string name="prompt_video">Video</string>
+    <string name="prompt_audio">Audio</string>
     
 </resources>

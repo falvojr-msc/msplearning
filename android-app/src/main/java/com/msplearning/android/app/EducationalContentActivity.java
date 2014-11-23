@@ -142,7 +142,7 @@ public class EducationalContentActivity extends GenericAsyncAuthActivity<MSPLear
 				this.mGroupMultimediaView.getChildAt(0).setEnabled(appFeature.isActive());
 			} else if (Variability.IMAGE.getId().equals(appFeature.getId().getFeature().getId())) {
 				this.mGroupMultimediaView.getChildAt(1).setEnabled(appFeature.isActive());
-			} else if (Variability.VIDEO.getId().equals(appFeature.getId().getFeature().getId())) {
+			}  if (Variability.VIDEO.getId().equals(appFeature.getId().getFeature().getId())) {
 				this.mGroupMultimediaView.getChildAt(2).setEnabled(appFeature.isActive());
 			}
 		}

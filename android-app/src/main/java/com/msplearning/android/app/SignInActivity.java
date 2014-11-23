@@ -13,7 +13,9 @@ import org.springframework.web.client.RestClientException;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.View;
@@ -51,6 +53,10 @@ public class SignInActivity extends GenericAsyncActivity<MSPLearningApplication>
 
 	@AfterViews
 	void afterViews() {
+		super.getSupportActionBar().setSubtitle(R.string.app_subtitle_signin);
+
+		this.mPasswordView.setTypeface(Typeface.DEFAULT);
+		this.mPasswordView.setTransformationMethod(new PasswordTransformationMethod());
 		this.mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
