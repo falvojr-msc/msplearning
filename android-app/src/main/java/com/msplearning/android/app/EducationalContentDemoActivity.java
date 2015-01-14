@@ -65,7 +65,7 @@ public class EducationalContentDemoActivity extends FragmentActivity {
 
         // Set up action bar.
         final ActionBar actionBar = getActionBar();
-        actionBar.setSubtitle(getString(R.string.pager_view_demo));
+        actionBar.setSubtitle(getString(R.string.title_view_pager_demo));
 
         // Specify that the Home button should show an "Up" caret, indicating that touching the button will take the user one step up in the application's hierarchy.
         actionBar.setDisplayHomeAsUpEnabled(true);

@@ -32,6 +32,6 @@
         android:layout_weight="5"
         android:gravity="bottom|center_horizontal"
         android:padding="8dp"
-        android:text="Prime Numbers" />
+        android:text="@string/text_view_pager_demo" />
 
 </LinearLayout>
