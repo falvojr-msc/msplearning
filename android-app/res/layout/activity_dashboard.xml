@@ -9,29 +9,33 @@
             android:id="@+id/button_manage_view_educational_content"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_gravity="center" />
+            android:drawableLeft="@drawable/ic_manage_educational_content"
+            android:gravity="center" />
 
         <Button
             android:id="@+id/button_access_requests"
-            android:text="@string/action_access_requests"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_gravity="center" />
+            android:drawableLeft="@drawable/ic_access"
+            android:gravity="center"
+            android:text="@string/action_access_requests"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/button_edit_profile"
-            android:text="@string/action_edit_profile"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_gravity="center" />
+            android:drawableLeft="@drawable/ic_edit"
+            android:gravity="center"
+            android:text="@string/action_edit_profile" />
 
         <Button
             android:id="@+id/button_info"
-            android:text="@string/action_info"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_gravity="center" />
+            android:drawableLeft="@drawable/ic_info"
+            android:gravity="center"
+            android:text="@string/action_info" />
     </LinearLayout>
 
 </ScrollView>

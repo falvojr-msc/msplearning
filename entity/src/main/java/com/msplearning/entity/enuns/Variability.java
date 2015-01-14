@@ -5,7 +5,8 @@ public enum Variability {
 	INTERACTIVITY(7L),
 	TEXT(19L),
 	IMAGE(20L),
-	VIDEO(21L);
+	VIDEO(21L),
+	AUDIO(22L);
 
 	private Long id;
 

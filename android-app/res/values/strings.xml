@@ -84,5 +84,6 @@
     <string name="prompt_image">Image</string>
     <string name="prompt_video">Video</string>
     <string name="prompt_audio">Audio</string>
+    <string name="pager_view_demo">Math Lesson</string>
     
 </resources>

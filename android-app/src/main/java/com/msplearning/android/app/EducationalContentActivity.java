@@ -138,12 +138,14 @@ public class EducationalContentActivity extends GenericAsyncAuthActivity<MSPLear
 	private void resolveMultimediaTypeVariability() {
 		// Resolve the variation point for "Multimedia Resources" feature:
 		for(AppFeature appFeature : super.getApplicationContext().getAppSettings().getApp().getAppFeatures()) {
-			if (Variability.TEXT.getId().equals(appFeature.getId().getFeature().getId())) {
+			if (Variability.AUDIO.getId().equals(appFeature.getId().getFeature().getId())) {
 				this.mGroupMultimediaView.getChildAt(0).setEnabled(appFeature.isActive());
-			} else if (Variability.IMAGE.getId().equals(appFeature.getId().getFeature().getId())) {
+			} else if (Variability.TEXT.getId().equals(appFeature.getId().getFeature().getId())) {
 				this.mGroupMultimediaView.getChildAt(1).setEnabled(appFeature.isActive());
-			}  if (Variability.VIDEO.getId().equals(appFeature.getId().getFeature().getId())) {
+			} else if (Variability.IMAGE.getId().equals(appFeature.getId().getFeature().getId())) {
 				this.mGroupMultimediaView.getChildAt(2).setEnabled(appFeature.isActive());
+			} else if (Variability.VIDEO.getId().equals(appFeature.getId().getFeature().getId())) {
+				this.mGroupMultimediaView.getChildAt(3).setEnabled(appFeature.isActive());
 			}
 		}
 		// Configure the RadioButton selected by default:

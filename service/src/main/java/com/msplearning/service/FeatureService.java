@@ -50,6 +50,7 @@ public class FeatureService extends BaseService implements InitializingBean {
 			multimediaResources.getChildren().add(new Feature(Variability.TEXT.getId(), "Text", null, false, false, false));
 			multimediaResources.getChildren().add(new Feature(Variability.IMAGE.getId(), "Image", null, false, false, false));
 			multimediaResources.getChildren().add(new Feature(Variability.VIDEO.getId(), "Video", null, false, false, false));
+			multimediaResources.getChildren().add(new Feature(Variability.AUDIO.getId(), "Audio", null, false, false, false));
 			pedagogical.getChildren().add(multimediaResources);
 
 			// Usability abstract features:

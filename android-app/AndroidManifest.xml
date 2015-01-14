@@ -66,6 +66,11 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.DashboardActivity_" />
         </activity>
 
+         <activity android:name=".EducationalContentDemoActivity" android:parentActivityName=".DashboardActivity_" android:launchMode="singleTop" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.msplearning.android.app.DashboardActivity_" />
+        </activity>
+        
+        
         <!-- External Activities -->
         
         <activity android:name="com.msplearning.android.ext.FacebookWebOAuthActivity" android:excludeFromRecents="true" android:noHistory="true" android:parentActivityName=".SignInActivity_" >

@@ -10,6 +10,7 @@ import org.androidannotations.annotations.rest.RestService;
 import org.springframework.web.client.RestClientException;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -39,6 +40,8 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 
 	@RestService
 	AppUserRestClient mAppUserRestClient;
+	
+	private boolean mIsTeacherOrAdmin;
 
 	@SuppressLint("NewApi")
 	@AfterViews
@@ -78,9 +81,9 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 		if (appUser == null) {
 			this.mButtonManageViewEducationalContent.setText(this.getString(R.string.action_view_educational_content));
 		} else {
-			boolean isTeacherOrAdmin = super.getUser() instanceof Teacher || appUser.isAdmin();
+			mIsTeacherOrAdmin = super.getUser() instanceof Teacher || appUser.isAdmin();
 
-			this.mButtonManageViewEducationalContent.setText(this.getString(isTeacherOrAdmin ? R.string.action_manage_disciplines : R.string.action_view_educational_content));
+			this.mButtonManageViewEducationalContent.setText(this.getString(mIsTeacherOrAdmin ? R.string.action_manage_disciplines : R.string.action_view_educational_content));
 			this.mButtonManageViewEducationalContent.setEnabled(appUser.isActive());
 			if (appUser.isAdmin()) {
 				this.mButtonAccessRequests.setVisibility(View.VISIBLE);
@@ -90,7 +93,12 @@ public class DashboardActivity extends GenericAsyncAuthActivity<MSPLearningAppli
 
 	@Click(R.id.button_manage_view_educational_content)
 	void onManageViewEducationalContent() {
-		DisciplineListActivity_.intent(this).start();
+		if (mIsTeacherOrAdmin) {
+			DisciplineListActivity_.intent(this).start();
+		} else {
+			Intent intent = new Intent(this, EducationalContentDemoActivity.class);
+			startActivity(intent);
+		}
 	}
 
 	@Click(R.id.button_access_requests)

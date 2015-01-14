@@ -8,6 +8,8 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 
 import android.annotation.SuppressLint;
+import android.graphics.Typeface;
+import android.text.method.PasswordTransformationMethod;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
@@ -74,6 +76,11 @@ public class UserActivity extends GenericAsyncActivity<MSPLearningApplication> {
 			this.mPasswordView.setText(password);
 			this.getIntent().removeExtra(EXTRA_KEY_PASSWORD);
 		}
+		
+		this.mPasswordView.setTypeface(Typeface.DEFAULT);
+		this.mPasswordView.setTransformationMethod(new PasswordTransformationMethod());
+		this.mRepeatPasswordView.setTypeface(Typeface.DEFAULT);
+		this.mRepeatPasswordView.setTransformationMethod(new PasswordTransformationMethod());
 	}
 
 	@Click(R.id.button_register)
