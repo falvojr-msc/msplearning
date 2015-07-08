@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="4">
+		<struct>
+			<and mandatory="true" name="M-SPLearning">
+				<and mandatory="true" name="Pedagogical">
+					<feature mandatory="true" name="Content Management"/>
+					<feature mandatory="true" name="Educational Activities"/>
+					<feature name="Interactivity"/>
+					<or mandatory="true" name="Multimedia Resources">
+						<feature mandatory="true" name="Audio"/>
+						<feature mandatory="true" name="Image"/>
+						<feature mandatory="true" name="Text"/>
+						<feature mandatory="true" name="Video"/>
+					</or>
+				</and>
+				<and abstract="true" mandatory="true" name="Usability">
+					<feature abstract="true" mandatory="true" name="Accessibility"/>
+					<feature abstract="true" mandatory="true" name="Attractiveness"/>
+					<feature abstract="true" mandatory="true" name="Intelligibility"/>
+					<feature abstract="true" mandatory="true" name="Learnability"/>
+					<feature abstract="true" mandatory="true" name="Operability"/>
+				</and>
+				<and mandatory="true" name="Compatibility">
+					<feature abstract="true" mandatory="true" name="Coexistence"/>
+					<feature mandatory="true" name="Interoperability"/>
+				</and>
+				<and mandatory="true" name="Security">
+					<feature name="Authenticity"/>
+					<feature mandatory="true" name="Confidentiality"/>
+					<feature mandatory="true" name="Integrity"/>
+				</and>
+				<or name="Communication">
+					<feature mandatory="true" name="Alerts and Messages"/>
+					<feature mandatory="true" name="Collaboration"/>
+					<feature mandatory="true" name="Results and Feedbacks"/>
+					<feature mandatory="true" name="Synchronization"/>
+				</or>
+				<or name="Support">
+					<feature mandatory="true" name="Customization"/>
+					<feature mandatory="true" name="Help"/>
+				</or>
+			</and>
+		</struct>
+		<constraints/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>
