@@ -10,14 +10,14 @@ Master's project called M-SPLearning, the goal is to apply the concepts of Softw
     + Run the SDK Manager and install at least the following items:
 
 <p align="left">   
-      <img src="https://www.dropbox.com/s/msxyh60dk3qovg8/android-sdk.png?dl=1" />
+      <img src="https://github.com/falvojr-msc/msplearning/blob/master/docs/files/android-sdk.png?raw=true" />
 </p>
 
 + Download and install [Eclipse IDE][ref04] 4.3.1 or higher for Java EE Developers;
     + Install [m2e-android][ref05] plugin, this ensures installation the other required plugins:
 
 <p align="left">
-    <img src="https://www.dropbox.com/s/8m8belqv9glndd0/m2e-android.png?dl=1" />
+    <img src="https://github.com/falvojr-msc/msplearning/blob/master/docs/files/m2e-android.png?raw=true" />
 </p>
 
 ## Execution
@@ -26,7 +26,7 @@ Master's project called M-SPLearning, the goal is to apply the concepts of Softw
 + On Eclipse import the project using "Existing Maven Projects" option and select all modules:
 
 <p align="left">
-    <img src="https://www.dropbox.com/s/s2ahfxsqmql1156/import.png?dl=1" />
+    <img src="https://github.com/falvojr-msc/msplearning/blob/master/docs/files/import.png?raw=true" />
 </p>
 
 + Enable the "Annotations Processing" on android-app project. This configuration is required for AndroidAnnotations framework;
@@ -39,7 +39,7 @@ Master's project called M-SPLearning, the goal is to apply the concepts of Softw
 M-SPLearning is released under version 2.0 of the [Apache License][ref06].
 
 [ref01]: http://maven.apache.org/download.html
-[ref02]: https://www.dropbox.com/s/knut6fiskw9wapi/settings.xml
+[ref02]: https://github.com/falvojr-msc/msplearning/blob/master/docs/files/settings.xml
 [ref03]: http://developer.android.com/sdk
 [ref04]: http://www.eclipse.org/downloads
 [ref05]: http://rgladwell.github.io/m2e-android
