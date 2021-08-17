@@ -1,0 +1,51 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Aug 17, 2021 - 9:22 PM  -->
+<feature_model name="M-SPLearning">
+<meta>
+<data name="description">M-SPLearning</data>
+<data name="creator">Venilton FalvoJr</data>
+<data name="address"></data>
+<data name="email">falvojr@usp.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Unievrsity od Sao Paulo</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r M-SPLearning(_r)
+	:m Pedagogical(_r_1)
+		:m Content Management(_r_1_7)
+		:m Educational Activities(_r_1_9)
+		:o Interactivity(_r_1_10)
+		:m Multimedia Resources(_r_1_11)
+			:g (_r_1_11_12) [1,*] 
+				: Audio(_r_1_11_12_13)
+				: Image(_r_1_11_12_14)
+				: Text(_r_1_11_12_15)
+				: Video(_r_1_11_12_16)
+	:m Usability_Abstract(_r_2)
+		:m Accessibility_Abstract(_r_2_17)
+		:m Attractiveness_Abstract(_r_2_18)
+		:m Intelligibility_Abstract(_r_2_19)
+		:m Learnability_Abstract(_r_2_20)
+		:m Operability_Abstract(_r_2_21)
+	:m Compatibility(_r_3)
+		:m Coexistence_Abstract(_r_3_22)
+		:m Interoperability(_r_3_23)
+	:m Security(_r_4)
+		:o Authenticity(_r_4_25)
+		:m Confidentiality(_r_4_26)
+		:m Integrity(_r_4_28)
+	:o Communication(_r_5)
+		:m Alerts and Messages(_r_5_29)
+		:m Collaboration(_r_5_30)
+		:m Results and Feedbacks(_r_5_31)
+		:m Synchronization(_r_5_32)
+	:o Support(_r_6)
+		:m Customization(_r_6_33)
+		:m Help(_r_6_34)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>
